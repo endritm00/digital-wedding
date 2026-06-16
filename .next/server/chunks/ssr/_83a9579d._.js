@@ -1452,10 +1452,10 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
     }, [
         play
     ]);
-    // 'crop' is always cover; 'auto'/'blend' adapt per viewport (fill on phones,
-    // contain+blur only when a cover crop would be severe).
+    // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
+    // always fill (cover) — the original behaviour.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (mode === 'crop') return;
+        if (mode !== 'blend') return;
         const decide = ()=>{
             const v = ref.current;
             if (!v || !v.videoWidth || !v.videoHeight) return;
@@ -1476,7 +1476,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
         videoSrc,
         mode
     ]);
-    const fit = mode === 'crop' ? 'cover' : autoFit;
+    const fit = mode === 'blend' ? autoFit : 'cover';
     const objectPosition = mode === 'crop' && focal ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%` : 'center';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute inset-0 overflow-hidden",
@@ -2537,12 +2537,12 @@ function FilmBackdrop({ videoSrc, poster, fallbackStyle, mode = 'auto', focal, a
     const wrapRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Resolved fit for 'auto' mode; ignored when mode is explicit.
     const [autoFit, setAutoFit] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('cover');
-    // 'crop' is always cover; 'auto' and 'blend' adapt per viewport — fill when the
-    // film roughly matches the screen (e.g. a portrait clip on a phone) and only
-    // contain+blur when a cover crop would be severe (a portrait clip on desktop).
-    // This keeps phones edge-to-edge while never hard-cropping on wide screens.
+    // Only 'blend' adapts per viewport (fill when the film roughly matches the
+    // screen, else contain+blur when a cover crop would be severe). 'auto' (curated
+    // presets / default background) and 'crop' always fill (cover) — exactly the
+    // original behaviour — so landscape presets aren't letterboxed on phones.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (mode === 'crop') return;
+        if (mode !== 'blend') return;
         const decide = ()=>{
             const v = videoRef.current;
             const box = wrapRef.current;
@@ -2565,7 +2565,7 @@ function FilmBackdrop({ videoSrc, poster, fallbackStyle, mode = 'auto', focal, a
         videoRef,
         mode
     ]);
-    const fit = mode === 'crop' ? 'cover' : autoFit;
+    const fit = mode === 'blend' ? autoFit : 'cover';
     const objectPosition = mode === 'crop' && focal ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%` : 'center';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: wrapRef,
@@ -2576,7 +2576,7 @@ function FilmBackdrop({ videoSrc, poster, fallbackStyle, mode = 'auto', focal, a
                 style: fallbackStyle
             }, void 0, false, {
                 fileName: "[project]/components/invite/film-backdrop.tsx",
-                lineNumber: 92,
+                lineNumber: 93,
                 columnNumber: 25
             }, this),
             videoSrc && poster && fit === 'contain' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2591,7 +2591,7 @@ function FilmBackdrop({ videoSrc, poster, fallbackStyle, mode = 'auto', focal, a
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/film-backdrop.tsx",
-                lineNumber: 96,
+                lineNumber: 97,
                 columnNumber: 9
             }, this),
             videoSrc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
@@ -2609,13 +2609,13 @@ function FilmBackdrop({ videoSrc, poster, fallbackStyle, mode = 'auto', focal, a
                 playsInline: true
             }, videoSrc, false, {
                 fileName: "[project]/components/invite/film-backdrop.tsx",
-                lineNumber: 111,
+                lineNumber: 112,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/film-backdrop.tsx",
-        lineNumber: 90,
+        lineNumber: 91,
         columnNumber: 5
     }, this);
 }

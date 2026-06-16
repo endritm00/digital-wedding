@@ -15,8 +15,9 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 //     severe (e.g. a portrait clip on a wide desktop). Nothing important is cut.
 //   • 'crop'  — fill the screen (object-cover) with a chosen focal point
 //     (object-position) deciding what stays in frame.
-//   • 'auto'  — same aspect-aware behaviour as 'blend'; used for the curated
-//     presets, which the couple don't frame themselves.
+//   • 'auto'  — always fill (cover), like the original behaviour. Used for the
+//     curated (landscape) presets and the default background, which the couple
+//     don't frame themselves and which are chosen to look good filled/cropped.
 
 export type FilmFit = 'auto' | 'blend' | 'crop'
 export interface FilmFocal { x: number; y: number }   // 0..1, object-position
@@ -55,12 +56,12 @@ export function FilmBackdrop({
   // Resolved fit for 'auto' mode; ignored when mode is explicit.
   const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
-  // 'crop' is always cover; 'auto' and 'blend' adapt per viewport — fill when the
-  // film roughly matches the screen (e.g. a portrait clip on a phone) and only
-  // contain+blur when a cover crop would be severe (a portrait clip on desktop).
-  // This keeps phones edge-to-edge while never hard-cropping on wide screens.
+  // Only 'blend' adapts per viewport (fill when the film roughly matches the
+  // screen, else contain+blur when a cover crop would be severe). 'auto' (curated
+  // presets / default background) and 'crop' always fill (cover) — exactly the
+  // original behaviour — so landscape presets aren't letterboxed on phones.
   useEffect(() => {
-    if (mode === 'crop') return
+    if (mode !== 'blend') return
     const decide = () => {
       const v = videoRef.current
       const box = wrapRef.current
@@ -80,7 +81,7 @@ export function FilmBackdrop({
     }
   }, [videoSrc, videoRef, mode])
 
-  const fit: 'cover' | 'contain' = mode === 'crop' ? 'cover' : autoFit
+  const fit: 'cover' | 'contain' = mode === 'blend' ? autoFit : 'cover'
   const objectPosition =
     mode === 'crop' && focal
       ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%`

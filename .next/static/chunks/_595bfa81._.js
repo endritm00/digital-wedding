@@ -1478,11 +1478,12 @@ function InvitePreview() {
     // default 'blend'); presets auto-frame per viewport. This drives the live
     // preview so the Frame step updates in real time.
     const filmMode = uploadedReady ? config.video_fit ?? 'blend' : 'auto';
-    // 'crop' is always cover; 'auto'/'blend' adapt per viewport so phones stay
-    // edge-to-edge and only wide screens fall back to contain+blur.
+    // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
+    // always fill (cover) — the original behaviour, so landscape presets aren't
+    // letterboxed on phones.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "InvitePreview.useEffect": ()=>{
-            if (filmMode === 'crop') return;
+            if (filmMode !== 'blend') return;
             const decide = {
                 "InvitePreview.useEffect.decide": ()=>{
                     const v = videoElRef.current;
@@ -1510,7 +1511,7 @@ function InvitePreview() {
         videoSrc,
         filmMode
     ]);
-    const fit = filmMode === 'crop' ? 'cover' : autoFit;
+    const fit = filmMode === 'blend' ? autoFit : 'cover';
     const objectPosition = filmMode === 'crop' && config.video_focal ? `${Math.round(config.video_focal.x * 100)}% ${Math.round(config.video_focal.y * 100)}%` : 'center';
     const track = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$presets$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MUSIC_TRACKS"].find((t)=>t.id === config.music_track);
     const hasMusic = Boolean(track || config.music_asset_id);
@@ -1530,7 +1531,7 @@ function InvitePreview() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 134,
+                lineNumber: 135,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1544,7 +1545,7 @@ function InvitePreview() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 137,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             videoSrc && !reduced && fit === 'contain' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1560,7 +1561,7 @@ function InvitePreview() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 150,
+                lineNumber: 151,
                 columnNumber: 9
             }, this),
             videoSrc && !reduced && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].video, {
@@ -1590,7 +1591,7 @@ function InvitePreview() {
                 }
             }, videoSrc, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 166,
+                lineNumber: 167,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1600,7 +1601,7 @@ function InvitePreview() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 186,
+                lineNumber: 187,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1632,22 +1633,22 @@ function InvitePreview() {
                             children: "We’re preparing your film — you can keep going."
                         }, void 0, false, {
                             fileName: "[project]/components/builder/invite-preview.tsx",
-                            lineNumber: 209,
+                            lineNumber: 210,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/builder/invite-preview.tsx",
-                        lineNumber: 205,
+                        lineNumber: 206,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/builder/invite-preview.tsx",
-                    lineNumber: 198,
+                    lineNumber: 199,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 196,
+                lineNumber: 197,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1673,7 +1674,7 @@ function InvitePreview() {
                                 children: "Together with their families"
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 230,
+                                lineNumber: 231,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1718,17 +1719,17 @@ function InvitePreview() {
                                         children: names
                                     }, names + headingFont.id, false, {
                                         fileName: "[project]/components/builder/invite-preview.tsx",
-                                        lineNumber: 239,
+                                        lineNumber: 240,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/invite-preview.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 239,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 237,
+                                lineNumber: 238,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1740,7 +1741,7 @@ function InvitePreview() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 261,
+                                lineNumber: 262,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1767,12 +1768,12 @@ function InvitePreview() {
                                     children: date ?? 'Your wedding day'
                                 }, date ?? 'no-date', false, {
                                     fileName: "[project]/components/builder/invite-preview.tsx",
-                                    lineNumber: 264,
+                                    lineNumber: 265,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 263,
+                                lineNumber: 264,
                                 columnNumber: 11
                             }, this),
                             invite?.venue_name ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1785,7 +1786,7 @@ function InvitePreview() {
                                 children: invite.venue_name
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 283,
+                                lineNumber: 284,
                                 columnNumber: 13
                             }, this) : null,
                             hasMusic && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1822,7 +1823,7 @@ function InvitePreview() {
                                             }
                                         }, i, false, {
                                             fileName: "[project]/components/builder/invite-preview.tsx",
-                                            lineNumber: 294,
+                                            lineNumber: 295,
                                             columnNumber: 17
                                         }, this)),
                                     track && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1835,19 +1836,19 @@ function InvitePreview() {
                                         children: track.title
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/invite-preview.tsx",
-                                        lineNumber: 306,
+                                        lineNumber: 307,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 292,
+                                lineNumber: 293,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/builder/invite-preview.tsx",
-                        lineNumber: 220,
+                        lineNumber: 221,
                         columnNumber: 9
                     }, this),
                     enabledSections.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1889,29 +1890,29 @@ function InvitePreview() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$presets$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SECTION_LABELS"][s.type] ?? s.type
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/invite-preview.tsx",
-                                    lineNumber: 330,
+                                    lineNumber: 331,
                                     columnNumber: 17
                                 }, this)
                             }, s.id, false, {
                                 fileName: "[project]/components/builder/invite-preview.tsx",
-                                lineNumber: 318,
+                                lineNumber: 319,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/builder/invite-preview.tsx",
-                        lineNumber: 316,
+                        lineNumber: 317,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/invite-preview.tsx",
-                lineNumber: 219,
+                lineNumber: 220,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/builder/invite-preview.tsx",
-        lineNumber: 132,
+        lineNumber: 133,
         columnNumber: 5
     }, this);
 }

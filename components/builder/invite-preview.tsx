@@ -95,10 +95,11 @@ export function InvitePreview() {
   const filmMode: 'auto' | 'blend' | 'crop' =
     uploadedReady ? (config.video_fit ?? 'blend') : 'auto'
 
-  // 'crop' is always cover; 'auto'/'blend' adapt per viewport so phones stay
-  // edge-to-edge and only wide screens fall back to contain+blur.
+  // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
+  // always fill (cover) — the original behaviour, so landscape presets aren't
+  // letterboxed on phones.
   useEffect(() => {
-    if (filmMode === 'crop') return
+    if (filmMode !== 'blend') return
     const decide = () => {
       const v = videoElRef.current
       const box = wrapRef.current
@@ -118,7 +119,7 @@ export function InvitePreview() {
     }
   }, [videoSrc, filmMode])
 
-  const fit: 'cover' | 'contain' = filmMode === 'crop' ? 'cover' : autoFit
+  const fit: 'cover' | 'contain' = filmMode === 'blend' ? autoFit : 'cover'
   const objectPosition =
     filmMode === 'crop' && config.video_focal
       ? `${Math.round(config.video_focal.x * 100)}% ${Math.round(config.video_focal.y * 100)}%`

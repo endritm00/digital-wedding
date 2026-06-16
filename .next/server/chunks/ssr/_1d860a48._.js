@@ -1392,8 +1392,10 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
     }, [
         play
     ]);
+    // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
+    // always fill (cover) — the original behaviour.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (mode !== 'auto') return;
+        if (mode !== 'blend') return;
         const decide = ()=>{
             const v = ref.current;
             if (!v || !v.videoWidth || !v.videoHeight) return;
@@ -1414,7 +1416,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
         videoSrc,
         mode
     ]);
-    const fit = mode === 'blend' ? 'contain' : mode === 'crop' ? 'cover' : autoFit;
+    const fit = mode === 'blend' ? autoFit : 'cover';
     const objectPosition = mode === 'crop' && focal ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%` : 'center';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         className: "absolute inset-0 overflow-hidden",
@@ -1432,7 +1434,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 99,
+                lineNumber: 100,
                 columnNumber: 7
             }, this),
             videoSrc && poster && fit === 'contain' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1447,7 +1449,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 101,
+                lineNumber: 102,
                 columnNumber: 9
             }, this),
             videoSrc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].video, {
@@ -1466,7 +1468,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 114,
+                lineNumber: 115,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1477,13 +1479,13 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 127,
+                lineNumber: 128,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 98,
+        lineNumber: 99,
         columnNumber: 5
     }, this);
 }
@@ -1509,7 +1511,7 @@ function WhiteCurtain({ scale, opacity, originY = '52%' }) {
         }
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 136,
+        lineNumber: 137,
         columnNumber: 5
     }, this);
 }
@@ -1530,7 +1532,7 @@ function Greeting({ theme, names, fade }) {
                 children: "You are invited"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 154,
+                lineNumber: 155,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1546,13 +1548,13 @@ function Greeting({ theme, names, fade }) {
                 children: names
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 155,
+                lineNumber: 156,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 153,
+        lineNumber: 154,
         columnNumber: 5
     }, this);
 }
@@ -1566,7 +1568,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 163,
+        lineNumber: 164,
         columnNumber: 7
     }, this) : dir === 'apart' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
         d: "M6 4L3 7.5L6 11M9 4l3 3.5L9 11",
@@ -1576,7 +1578,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 165,
+        lineNumber: 166,
         columnNumber: 7
     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
         d: "M7.5 3v8M4 7.5l3.5 3.5L11 7.5",
@@ -1586,7 +1588,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 166,
+        lineNumber: 167,
         columnNumber: 7
     }, this);
     const bob = reduced ? {} : dir === 'up' ? {
@@ -1640,12 +1642,12 @@ function Hint({ label, show, dir }) {
                     children: icon
                 }, void 0, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 174,
+                    lineNumber: 175,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 171,
+                lineNumber: 172,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1658,13 +1660,13 @@ function Hint({ label, show, dir }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 176,
+                lineNumber: 177,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 169,
+        lineNumber: 170,
         columnNumber: 5
     }, this);
 }
@@ -1746,7 +1748,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 focal: videoFocal
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 224,
+                lineNumber: 225,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WhiteCurtain, {
@@ -1755,7 +1757,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 originY: "52%"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 225,
+                lineNumber: 226,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1772,7 +1774,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                         accent: theme.accent
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 229,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1806,12 +1808,12 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                                         vectorEffect: "non-scaling-stroke"
                                     }, void 0, false, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 243,
+                                        lineNumber: 244,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                                    lineNumber: 242,
+                                    lineNumber: 243,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1822,24 +1824,24 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                                    lineNumber: 245,
+                                    lineNumber: 246,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 232,
+                            lineNumber: 233,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 231,
+                        lineNumber: 232,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 228,
+                lineNumber: 229,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Greeting, {
@@ -1848,7 +1850,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 fade: greet
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 250,
+                lineNumber: 251,
                 columnNumber: 7
             }, this),
             !opening && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SealButton, {
@@ -1858,7 +1860,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 reduced: !!reduced
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 253,
+                lineNumber: 254,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Hint, {
@@ -1867,13 +1869,13 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 show: !opening
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 255,
+                lineNumber: 256,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 223,
+        lineNumber: 224,
         columnNumber: 5
     }, this);
 }
@@ -1921,12 +1923,12 @@ function SealButton({ onOpen, mono, font, reduced }) {
             font: font
         }, void 0, false, {
             fileName: "[project]/components/invite/openers/interactive.tsx",
-            lineNumber: 276,
+            lineNumber: 277,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 264,
+        lineNumber: 265,
         columnNumber: 5
     }, this);
 }
@@ -1956,7 +1958,7 @@ function BotanicalPaper({ ivory, accent }) {
                                 seed: "4"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 287,
+                                lineNumber: 288,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("feColorMatrix", {
@@ -1964,13 +1966,13 @@ function BotanicalPaper({ ivory, accent }) {
                                 values: "0 0 0 0 0.42  0 0 0 0 0.35  0 0 0 0 0.24  0 0 0 0.05 0"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 287,
+                                lineNumber: 288,
                                 columnNumber: 114
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 287,
+                        lineNumber: 288,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -1979,13 +1981,13 @@ function BotanicalPaper({ ivory, accent }) {
                         filter: "url(#paperGrain)"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 288,
+                        lineNumber: 289,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 286,
+                lineNumber: 287,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2013,20 +2015,20 @@ function BotanicalPaper({ ivory, accent }) {
                                                 d: "M20 130 C40 110 40 70 22 40 M22 40 C8 56 6 80 20 96 M22 64 C36 60 46 70 46 86 M22 88 C8 86 0 98 0 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 296,
+                                                lineNumber: 297,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M90 20 C108 36 110 70 96 100 M96 64 C82 60 72 70 72 86 M96 88 C112 86 120 100 120 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 297,
+                                                lineNumber: 298,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 296,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -2036,36 +2038,36 @@ function BotanicalPaper({ ivory, accent }) {
                                                 d: "M20 130 C40 110 40 70 22 40 M22 40 C8 56 6 80 20 96 M22 64 C36 60 46 70 46 86 M22 88 C8 86 0 98 0 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 300,
+                                                lineNumber: 301,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M90 20 C108 36 110 70 96 100 M96 64 C82 60 72 70 72 86 M96 88 C112 86 120 100 120 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 301,
+                                                lineNumber: 302,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 299,
+                                        lineNumber: 300,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 294,
+                                lineNumber: 295,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 293,
+                            lineNumber: 294,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 292,
+                        lineNumber: 293,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -2075,13 +2077,13 @@ function BotanicalPaper({ ivory, accent }) {
                         opacity: "0.6"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 306,
+                        lineNumber: 307,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 291,
+                lineNumber: 292,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2098,7 +2100,7 @@ function BotanicalPaper({ ivory, accent }) {
                         vectorEffect: "non-scaling-stroke"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 311,
+                        lineNumber: 312,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2106,7 +2108,7 @@ function BotanicalPaper({ ivory, accent }) {
                         fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#000', 0.018)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 312,
+                        lineNumber: 313,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2114,13 +2116,13 @@ function BotanicalPaper({ ivory, accent }) {
                         fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#000', 0.018)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 313,
+                        lineNumber: 314,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 310,
+                lineNumber: 311,
                 columnNumber: 7
             }, this),
             [
@@ -2154,14 +2156,14 @@ function BotanicalPaper({ ivory, accent }) {
                                 d: "M0 0 C18 -4 30 -16 34 -36 M10 -8 C8 -22 16 -32 30 -34 M0 0 C-2 -16 6 -26 18 -28"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 320,
+                                lineNumber: 321,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                 d: "M30 -34 C40 -30 44 -20 40 -10"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 321,
+                                lineNumber: 322,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -2173,18 +2175,18 @@ function BotanicalPaper({ ivory, accent }) {
                                 stroke: "none"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 322,
+                                lineNumber: 323,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 319,
+                        lineNumber: 320,
                         columnNumber: 11
                     }, this)
                 }, k, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 318,
+                    lineNumber: 319,
                     columnNumber: 9
                 }, this)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2194,13 +2196,13 @@ function BotanicalPaper({ ivory, accent }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 328,
+                lineNumber: 329,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 284,
+        lineNumber: 285,
         columnNumber: 5
     }, this);
 }
@@ -2282,7 +2284,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 focal: videoFocal
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 371,
+                lineNumber: 372,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WhiteCurtain, {
@@ -2291,7 +2293,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 originY: "50%"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 372,
+                lineNumber: 373,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Greeting, {
@@ -2300,7 +2302,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 fade: opening ? greet : reduced ? 1 : greetFade
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 374,
+                lineNumber: 375,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -2360,22 +2362,22 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                             fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#ffffff', theme.dark ? 0.16 : 0.6)
                         }, void 0, false, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 389,
+                            lineNumber: 390,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 388,
+                        lineNumber: 389,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 384,
+                    lineNumber: 385,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 377,
+                lineNumber: 378,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Hint, {
@@ -2384,13 +2386,13 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 show: !opening
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 394,
+                lineNumber: 395,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 370,
+        lineNumber: 371,
         columnNumber: 5
     }, this);
 }

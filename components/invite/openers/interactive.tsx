@@ -67,10 +67,10 @@ function FilmStage({
     return () => { cancelled = true }
   }, [play])
 
-  // 'crop' is always cover; 'auto'/'blend' adapt per viewport (fill on phones,
-  // contain+blur only when a cover crop would be severe).
+  // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
+  // always fill (cover) — the original behaviour.
   useEffect(() => {
-    if (mode === 'crop') return
+    if (mode !== 'blend') return
     const decide = () => {
       const v = ref.current
       if (!v || !v.videoWidth || !v.videoHeight) return
@@ -89,7 +89,7 @@ function FilmStage({
     }
   }, [videoSrc, mode])
 
-  const fit: 'cover' | 'contain' = mode === 'crop' ? 'cover' : autoFit
+  const fit: 'cover' | 'contain' = mode === 'blend' ? autoFit : 'cover'
   const objectPosition =
     mode === 'crop' && focal
       ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%`
