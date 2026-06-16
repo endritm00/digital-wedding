@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense, useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { api } from '@/lib/builder/api'
@@ -192,7 +192,10 @@ function SuccessInner({ id }: { id: string }) {
   )
 }
 
-export default function SuccessPage({ params }: { params: { id: string } }) {
+export default function SuccessPage() {
+  const params = useParams()
+  const id = params?.id ?? ''
+
   return (
     <div
       className="fixed inset-0 flex flex-col items-center justify-center px-8"
@@ -208,7 +211,7 @@ export default function SuccessPage({ params }: { params: { id: string } }) {
           </span>
         }
       >
-        <SuccessInner id={params.id} />
+        <SuccessInner id={id} />
       </Suspense>
     </div>
   )
