@@ -256,15 +256,15 @@ async function PATCH(request, { params }) {
         config: parsed.data.config
     }).eq('id', sectionId).eq('invite_id', id) // prevents cross-invite writes
     .select('id, type, position, config, updated_at').single();
-    if (error || !data) {
-        if (!data) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notFound"])('section_not_found');
+    if (error) {
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$logger$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["logger"].error({
             event: 'section.patch.failed',
             section_id: sectionId,
-            error: error?.message
+            error: error.message
         });
         return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serverError"])();
     }
+    if (!data) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notFound"])('section_not_found');
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ok"])(data);
 }
 async function DELETE(request, { params }) {

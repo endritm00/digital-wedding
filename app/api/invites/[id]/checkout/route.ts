@@ -31,12 +31,14 @@ export async function POST(_req: NextRequest, { params }: Params) {
   const checkoutLimit = await limiters.checkout(`checkout:${user.id}`)
   if (!checkoutLimit.allowed) return rateLimitedResponse(checkoutLimit)
 
+  type InviteRow = { id: string; status: 'draft' | 'paid' | 'published' | 'archived'; plan_id: string | null }
+
   // Fetch invite through RLS — confirms ownership
   const { data: invite } = await supabase
     .from('invites')
     .select('id, status, plan_id')
     .eq('id', id)
-    .single()
+    .single() as unknown as { data: InviteRow | null }
 
   if (!invite)                     return notFound('invite_not_found')
   if (invite.status === 'paid')    return badRequest('invite_already_paid')
@@ -51,6 +53,8 @@ export async function POST(_req: NextRequest, { params }: Params) {
   const service = createServiceClient()
   const cutoff = new Date(Date.now() - 30 * 60 * 1000).toISOString()
 
+  type ExistingOrderRow = { checkout_url: string }
+
   const { data: existing } = await service
     .from('orders')
     .select('checkout_url')
@@ -60,7 +64,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
     .gte('created_at', cutoff)
     .order('created_at', { ascending: false })
     .limit(1)
-    .maybeSingle()
+    .maybeSingle() as { data: ExistingOrderRow | null }
 
   if (existing?.checkout_url) {
     logger.info({ event: 'checkout.reused_session', invite_id: id })
@@ -68,10 +72,15 @@ export async function POST(_req: NextRequest, { params }: Params) {
   }
 
   // Fetch plan code snapshot and buyer email
-  const [{ data: plan }, { data: { user: freshUser } }] = await Promise.all([
-    service.from('plans').select('code').eq('id', invite.plan_id).single(),
-    supabase.auth.getUser(),
-  ])
+  type PlanRow = { code: string | null }
+
+  const { data: plan } = await service
+    .from('plans')
+    .select('code')
+    .eq('id', invite.plan_id)
+    .single() as { data: PlanRow | null }
+
+  const { data: { user: freshUser } } = await supabase.auth.getUser()
 
   const buyerEmail = freshUser?.email ?? ''
   const appUrl     = process.env.NEXT_PUBLIC_APP_URL!
@@ -123,21 +132,22 @@ export async function POST(_req: NextRequest, { params }: Params) {
     status:           'pending',
     stripe_session_id: session.id,
     checkout_url:     session.url,
-  })
+  } as any)
 
   if (insertError) {
     // Layer 3: unique conflict on stripe_session_id means a concurrent request
     // already inserted this session — return the existing order's URL
     if (insertError.code === '23505') {
-      const { data: concurrent } = await service
-        .from('orders')
-        .select('checkout_url')
-        .eq('stripe_session_id', session.id)
-        .single()
+        type ConcurrentOrderRow = { checkout_url: string | null }
 
-      if (concurrent?.checkout_url) return ok({ url: concurrent.checkout_url })
-    }
+        const { data: concurrent } = await service
+          .from('orders')
+          .select('checkout_url')
+          .eq('stripe_session_id', session.id)
+          .single() as unknown as { data: ConcurrentOrderRow | null }
 
+        if (concurrent?.checkout_url) return ok({ url: concurrent.checkout_url })
+      }
     // The Stripe session was created but the order row failed.
     // Log and still return the URL — the webhook will handle the missing order.
     logger.error({

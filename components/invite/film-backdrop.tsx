@@ -2,30 +2,35 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 
-// A full-bleed film backdrop that never crops the subject.
+// A full-bleed film backdrop with three framing modes.
 //
-// User uploads come in any aspect ratio (a portrait phone clip, a landscape
-// reel…), and a single object-cover layer crops badly when the video's aspect
-// is far from the viewport's — e.g. a portrait clip shows only a thin middle
-// band on desktop. Instead we:
-//   • show the whole video with object-contain, centered, and
-//   • fill the leftover space with a blurred, scaled copy of the poster,
-// so it stays edge-to-edge and reads as deliberate rather than letterboxed.
+// User uploads come in any aspect ratio, and a single object-cover layer crops
+// badly when the video's aspect is far from the viewport's — e.g. a portrait
+// clip shows only a thin middle band on desktop. The couple choose how to frame
+// their own film in the builder's "Frame your film" step:
 //
-// Aspect-aware: when the video already roughly matches the viewport (a
-// landscape clip on desktop, any portrait clip on a phone) we switch back to
-// object-cover so well-framed videos go truly edge-to-edge with no blur. The
-// decision re-runs on metadata load and on resize/orientation change.
+//   • 'blend' — show the whole film (object-contain), centered, with a blurred
+//     scaled poster filling the leftover space. Nothing is ever cropped.
+//   • 'crop'  — fill the screen (object-cover) with a chosen focal point
+//     (object-position) deciding what stays in frame.
+//   • 'auto'  — pick automatically per viewport: cover when the film roughly
+//     matches the viewport (no severe crop), else contain+blur. Used for the
+//     curated presets, which the couple don't frame themselves.
 
-// Fraction of the video that stays visible under object-cover, along the
-// cropped axis (= min(ratio)/max(ratio)). At/above this we prefer cover; below
-// it the crop is severe enough to letterbox instead. 0.8 ≈ "lose up to 20%".
+export type FilmFit = 'auto' | 'blend' | 'crop'
+export interface FilmFocal { x: number; y: number }   // 0..1, object-position
+
+// Fraction of the video that stays visible under object-cover, along the cropped
+// axis (= min(ratio)/max(ratio)). At/above this, 'auto' prefers cover; below it
+// the crop is severe enough to letterbox instead. 0.8 ≈ "lose up to 20%".
 const COVER_MIN = 0.8
 
 export function FilmBackdrop({
   videoSrc,
   poster,
   fallbackStyle,
+  mode = 'auto',
+  focal,
   autoPlay = true,
   className = '',
   videoRef: externalVideoRef,
@@ -34,6 +39,10 @@ export function FilmBackdrop({
   poster: string | null
   /** Gradient (or colour) shown before/behind the video — the base layer. */
   fallbackStyle?: CSSProperties
+  /** How to frame the film. Defaults to 'auto' (per-viewport). */
+  mode?: FilmFit
+  /** Focal point for 'crop' mode (0..1). Defaults to centre. */
+  focal?: FilmFocal | null
   autoPlay?: boolean
   className?: string
   /** Optional ref forwarded to the <video> so a parent can control playback. */
@@ -42,9 +51,11 @@ export function FilmBackdrop({
   const localRef = useRef<HTMLVideoElement | null>(null)
   const videoRef = externalVideoRef ?? localRef
   const wrapRef = useRef<HTMLDivElement | null>(null)
-  const [fit, setFit] = useState<'cover' | 'contain'>('cover')
+  // Resolved fit for 'auto' mode; ignored when mode is explicit.
+  const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
   useEffect(() => {
+    if (mode !== 'auto') return
     const decide = () => {
       const v = videoRef.current
       const box = wrapRef.current
@@ -52,7 +63,7 @@ export function FilmBackdrop({
       const videoRatio = v.videoWidth / v.videoHeight
       const boxRatio = box.clientWidth / box.clientHeight || 1
       const visible = Math.min(videoRatio, boxRatio) / Math.max(videoRatio, boxRatio)
-      setFit(visible >= COVER_MIN ? 'cover' : 'contain')
+      setAutoFit(visible >= COVER_MIN ? 'cover' : 'contain')
     }
     const v = videoRef.current
     decide()
@@ -62,14 +73,21 @@ export function FilmBackdrop({
       v?.removeEventListener('loadedmetadata', decide)
       window.removeEventListener('resize', decide)
     }
-  }, [videoSrc, videoRef])
+  }, [videoSrc, videoRef, mode])
+
+  const fit: 'cover' | 'contain' =
+    mode === 'blend' ? 'contain' : mode === 'crop' ? 'cover' : autoFit
+  const objectPosition =
+    mode === 'crop' && focal
+      ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%`
+      : 'center'
 
   return (
     <div ref={wrapRef} className={`absolute inset-0 overflow-hidden ${className}`}>
       {/* base layer — gradient/colour, also shows through any translucency */}
       {fallbackStyle && <div className="absolute inset-0" style={fallbackStyle} />}
 
-      {/* blurred fill — only visible in the letterbox gaps when fit=contain */}
+      {/* blurred fill — only visible in the letterbox gaps when contained */}
       {videoSrc && poster && fit === 'contain' && (
         <div
           className="absolute inset-0"
@@ -90,7 +108,7 @@ export function FilmBackdrop({
           ref={videoRef}
           key={videoSrc}
           className="absolute inset-0 h-full w-full"
-          style={{ objectFit: fit }}
+          style={{ objectFit: fit, objectPosition }}
           src={videoSrc}
           poster={poster ?? undefined}
           autoPlay={autoPlay}

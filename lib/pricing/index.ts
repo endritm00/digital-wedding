@@ -3,6 +3,9 @@
 // Never duplicate this logic in SQL.
 
 export const SECTION_OVERAGE_CODE = 'section_overage' as const
+// Flat per-invite fee for a couple's own uploaded opening film (preset films are
+// free). Code must match the `extras` catalog row. Applied in buildQuote.
+export const CUSTOM_VIDEO_CODE = 'custom_video' as const
 
 export interface PricingPlan {
   code: string

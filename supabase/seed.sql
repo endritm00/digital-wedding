@@ -21,6 +21,7 @@ on conflict (code) do update set
 -- ============================================================
 insert into public.extras (code, name, price_cents, pricing) values
   ('opening_video',       'Animated Opening Video',  2900, 'per_invite'),
+  ('custom_video',        'Custom Film Upload',       499, 'per_invite'),
   ('custom_music',        'Custom Background Music', 1900, 'per_invite'),
   ('custom_illustration', 'Custom Illustration',     4900, 'per_invite'),
   ('section_overage',     'Additional Section',       900, 'per_unit')

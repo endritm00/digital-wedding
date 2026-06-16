@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
 import { resolveInviteAccess } from '@/lib/invites/access'
 import { createServiceClient } from '@/lib/supabase/service'
+import type { Json } from '@/lib/supabase/database.types'
 import { ok, badRequest, notFound, serverError } from '@/lib/api/response'
 import { logger } from '@/lib/logger'
 
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest, { params }: Params) {
   if (asset.status === 'ready') return ok({ status: 'ready' })
   if (asset.status === 'failed') return badRequest('asset_in_failed_state')
 
-  let variants: Record<string, unknown> = {}
+  let variants: Json = {}
 
   if (asset.kind === 'gallery_image' || asset.kind === 'illustration') {
     // Store the transform spec for each variant.

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { resolveInviteAccess } from '@/lib/invites/access'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
+import type { Json } from '@/lib/supabase/database.types'
 import { ok, badRequest, serverError } from '@/lib/api/response'
 import { logger } from '@/lib/logger'
 
@@ -68,7 +69,7 @@ export async function POST(request: NextRequest, { params }: Params) {
 
   const { data, error } = await db
     .from('invite_sections')
-    .insert({ invite_id: id, type: parsed.data.type, position, config: parsed.data.config })
+    .insert({ invite_id: id, type: parsed.data.type, position, config: parsed.data.config as Json })
     .select('id, type, position, config, created_at, updated_at')
     .single()
 

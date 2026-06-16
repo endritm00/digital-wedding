@@ -335,5 +335,6 @@ export function lineItemLabel(label: string, planName?: string | null): string {
   if (label.startsWith('plan:')) return planName ?? 'Your invitation'
   const code = label.replace(/^extra:/, '')
   if (code === 'section_overage') return 'Additional sections'
+  if (code === 'custom_video') return 'Custom film'
   return code.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase())
 }

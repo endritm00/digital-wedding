@@ -10,7 +10,7 @@ import { uploadFile, pollAsset, ApiError } from '@/lib/builder/api'
 
 export default function OpeningVideoPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
-  const { opening, setOpening, setMediaAsset } = useBuilder()
+  const { opening, setOpening, setMediaAsset, refreshQuote } = useBuilder()
   const router = useRouter()
   const fileRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
@@ -27,8 +27,15 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
   const selectedPreset = config.video_preset ?? null
   const hasCustomVideo = Boolean(config.video_asset_id)
 
+  // The opening section persists ~800ms after setOpening; the quote derives the
+  // custom-film fee from it server-side, so refresh shortly after a change for a
+  // prompt total update.
+  const refreshQuoteSoon = () => setTimeout(() => { void refreshQuote() }, 1100)
+
   const handlePresetSelect = (id: string) => {
-    setOpening({ video_preset: id, video_asset_id: null })
+    // Switching to a preset drops the custom film (and its fee + framing choice).
+    setOpening({ video_preset: id, video_asset_id: null, video_fit: null, video_focal: null })
+    refreshQuoteSoon()
   }
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +45,10 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
     setUploadError(null)
     try {
       const assetId = await uploadFile(inviteId, 'opening_video', file)
-      setOpening({ video_asset_id: assetId, video_preset: null })
+      // Default to the no-crop "blend" framing; the couple refine it on the
+      // next (Frame) step. Setting the asset id triggers the €4.99 film fee.
+      setOpening({ video_asset_id: assetId, video_preset: null, video_fit: 'blend' })
+      refreshQuoteSoon()
       const stop = pollAsset(inviteId, assetId, (asset) => {
         setMediaAsset(asset)
         if (asset.status === 'ready' || asset.status === 'failed') stop()
@@ -64,7 +74,9 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
         title="Your opening film"
         lede="Guests see this first. Pick a mood or upload a clip from your day."
         primaryLabel="Continue"
-        onPrimary={() => router.push(`/builder/${inviteId}/music`)}
+        onPrimary={() =>
+          router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'music'}`)
+        }
         laterLabel="No video"
         onLater={() => router.push(`/builder/${inviteId}/music`)}
         backHref={`/builder/${inviteId}/style`}
@@ -151,8 +163,24 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
             <span className="font-inter px-2 text-center leading-snug" style={{ fontSize: 10, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.52)' }}>
               {uploading ? 'Uploading…' : videoUnavailable ? 'Coming soon' : hasCustomVideo ? 'Uploaded ✓' : 'Your own clip'}
             </span>
+            {!uploading && !videoUnavailable && !hasCustomVideo && (
+              <span
+                className="font-inter rounded-full px-2 py-0.5"
+                style={{ fontSize: 9, letterSpacing: '0.04em', color: '#A8854B', background: 'rgba(168,133,75,0.12)' }}
+              >
+                +€4.99
+              </span>
+            )}
           </button>
         </div>
+
+        {/* gentle note on the custom-film fee */}
+        <p
+          className="font-inter mt-3 text-center"
+          style={{ fontSize: 10.5, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.42)' }}
+        >
+          Curated films are included. Uploading your own adds €4.99.
+        </p>
 
         <input
           ref={fileRef}

@@ -11,7 +11,7 @@ import {
 } from '@/lib/builder/presets'
 import type { LayoutFamily } from '@/lib/builder/presets'
 import { InviteOpener } from '@/components/invite/openers'
-import { FilmBackdrop } from '@/components/invite/film-backdrop'
+import { FilmBackdrop, type FilmFit, type FilmFocal } from '@/components/invite/film-backdrop'
 import Link from 'next/link'
 
 // ── types ─────────────────────────────────────────────────────────────────────
@@ -701,6 +701,8 @@ function OpeningHero({
         videoSrc={videoSrc}
         poster={posterImg}
         fallbackStyle={posterStyle}
+        mode={uploadedAsset ? ((cfg.video_fit as FilmFit) ?? 'blend') : 'auto'}
+        focal={(cfg.video_focal as FilmFocal) ?? null}
         autoPlay={!reduced}
       />
       <div
@@ -1033,6 +1035,8 @@ export default function PreviewPage() {
             names={nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB || invite.display_title || 'You’re Invited'}
             videoSrc={themeVideo}
             poster={themePoster}
+            videoFit={openUploaded ? ((cfg.video_fit as 'auto' | 'blend' | 'crop') ?? 'blend') : 'auto'}
+            videoFocal={(cfg.video_focal as { x: number; y: number }) ?? null}
             onOpen={() => { setOpenerLeaving(true); setTimeout(() => setOpened(true), 1100) }}
           />
         </motion.div>

@@ -54,7 +54,8 @@ export async function GET(request: NextRequest, { params }: Params) {
   const inviteTitle = (result.invite.display_title ?? id).replace(/[^a-z0-9]/gi, '-').toLowerCase()
   const filename    = `rsvps-${inviteTitle}.xlsx`
 
-  return new Response(buffer, {
+  // Wrap in a Uint8Array view — Node's Buffer isn't a valid BodyInit type.
+  return new Response(new Uint8Array(buffer), {
     headers: {
       'Content-Type':        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'Content-Disposition': `attachment; filename="${filename}"`,

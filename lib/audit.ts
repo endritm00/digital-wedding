@@ -1,4 +1,5 @@
 import { createServiceClient } from './supabase/service'
+import type { Json }           from './supabase/database.types'
 import { logger }              from './logger'
 
 type AuditAction =
@@ -29,7 +30,7 @@ export function audit(params: {
       actor_id:  params.actor_id  ?? null,
       entity:    params.entity,
       entity_id: params.entity_id ?? null,
-      metadata:  params.metadata  ?? {},
+      metadata:  (params.metadata ?? {}) as Json,
     })
     .then(({ error }) => {
       if (error) {

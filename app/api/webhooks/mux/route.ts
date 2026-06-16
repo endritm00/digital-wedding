@@ -133,7 +133,7 @@ async function handleAssetReady(
       status:      'ready',
       duration_ms: durationS ? Math.round(durationS * 1000) : null,
       variants: {
-        mux_asset_id: data.id,
+        mux_asset_id: data.id as string,
         playback_id:  playbackId,
         hls:          muxUrls.hls(playbackId),
         poster:       muxUrls.poster(playbackId),

@@ -1,6 +1,10 @@
 import { NextRequest } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import type { Database } from '@/lib/supabase/database.types'
 import { ok, serverError } from '@/lib/api/response'
+
+type ThemeCategory = Database['public']['Enums']['theme_category']
+const THEME_CATEGORIES: ThemeCategory[] = ['wedding', 'save_the_date', 'birthday']
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -13,7 +17,10 @@ export async function GET(request: NextRequest) {
     .neq('status', 'retired')
     .order('sort_order')
 
-  if (category) query = query.eq('category', category)
+  // Only filter on a recognised category; ignore arbitrary query input.
+  if (category && THEME_CATEGORIES.includes(category as ThemeCategory)) {
+    query = query.eq('category', category as ThemeCategory)
+  }
 
   const { data, error } = await query
   if (error) return serverError()

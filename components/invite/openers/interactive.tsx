@@ -42,15 +42,16 @@ type Reveal = ReturnType<typeof useReveal>
 // The film, behind everything. Plays the moment the reveal begins so it's already
 // in motion by the time the white light clears.
 function FilmStage({
-  videoSrc, poster, play, videoOpacity, scrimOpacity, filmScale,
+  videoSrc, poster, play, videoOpacity, scrimOpacity, filmScale, mode = 'auto', focal,
 }: {
   videoSrc?: string | null; poster?: string | null; play: boolean
   videoOpacity: MotionValue<number>; scrimOpacity: MotionValue<number>; filmScale: MotionValue<number>
+  mode?: 'auto' | 'blend' | 'crop'; focal?: { x: number; y: number } | null
 }) {
   const ref = useRef<HTMLVideoElement | null>(null)
-  // Match OpeningHero's no-crop behaviour so the film doesn't reframe at handoff:
-  // contain (+ blurred fill) when a cover crop would be severe, else cover.
-  const [fit, setFit] = useState<'cover' | 'contain'>('cover')
+  // Match OpeningHero's framing so the film doesn't reframe at handoff: honour the
+  // couple's chosen mode for custom films; auto (aspect-aware) for presets.
+  const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
   useEffect(() => {
     const v = ref.current
     if (!v) return
@@ -67,13 +68,14 @@ function FilmStage({
   }, [play])
 
   useEffect(() => {
+    if (mode !== 'auto') return
     const decide = () => {
       const v = ref.current
       if (!v || !v.videoWidth || !v.videoHeight) return
       const videoRatio = v.videoWidth / v.videoHeight
       const boxRatio = (window.innerWidth / window.innerHeight) || 1
       const visible = Math.min(videoRatio, boxRatio) / Math.max(videoRatio, boxRatio)
-      setFit(visible >= 0.8 ? 'cover' : 'contain')
+      setAutoFit(visible >= 0.8 ? 'cover' : 'contain')
     }
     const v = ref.current
     decide()
@@ -83,7 +85,14 @@ function FilmStage({
       v?.removeEventListener('loadedmetadata', decide)
       window.removeEventListener('resize', decide)
     }
-  }, [videoSrc])
+  }, [videoSrc, mode])
+
+  const fit: 'cover' | 'contain' =
+    mode === 'blend' ? 'contain' : mode === 'crop' ? 'cover' : autoFit
+  const objectPosition =
+    mode === 'crop' && focal
+      ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%`
+      : 'center'
 
   return (
     <motion.div className="absolute inset-0 overflow-hidden" style={{ zIndex: 10, scale: filmScale, transformOrigin: '50% 45%' }}>
@@ -111,7 +120,7 @@ function FilmStage({
           muted
           loop
           playsInline
-          style={{ opacity: videoOpacity, objectFit: fit }}
+          style={{ opacity: videoOpacity, objectFit: fit, objectPosition }}
         />
       )}
       {/* closed-state scrim — lifts the instant the reveal starts */}
@@ -173,7 +182,7 @@ function Hint({ label, show, dir }: { label: string; show: boolean; dir: 'down' 
 // THE LETTER — a realistic ivory envelope sealed with a photoreal gold wax seal.
 // Press the seal: the flap lifts, light blooms from within, and the film emerges.
 // ════════════════════════════════════════════════════════════════════════════════
-export function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster }: OpenerProps) {
+export function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }: OpenerProps) {
   const reduced = useReducedMotion()
   const [opening, setOpening] = useState(false)
   const mono = initials(names)
@@ -212,7 +221,7 @@ export function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster }: Opene
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} />
+      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
       <WhiteCurtain scale={rv.whiteScale} opacity={rv.whiteOpacity} originY="52%" />
 
       {/* the envelope — dissolves as the light expands from within */}
@@ -324,7 +333,7 @@ function BotanicalPaper({ ivory, accent }: { ivory: string; accent: string }) {
 // ════════════════════════════════════════════════════════════════════════════════
 // THE VEIL — lift the sheer fabric UP; the light blooms and the film emerges.
 // ════════════════════════════════════════════════════════════════════════════════
-export function VeilOpener({ theme, names, onOpen, videoSrc, poster }: OpenerProps) {
+export function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }: OpenerProps) {
   const reduced = useReducedMotion()
   const [opening, setOpening] = useState(false)
   const y = useMotionValue(0)
@@ -359,7 +368,7 @@ export function VeilOpener({ theme, names, onOpen, videoSrc, poster }: OpenerPro
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} />
+      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
       <WhiteCurtain scale={rv.whiteScale} opacity={rv.whiteOpacity} originY="50%" />
 
       <Greeting theme={theme} names={names} fade={opening ? greet : (reduced ? 1 : greetFade)} />

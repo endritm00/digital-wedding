@@ -2,7 +2,10 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import { resolveInviteAccess } from '@/lib/invites/access'
 import { createServiceClient } from '@/lib/supabase/service'
+import type { Database } from '@/lib/supabase/database.types'
 import { mux } from '@/lib/mux'
+
+type MediaKind = Database['public']['Enums']['media_kind']
 import { reconcileMuxAssets, ASSET_COLUMNS, type AssetRow } from '@/lib/mux/reconcile'
 import { ok, badRequest, serverError } from '@/lib/api/response'
 import { logger } from '@/lib/logger'
@@ -79,7 +82,7 @@ async function initiateMuxUpload({
   inviteId, kind, mime, bytes, service,
 }: {
   inviteId: string
-  kind: string
+  kind: MediaKind
   mime: string
   bytes?: number
   service: ReturnType<typeof createServiceClient>
@@ -137,7 +140,7 @@ async function initiateStorageUpload({
   inviteId, kind, filename, mime, bytes, service,
 }: {
   inviteId: string
-  kind: string
+  kind: MediaKind
   filename: string
   mime: string
   bytes?: number

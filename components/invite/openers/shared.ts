@@ -19,6 +19,9 @@ export interface OpenerProps {
   /** The invitation's film — revealed behind the opener as it's dragged open. */
   videoSrc?: string | null
   poster?: string | null
+  /** How the film is framed — matches OpeningHero so it doesn't reframe at handoff. */
+  videoFit?: 'auto' | 'blend' | 'crop'
+  videoFocal?: { x: number; y: number } | null
   /** When true, the opener auto-plays its reveal on mount (used for in-card previews). */
   autoPlay?: boolean
 }

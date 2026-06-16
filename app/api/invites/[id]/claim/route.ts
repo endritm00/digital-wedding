@@ -26,10 +26,13 @@ export async function POST(request: NextRequest, { params }: Params) {
   const parsed = ClaimSchema.safeParse(body)
   if (!parsed.success) return badRequest(parsed.error.issues[0].message)
 
-  const { data, error } = await supabase.rpc('claim_invite_draft', {
+const { data, error } = await (supabase as any).rpc(
+  'claim_invite_draft',
+  {
     p_claim_token: parsed.data.claim_token,
     p_owner_id: user.id,
-  })
+  }
+)
 
   if (error) {
     if (error.message.includes('claim_token_invalid')) return badRequest('claim_token_invalid_or_expired')

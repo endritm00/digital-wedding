@@ -195,9 +195,20 @@ async function signUrl(
     resize?: 'cover' | 'contain' | 'fill'
   } | undefined
 ): Promise<string> {
+  // Supabase's transform `format` only accepts 'origin'; webp is auto-served via
+  // content negotiation, so drop any other format value before forwarding.
+  const safeTransform = transform
+    ? {
+        width: transform.width,
+        height: transform.height,
+        quality: transform.quality,
+        resize: transform.resize,
+        ...(transform.format === 'origin' ? { format: 'origin' as const } : {}),
+      }
+    : undefined
   const { data, error } = await service.storage
     .from('invite-media')
-    .createSignedUrl(storagePath, ttl, { transform })
+    .createSignedUrl(storagePath, ttl, { transform: safeTransform })
 
   if (error || !data) throw new Error(`sign_url_failed(${storagePath}): ${error?.message}`)
   return data.signedUrl

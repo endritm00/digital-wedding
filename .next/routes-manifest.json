@@ -1,0 +1,360 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://image.mux.com https://*.supabase.co https://*.supabase.in https://images.unsplash.com https://images.pexels.com; media-src 'self' blob: https://stream.mux.com https://videos.pexels.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.supabase.in wss://*.supabase.in https://api.stripe.com https://*.mux.com https://*.upstash.io; frame-src https://js.stripe.com https://hooks.stripe.com; font-src 'self' data:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com"
+        }
+      ],
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
+  "dynamicRoutes": [
+    {
+      "page": "/api/invites/[id]",
+      "regex": "^/api/invites/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/checkout",
+      "regex": "^/api/invites/([^/]+?)/checkout(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/checkout(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/claim",
+      "regex": "^/api/invites/([^/]+?)/claim(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/claim(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/extras",
+      "regex": "^/api/invites/([^/]+?)/extras(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/extras(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/extras/[inviteExtraId]",
+      "regex": "^/api/invites/([^/]+?)/extras/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPinviteExtraId": "nxtPinviteExtraId"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/extras/(?<nxtPinviteExtraId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/media",
+      "regex": "^/api/invites/([^/]+?)/media(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/media(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/media/[assetId]",
+      "regex": "^/api/invites/([^/]+?)/media/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPassetId": "nxtPassetId"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/media/(?<nxtPassetId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/media/[assetId]/complete",
+      "regex": "^/api/invites/([^/]+?)/media/([^/]+?)/complete(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPassetId": "nxtPassetId"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/media/(?<nxtPassetId>[^/]+?)/complete(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/media/[assetId]/signed-url",
+      "regex": "^/api/invites/([^/]+?)/media/([^/]+?)/signed\\-url(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPassetId": "nxtPassetId"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/media/(?<nxtPassetId>[^/]+?)/signed\\-url(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/publish",
+      "regex": "^/api/invites/([^/]+?)/publish(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/publish(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/quote",
+      "regex": "^/api/invites/([^/]+?)/quote(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/quote(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/rsvp",
+      "regex": "^/api/invites/([^/]+?)/rsvp(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/rsvp(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/rsvps",
+      "regex": "^/api/invites/([^/]+?)/rsvps(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/rsvps(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/rsvps/export",
+      "regex": "^/api/invites/([^/]+?)/rsvps/export(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/rsvps/export(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/rsvps/stats",
+      "regex": "^/api/invites/([^/]+?)/rsvps/stats(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/rsvps/stats(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/sections",
+      "regex": "^/api/invites/([^/]+?)/sections(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/sections(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/sections/reorder",
+      "regex": "^/api/invites/([^/]+?)/sections/reorder(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/sections/reorder(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/sections/[sectionId]",
+      "regex": "^/api/invites/([^/]+?)/sections/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPsectionId": "nxtPsectionId"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/sections/(?<nxtPsectionId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/invites/[id]/verify-payment",
+      "regex": "^/api/invites/([^/]+?)/verify\\-payment(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/invites/(?<nxtPid>[^/]+?)/verify\\-payment(?:/)?$"
+    },
+    {
+      "page": "/api/snapshots/[slug]",
+      "regex": "^/api/snapshots/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/snapshots/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/snapshots/[slug]/rsvp",
+      "regex": "^/api/snapshots/([^/]+?)/rsvp(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/snapshots/(?<nxtPslug>[^/]+?)/rsvp(?:/)?$"
+    },
+    {
+      "page": "/api/themes/[slug]",
+      "regex": "^/api/themes/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/themes/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/details",
+      "regex": "^/builder/([^/]+?)/details(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/details(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/frame",
+      "regex": "^/builder/([^/]+?)/frame(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/frame(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/music",
+      "regex": "^/builder/([^/]+?)/music(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/music(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/names",
+      "regex": "^/builder/([^/]+?)/names(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/names(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/opening-video",
+      "regex": "^/builder/([^/]+?)/opening\\-video(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/opening\\-video(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/review",
+      "regex": "^/builder/([^/]+?)/review(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/review(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/save",
+      "regex": "^/builder/([^/]+?)/save(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/save(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/sections",
+      "regex": "^/builder/([^/]+?)/sections(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/sections(?:/)?$"
+    },
+    {
+      "page": "/builder/[inviteId]/style",
+      "regex": "^/builder/([^/]+?)/style(?:/)?$",
+      "routeKeys": {
+        "nxtPinviteId": "nxtPinviteId"
+      },
+      "namedRegex": "^/builder/(?<nxtPinviteId>[^/]+?)/style(?:/)?$"
+    },
+    {
+      "page": "/invite/[id]/preview",
+      "regex": "^/invite/([^/]+?)/preview(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/invite/(?<nxtPid>[^/]+?)/preview(?:/)?$"
+    },
+    {
+      "page": "/invite/[id]/success",
+      "regex": "^/invite/([^/]+?)/success(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/invite/(?<nxtPid>[^/]+?)/success(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/builder",
+      "regex": "^/builder(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/builder(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

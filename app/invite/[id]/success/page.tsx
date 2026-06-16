@@ -193,7 +193,8 @@ function SuccessInner({ id }: { id: string }) {
 }
 
 export default function SuccessPage() {
-  const id = (() => { const p = useParams()?.id; return Array.isArray(p) ? p[0] ?? '' : p ?? '' })()
+  const params = useParams()
+  const id = typeof params?.id === 'string' ? params.id : ''
 
   return (
     <div

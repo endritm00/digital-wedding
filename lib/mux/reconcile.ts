@@ -1,6 +1,9 @@
 import { muxUrls, resolveMuxReadyState } from '@/lib/mux'
 import { createServiceClient } from '@/lib/supabase/service'
+import type { Database } from '@/lib/supabase/database.types'
 import { logger } from '@/lib/logger'
+
+type MediaAssetUpdate = Database['public']['Tables']['media_assets']['Update']
 
 // Mux finalizes a video via the `video.asset.ready` webhook — but that webhook
 // can't reach localhost, and may occasionally be dropped in production. These
@@ -42,7 +45,7 @@ export async function reconcileMuxAsset(
 
     if (state.status === 'pending') return null
 
-    const update =
+    const update: MediaAssetUpdate =
       state.status === 'ready'
         ? {
             status: 'ready',
@@ -56,7 +59,7 @@ export async function reconcileMuxAsset(
               mp4:          muxUrls.mp4(state.playbackId),
             },
           }
-        : { status: 'failed' as const }
+        : { status: 'failed' }
 
     const { data: updated, error } = await service
       .from('media_assets')

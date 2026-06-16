@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { renderSnapshot } from '@/lib/publish/render-snapshot'
 import { purgeCloudflareCache } from '@/lib/publish/cdn-purge'
+import type { Json } from '@/lib/supabase/database.types'
 import { ok, badRequest, unauthorized, notFound, serverError } from '@/lib/api/response'
 import { logger } from '@/lib/logger'
 
@@ -84,7 +85,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
     .insert({
       invite_id:    id,
       version:      nextVersion,
-      content:      content as unknown as Record<string, unknown>,
+      content:      content as unknown as Json,
       published_by: user.id,
     })
     .select('id, version')

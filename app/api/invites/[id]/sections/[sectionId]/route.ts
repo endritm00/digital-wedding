@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { resolveInviteAccess } from '@/lib/invites/access'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
+import type { Json } from '@/lib/supabase/database.types'
 import { ok, badRequest, notFound, serverError } from '@/lib/api/response'
 import { logger } from '@/lib/logger'
 
@@ -32,17 +33,17 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const { data, error } = await db
     .from('invite_sections')
-    .update({ config: parsed.data.config })
+    .update({ config: parsed.data.config as Json })
     .eq('id', sectionId)
     .eq('invite_id', id)   // prevents cross-invite writes
     .select('id, type, position, config, updated_at')
     .single()
 
-  if (error || !data) {
-    if (!data) return notFound('section_not_found')
-    logger.error({ event: 'section.patch.failed', section_id: sectionId, error: error?.message })
+  if (error) {
+    logger.error({ event: 'section.patch.failed', section_id: sectionId, error: error.message })
     return serverError()
   }
+  if (!data) return notFound('section_not_found')
 
   return ok(data)
 }

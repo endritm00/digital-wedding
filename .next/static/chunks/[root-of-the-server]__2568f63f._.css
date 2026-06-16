@@ -1082,6 +1082,10 @@ body {
   top: .25rem;
 }
 
+.top-1\/2 {
+  top: 50%;
+}
+
 .top-12 {
   top: 3rem;
 }
@@ -1426,6 +1430,10 @@ body {
   flex: none;
 }
 
+.shrink-0 {
+  flex-shrink: 0;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -1603,6 +1611,10 @@ body {
   border-radius: 9999px;
 }
 
+.rounded-lg {
+  border-radius: .5rem;
+}
+
 .rounded-xl {
   border-radius: .75rem;
 }
@@ -1639,6 +1651,11 @@ body {
 
 .bg-white\/60 {
   background-color: #fff9;
+}
+
+.object-contain {
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .object-cover {

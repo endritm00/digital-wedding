@@ -33,13 +33,15 @@ export function InvitePreview() {
   // viewport, whole-frame contain (+ blurred fill) when a crop would be severe.
   const videoElRef = useRef<HTMLVideoElement | null>(null)
   const wrapRef = useRef<HTMLDivElement | null>(null)
-  const [fit, setFit] = useState<'cover' | 'contain'>('cover')
+  const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
   const config = (opening?.config ?? {}) as {
     name_a?: string
     name_b?: string
     video_preset?: string
     video_asset_id?: string
+    video_fit?: 'auto' | 'blend' | 'crop'
+    video_focal?: { x: number; y: number }
     music_track?: string
     music_asset_id?: string
     palette?: string
@@ -87,7 +89,14 @@ export function InvitePreview() {
     ? `linear-gradient(160deg, ${preset.poster.from} 0%, ${preset.poster.to} 100%)`
     : `linear-gradient(160deg, ${VIDEO_PRESETS[0].poster.from} 0%, ${VIDEO_PRESETS[0].poster.to} 100%)`
 
+  // Custom films are framed by the couple (Frame step → video_fit/video_focal,
+  // default 'blend'); presets auto-frame per viewport. This drives the live
+  // preview so the Frame step updates in real time.
+  const filmMode: 'auto' | 'blend' | 'crop' =
+    uploadedReady ? (config.video_fit ?? 'blend') : 'auto'
+
   useEffect(() => {
+    if (filmMode !== 'auto') return
     const decide = () => {
       const v = videoElRef.current
       const box = wrapRef.current
@@ -95,7 +104,7 @@ export function InvitePreview() {
       const videoRatio = v.videoWidth / v.videoHeight
       const boxRatio = box.clientWidth / box.clientHeight || 1
       const visible = Math.min(videoRatio, boxRatio) / Math.max(videoRatio, boxRatio)
-      setFit(visible >= 0.8 ? 'cover' : 'contain')   // <0.8 visible ⇒ severe crop ⇒ letterbox
+      setAutoFit(visible >= 0.8 ? 'cover' : 'contain')   // <0.8 visible ⇒ severe crop ⇒ letterbox
     }
     const v = videoElRef.current
     decide()
@@ -105,7 +114,14 @@ export function InvitePreview() {
       v?.removeEventListener('loadedmetadata', decide)
       window.removeEventListener('resize', decide)
     }
-  }, [videoSrc])
+  }, [videoSrc, filmMode])
+
+  const fit: 'cover' | 'contain' =
+    filmMode === 'blend' ? 'contain' : filmMode === 'crop' ? 'cover' : autoFit
+  const objectPosition =
+    filmMode === 'crop' && config.video_focal
+      ? `${Math.round(config.video_focal.x * 100)}% ${Math.round(config.video_focal.y * 100)}%`
+      : 'center'
 
   const track = MUSIC_TRACKS.find((t) => t.id === config.music_track)
   const hasMusic = Boolean(track || config.music_asset_id)
@@ -150,7 +166,7 @@ export function InvitePreview() {
           ref={videoElRef}
           key={videoSrc}
           className="absolute inset-0 h-full w-full"
-          style={{ objectFit: fit }}
+          style={{ objectFit: fit, objectPosition }}
           src={videoSrc}
           poster={posterImg}
           preload="auto"

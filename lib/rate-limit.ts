@@ -1,4 +1,4 @@
-import { Ratelimit } from '@upstash/ratelimit'
+import { Ratelimit, type Duration } from '@upstash/ratelimit'
 import { Redis }      from '@upstash/redis'
 
 export interface RateLimitResult {
@@ -34,7 +34,7 @@ const mem = new InMemoryStore()
 
 // ─── Upstash factory ──────────────────────────────────────────────────────────
 // Returns null when UPSTASH env vars are absent → caller falls back to mem.
-function makeUpstash(name: string, max: number, window: string): Ratelimit | null {
+function makeUpstash(name: string, max: number, window: Duration): Ratelimit | null {
   const url   = process.env.UPSTASH_REDIS_REST_URL
   const token = process.env.UPSTASH_REDIS_REST_TOKEN
   if (!url || !token) return null

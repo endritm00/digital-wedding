@@ -1,3 +1,5 @@
 {
+  "/api/invites/[id]/sections/[sectionId]/route": "app/api/invites/[id]/sections/[sectionId]/route.js",
+  "/builder/[inviteId]/music/page": "app/builder/[inviteId]/music/page.js",
   "/page": "app/page.js"
 }

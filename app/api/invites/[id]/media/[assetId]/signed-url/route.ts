@@ -69,8 +69,10 @@ export async function GET(request: NextRequest, { params }: Params) {
         width:   variantSpec.width   as number | undefined,
         height:  variantSpec.height  as number | undefined,
         resize:  variantSpec.resize  as 'cover' | 'contain' | 'fill' | undefined,
-        format:  variantSpec.format  as 'webp' | 'origin' | undefined,
         quality: variantSpec.quality as number | undefined,
+        // Supabase's transform `format` only accepts 'origin'; webp is auto-served
+        // via content negotiation, so we only forward an explicit 'origin' opt-out.
+        ...(variantSpec.format === 'origin' ? { format: 'origin' as const } : {}),
       }
     : undefined
 
