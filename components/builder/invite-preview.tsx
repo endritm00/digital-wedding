@@ -95,8 +95,10 @@ export function InvitePreview() {
   const filmMode: 'auto' | 'blend' | 'crop' =
     uploadedReady ? (config.video_fit ?? 'blend') : 'auto'
 
+  // 'crop' is always cover; 'auto'/'blend' adapt per viewport so phones stay
+  // edge-to-edge and only wide screens fall back to contain+blur.
   useEffect(() => {
-    if (filmMode !== 'auto') return
+    if (filmMode === 'crop') return
     const decide = () => {
       const v = videoElRef.current
       const box = wrapRef.current
@@ -116,8 +118,7 @@ export function InvitePreview() {
     }
   }, [videoSrc, filmMode])
 
-  const fit: 'cover' | 'contain' =
-    filmMode === 'blend' ? 'contain' : filmMode === 'crop' ? 'cover' : autoFit
+  const fit: 'cover' | 'contain' = filmMode === 'crop' ? 'cover' : autoFit
   const objectPosition =
     filmMode === 'crop' && config.video_focal
       ? `${Math.round(config.video_focal.x * 100)}% ${Math.round(config.video_focal.y * 100)}%`

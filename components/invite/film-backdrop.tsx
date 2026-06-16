@@ -9,13 +9,14 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 // clip shows only a thin middle band on desktop. The couple choose how to frame
 // their own film in the builder's "Frame your film" step:
 //
-//   • 'blend' — show the whole film (object-contain), centered, with a blurred
-//     scaled poster filling the leftover space. Nothing is ever cropped.
+//   • 'blend' — "show it all": adapt per viewport. Fill (cover) when the film
+//     roughly matches the screen (so phones stay edge-to-edge), and only fall
+//     back to whole-frame contain + blurred fill when a cover crop would be
+//     severe (e.g. a portrait clip on a wide desktop). Nothing important is cut.
 //   • 'crop'  — fill the screen (object-cover) with a chosen focal point
 //     (object-position) deciding what stays in frame.
-//   • 'auto'  — pick automatically per viewport: cover when the film roughly
-//     matches the viewport (no severe crop), else contain+blur. Used for the
-//     curated presets, which the couple don't frame themselves.
+//   • 'auto'  — same aspect-aware behaviour as 'blend'; used for the curated
+//     presets, which the couple don't frame themselves.
 
 export type FilmFit = 'auto' | 'blend' | 'crop'
 export interface FilmFocal { x: number; y: number }   // 0..1, object-position
@@ -54,8 +55,12 @@ export function FilmBackdrop({
   // Resolved fit for 'auto' mode; ignored when mode is explicit.
   const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
+  // 'crop' is always cover; 'auto' and 'blend' adapt per viewport — fill when the
+  // film roughly matches the screen (e.g. a portrait clip on a phone) and only
+  // contain+blur when a cover crop would be severe (a portrait clip on desktop).
+  // This keeps phones edge-to-edge while never hard-cropping on wide screens.
   useEffect(() => {
-    if (mode !== 'auto') return
+    if (mode === 'crop') return
     const decide = () => {
       const v = videoRef.current
       const box = wrapRef.current
@@ -75,8 +80,7 @@ export function FilmBackdrop({
     }
   }, [videoSrc, videoRef, mode])
 
-  const fit: 'cover' | 'contain' =
-    mode === 'blend' ? 'contain' : mode === 'crop' ? 'cover' : autoFit
+  const fit: 'cover' | 'contain' = mode === 'crop' ? 'cover' : autoFit
   const objectPosition =
     mode === 'crop' && focal
       ? `${Math.round(focal.x * 100)}% ${Math.round(focal.y * 100)}%`

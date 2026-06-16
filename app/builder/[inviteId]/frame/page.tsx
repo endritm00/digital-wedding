@@ -56,7 +56,7 @@ export default function FramePage({ params }: { params: Promise<{ inviteId: stri
             active={mode === 'blend'}
             onClick={() => setMode('blend')}
             title="Show it all"
-            blurb="Your whole film stays in view, with the empty edges softly blurred. Nothing is ever cut off."
+            blurb="Fits each screen — fills phones edge-to-edge, and on wider screens shows the whole film with softly blurred edges so nothing important is cut off."
             icon="blend"
           />
           <ModeCard
