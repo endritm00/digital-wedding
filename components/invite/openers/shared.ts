@@ -18,6 +18,8 @@ export interface OpenerProps {
   onOpen: () => void
   /** The invitation's film — revealed behind the opener as it's dragged open. */
   videoSrc?: string | null
+  /** Adaptive HLS playlist (Mux .m3u8) for the film — preferred when present. */
+  videoHls?: string | null
   poster?: string | null
   /** How the film is framed — matches OpeningHero so it doesn't reframe at handoff. */
   videoFit?: 'auto' | 'blend' | 'crop'

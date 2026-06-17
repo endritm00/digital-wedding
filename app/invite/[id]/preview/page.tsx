@@ -655,6 +655,9 @@ function OpeningHero({
   const videoSrc = uploadedAsset
     ? (uploadedAsset.variants as { mp4?: string }).mp4 ?? null
     : preset?.src ?? null
+  const videoHls = uploadedAsset
+    ? (uploadedAsset.variants as { hls?: string }).hls ?? null
+    : null
   const posterImg = uploadedAsset
     ? (uploadedAsset.variants as { poster?: string }).poster ?? null
     : preset?.posterImg ?? null
@@ -699,11 +702,13 @@ function OpeningHero({
     <section className="relative flex h-[100dvh] flex-col items-center justify-center overflow-hidden">
       <FilmBackdrop
         videoSrc={videoSrc}
+        hlsSrc={videoHls}
         poster={posterImg}
         fallbackStyle={posterStyle}
         mode={uploadedAsset ? ((cfg.video_fit as FilmFit) ?? 'blend') : 'auto'}
         focal={(cfg.video_focal as FilmFocal) ?? null}
-        autoPlay={!reduced}
+        autoPlay
+        reduced={!!reduced}
       />
       <div
         className="absolute inset-0"
@@ -916,6 +921,7 @@ export default function PreviewPage() {
   const openPreset = VIDEO_PRESETS.find(p => p.id === (cfg.video_preset as string)) ?? null
   const openUploaded = media.find(m => m.id === cfg.video_asset_id && m.status === 'ready') ?? null
   const themeVideo = openUploaded ? (openUploaded.variants as { mp4?: string }).mp4 ?? null : openPreset?.src ?? null
+  const themeHls = openUploaded ? (openUploaded.variants as { hls?: string }).hls ?? null : null
   const themePoster = openUploaded ? (openUploaded.variants as { poster?: string }).poster ?? null : openPreset?.posterImg ?? VIDEO_PRESETS[0].posterImg
 
   return (
@@ -1034,6 +1040,7 @@ export default function PreviewPage() {
             }}
             names={nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB || invite.display_title || 'You’re Invited'}
             videoSrc={themeVideo}
+            videoHls={themeHls}
             poster={themePoster}
             videoFit={openUploaded ? ((cfg.video_fit as 'auto' | 'blend' | 'crop') ?? 'blend') : 'auto'}
             videoFocal={(cfg.video_focal as { x: number; y: number }) ?? null}

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useBuilder } from './builder-provider'
+import { useFilmVideo } from '@/lib/video/use-film-video'
 import {
   VIDEO_PRESETS, MUSIC_TRACKS, SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
@@ -76,6 +77,9 @@ export function InvitePreview() {
   const uploadedMp4 = uploadedReady
     ? (uploadedVideo!.variants as { mp4?: string }).mp4 ?? null
     : null
+  const uploadedHls = uploadedReady
+    ? (uploadedVideo!.variants as { hls?: string }).hls ?? null
+    : null
   const uploadedPoster = uploadedReady
     ? (uploadedVideo!.variants as { poster?: string }).poster ?? null
     : null
@@ -84,6 +88,8 @@ export function InvitePreview() {
   // then the FIRST preset as the default background — so every step shows a real
   // HD film (not a stretched low-res still) until the couple pick their own.
   const videoSrc = uploadedMp4 ?? preset?.src ?? VIDEO_PRESETS[0].src
+  // Adaptive HLS only exists for the couple's own upload; presets are MP4 files.
+  const videoHls = uploadedHls
   const posterImg = uploadedPoster ?? preset?.posterImg ?? VIDEO_PRESETS[0].posterImg
   const gradient = preset
     ? `linear-gradient(160deg, ${preset.poster.from} 0%, ${preset.poster.to} 100%)`
@@ -124,6 +130,10 @@ export function InvitePreview() {
     filmMode === 'crop' && config.video_focal
       ? `${Math.round(config.video_focal.x * 100)}% ${Math.round(config.video_focal.y * 100)}%`
       : 'center'
+
+  // Adaptive HLS / MP4 source + robust autoplay (gesture retry) for the live
+  // background film. Decorative + behind the sheet, so no tap-to-play overlay.
+  useFilmVideo(videoElRef, { hls: videoHls, mp4: videoSrc }, { play: !reduced, reduced: !!reduced })
 
   const track = MUSIC_TRACKS.find((t) => t.id === config.music_track)
   const hasMusic = Boolean(track || config.music_asset_id)
@@ -166,13 +176,11 @@ export function InvitePreview() {
       {videoSrc && !reduced && (
         <motion.video
           ref={videoElRef}
-          key={videoSrc}
+          key={videoHls ?? videoSrc}
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: fit, objectPosition }}
-          src={videoSrc}
           poster={posterImg}
           preload="auto"
-          autoPlay
           muted
           loop
           playsInline

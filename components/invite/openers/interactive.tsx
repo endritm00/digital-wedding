@@ -5,6 +5,7 @@ import { animate, motion, useMotionValue, useReducedMotion, useTransform } from 
 import type { MotionValue } from 'framer-motion'
 import { OpenerProps, hexA, shade, initials } from './shared'
 import { RealisticSeal } from './realistic-seal'
+import { useFilmVideo } from '@/lib/video/use-film-video'
 
 const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
@@ -42,9 +43,9 @@ type Reveal = ReturnType<typeof useReveal>
 // The film, behind everything. Plays the moment the reveal begins so it's already
 // in motion by the time the white light clears.
 function FilmStage({
-  videoSrc, poster, play, videoOpacity, scrimOpacity, filmScale, mode = 'auto', focal,
+  videoSrc, videoHls, poster, play, videoOpacity, scrimOpacity, filmScale, mode = 'auto', focal,
 }: {
-  videoSrc?: string | null; poster?: string | null; play: boolean
+  videoSrc?: string | null; videoHls?: string | null; poster?: string | null; play: boolean
   videoOpacity: MotionValue<number>; scrimOpacity: MotionValue<number>; filmScale: MotionValue<number>
   mode?: 'auto' | 'blend' | 'crop'; focal?: { x: number; y: number } | null
 }) {
@@ -52,20 +53,9 @@ function FilmStage({
   // Match OpeningHero's framing so the film doesn't reframe at handoff: honour the
   // couple's chosen mode for custom films; auto (aspect-aware) for presets.
   const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
-  useEffect(() => {
-    const v = ref.current
-    if (!v) return
-    if (!play) { v.pause(); return }
-    let cancelled = false
-    const tryPlay = () => {
-      const p = v.play()
-      if (p && typeof p.catch === 'function') {
-        p.catch(() => { if (!cancelled) requestAnimationFrame(() => { void v.play().catch(() => {}) }) })
-      }
-    }
-    tryPlay()
-    return () => { cancelled = true }
-  }, [play])
+  // Adaptive HLS / MP4 source + robust play. The reveal is triggered by a user
+  // gesture (tap/drag to open), so play() is already unlocked here.
+  useFilmVideo(ref, { hls: videoHls, mp4: videoSrc }, { play })
 
   // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
   // always fill (cover) — the original behaviour.
@@ -114,8 +104,8 @@ function FilmStage({
       {videoSrc && (
         <motion.video
           ref={ref}
+          key={videoHls ?? videoSrc}
           className="absolute inset-0 h-full w-full"
-          src={videoSrc}
           poster={poster ?? undefined}
           preload="auto"
           muted
@@ -183,7 +173,7 @@ function Hint({ label, show, dir }: { label: string; show: boolean; dir: 'down' 
 // THE LETTER — a realistic ivory envelope sealed with a photoreal gold wax seal.
 // Press the seal: the flap lifts, light blooms from within, and the film emerges.
 // ════════════════════════════════════════════════════════════════════════════════
-export function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }: OpenerProps) {
+export function EnvelopeOpener({ theme, names, onOpen, videoSrc, videoHls, poster, videoFit, videoFocal }: OpenerProps) {
   const reduced = useReducedMotion()
   const [opening, setOpening] = useState(false)
   const mono = initials(names)
@@ -222,7 +212,7 @@ export function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFi
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
+      <FilmStage videoSrc={videoSrc} videoHls={videoHls} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
       <WhiteCurtain scale={rv.whiteScale} opacity={rv.whiteOpacity} originY="52%" />
 
       {/* the envelope — dissolves as the light expands from within */}
@@ -334,7 +324,7 @@ function BotanicalPaper({ ivory, accent }: { ivory: string; accent: string }) {
 // ════════════════════════════════════════════════════════════════════════════════
 // THE VEIL — lift the sheer fabric UP; the light blooms and the film emerges.
 // ════════════════════════════════════════════════════════════════════════════════
-export function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }: OpenerProps) {
+export function VeilOpener({ theme, names, onOpen, videoSrc, videoHls, poster, videoFit, videoFocal }: OpenerProps) {
   const reduced = useReducedMotion()
   const [opening, setOpening] = useState(false)
   const y = useMotionValue(0)
@@ -369,7 +359,7 @@ export function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, v
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <FilmStage videoSrc={videoSrc} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
+      <FilmStage videoSrc={videoSrc} videoHls={videoHls} poster={poster} play={opening} videoOpacity={rv.videoOpacity} scrimOpacity={rv.scrimOpacity} filmScale={rv.filmScale} mode={videoFit} focal={videoFocal} />
       <WhiteCurtain scale={rv.whiteScale} opacity={rv.whiteOpacity} originY="50%" />
 
       <Greeting theme={theme} names={names} fade={opening ? greet : (reduced ? 1 : greetFade)} />

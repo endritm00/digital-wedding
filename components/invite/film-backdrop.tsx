@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useFilmVideo } from '@/lib/video/use-film-video'
 
 // A full-bleed film backdrop with three framing modes.
 //
@@ -29,15 +30,19 @@ const COVER_MIN = 0.8
 
 export function FilmBackdrop({
   videoSrc,
+  hlsSrc = null,
   poster,
   fallbackStyle,
   mode = 'auto',
   focal,
   autoPlay = true,
+  reduced = false,
   className = '',
   videoRef: externalVideoRef,
 }: {
   videoSrc: string | null
+  /** Adaptive HLS playlist (Mux .m3u8) — preferred when present for smooth full HD. */
+  hlsSrc?: string | null
   poster: string | null
   /** Gradient (or colour) shown before/behind the video — the base layer. */
   fallbackStyle?: CSSProperties
@@ -46,6 +51,8 @@ export function FilmBackdrop({
   /** Focal point for 'crop' mode (0..1). Defaults to centre. */
   focal?: FilmFocal | null
   autoPlay?: boolean
+  /** prefers-reduced-motion — don't autoplay, but still offer a tap-to-play. */
+  reduced?: boolean
   className?: string
   /** Optional ref forwarded to the <video> so a parent can control playback. */
   videoRef?: React.RefObject<HTMLVideoElement | null>
@@ -53,6 +60,14 @@ export function FilmBackdrop({
   const localRef = useRef<HTMLVideoElement | null>(null)
   const videoRef = externalVideoRef ?? localRef
   const wrapRef = useRef<HTMLDivElement | null>(null)
+
+  // Bulletproof, adaptive playback (HLS when available, MP4 fallback, gesture
+  // retry on autoplay-blocked devices).
+  const { needsTap, playNow } = useFilmVideo(
+    videoRef,
+    { hls: hlsSrc, mp4: videoSrc },
+    { play: autoPlay, reduced }
+  )
   // Resolved fit for 'auto' mode; ignored when mode is explicit.
   const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
@@ -107,20 +122,46 @@ export function FilmBackdrop({
         />
       )}
 
-      {/* the film itself — whole-frame (contain) or edge-to-edge (cover) */}
+      {/* the film itself — whole-frame (contain) or edge-to-edge (cover).
+          Source is attached by useFilmVideo (HLS/MP4), so no `src` here. */}
       {videoSrc && (
         <video
           ref={videoRef}
-          key={videoSrc}
+          key={hlsSrc ?? videoSrc}
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: fit, objectPosition }}
-          src={videoSrc}
           poster={poster ?? undefined}
-          autoPlay={autoPlay}
+          preload="auto"
           muted
           loop
           playsInline
         />
+      )}
+
+      {/* tap-to-play — only when the browser blocked autoplay (Low-Power Mode,
+          reduced-motion). A single tap anywhere also starts it. */}
+      {videoSrc && needsTap && (
+        <button
+          type="button"
+          onClick={playNow}
+          aria-label="Play film"
+          className="absolute inset-0 z-10 flex items-center justify-center"
+          style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+        >
+          <span
+            className="flex items-center justify-center rounded-full"
+            style={{
+              width: 64, height: 64,
+              background: 'rgba(20,16,12,0.42)',
+              backdropFilter: 'blur(6px)',
+              border: '1px solid rgba(255,255,255,0.55)',
+            }}
+          >
+            <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden>
+              <path d="M3 2.5L19 12L3 21.5V2.5Z" fill="rgba(255,255,255,0.92)" />
+            </svg>
+          </span>
+        </button>
       )}
     </div>
   )
