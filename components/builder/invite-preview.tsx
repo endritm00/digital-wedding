@@ -235,7 +235,7 @@ export function InvitePreview() {
             className="font-inter uppercase"
             style={{ fontSize: 9, letterSpacing: '0.3em', color: darkPaper ? 'rgba(236,234,227,0.72)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
           >
-            Together with their families
+            You are invited to the wedding of
           </span>
 
           <div className="my-4 lg:my-6 flex min-h-[52px] lg:min-h-[80px] items-center justify-center">

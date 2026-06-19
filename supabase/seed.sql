@@ -5,7 +5,7 @@
 -- Plans
 -- ============================================================
 insert into public.plans (code, name, base_price_cents, included_sections, sort_order) values
-  ('save_the_date', 'Save the Date',  4900,  3,    1),
+  ('save_the_date', 'Save the Date',  1999,  3,    1),
   ('experience',    'Experience',     9900,  7,    2),
   ('premium',       'Premium',        15900, null, 3)  -- null = unlimited sections
 on conflict (code) do update set

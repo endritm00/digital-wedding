@@ -57,7 +57,8 @@ export function OpeningFilmSection() {
           Your opening film.
         </h2>
         <p className="font-inter mx-auto mt-5 max-w-[44ch]" style={{ fontSize: 14, lineHeight: 1.75, color: 'rgba(26,24,22,0.55)' }}>
-          Every invitation opens with a film. Guests press the seal, and your day begins to unfold — set the scene with one of these.
+          Every invitation opens with a film.<br/>
+          Set the scene with one of the videos, or upload your own!
         </p>
       </motion.div>
 

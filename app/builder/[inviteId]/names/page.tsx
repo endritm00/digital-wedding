@@ -13,19 +13,11 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
   const router = useRouter()
   const reduced = useReducedMotion()
 
-  const config = (opening?.config ?? {}) as { name_a?: string; name_b?: string }
-  const [nameA, setNameA] = useState(config.name_a ?? '')
-  const [nameB, setNameB] = useState(config.name_b ?? '')
+  const [nameA, setNameA] = useState('')
+  const [nameB, setNameB] = useState('')
   const [date, setDate] = useState(invite?.event_date ?? '')
   // Gentle one-time prompt if they try to continue without a date.
   const [dateNudge, setDateNudge] = useState(false)
-
-  // Sync once the context loads from the server
-  useEffect(() => {
-    const c = (opening?.config ?? {}) as { name_a?: string; name_b?: string }
-    if (c.name_a !== undefined) setNameA(c.name_a)
-    if (c.name_b !== undefined) setNameB(c.name_b)
-  }, [opening])
 
   // Prefill from the homepage envelope ("Type your names" → "Create yours").
   // One-shot: only applies to a fresh invite with no names yet, then clears the
@@ -47,7 +39,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
       setNameB(name_b ?? '')
       setOpening({ name_a: name_a ?? '', name_b: name_b ?? '' })
     } catch { /* malformed handoff — ignore */ }
-  }, [opening, setOpening])
+  }, [])
 
   useEffect(() => {
     if (invite?.event_date) setDate(invite.event_date)

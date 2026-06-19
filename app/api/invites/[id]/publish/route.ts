@@ -111,6 +111,9 @@ export async function POST(req: NextRequest, { params }: Params) {
     logger.error({ event: 'publish.invite_update.failed', invite_id: id, error: inviteErr.message })
     return serverError()
   }
+  // Build public delivery URL early so it can be included in the email below.
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL!
+  const deliveryUrl = `${appUrl}/invite/${invite.slug}`
 
   // Email the private RSVP link the first time it's created (best-effort — a
   // bounced email must never fail the publish).
@@ -118,7 +121,7 @@ export async function POST(req: NextRequest, { params }: Params) {
   if (mintedManage) {
     manage_url = manageUrl(mintedManage.token)
     if (invite.draft_email) {
-      const { subject, html } = manageLinkEmail({ coupleName: invite.display_title, link: manage_url })
+      const { subject, html } = manageLinkEmail({ coupleName: invite.display_title, link: manage_url, inviteUrl: deliveryUrl })
       void sendEmail({ to: invite.draft_email, subject, html })
     }
   }
@@ -135,8 +138,6 @@ export async function POST(req: NextRequest, { params }: Params) {
   })
 
   // Purge CDN cache (fire-and-forget — don't fail publish on purge error)
-  const appUrl      = process.env.NEXT_PUBLIC_APP_URL!
-  const deliveryUrl = `${appUrl}/api/snapshots/${invite.slug}`
   purgeCloudflareCache([deliveryUrl]).catch((err) =>
     logger.warn({ event: 'cdn_purge.error', invite_id: id, error: String(err) })
   )

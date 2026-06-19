@@ -23,7 +23,7 @@ export async function POST(request: NextRequest, { params }: Params) {
 
   const { data: invite, error } = await service
     .from('invites')
-    .select('id, draft_email, display_title')
+    .select('id, draft_email, display_title, slug, status')
     .eq('manage_token_hash', hashManageToken(token))
     .maybeSingle()
 
@@ -42,9 +42,11 @@ export async function POST(request: NextRequest, { params }: Params) {
   }
 
   const link = manageUrl(next.token)
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL
+  const inviteUrl = invite?.status === 'published' && invite?.slug && appUrl ? `${appUrl}/invite/${invite.slug}` : null
 
   if (invite.draft_email) {
-    const { subject, html } = manageLinkEmail({ coupleName: invite.display_title, link })
+    const { subject, html } = manageLinkEmail({ coupleName: invite.display_title, link, inviteUrl })
     void sendEmail({ to: invite.draft_email, subject, html })
   }
 

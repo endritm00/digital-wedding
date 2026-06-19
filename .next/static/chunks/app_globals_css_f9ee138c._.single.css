@@ -357,6 +357,14 @@ body {
   bottom: 0;
 }
 
+.bottom-3 {
+  bottom: .75rem;
+}
+
+.bottom-6 {
+  bottom: 1.5rem;
+}
+
 .bottom-7 {
   bottom: 1.75rem;
 }
@@ -377,6 +385,10 @@ body {
   left: 50%;
 }
 
+.left-3 {
+  left: .75rem;
+}
+
 .left-4 {
   left: 1rem;
 }
@@ -395,6 +407,14 @@ body {
 
 .right-2\.5 {
   right: .625rem;
+}
+
+.right-3 {
+  right: .75rem;
+}
+
+.right-4 {
+  right: 1rem;
 }
 
 .right-5 {
@@ -421,6 +441,10 @@ body {
   top: .625rem;
 }
 
+.top-4 {
+  top: 1rem;
+}
+
 .top-5 {
   top: 1.25rem;
 }
@@ -439,30 +463,6 @@ body {
 
 .top-\[12dvh\] {
   top: 12dvh;
-}
-
-.bottom-3 {
-  bottom: .75rem;
-}
-
-.bottom-6 {
-  bottom: 1.5rem;
-}
-
-.right-3 {
-  right: .75rem;
-}
-
-.right-4 {
-  right: 1rem;
-}
-
-.top-4 {
-  top: 1rem;
-}
-
-.left-3 {
-  left: .75rem;
 }
 
 .z-0 {
@@ -851,10 +851,6 @@ body {
 
 .resize {
   resize: both;
-}
-
-.auto-rows-\[1fr\] {
-  grid-auto-rows: 1fr;
 }
 
 .grid-cols-2 {
@@ -1465,6 +1461,10 @@ body {
   transition-timing-function: cubic-bezier(.4, 0, .2, 1);
 }
 
+.duration-150 {
+  transition-duration: .15s;
+}
+
 .duration-300 {
   transition-duration: .3s;
 }
@@ -1473,24 +1473,8 @@ body {
   transition-duration: .5s;
 }
 
-.duration-\[1200ms\] {
-  transition-duration: 1.2s;
-}
-
-.duration-200 {
-  transition-duration: .2s;
-}
-
-.duration-150 {
-  transition-duration: .15s;
-}
-
 .ease-in-out {
   transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-}
-
-.ease-out {
-  transition-timing-function: cubic-bezier(0, 0, .2, 1);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -1551,6 +1535,14 @@ body {
   cursor: not-allowed;
 }
 
+.disabled\:opacity-0:disabled {
+  opacity: 0;
+}
+
+.disabled\:opacity-25:disabled {
+  opacity: .25;
+}
+
 .disabled\:opacity-40:disabled {
   opacity: .4;
 }
@@ -1561,20 +1553,6 @@ body {
 
 .disabled\:opacity-55:disabled {
   opacity: .55;
-}
-
-.disabled\:opacity-0:disabled {
-  opacity: 0;
-}
-
-.disabled\:opacity-25:disabled {
-  opacity: .25;
-}
-
-.group:hover .group-hover\:scale-\[1\.05\] {
-  --tw-scale-x: 1.05;
-  --tw-scale-y: 1.05;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group:hover .group-hover\:opacity-100 {

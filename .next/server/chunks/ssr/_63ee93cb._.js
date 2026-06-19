@@ -930,20 +930,11 @@ function NamesPage({ params }) {
     const { opening, invite, setOpening, patchDraft, flushDraft } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
-    const config = opening?.config ?? {};
-    const [nameA, setNameA] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(config.name_a ?? '');
-    const [nameB, setNameB] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(config.name_b ?? '');
+    const [nameA, setNameA] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [nameB, setNameB] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [date, setDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(invite?.event_date ?? '');
     // Gentle one-time prompt if they try to continue without a date.
     const [dateNudge, setDateNudge] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Sync once the context loads from the server
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const c = opening?.config ?? {};
-        if (c.name_a !== undefined) setNameA(c.name_a);
-        if (c.name_b !== undefined) setNameB(c.name_b);
-    }, [
-        opening
-    ]);
     // Prefill from the homepage envelope ("Type your names" → "Create yours").
     // One-shot: only applies to a fresh invite with no names yet, then clears the
     // handoff so it never overrides later edits or a different invite.
@@ -971,10 +962,7 @@ function NamesPage({ params }) {
                 name_b: name_b ?? ''
             });
         } catch  {}
-    }, [
-        opening,
-        setOpening
-    ]);
+    }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (invite?.event_date) setDate(invite.event_date);
     }, [
@@ -1005,7 +993,7 @@ function NamesPage({ params }) {
                 step: "names"
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                lineNumber: 73,
+                lineNumber: 65,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$step$2d$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StepSheet"], {
@@ -1032,7 +1020,7 @@ function NamesPage({ params }) {
                                     children: "First person"
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 78,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1062,13 +1050,13 @@ function NamesPage({ params }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 85,
+                            lineNumber: 77,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1107,7 +1095,7 @@ function NamesPage({ params }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                        lineNumber: 125,
+                                        lineNumber: 117,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1120,7 +1108,7 @@ function NamesPage({ params }) {
                                         children: "&"
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                        lineNumber: 126,
+                                        lineNumber: 118,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1130,18 +1118,18 @@ function NamesPage({ params }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 124,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                lineNumber: 117,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 115,
+                            lineNumber: 107,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1157,7 +1145,7 @@ function NamesPage({ params }) {
                                     children: "Second person"
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 139,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1187,13 +1175,13 @@ function NamesPage({ params }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 137,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 130,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].label, {
@@ -1225,7 +1213,7 @@ function NamesPage({ params }) {
                                     children: "Wedding date"
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 179,
+                                    lineNumber: 171,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DatePicker, {
@@ -1239,13 +1227,13 @@ function NamesPage({ params }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                    lineNumber: 185,
+                                    lineNumber: 177,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 168,
+                            lineNumber: 160,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1284,23 +1272,23 @@ function NamesPage({ params }) {
                                 children: "Adding your date lets guests save it and powers the countdown — or continue and add it later."
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                                lineNumber: 198,
+                                lineNumber: 190,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 196,
+                            lineNumber: 188,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                    lineNumber: 83,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                lineNumber: 74,
+                lineNumber: 66,
                 columnNumber: 7
             }, this)
         ]
@@ -1387,7 +1375,7 @@ function DatePicker({ value, onChange }) {
                         children: "Day"
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                        lineNumber: 256,
+                        lineNumber: 248,
                         columnNumber: 9
                     }, this),
                     Array.from({
@@ -1397,13 +1385,13 @@ function DatePicker({ value, onChange }) {
                             children: Number(dd)
                         }, dd, false, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 258,
+                            lineNumber: 250,
                             columnNumber: 11
                         }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                lineNumber: 255,
+                lineNumber: 247,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1419,7 +1407,7 @@ function DatePicker({ value, onChange }) {
                         children: "Month"
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                        lineNumber: 262,
+                        lineNumber: 254,
                         columnNumber: 9
                     }, this),
                     MONTHS.map((name, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1427,13 +1415,13 @@ function DatePicker({ value, onChange }) {
                             children: name
                         }, name, false, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 264,
+                            lineNumber: 256,
                             columnNumber: 11
                         }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                lineNumber: 261,
+                lineNumber: 253,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1449,7 +1437,7 @@ function DatePicker({ value, onChange }) {
                         children: "Year"
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                        lineNumber: 268,
+                        lineNumber: 260,
                         columnNumber: 9
                     }, this),
                     years.map((yy)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1457,19 +1445,19 @@ function DatePicker({ value, onChange }) {
                             children: yy
                         }, yy, false, {
                             fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                            lineNumber: 270,
+                            lineNumber: 262,
                             columnNumber: 11
                         }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-                lineNumber: 267,
+                lineNumber: 259,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/builder/[inviteId]/names/page.tsx",
-        lineNumber: 254,
+        lineNumber: 246,
         columnNumber: 5
     }, this);
 }

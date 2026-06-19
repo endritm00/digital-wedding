@@ -4,7 +4,7 @@ const MOMENTS = [
   {
     number: '01',
     heading: 'Choose your design.',
-    body: 'Browse our curated themes — each one crafted by designers who understand weddings, not generic templates.',
+    body: 'Browse our curated themes crafted by designers who understand weddings.',
   },
   {
     number: '02',
@@ -14,7 +14,7 @@ const MOMENTS = [
   {
     number: '03',
     heading: 'Share with one link.',
-    body: 'Your guests tap a link on their phone and your invitation opens instantly. No app. No account. Pure magic.',
+    body: 'Your guests tap a link on their phone and your invitation opens instantly.',
   },
 ]
 
@@ -85,7 +85,7 @@ export function MomentsSection() {
             className="font-inter leading-none"
             style={{ fontSize: 11, color: 'rgba(26,26,26,0.4)' }}
           >
-            4.9 &nbsp;·&nbsp; Loved by 2,400+ couples across 14 countries
+            5.0 &nbsp;·&nbsp; Loved by 3,500+ couples across 15 countries
           </span>
         </div>
       </div>

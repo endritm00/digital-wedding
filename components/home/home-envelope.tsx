@@ -38,7 +38,7 @@ export function HomeEnvelope() {
         Sealed by hand, opened with a touch
       </h2>
       <p className="font-inter text-center mt-4 max-w-[42ch]" style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(26,24,22,0.55)' }}>
-        Every invitation arrives sealed in wax. Your guests press the seal — and your day unfolds.
+        Every invitation arrives sealed in wax. Your guests press the seal and your day unfolds.
       </p>
 
       {/* personalise */}

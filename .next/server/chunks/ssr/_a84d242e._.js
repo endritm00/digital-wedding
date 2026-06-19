@@ -141,7 +141,7 @@ const MOMENTS = [
     {
         number: '01',
         heading: 'Choose your design.',
-        body: 'Browse our curated themes — each one crafted by designers who understand weddings, not generic templates.'
+        body: 'Browse our curated themes crafted by designers who understand weddings.'
     },
     {
         number: '02',
@@ -151,7 +151,7 @@ const MOMENTS = [
     {
         number: '03',
         heading: 'Share with one link.',
-        body: 'Your guests tap a link on their phone and your invitation opens instantly. No app. No account. Pure magic.'
+        body: 'Your guests tap a link on their phone and your invitation opens instantly.'
     }
 ];
 function MomentsSection() {
@@ -288,7 +288,7 @@ function MomentsSection() {
                                 fontSize: 11,
                                 color: 'rgba(26,26,26,0.4)'
                             },
-                            children: "4.9  ·  Loved by 2,400+ couples across 14 countries"
+                            children: "5.0  ·  Loved by 3,500+ couples across 15 countries"
                         }, void 0, false, {
                             fileName: "[project]/components/home/moments-section.tsx",
                             lineNumber: 84,

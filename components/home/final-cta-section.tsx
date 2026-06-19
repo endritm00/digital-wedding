@@ -96,7 +96,7 @@ export function FinalCta() {
             className="font-inter"
             style={{ fontSize: 10, color: 'rgba(26,26,26,0.3)', letterSpacing: '0.1em' }}
           >
-            From €99 · Live in minutes
+            From €19.99 · Live in minutes
           </span>
         </motion.div>
       </motion.div>

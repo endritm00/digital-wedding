@@ -540,8 +540,8 @@ export default function DetailsPage() {
         title="The details"
         lede={
           contentSections.length === 0
-            ? 'Add what you know — you can always edit later.'
-            : 'Fill in what you know — you can always edit later.'
+            ? 'Add what you know — you can always edit before publishing.'
+            : 'Fill in what you know — you can always before publishing.'
         }
         primaryLabel="Continue"
         onPrimary={handleContinue}

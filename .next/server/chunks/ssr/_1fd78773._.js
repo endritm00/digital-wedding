@@ -1700,7 +1700,7 @@ function HomeEnvelope() {
                     lineHeight: 1.6,
                     color: 'rgba(26,24,22,0.55)'
                 },
-                children: "Every invitation arrives sealed in wax. Your guests press the seal — and your day unfolds."
+                children: "Every invitation arrives sealed in wax. Your guests press the seal and your day unfolds."
             }, void 0, false, {
                 fileName: "[project]/components/home/home-envelope.tsx",
                 lineNumber: 40,
@@ -2249,8 +2249,16 @@ function OpeningFilmSection() {
                             lineHeight: 1.75,
                             color: 'rgba(26,24,22,0.55)'
                         },
-                        children: "Every invitation opens with a film. Guests press the seal, and your day begins to unfold — set the scene with one of these."
-                    }, void 0, false, {
+                        children: [
+                            "Every invitation opens with a film.",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                fileName: "[project]/components/home/opening-film-section.tsx",
+                                lineNumber: 60,
+                                columnNumber: 46
+                            }, this),
+                            "Set the scene with one of the videos, or upload your own!"
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
                         lineNumber: 59,
                         columnNumber: 9
@@ -2300,7 +2308,7 @@ function OpeningFilmSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
-                        lineNumber: 75,
+                        lineNumber: 76,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2314,7 +2322,7 @@ function OpeningFilmSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
-                        lineNumber: 76,
+                        lineNumber: 77,
                         columnNumber: 9
                     }, this),
                     !reduced && armed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].video, {
@@ -2343,7 +2351,7 @@ function OpeningFilmSection() {
                         }
                     }, film.id, false, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
-                        lineNumber: 81,
+                        lineNumber: 82,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2353,7 +2361,7 @@ function OpeningFilmSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
-                        lineNumber: 100,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2365,7 +2373,7 @@ function OpeningFilmSection() {
                                         name: film.name
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/opening-film-section.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 104,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2378,13 +2386,13 @@ function OpeningFilmSection() {
                                         children: film.mood
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/opening-film-section.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 105,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home/opening-film-section.tsx",
-                                lineNumber: 102,
+                                lineNumber: 103,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2401,19 +2409,19 @@ function OpeningFilmSection() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home/opening-film-section.tsx",
-                                lineNumber: 106,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/opening-film-section.tsx",
-                        lineNumber: 101,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home/opening-film-section.tsx",
-                lineNumber: 65,
+                lineNumber: 66,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2457,12 +2465,12 @@ function OpeningFilmSection() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/home/opening-film-section.tsx",
-                                        lineNumber: 141,
+                                        lineNumber: 142,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/home/opening-film-section.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 128,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2474,24 +2482,24 @@ function OpeningFilmSection() {
                                     children: f.name
                                 }, void 0, false, {
                                     fileName: "[project]/components/home/opening-film-section.tsx",
-                                    lineNumber: 143,
+                                    lineNumber: 144,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, f.id, true, {
                             fileName: "[project]/components/home/opening-film-section.tsx",
-                            lineNumber: 118,
+                            lineNumber: 119,
                             columnNumber: 15
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/home/opening-film-section.tsx",
-                    lineNumber: 114,
+                    lineNumber: 115,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home/opening-film-section.tsx",
-                lineNumber: 113,
+                lineNumber: 114,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2523,12 +2531,12 @@ function OpeningFilmSection() {
                     children: "Create yours"
                 }, void 0, false, {
                     fileName: "[project]/components/home/opening-film-section.tsx",
-                    lineNumber: 163,
+                    lineNumber: 164,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home/opening-film-section.tsx",
-                lineNumber: 156,
+                lineNumber: 157,
                 columnNumber: 7
             }, this)
         ]
@@ -2568,7 +2576,7 @@ function AnimatedName({ name }) {
         children: name
     }, name, false, {
         fileName: "[project]/components/home/opening-film-section.tsx",
-        lineNumber: 178,
+        lineNumber: 179,
         columnNumber: 5
     }, this);
 }
@@ -2836,7 +2844,7 @@ function FinalCta() {
                                     color: 'rgba(26,26,26,0.3)',
                                     letterSpacing: '0.1em'
                                 },
-                                children: "From €99 · Live in minutes"
+                                children: "From €19.99 · Live in minutes"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/final-cta-section.tsx",
                                 lineNumber: 95,
