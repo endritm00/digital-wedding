@@ -661,137 +661,145 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                ref: scrollRef,
-                onScroll: updateScrollCue,
-                className: "relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
+                className: "relative flex-1 flex flex-col min-h-0",
                 children: [
-                    backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        type: "button",
-                        onClick: ()=>router.push(backHref),
-                        className: "font-inter mb-4 flex items-center gap-1.5",
-                        style: {
-                            fontSize: 11,
-                            color: 'rgba(26,24,22,0.42)'
-                        },
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        ref: scrollRef,
+                        onScroll: updateScrollCue,
+                        className: "flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                width: "12",
-                                height: "12",
-                                viewBox: "0 0 12 12",
-                                fill: "none",
-                                "aria-hidden": "true",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                    d: "M7.5 2.5L4 6L7.5 9.5",
-                                    stroke: "currentColor",
-                                    strokeWidth: "1.2",
-                                    strokeLinecap: "round"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 243,
-                                    columnNumber: 15
-                                }, this)
+                            backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                onClick: ()=>router.push(backHref),
+                                className: "font-inter mb-4 flex items-center gap-1.5",
+                                style: {
+                                    fontSize: 11,
+                                    color: 'rgba(26,24,22,0.42)'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        width: "12",
+                                        height: "12",
+                                        viewBox: "0 0 12 12",
+                                        fill: "none",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            d: "M7.5 2.5L4 6L7.5 9.5",
+                                            stroke: "currentColor",
+                                            strokeWidth: "1.2",
+                                            strokeLinecap: "round"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/builder/step-sheet.tsx",
+                                            lineNumber: 244,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/builder/step-sheet.tsx",
+                                        lineNumber: 243,
+                                        columnNumber: 13
+                                    }, this),
+                                    "Back"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 237,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "font-cormorant font-light leading-tight",
+                                style: {
+                                    fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
+                                    color: '#1A1816',
+                                    letterSpacing: '-0.01em'
+                                },
+                                children: title
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/step-sheet.tsx",
-                                lineNumber: 242,
-                                columnNumber: 13
+                                lineNumber: 250,
+                                columnNumber: 9
                             }, this),
-                            "Back"
+                            lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "font-inter mt-1.5 leading-relaxed",
+                                style: {
+                                    fontSize: 12.5,
+                                    color: 'rgba(26,24,22,0.55)'
+                                },
+                                children: lede
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 257,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-5",
+                                children: children
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 262,
+                                columnNumber: 9
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 236,
-                        columnNumber: 11
+                        lineNumber: 235,
+                        columnNumber: 7
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "font-cormorant font-light leading-tight",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        className: "pointer-events-none absolute inset-x-0 bottom-0 flex justify-center",
                         style: {
-                            fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
-                            color: '#1A1816',
-                            letterSpacing: '-0.01em'
+                            height: 32,
+                            background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
                         },
-                        children: title
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 249,
-                        columnNumber: 9
-                    }, this),
-                    lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "font-inter mt-1.5 leading-relaxed",
-                        style: {
-                            fontSize: 12.5,
-                            color: 'rgba(26,24,22,0.55)'
+                        animate: {
+                            opacity: moreBelow ? 1 : 0
                         },
-                        children: lede
+                        transition: {
+                            duration: 0.3
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                            width: "16",
+                            height: "16",
+                            viewBox: "0 0 16 16",
+                            fill: "none",
+                            className: "self-end mb-1",
+                            animate: reduced ? {} : {
+                                y: [
+                                    0,
+                                    3,
+                                    0
+                                ]
+                            },
+                            transition: {
+                                duration: 1.6,
+                                ease: 'easeInOut',
+                                repeat: Infinity
+                            },
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "M4 6l4 4 4-4",
+                                stroke: "rgba(168,133,75,0.7)",
+                                strokeWidth: "1.4",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round"
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 279,
+                                columnNumber: 11
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/builder/step-sheet.tsx",
+                            lineNumber: 274,
+                            columnNumber: 9
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 256,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-5",
-                        children: children
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 261,
-                        columnNumber: 9
+                        lineNumber: 267,
+                        columnNumber: 7
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
                 lineNumber: 234,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                "aria-hidden": true,
-                className: "pointer-events-none absolute inset-x-0 flex justify-center",
-                style: {
-                    bottom: primaryLabel || laterLabel ? 92 : 8,
-                    height: 32,
-                    background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
-                },
-                animate: {
-                    opacity: moreBelow ? 1 : 0
-                },
-                transition: {
-                    duration: 0.3
-                },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
-                    width: "16",
-                    height: "16",
-                    viewBox: "0 0 16 16",
-                    fill: "none",
-                    className: "self-end mb-1",
-                    animate: reduced ? {} : {
-                        y: [
-                            0,
-                            3,
-                            0
-                        ]
-                    },
-                    transition: {
-                        duration: 1.6,
-                        ease: 'easeInOut',
-                        repeat: Infinity
-                    },
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                        d: "M4 6l4 4 4-4",
-                        stroke: "rgba(168,133,75,0.7)",
-                        strokeWidth: "1.4",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round"
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 277,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/components/builder/step-sheet.tsx",
-                    lineNumber: 272,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 265,
                 columnNumber: 7
             }, this),
             (primaryLabel || laterLabel) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -839,29 +847,29 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                             repeatCount: "indefinite"
                                         }, void 0, false, {
                                             fileName: "[project]/components/builder/step-sheet.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 309,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/step-sheet.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 308,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 304,
+                                    lineNumber: 307,
                                     columnNumber: 19
                                 }, this),
                                 "One moment…"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/builder/step-sheet.tsx",
-                            lineNumber: 303,
+                            lineNumber: 306,
                             columnNumber: 17
                         }, this) : primaryLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 287,
+                        lineNumber: 290,
                         columnNumber: 13
                     }, this),
                     laterLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -875,13 +883,13 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                         children: laterLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 315,
+                        lineNumber: 318,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 282,
+                lineNumber: 285,
                 columnNumber: 9
             }, this)
         ]
@@ -909,7 +917,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$hai
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$step$2d$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/builder/step-sheet.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/builder/builder-provider.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$presets$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/builder/presets.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/builder/api.ts [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -977,6 +987,312 @@ function TextField({ label, value, placeholder, multiline = false, onChange }) {
         columnNumber: 5
     }, this);
 }
+// ── Gallery photo uploader ────────────────────────────────────────────────────
+// Real in-builder photo upload: pick (multiple) images → upload to Storage as
+// `gallery_image` assets → show thumbnails (signed URLs from the media GET) →
+// remove. The gallery = the invite's ready gallery_image assets; they render in
+// the live preview, the creator preview, and the published guest page.
+function GalleryUploader({ note, onNote }) {
+    const { inviteId, media, refreshMedia } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
+    const fileRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const [uploading, setUploading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [removing, setRemoving] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(new Set());
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const photos = media.filter((m)=>m.kind === 'gallery_image' && m.status === 'ready' && !removing.has(m.id));
+    const thumbOf = (m)=>{
+        const v = m.variants ?? {};
+        return v.thumb ?? v.medium ?? v.url ?? null;
+    };
+    const onFiles = async (files)=>{
+        if (!files?.length) return;
+        setError(null);
+        const images = Array.from(files).filter((f)=>f.type.startsWith('image/'));
+        if (images.length < files.length) setError('Some files were skipped — only images can be added.');
+        // Upload sequentially so the storage rows and thumbnails appear in order.
+        for (const file of images){
+            setUploading((n)=>n + 1);
+            try {
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["uploadFile"])(inviteId, 'gallery_image', file);
+                await refreshMedia();
+            } catch  {
+                setError('A photo failed to upload — please try again.');
+            } finally{
+                setUploading((n)=>n - 1);
+            }
+        }
+        if (fileRef.current) fileRef.current.value = '';
+    };
+    const remove = async (assetId)=>{
+        setRemoving((prev)=>new Set(prev).add(assetId));
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].deleteMedia(inviteId, assetId);
+            await refreshMedia();
+        } catch  {
+            setError('Could not remove that photo — please try again.');
+        } finally{
+            setRemoving((prev)=>{
+                const next = new Set(prev);
+                next.delete(assetId);
+                return next;
+            });
+        }
+    };
+    const Spinner = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+            width: "18",
+            height: "18",
+            viewBox: "0 0 18 18",
+            fill: "none",
+            "aria-hidden": true,
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                    cx: "9",
+                    cy: "9",
+                    r: "7",
+                    stroke: "rgba(168,133,75,0.3)",
+                    strokeWidth: "1.5"
+                }, void 0, false, {
+                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                    lineNumber: 125,
+                    columnNumber: 7
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                    d: "M9 2a7 7 0 0 1 7 7",
+                    stroke: "#A8854B",
+                    strokeWidth: "1.5",
+                    strokeLinecap: "round",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("animateTransform", {
+                        attributeName: "transform",
+                        type: "rotate",
+                        from: "0 9 9",
+                        to: "360 9 9",
+                        dur: "0.9s",
+                        repeatCount: "indefinite"
+                    }, void 0, false, {
+                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                        lineNumber: 127,
+                        columnNumber: 9
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                    lineNumber: 126,
+                    columnNumber: 7
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+            lineNumber: 124,
+            columnNumber: 5
+        }, this);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col gap-3",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid grid-cols-3 gap-2",
+                children: [
+                    photos.map((m)=>{
+                        const url = thumbOf(m);
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "group relative aspect-square overflow-hidden rounded-lg",
+                            style: {
+                                border: '1px solid rgba(26,24,22,0.1)',
+                                background: 'rgba(26,24,22,0.04)'
+                            },
+                            children: [
+                                url ? // eslint-disable-next-line @next/next/no-img-element
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: url,
+                                    alt: "",
+                                    className: "h-full w-full",
+                                    style: {
+                                        objectFit: 'cover'
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                    lineNumber: 141,
+                                    columnNumber: 17
+                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex h-full w-full items-center justify-center",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Spinner, {}, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                        lineNumber: 143,
+                                        columnNumber: 81
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                    lineNumber: 143,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    type: "button",
+                                    onClick: ()=>void remove(m.id),
+                                    "aria-label": "Remove photo",
+                                    className: "absolute right-1 top-1 flex items-center justify-center rounded-full",
+                                    style: {
+                                        width: 20,
+                                        height: 20,
+                                        background: 'rgba(26,24,22,0.62)',
+                                        backdropFilter: 'blur(4px)'
+                                    },
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        width: "9",
+                                        height: "9",
+                                        viewBox: "0 0 9 9",
+                                        fill: "none",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            d: "M1.5 1.5l6 6M7.5 1.5l-6 6",
+                                            stroke: "#FDFCF9",
+                                            strokeWidth: "1.3",
+                                            strokeLinecap: "round"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                            lineNumber: 152,
+                                            columnNumber: 73
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                        lineNumber: 152,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                    lineNumber: 145,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, m.id, true, {
+                            fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                            lineNumber: 138,
+                            columnNumber: 13
+                        }, this);
+                    }),
+                    Array.from({
+                        length: uploading
+                    }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex aspect-square items-center justify-center rounded-lg",
+                            style: {
+                                border: '1px solid rgba(168,133,75,0.25)',
+                                background: 'rgba(168,133,75,0.06)'
+                            },
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Spinner, {}, void 0, false, {
+                                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                lineNumber: 160,
+                                columnNumber: 13
+                            }, this)
+                        }, `up-${i}`, false, {
+                            fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                            lineNumber: 159,
+                            columnNumber: 11
+                        }, this)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "button",
+                        onClick: ()=>fileRef.current?.click(),
+                        className: "flex aspect-square flex-col items-center justify-center gap-1 rounded-lg transition-colors",
+                        style: {
+                            border: '1px dashed rgba(26,24,22,0.2)',
+                            background: 'rgba(255,255,255,0.4)'
+                        },
+                        "aria-label": "Add photos",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                width: "18",
+                                height: "18",
+                                viewBox: "0 0 18 18",
+                                fill: "none",
+                                "aria-hidden": true,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                    d: "M9 3.5v11M3.5 9h11",
+                                    stroke: "#A8854B",
+                                    strokeWidth: "1.5",
+                                    strokeLinecap: "round"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                    lineNumber: 171,
+                                    columnNumber: 83
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                lineNumber: 171,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "font-inter",
+                                style: {
+                                    fontSize: 9.5,
+                                    letterSpacing: '0.04em',
+                                    color: 'rgba(26,24,22,0.5)'
+                                },
+                                children: "Add photos"
+                            }, void 0, false, {
+                                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                                lineNumber: 172,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                        lineNumber: 164,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                lineNumber: 134,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                ref: fileRef,
+                type: "file",
+                accept: "image/*",
+                multiple: true,
+                className: "hidden",
+                onChange: (e)=>void onFiles(e.target.files)
+            }, void 0, false, {
+                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                lineNumber: 176,
+                columnNumber: 7
+            }, this),
+            error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "font-inter",
+                style: {
+                    fontSize: 11,
+                    color: '#8A4030'
+                },
+                children: error
+            }, void 0, false, {
+                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                lineNumber: 178,
+                columnNumber: 17
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "font-inter leading-relaxed",
+                style: {
+                    fontSize: 11,
+                    color: 'rgba(26,24,22,0.45)'
+                },
+                children: "Upload your favourite photos — they appear in your invitation’s gallery. The first one is featured larger."
+            }, void 0, false, {
+                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                lineNumber: 180,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
+                label: "Caption (optional)",
+                value: note,
+                placeholder: "e.g. From our engagement shoot in June",
+                multiline: true,
+                onChange: onNote
+            }, void 0, false, {
+                fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+                lineNumber: 184,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
+        lineNumber: 133,
+        columnNumber: 5
+    }, this);
+}
 function SectionForm({ section, updateSectionConfig }) {
     const cfg = section.config;
     const patch = (fields)=>updateSectionConfig(section.id, {
@@ -996,7 +1312,7 @@ function SectionForm({ section, updateSectionConfig }) {
                     })
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 89,
+                lineNumber: 212,
                 columnNumber: 9
             }, this);
         case 'schedule':
@@ -1015,7 +1331,7 @@ function SectionForm({ section, updateSectionConfig }) {
                                     })
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 102,
+                                lineNumber: 225,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1027,13 +1343,13 @@ function SectionForm({ section, updateSectionConfig }) {
                                     })
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 108,
+                                lineNumber: 231,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 101,
+                        lineNumber: 224,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1048,7 +1364,7 @@ function SectionForm({ section, updateSectionConfig }) {
                                     })
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 116,
+                                lineNumber: 239,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1060,13 +1376,13 @@ function SectionForm({ section, updateSectionConfig }) {
                                     })
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 122,
+                                lineNumber: 245,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 115,
+                        lineNumber: 238,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1079,13 +1395,13 @@ function SectionForm({ section, updateSectionConfig }) {
                             })
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 129,
+                        lineNumber: 252,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 100,
+                lineNumber: 223,
                 columnNumber: 9
             }, this);
         case 'venue':
@@ -1101,7 +1417,7 @@ function SectionForm({ section, updateSectionConfig }) {
                             })
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 142,
+                        lineNumber: 265,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1113,7 +1429,7 @@ function SectionForm({ section, updateSectionConfig }) {
                             })
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 148,
+                        lineNumber: 271,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1126,59 +1442,24 @@ function SectionForm({ section, updateSectionConfig }) {
                             })
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 154,
+                        lineNumber: 277,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 141,
+                lineNumber: 264,
                 columnNumber: 9
             }, this);
         case 'gallery':
-            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col gap-3",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "rounded-xl p-4 text-center",
-                        style: {
-                            background: 'rgba(168,133,75,0.05)',
-                            border: '1px dashed rgba(168,133,75,0.28)'
-                        },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "font-inter leading-relaxed",
-                            style: {
-                                fontSize: 11,
-                                color: 'rgba(26,24,22,0.48)'
-                            },
-                            children: "Photo uploads will be available after your invitation is saved. Leave a note for us below."
-                        }, void 0, false, {
-                            fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 174,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 167,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
-                        label: "Photo notes",
-                        value: str('note'),
-                        placeholder: "e.g. Engagement shoot from June — 6 photos",
-                        multiline: true,
-                        onChange: (v)=>patch({
-                                note: v
-                            })
-                    }, void 0, false, {
-                        fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 178,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(GalleryUploader, {
+                note: str('note'),
+                onNote: (v)=>patch({
+                        note: v
+                    })
+            }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 166,
+                lineNumber: 289,
                 columnNumber: 9
             }, this);
         case 'travel':
@@ -1192,7 +1473,7 @@ function SectionForm({ section, updateSectionConfig }) {
                     })
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 190,
+                lineNumber: 294,
                 columnNumber: 9
             }, this);
         case 'gifts':
@@ -1206,7 +1487,7 @@ function SectionForm({ section, updateSectionConfig }) {
                     })
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 201,
+                lineNumber: 305,
                 columnNumber: 9
             }, this);
         case 'dress_code':
@@ -1235,7 +1516,7 @@ function SectionForm({ section, updateSectionConfig }) {
                                     children: "Dress code"
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                    lineNumber: 216,
+                                    lineNumber: 320,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1255,18 +1536,18 @@ function SectionForm({ section, updateSectionConfig }) {
                                             children: c
                                         }, c, false, {
                                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                            lineNumber: 224,
+                                            lineNumber: 328,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                    lineNumber: 222,
+                                    lineNumber: 326,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 215,
+                            lineNumber: 319,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TextField, {
@@ -1279,13 +1560,13 @@ function SectionForm({ section, updateSectionConfig }) {
                                 })
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 244,
+                            lineNumber: 348,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                    lineNumber: 214,
+                    lineNumber: 318,
                     columnNumber: 9
                 }, this);
             }
@@ -1363,17 +1644,17 @@ function SectionForm({ section, updateSectionConfig }) {
                                                     strokeLinecap: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                                    lineNumber: 291,
+                                                    lineNumber: 395,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                                lineNumber: 290,
+                                                lineNumber: 394,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                            lineNumber: 284,
+                                            lineNumber: 388,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1383,7 +1664,7 @@ function SectionForm({ section, updateSectionConfig }) {
                                             className: "mb-2 w-full bg-transparent font-inter text-sm text-[#1A1816] placeholder:text-[#1A1816]/28 outline-none pr-5"
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                            lineNumber: 294,
+                                            lineNumber: 398,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1394,18 +1675,18 @@ function SectionForm({ section, updateSectionConfig }) {
                                             className: "w-full resize-none bg-transparent font-inter text-xs text-[#1A1816]/68 placeholder:text-[#1A1816]/24 outline-none"
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                            lineNumber: 300,
+                                            lineNumber: 404,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                    lineNumber: 275,
+                                    lineNumber: 379,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 273,
+                            lineNumber: 377,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1429,25 +1710,25 @@ function SectionForm({ section, updateSectionConfig }) {
                                         strokeLinecap: "round"
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 421,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                    lineNumber: 316,
+                                    lineNumber: 420,
                                     columnNumber: 13
                                 }, this),
                                 "Add a question"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 310,
+                            lineNumber: 414,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                    lineNumber: 272,
+                    lineNumber: 376,
                     columnNumber: 9
                 }, this);
             }
@@ -1460,7 +1741,7 @@ function SectionForm({ section, updateSectionConfig }) {
                 children: "This section is enabled and will appear in your invitation."
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 327,
+                lineNumber: 431,
                 columnNumber: 9
             }, this);
     }
@@ -1491,7 +1772,7 @@ function AccordionItem({ section, open, onToggle, updateSectionConfig }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 360,
+                        lineNumber: 464,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
@@ -1513,18 +1794,18 @@ function AccordionItem({ section, open, onToggle, updateSectionConfig }) {
                             strokeLinecap: "round"
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 369,
+                            lineNumber: 473,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 363,
+                        lineNumber: 467,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 354,
+                lineNumber: 458,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1561,28 +1842,28 @@ function AccordionItem({ section, open, onToggle, updateSectionConfig }) {
                             updateSectionConfig: updateSectionConfig
                         }, void 0, false, {
                             fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                            lineNumber: 386,
+                            lineNumber: 490,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 382,
+                        lineNumber: 486,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                    lineNumber: 375,
+                    lineNumber: 479,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 373,
+                lineNumber: 477,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-        lineNumber: 350,
+        lineNumber: 454,
         columnNumber: 5
     }, this);
 }
@@ -1621,7 +1902,7 @@ function DetailsPage() {
                 step: "details"
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 434,
+                lineNumber: 538,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$step$2d$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StepSheet"], {
@@ -1639,7 +1920,7 @@ function DetailsPage() {
                         children: "No pages selected yet — go back to choose which pages to include."
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 447,
+                        lineNumber: 551,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col gap-2",
@@ -1655,12 +1936,12 @@ function DetailsPage() {
                                 updateSectionConfig: updateSectionConfig
                             }, sec.id, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 453,
+                                lineNumber: 557,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 451,
+                        lineNumber: 555,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1676,7 +1957,7 @@ function DetailsPage() {
                                 children: "Any notes for us?"
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 473,
+                                lineNumber: 577,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1692,19 +1973,19 @@ function DetailsPage() {
                                 onBlur: (e)=>e.currentTarget.style.borderColor = 'rgba(26,24,22,0.12)'
                             }, void 0, false, {
                                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                                lineNumber: 476,
+                                lineNumber: 580,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                        lineNumber: 472,
+                        lineNumber: 576,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/details/page.tsx",
-                lineNumber: 435,
+                lineNumber: 539,
                 columnNumber: 7
             }, this)
         ]

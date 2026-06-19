@@ -235,7 +235,7 @@ test('05 Emma — complete flow + real test-card payment', async ({ page, rec })
   await primary(page, /Continue/)
   await expectStep(page, 'details', rec)
   // Fill the open (story) accordion
-  await sheet(page).getByPlaceholder(/How you met/i).fill('We met at a small bookshop in Lisbon.').catch(() => rec.friction('story field not auto-open on details'))
+  await sheet().getByPlaceholder(/How you met/i).fill('We met at a small bookshop in Lisbon.').catch(() => rec.friction('story field not auto-open on details'))
   await primary(page, /Continue/)
   await expectStep(page, 'review', rec)
 

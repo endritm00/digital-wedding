@@ -251,6 +251,9 @@ export const api = {
   getAsset: (id: string, assetId: string) =>
     request<MediaAsset>(`/api/invites/${id}/media/${assetId}`, { inviteId: id }),
 
+  deleteMedia: (id: string, assetId: string) =>
+    request<void>(`/api/invites/${id}/media/${assetId}`, { method: 'DELETE', inviteId: id }),
+
   claim: (id: string, claimToken: string) =>
     request<{ invite_id: string }>(`/api/invites/${id}/claim`, {
       method: 'POST',

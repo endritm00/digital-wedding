@@ -194,14 +194,12 @@ export function InvitePreview() {
         />
       )}
 
-      {/* legibility wash, tuned per paper tone */}
+      {/* legibility wash — IDENTICAL to the published/preview hero (OpeningHero in
+          invitation-view.tsx) so the live build preview looks exactly like the final
+          invitation: a clear, bright centre rather than a dimmed/opaque card. */}
       <div
         className="absolute inset-0"
-        style={{
-          background: darkPaper
-            ? 'radial-gradient(ellipse at 50% 42%, rgba(20,14,10,0.18) 0%, rgba(20,14,10,0.58) 100%)'
-            : 'radial-gradient(ellipse at 50% 42%, rgba(20,14,10,0.10) 0%, rgba(20,14,10,0.42) 100%)',
-        }}
+        style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }}
       />
 
       {/* processing veil for an uploading film */}

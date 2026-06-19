@@ -37,7 +37,7 @@ export async function GET(request: NextRequest, { params }: Params) {
   const service = createServiceClient()
   const { data, error } = await service
     .from('media_assets')
-    .select(ASSET_COLUMNS)
+    .select(`${ASSET_COLUMNS}, storage_key`)
     .eq('invite_id', id)
     .order('created_at')
 
@@ -46,7 +46,36 @@ export async function GET(request: NextRequest, { params }: Params) {
   // Self-finalize any Mux videos still pending (webhook can't reach localhost,
   // and may be missed in prod) so the preview/builder sees them as ready.
   const rows = await reconcileMuxAssets((data ?? []) as AssetRow[], id, service)
-  return ok(rows)
+
+  // Attach short-lived signed URLs to image assets so the builder uploader AND
+  // the live/creator preview can display them (the published snapshot embeds its
+  // own long-lived URLs). storage_key is stripped from the response.
+  const enriched = await Promise.all(rows.map((r) => withImageUrls(r, service)))
+  return ok(enriched)
+}
+
+const PREVIEW_IMAGE_KINDS = new Set(['gallery_image', 'illustration'])
+const PREVIEW_TTL = 3600  // 1h — builder/preview only
+
+async function withImageUrls(
+  row: AssetRow,
+  service: ReturnType<typeof createServiceClient>,
+): Promise<AssetRow> {
+  const { storage_key, ...rest } = row as AssetRow & { storage_key?: string | null }
+  if (!PREVIEW_IMAGE_KINDS.has(row.kind) || row.status !== 'ready' || !storage_key) {
+    return rest as AssetRow
+  }
+  const bucket = service.storage.from('invite-media')
+  const sign = async (transform?: { width?: number; height?: number; resize?: 'cover' | 'contain'; quality?: number }) => {
+    const { data } = await bucket.createSignedUrl(storage_key, PREVIEW_TTL, transform ? { transform } : undefined)
+    return data?.signedUrl
+  }
+  const [url, thumb, medium] = await Promise.all([
+    sign(),
+    sign({ width: 400, height: 400, resize: 'cover', quality: 80 }),
+    sign({ width: 1000, resize: 'contain', quality: 85 }),
+  ])
+  return { ...rest, variants: { ...(row.variants ?? {}), url, thumb, medium } } as AssetRow
 }
 
 // POST /api/invites/:id/media

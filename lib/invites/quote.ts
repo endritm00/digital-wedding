@@ -2,7 +2,6 @@ import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
   computeTotal,
-  SECTION_OVERAGE_CODE,
   CUSTOM_VIDEO_CODE,
   type ComputeTotalResult,
 } from '@/lib/pricing'
@@ -81,14 +80,9 @@ export async function buildQuote(
     }
   }
 
-  // Overage price from the live catalog (not snapshotted — it's a config value)
-  const { data: overageExtra } = await db
-    .from('extras')
-    .select('price_cents')
-    .eq('code', SECTION_OVERAGE_CODE)
-    .eq('active', true)
-    .single()
-
+  // Pages are all included — we do NOT charge per page. The only paid add-on is a
+  // couple's own uploaded opening film (CUSTOM_VIDEO_CODE, added above). Passing a
+  // null overage price disables the section-overage line entirely.
   return computeTotal({
     plan: {
       code: plan.code,
@@ -97,6 +91,6 @@ export async function buildQuote(
     },
     extras,
     sections_count: sections_count ?? 0,
-    overage_price_cents: overageExtra?.price_cents ?? null,
+    overage_price_cents: null,
   })
 }

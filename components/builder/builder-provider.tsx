@@ -49,6 +49,8 @@ interface BuilderContextValue {
 
   addContentSection: (type: string) => Promise<void>
   removeContentSection: (type: string) => Promise<void>
+  // Optimistic, per-type serialized toggle — flips instantly, never drops a tap.
+  toggleContentSection: (type: string) => void
   updateSectionConfig: (sectionId: string, config: Record<string, unknown>) => void
 
   toggleExtra: (item: ExtraCatalogItem) => Promise<void>
@@ -247,6 +249,58 @@ export function BuilderProvider({
     void refreshQuote()
   }, [inviteId, sections, refreshQuote])
 
+  // Optimistic toggle that stays smooth under rapid taps. The card flips
+  // instantly; the add/delete is reconciled in the BACKGROUND, serialized per
+  // section type, so taps are never dropped (no global "busy" lock) and a quick
+  // add→remove still deletes the right server row. One section per type.
+  const sectionsRef = useRef<Section[]>([])
+  useEffect(() => { sectionsRef.current = sections }, [sections])
+  // ONE global chain (not per-type): the server appends each section at max(position)+1,
+  // so concurrent inserts would collide on position and silently drop. Serializing all
+  // ops keeps the optimistic UI instant while the background sync stays race-free.
+  const sectionChain = useRef<Promise<unknown>>(Promise.resolve())
+  const sectionServerId = useRef(new Map<string, string>())
+
+  const toggleContentSection = useCallback((type: string) => {
+    const enqueue = (op: () => Promise<unknown>) => {
+      sectionChain.current = sectionChain.current.then(op).catch(() => {})
+    }
+    const present = sectionsRef.current.some((s) => s.type === type && s.type !== 'opening')
+
+    if (present) {
+      const existing = sectionsRef.current.find((s) => s.type === type)!
+      sectionsRef.current = sectionsRef.current.filter((s) => s.id !== existing.id)
+      setSections((prev) => prev.filter((s) => s.id !== existing.id))
+      enqueue(async () => {
+        // The add op ahead of us (if any) has recorded the real server id.
+        const realId = sectionServerId.current.get(type)
+          ?? (existing.id.startsWith('temp-') ? null : existing.id)
+        if (realId) {
+          await api.deleteSection(inviteId, realId)
+          sectionServerId.current.delete(type)
+        }
+        void refreshQuote()
+      })
+    } else {
+      const tempId = `temp-${type}-${Date.now()}`
+      const optimistic = { id: tempId, type, position: 9999, config: {} } as Section
+      sectionsRef.current = [...sectionsRef.current, optimistic]
+      setSections((prev) => [...prev, optimistic])
+      enqueue(async () => {
+        try {
+          const created = await api.addSection(inviteId, type)
+          sectionServerId.current.set(type, created.id)
+          sectionsRef.current = sectionsRef.current.map((s) => (s.id === tempId ? created : s))
+          setSections((prev) => prev.map((s) => (s.id === tempId ? created : s)))
+          void refreshQuote()
+        } catch {
+          sectionsRef.current = sectionsRef.current.filter((s) => s.id !== tempId)
+          setSections((prev) => prev.filter((s) => s.id !== tempId))
+        }
+      })
+    }
+  }, [inviteId, refreshQuote])
+
   const sectionTimers = useRef(new Map<string, ReturnType<typeof setTimeout>>())
 
   const updateSectionConfig = useCallback((sectionId: string, config: Record<string, unknown>) => {
@@ -318,6 +372,7 @@ export function BuilderProvider({
     setOpening,
     addContentSection,
     removeContentSection,
+    toggleContentSection,
     updateSectionConfig,
     toggleExtra,
     refreshQuote,

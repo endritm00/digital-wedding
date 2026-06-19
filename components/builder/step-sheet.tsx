@@ -231,7 +231,8 @@ export function StepSheet({
         </motion.span>
       </div>
 
-      <div ref={scrollRef} onScroll={updateScrollCue} className="relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8">
+      <div className="relative flex-1 flex flex-col min-h-0">
+      <div ref={scrollRef} onScroll={updateScrollCue} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8">
         {backHref && (
           <button
             type="button"
@@ -261,11 +262,12 @@ export function StepSheet({
         <div className="mt-5">{children}</div>
       </div>
 
-      {/* "more below" cue — soft fade so the date (and any tail content) isn't missed */}
+      {/* "more below" cue — pinned to the bottom of the SCROLL area (never over the
+          footer/buttons, regardless of how many buttons the footer has). */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 flex justify-center"
-        style={{ bottom: primaryLabel || laterLabel ? 92 : 8, height: 32, background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)' }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center"
+        style={{ height: 32, background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)' }}
         animate={{ opacity: moreBelow ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
@@ -277,6 +279,7 @@ export function StepSheet({
           <path d="M4 6l4 4 4-4" stroke="rgba(168,133,75,0.7)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
         </motion.svg>
       </motion.div>
+      </div>
 
       {(primaryLabel || laterLabel) && (
         <div

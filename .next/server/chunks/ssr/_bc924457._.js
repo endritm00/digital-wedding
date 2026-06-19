@@ -661,137 +661,145 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                ref: scrollRef,
-                onScroll: updateScrollCue,
-                className: "relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
+                className: "relative flex-1 flex flex-col min-h-0",
                 children: [
-                    backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        type: "button",
-                        onClick: ()=>router.push(backHref),
-                        className: "font-inter mb-4 flex items-center gap-1.5",
-                        style: {
-                            fontSize: 11,
-                            color: 'rgba(26,24,22,0.42)'
-                        },
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        ref: scrollRef,
+                        onScroll: updateScrollCue,
+                        className: "flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                width: "12",
-                                height: "12",
-                                viewBox: "0 0 12 12",
-                                fill: "none",
-                                "aria-hidden": "true",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                    d: "M7.5 2.5L4 6L7.5 9.5",
-                                    stroke: "currentColor",
-                                    strokeWidth: "1.2",
-                                    strokeLinecap: "round"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 243,
-                                    columnNumber: 15
-                                }, this)
+                            backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                onClick: ()=>router.push(backHref),
+                                className: "font-inter mb-4 flex items-center gap-1.5",
+                                style: {
+                                    fontSize: 11,
+                                    color: 'rgba(26,24,22,0.42)'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        width: "12",
+                                        height: "12",
+                                        viewBox: "0 0 12 12",
+                                        fill: "none",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            d: "M7.5 2.5L4 6L7.5 9.5",
+                                            stroke: "currentColor",
+                                            strokeWidth: "1.2",
+                                            strokeLinecap: "round"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/builder/step-sheet.tsx",
+                                            lineNumber: 244,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/builder/step-sheet.tsx",
+                                        lineNumber: 243,
+                                        columnNumber: 13
+                                    }, this),
+                                    "Back"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 237,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "font-cormorant font-light leading-tight",
+                                style: {
+                                    fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
+                                    color: '#1A1816',
+                                    letterSpacing: '-0.01em'
+                                },
+                                children: title
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/step-sheet.tsx",
-                                lineNumber: 242,
-                                columnNumber: 13
+                                lineNumber: 250,
+                                columnNumber: 9
                             }, this),
-                            "Back"
+                            lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "font-inter mt-1.5 leading-relaxed",
+                                style: {
+                                    fontSize: 12.5,
+                                    color: 'rgba(26,24,22,0.55)'
+                                },
+                                children: lede
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 257,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-5",
+                                children: children
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 262,
+                                columnNumber: 9
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 236,
-                        columnNumber: 11
+                        lineNumber: 235,
+                        columnNumber: 7
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "font-cormorant font-light leading-tight",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        className: "pointer-events-none absolute inset-x-0 bottom-0 flex justify-center",
                         style: {
-                            fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
-                            color: '#1A1816',
-                            letterSpacing: '-0.01em'
+                            height: 32,
+                            background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
                         },
-                        children: title
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 249,
-                        columnNumber: 9
-                    }, this),
-                    lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "font-inter mt-1.5 leading-relaxed",
-                        style: {
-                            fontSize: 12.5,
-                            color: 'rgba(26,24,22,0.55)'
+                        animate: {
+                            opacity: moreBelow ? 1 : 0
                         },
-                        children: lede
+                        transition: {
+                            duration: 0.3
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                            width: "16",
+                            height: "16",
+                            viewBox: "0 0 16 16",
+                            fill: "none",
+                            className: "self-end mb-1",
+                            animate: reduced ? {} : {
+                                y: [
+                                    0,
+                                    3,
+                                    0
+                                ]
+                            },
+                            transition: {
+                                duration: 1.6,
+                                ease: 'easeInOut',
+                                repeat: Infinity
+                            },
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "M4 6l4 4 4-4",
+                                stroke: "rgba(168,133,75,0.7)",
+                                strokeWidth: "1.4",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round"
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 279,
+                                columnNumber: 11
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/builder/step-sheet.tsx",
+                            lineNumber: 274,
+                            columnNumber: 9
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 256,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-5",
-                        children: children
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 261,
-                        columnNumber: 9
+                        lineNumber: 267,
+                        columnNumber: 7
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
                 lineNumber: 234,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                "aria-hidden": true,
-                className: "pointer-events-none absolute inset-x-0 flex justify-center",
-                style: {
-                    bottom: primaryLabel || laterLabel ? 92 : 8,
-                    height: 32,
-                    background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
-                },
-                animate: {
-                    opacity: moreBelow ? 1 : 0
-                },
-                transition: {
-                    duration: 0.3
-                },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
-                    width: "16",
-                    height: "16",
-                    viewBox: "0 0 16 16",
-                    fill: "none",
-                    className: "self-end mb-1",
-                    animate: reduced ? {} : {
-                        y: [
-                            0,
-                            3,
-                            0
-                        ]
-                    },
-                    transition: {
-                        duration: 1.6,
-                        ease: 'easeInOut',
-                        repeat: Infinity
-                    },
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                        d: "M4 6l4 4 4-4",
-                        stroke: "rgba(168,133,75,0.7)",
-                        strokeWidth: "1.4",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round"
-                    }, void 0, false, {
-                        fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 277,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/components/builder/step-sheet.tsx",
-                    lineNumber: 272,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 265,
                 columnNumber: 7
             }, this),
             (primaryLabel || laterLabel) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -839,29 +847,29 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                             repeatCount: "indefinite"
                                         }, void 0, false, {
                                             fileName: "[project]/components/builder/step-sheet.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 309,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/step-sheet.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 308,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 304,
+                                    lineNumber: 307,
                                     columnNumber: 19
                                 }, this),
                                 "One moment…"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/builder/step-sheet.tsx",
-                            lineNumber: 303,
+                            lineNumber: 306,
                             columnNumber: 17
                         }, this) : primaryLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 287,
+                        lineNumber: 290,
                         columnNumber: 13
                     }, this),
                     laterLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -875,13 +883,13 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                         children: laterLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 315,
+                        lineNumber: 318,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 282,
+                lineNumber: 285,
                 columnNumber: 9
             }, this)
         ]
@@ -940,34 +948,19 @@ const cardVariants = {
 };
 function SectionsPage({ params }) {
     const { inviteId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["use"])(params);
-    const { sections, plan, addContentSection, removeContentSection } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
+    const { sections, toggleContentSection } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    const [busy, setBusy] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
     const enabled = sections.filter((s)=>s.type !== 'opening').map((s)=>s.type);
-    const included = plan?.included_sections ?? null;
-    const overageCount = included != null ? Math.max(0, enabled.length - included) : 0;
-    const handleToggle = async (type)=>{
-        if (busy) return;
-        setBusy(type);
-        try {
-            if (enabled.includes(type)) {
-                await removeContentSection(type);
-            } else {
-                await addContentSection(type);
-            }
-        } finally{
-            setBusy(null);
-        }
-    };
-    const lede = included != null ? `${included} page${included !== 1 ? 's' : ''} included with your plan. Extra pages are priced individually.` : 'Choose as many pages as you need.';
+    // Pages are all included — no per-page charge (only a custom opening video costs extra).
+    const lede = 'Add the pages you’d like — they’re all included.';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$hairline$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Hairline"], {
                 step: "sections"
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                lineNumber: 52,
+                lineNumber: 33,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$step$2d$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StepSheet"], {
@@ -976,167 +969,122 @@ function SectionsPage({ params }) {
                 primaryLabel: "Continue",
                 onPrimary: ()=>router.push(`/builder/${inviteId}/details`),
                 backHref: `/builder/${inviteId}/save`,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-2 gap-2.5",
-                        children: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$presets$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CONTENT_SECTIONS"].map((sec, i)=>{
-                            const on = enabled.includes(sec.type);
-                            const isOverage = on && included != null && enabled.indexOf(sec.type) >= included;
-                            const isBusy = busy === sec.type;
-                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
-                                type: "button",
-                                onClick: ()=>void handleToggle(sec.type),
-                                disabled: isBusy,
-                                "aria-pressed": on,
-                                custom: i,
-                                variants: cardVariants,
-                                initial: reduced ? false : 'hidden',
-                                animate: "visible",
-                                whileTap: reduced ? {} : {
-                                    scale: 0.96
-                                },
-                                className: "relative flex flex-col gap-1 rounded-2xl p-3.5 text-left",
-                                style: {
-                                    background: on ? 'rgba(168,133,75,0.09)' : 'rgba(255,255,255,0.5)',
-                                    border: on ? '1px solid rgba(168,133,75,0.38)' : '1px solid rgba(26,24,22,0.08)',
-                                    minHeight: 82,
-                                    transition: 'background 0.2s, border-color 0.2s'
-                                },
-                                children: [
-                                    on && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
-                                        initial: reduced ? {
-                                            opacity: 0
-                                        } : {
-                                            scale: 0.5,
-                                            opacity: 0
-                                        },
-                                        animate: {
-                                            scale: 1,
-                                            opacity: 1
-                                        },
-                                        transition: {
-                                            duration: 0.25,
-                                            ease: [
-                                                0.22,
-                                                1,
-                                                0.36,
-                                                1
-                                            ]
-                                        },
-                                        className: "absolute right-2.5 top-2.5 flex items-center justify-center rounded-full",
-                                        style: {
-                                            width: 16,
-                                            height: 16,
-                                            background: '#A8854B'
-                                        },
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                            width: "8",
-                                            height: "8",
-                                            viewBox: "0 0 8 8",
-                                            fill: "none",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                d: "M1.5 4L3 5.5L6.5 2",
-                                                stroke: "#FDFCF9",
-                                                strokeWidth: "1.2",
-                                                strokeLinecap: "round",
-                                                strokeLinejoin: "round"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                                lineNumber: 97,
-                                                columnNumber: 23
-                                            }, this)
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid grid-cols-2 gap-2.5",
+                    children: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$presets$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CONTENT_SECTIONS"].map((sec, i)=>{
+                        const on = enabled.includes(sec.type);
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
+                            type: "button",
+                            onClick: ()=>toggleContentSection(sec.type),
+                            "aria-pressed": on,
+                            custom: i,
+                            variants: cardVariants,
+                            initial: reduced ? false : 'hidden',
+                            animate: "visible",
+                            whileTap: reduced ? {} : {
+                                scale: 0.96
+                            },
+                            className: "relative flex flex-col gap-1 rounded-2xl p-3.5 text-left",
+                            style: {
+                                background: on ? 'rgba(168,133,75,0.09)' : 'rgba(255,255,255,0.5)',
+                                border: on ? '1px solid rgba(168,133,75,0.38)' : '1px solid rgba(26,24,22,0.08)',
+                                minHeight: 82,
+                                transition: 'background 0.2s, border-color 0.2s'
+                            },
+                            children: [
+                                on && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                                    initial: reduced ? {
+                                        opacity: 0
+                                    } : {
+                                        scale: 0.5,
+                                        opacity: 0
+                                    },
+                                    animate: {
+                                        scale: 1,
+                                        opacity: 1
+                                    },
+                                    transition: {
+                                        duration: 0.25,
+                                        ease: [
+                                            0.22,
+                                            1,
+                                            0.36,
+                                            1
+                                        ]
+                                    },
+                                    className: "absolute right-2.5 top-2.5 flex items-center justify-center rounded-full",
+                                    style: {
+                                        width: 16,
+                                        height: 16,
+                                        background: '#A8854B'
+                                    },
+                                    "aria-hidden": "true",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        width: "8",
+                                        height: "8",
+                                        viewBox: "0 0 8 8",
+                                        fill: "none",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                            d: "M1.5 4L3 5.5L6.5 2",
+                                            stroke: "#FDFCF9",
+                                            strokeWidth: "1.2",
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round"
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                            lineNumber: 96,
-                                            columnNumber: 21
+                                            lineNumber: 74,
+                                            columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                        lineNumber: 88,
-                                        columnNumber: 19
-                                    }, this),
-                                    isOverage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-inter rounded-full px-2 py-0.5 self-start",
-                                        title: "This section is outside your plan — an additional charge applies",
-                                        style: {
-                                            fontSize: 11,
-                                            letterSpacing: '0.03em',
-                                            background: 'rgba(168,133,75,0.12)',
-                                            color: '#A8854B',
-                                            border: '1px solid rgba(168,133,75,0.25)'
-                                        },
-                                        children: "+ Extra charge"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                        lineNumber: 108,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-cormorant font-light leading-tight",
-                                        style: {
-                                            fontSize: 15,
-                                            color: '#1A1816',
-                                            marginTop: isOverage ? 2 : 0
-                                        },
-                                        children: sec.label
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                        lineNumber: 122,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-inter leading-snug",
-                                        style: {
-                                            fontSize: 10,
-                                            color: 'rgba(26,24,22,0.46)',
-                                            lineHeight: 1.4
-                                        },
-                                        children: sec.blurb
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                        lineNumber: 128,
-                                        columnNumber: 17
+                                        lineNumber: 73,
+                                        columnNumber: 21
                                     }, this)
-                                ]
-                            }, sec.type, true, {
-                                fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                                lineNumber: 68,
-                                columnNumber: 15
-                            }, this);
-                        })
-                    }, void 0, false, {
-                        fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                        lineNumber: 60,
-                        columnNumber: 9
-                    }, this),
-                    overageCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
-                        initial: {
-                            opacity: 0
-                        },
-                        animate: {
-                            opacity: 1
-                        },
-                        className: "font-inter mt-4",
-                        style: {
-                            fontSize: 11,
-                            color: 'rgba(26,24,22,0.48)'
-                        },
-                        children: [
-                            overageCount,
-                            " extra ",
-                            overageCount === 1 ? 'page' : 'pages',
-                            " — cost reflected in the total above."
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                        lineNumber: 140,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
+                                    lineNumber: 65,
+                                    columnNumber: 19
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "font-cormorant font-light leading-tight",
+                                    style: {
+                                        fontSize: 15,
+                                        color: '#1A1816'
+                                    },
+                                    children: sec.label
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
+                                    lineNumber: 84,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "font-inter leading-snug",
+                                    style: {
+                                        fontSize: 10,
+                                        color: 'rgba(26,24,22,0.46)',
+                                        lineHeight: 1.4
+                                    },
+                                    children: sec.blurb
+                                }, void 0, false, {
+                                    fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
+                                    lineNumber: 90,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, sec.type, true, {
+                            fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
+                            lineNumber: 46,
+                            columnNumber: 15
+                        }, this);
+                    })
+                }, void 0, false, {
+                    fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
+                    lineNumber: 41,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/sections/page.tsx",
-                lineNumber: 53,
+                lineNumber: 34,
                 columnNumber: 7
             }, this)
         ]

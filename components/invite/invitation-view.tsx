@@ -59,6 +59,12 @@ const useMeta = () => useContext(MetaCtx)
 
 const RsvpCtx = createContext<RsvpTarget>({ kind: 'preview' })
 
+// Gallery photos resolved from media (builder/preview = signed URLs; published =
+// snapshot URLs). Provided here so GalleryBlock can render real images.
+export interface GalleryImage { url: string; thumb?: string; medium?: string }
+const GalleryCtx = createContext<GalleryImage[]>([])
+const useGallery = () => useContext(GalleryCtx)
+
 // ── helpers ───────────────────────────────────────────────────────────────────
 function formatDate(iso: string | null): string | null {
   if (!iso) return null
@@ -352,13 +358,16 @@ function SectionBlock({ section, index }: { section: Section; index: number }) {
   }
   if (!content) return null
 
+  const isGallery = section.type === 'gallery'
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`flex flex-col ${ls.items} ${ls.pad}`}
+      className={`flex flex-col ${ls.items} ${isGallery ? 'py-14' : ls.pad}`}
       style={{
-        maxWidth: ls.frame ? 560 : ls.maxW, margin: '0 auto',
+        maxWidth: ls.frame ? 560 : isGallery ? 'min(90vw, 860px)' : ls.maxW,
+        margin: '0 auto',
+        width: isGallery ? '100%' : undefined,
         ...(ls.frame ? { border: `1px solid ${hexA(t.accent, 0.35)}`, outline: `1px solid ${hexA(t.accent, 0.18)}`, outlineOffset: 5, borderRadius: 4, background: hexA(t.paper, t.dark ? 0.5 : 0.6), marginTop: 22, marginBottom: 22 } : {}),
       }}
     >
@@ -481,9 +490,33 @@ function VenuePlaque({ t, ls, index, cfg }: { t: Theme; ls: LS; index: number; c
   )
 }
 
-// GALLERY — an asymmetric framed collage (placeholder tiles until photos wire in).
+// GALLERY — a swipeable "album" carousel: one large framed print at a time with
+// the neighbours peeking, a display-face counter + arrows, and a fullscreen
+// lightbox on tap. Every token (frame, radius, accent) flows from the theme so it
+// stays elegant across classic / editorial / paper / ethereal. Falls back to
+// placeholder tiles only when no photos were uploaded.
+//
+// The section's maxWidth is widened to min(94vw, 1000px) for gallery in SectionBlock
+// so the carousel can breathe on wide desktop screens. The heading text is re-
+// constrained here so it stays readable width regardless of screen size.
 function GalleryBlock({ t, ls, index, note }: { t: Theme; ls: LS; index: number; note: string | null }) {
   const center = ls.align !== 'left'
+  const images = useGallery()
+
+  if (images.length > 0) {
+    return (
+      <div className="w-full">
+        {/* heading stays readable-width centered */}
+        <div style={{ maxWidth: 560, margin: center ? '0 auto' : '0', padding: '0 2rem' }}>
+          <SectionHeader t={t} ls={ls} index={index} title="Moments" />
+          {note ? <p className={`font-inter mt-3 ${center ? 'mx-auto text-center' : 'text-left'}`} style={{ fontSize: 13.5, color: t.ink, opacity: 0.72, maxWidth: '40ch' }}>{note}</p> : null}
+        </div>
+        <GalleryCarousel t={t} ls={ls} images={images} />
+      </div>
+    )
+  }
+
+  const radius = ls.rule === 'diamond' ? 2 : 6
   const tiles = ['col-span-2 row-span-2 aspect-[4/3]', 'aspect-square', 'aspect-square', 'aspect-square', 'col-span-2 aspect-[2/1]']
   return (
     <div className="w-full" style={{ maxWidth: 460, margin: center ? '0 auto' : '0' }}>
@@ -491,7 +524,7 @@ function GalleryBlock({ t, ls, index, note }: { t: Theme; ls: LS; index: number;
       {note ? <p className={`font-inter mt-3 ${center ? 'mx-auto text-center' : 'text-left'}`} style={{ fontSize: 13.5, color: t.ink, opacity: 0.72, maxWidth: '40ch' }}>{note}</p> : null}
       <div className="mt-6 grid grid-cols-3 gap-2.5">
         {tiles.map((cls, i) => (
-          <div key={i} className={`relative overflow-hidden ${cls}`} style={{ borderRadius: ls.rule === 'diamond' ? 2 : 6, background: `linear-gradient(135deg, ${hexA(t.accent, 0.16)} 0%, ${hexA(t.accent, 0.05)} 100%)`, border: `1px solid ${hexA(t.accent, 0.18)}` }}>
+          <div key={i} className={`relative overflow-hidden ${cls}`} style={{ borderRadius: radius, background: `linear-gradient(135deg, ${hexA(t.accent, 0.16)} 0%, ${hexA(t.accent, 0.05)} 100%)`, border: `1px solid ${hexA(t.accent, 0.18)}` }}>
             <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 0.3 }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden><rect x="3" y="5" width="18" height="14" rx="2" stroke={t.accent} strokeWidth="1.2" /><circle cx="8.5" cy="10" r="1.6" fill={t.accent} /><path d="M5 17l4.5-4 3 2.5L17 11l2 2" stroke={t.accent} strokeWidth="1.2" /></svg>
             </div>
@@ -499,6 +532,268 @@ function GalleryBlock({ t, ls, index, note }: { t: Theme; ls: LS; index: number;
         ))}
       </div>
     </div>
+  )
+}
+
+// The album carousel — scroll-snap track (touch-swipe on mobile, arrows on desktop).
+// Each print is a uniform 4:5 frame at clamp(260px, 55%, 520px) so on a 1920px
+// desktop (940px track) slides are ~517px — large and elegant — while mobile gets
+// 260-300px with the next peeking. IntersectionObserver tracks the active slide
+// reliably without polling scrollLeft every frame. Active index is also updated
+// immediately on button click so Prev/Next never uses a stale value.
+function GalleryCarousel({ t, ls, images }: { t: Theme; ls: LS; images: GalleryImage[] }) {
+  const reduced = useReducedMotion()
+  const trackRef = useRef<HTMLDivElement>(null)
+  const activeRef = useRef(0)              // always current, avoids stale closures
+  const [active, setActiveState] = useState(0)
+  const [lightbox, setLightbox] = useState<number | null>(null)
+  const radius = ls.rule === 'diamond' ? 3 : 10
+  const single = images.length === 1
+
+  const setActive = (i: number) => { activeRef.current = i; setActiveState(i) }
+
+  // programmaticRef: true while goTo's smooth-scroll is in flight so onScroll
+  // doesn't override the already-correct active state with a stale scrollLeft read.
+  // programmaticTimer is cleared+reset on each goTo so rapid clicks extend the guard.
+  const programmaticRef = useRef(false)
+  const programmaticTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const rafRef = useRef(0)
+
+  // onScroll: fires on user swipe. Finds the slide whose center is closest to the
+  // track's visible center — no formula, no padding assumptions, always correct.
+  const onScroll = () => {
+    if (programmaticRef.current) return
+    cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(() => {
+      const el = trackRef.current
+      if (!el) return
+      const mid = el.scrollLeft + el.clientWidth / 2
+      let best = 0, bestDist = Infinity
+      Array.from(el.children).forEach((c, i) => {
+        const node = c as HTMLElement
+        const dist = Math.abs((node.offsetLeft + node.offsetWidth / 2) - mid)
+        if (dist < bestDist) { bestDist = dist; best = i }
+      })
+      setActive(best)
+    })
+  }
+
+  // goTo: update active immediately, then scroll. Guard onScroll for ~450ms
+  // (smooth-scroll typically settles in 300-400ms).
+  const goTo = (i: number) => {
+    const el = trackRef.current
+    if (!el) return
+    const clamped = Math.max(0, Math.min(images.length - 1, i))
+    setActive(clamped)
+    const node = el.children[clamped] as HTMLElement | undefined
+    if (!node) return
+    programmaticRef.current = true
+    if (programmaticTimer.current) clearTimeout(programmaticTimer.current)
+    el.scrollTo({ left: node.offsetLeft - (el.clientWidth - node.offsetWidth) / 2, behavior: 'auto' })
+    programmaticTimer.current = setTimeout(() => { programmaticRef.current = false }, 80)
+  }
+
+  const ArrowBtn = ({ dir }: { dir: -1 | 1 }) => (
+    <button
+      type="button"
+      onClick={() => goTo(activeRef.current + dir)}
+      disabled={dir === -1 ? active === 0 : active === images.length - 1}
+      aria-label={dir === -1 ? 'Previous photo' : 'Next photo'}
+      className="flex items-center justify-center rounded-full transition-opacity disabled:opacity-25"
+      style={{ width: 42, height: 42, border: `1px solid ${hexA(t.accent, 0.32)}`, background: hexA(t.accent, 0.05) }}
+    >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden
+        style={{ transform: dir === 1 ? 'scaleX(-1)' : 'none' }}>
+        <path d="M9 2L4 7l5 5" stroke={t.accent} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
+  )
+
+  return (
+    <div className="mt-8 w-full">
+      {/* scroll-snap track — full parent width so the wider SectionBlock gives
+          slides room to breathe on large screens */}
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        className="no-scrollbar flex gap-5 overflow-x-auto"
+        style={{
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+          paddingLeft: '1.5rem',
+          paddingRight: '1.5rem',
+          paddingTop: 12,
+          paddingBottom: 16,
+        }}
+      >
+        {images.map((img, i) => (
+          <button
+            type="button"
+            key={i}
+            onClick={() => setLightbox(i)}
+            aria-label={`View photo ${i + 1} of ${images.length}`}
+            className="group relative flex-none overflow-hidden"
+            style={{
+              scrollSnapAlign: 'center',
+              width: single ? 'min(88%, 520px)' : 'clamp(240px, 62%, 520px)',
+              margin: single ? '0 auto' : undefined,
+              aspectRatio: '4 / 5',
+              borderRadius: radius,
+              border: `1px solid ${hexA(t.accent, 0.28)}`,
+              outline: `1px solid ${hexA(t.accent, 0.10)}`,
+              outlineOffset: 5,
+              background: hexA(t.accent, 0.06),
+              boxShadow: `0 8px 32px ${hexA(t.dark ? '#000000' : t.ink, t.dark ? 0.35 : 0.12)}`,
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src={img.medium ?? img.url}
+              alt=""
+              loading="lazy"
+              draggable={false}
+              className="absolute inset-0 h-full w-full"
+              style={{ objectFit: 'cover' }}
+            />
+            <span aria-hidden className="absolute inset-0"
+              style={{ background: `linear-gradient(180deg, transparent 60%, ${hexA('#000000', t.dark ? 0.28 : 0.16)} 100%)` }} />
+            <span aria-hidden className="absolute bottom-3 right-3 flex items-center justify-center rounded-full opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+              style={{ width: 30, height: 30, background: hexA('#FDFCF9', 0.9) }}>
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M5 1H1v4M9 1h4v4M13 9v4H9M1 9v4h4" stroke={t.accent} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {!single && (
+        <div className="mt-5 flex items-center justify-center gap-5">
+          <ArrowBtn dir={-1} />
+          <span style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(20px * ${t.fontScale})`, color: t.ink, letterSpacing: '0.04em', minWidth: 68, textAlign: 'center' }}>
+            <span style={{ color: t.accent }}>{String(active + 1).padStart(2, '0')}</span>
+            <span style={{ opacity: 0.35, margin: '0 6px', fontSize: '0.68em' }}>/</span>
+            <span style={{ opacity: 0.5 }}>{String(images.length).padStart(2, '0')}</span>
+          </span>
+          <ArrowBtn dir={1} />
+        </div>
+      )}
+
+      <GalleryLightbox images={images} index={lightbox} onClose={() => setLightbox(null)} onIndex={setLightbox} accent={t.accent} />
+    </div>
+  )
+}
+
+// Fullscreen lightbox. Performance choices:
+// • No backdropFilter on the scrim — it repaints the full viewport every frame.
+// • No framer-motion `drag` — it registers continuous PointerEvent listeners and
+//   does per-frame hit-testing even when idle. Replaced with onPointerDown/Up.
+// • Image crossfade uses AnimatePresence sync mode (not "wait") so both images
+//   exist simultaneously; the outgoing fades while the incoming fades in → instant
+//   feel. Images are absolutely positioned inside a sized container so they overlap.
+function GalleryLightbox({ images, index, onClose, onIndex, accent }: {
+  images: GalleryImage[]; index: number | null; onClose: () => void; onIndex: (i: number) => void; accent: string
+}) {
+  const open = index !== null
+  const swipeStart = useRef<number | null>(null)
+
+  const step = (dir: -1 | 1, cur: number) => {
+    const next = cur + dir
+    if (next >= 0 && next < images.length) onIndex(next)
+  }
+
+  useEffect(() => {
+    if (!open || index === null) return
+    const cur = index
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      else if (e.key === 'ArrowLeft') step(-1, cur)
+      else if (e.key === 'ArrowRight') step(1, cur)
+    }
+    window.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev }
+  }, [open, index]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <AnimatePresence>
+      {open && index !== null && (
+        <motion.div
+          className="fixed inset-0 z-[90] flex items-center justify-center"
+          style={{ background: 'rgba(10,9,8,0.94)' }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          transition={{ duration: 0.22 }}
+          onClick={onClose}
+        >
+          {/* close */}
+          <button type="button" onClick={onClose} aria-label="Close"
+            className="absolute right-4 top-4 z-10 flex items-center justify-center rounded-full"
+            style={{ width: 44, height: 44, background: 'rgba(253,252,249,0.12)', border: '1px solid rgba(253,252,249,0.28)' }}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path d="M3 3l10 10M13 3L3 13" stroke="#FDFCF9" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+
+          {/* prev */}
+          {images.length > 1 && (
+            <button type="button" onClick={e => { e.stopPropagation(); step(-1, index) }} disabled={index === 0}
+              aria-label="Previous" className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center rounded-full transition-opacity disabled:opacity-0"
+              style={{ width: 48, height: 48, background: 'rgba(253,252,249,0.12)', border: '1px solid rgba(253,252,249,0.28)' }}>
+              <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path d="M9 2L4 7l5 5" stroke="#FDFCF9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          )}
+
+          {/* next */}
+          {images.length > 1 && (
+            <button type="button" onClick={e => { e.stopPropagation(); step(1, index) }} disabled={index === images.length - 1}
+              aria-label="Next" className="absolute right-3 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center rounded-full transition-opacity disabled:opacity-0"
+              style={{ width: 48, height: 48, background: 'rgba(253,252,249,0.12)', border: '1px solid rgba(253,252,249,0.28)' }}>
+              <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden style={{ transform: 'scaleX(-1)' }}>
+                <path d="M9 2L4 7l5 5" stroke="#FDFCF9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          )}
+
+          {/* image — sync crossfade, pointer-based swipe, no framer drag */}
+          <div
+            className="relative flex items-center justify-center"
+            style={{ maxHeight: '86vh', maxWidth: '92vw', width: '92vw', height: '86vh' }}
+            onClick={e => e.stopPropagation()}
+            onPointerDown={e => { swipeStart.current = e.clientX }}
+            onPointerUp={e => {
+              if (swipeStart.current === null) return
+              const dx = e.clientX - swipeStart.current
+              swipeStart.current = null
+              if (Math.abs(dx) < 40) return
+              if (dx < 0) step(1, index)
+              else step(-1, index)
+            }}
+          >
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={index}
+                src={images[index].url || images[index].medium}
+                alt=""
+                draggable={false}
+                className="absolute select-none"
+                style={{ maxHeight: '86vh', maxWidth: '92vw', objectFit: 'contain', borderRadius: 4, boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+              />
+            </AnimatePresence>
+          </div>
+
+          <span className="font-inter absolute bottom-6 left-1/2 -translate-x-1/2" style={{ fontSize: 12, letterSpacing: '0.16em', color: 'rgba(253,252,249,0.65)' }}>
+            {String(index + 1).padStart(2, '0')} &nbsp;/&nbsp; {String(images.length).padStart(2, '0')}
+          </span>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -718,8 +1013,19 @@ export function InvitationView({
   const themePoster = openUploaded ? (openUploaded.variants as { poster?: string }).poster ?? null : openPreset?.posterImg ?? VIDEO_PRESETS[0].posterImg
   const names = meta.names
 
+  // Gallery photos — resolved URLs live in each ready gallery_image's variants
+  // (signed for builder/preview, snapshot URLs once published).
+  const galleryImages: GalleryImage[] = media
+    .filter(m => m.kind === 'gallery_image' && m.status === 'ready')
+    .map(m => {
+      const v = (m.variants ?? {}) as { url?: string; thumb?: string; medium?: string }
+      return { url: v.url ?? v.medium ?? v.thumb ?? '', thumb: v.thumb, medium: v.medium }
+    })
+    .filter(g => g.url)
+
   return (
     <ThemeCtx.Provider value={theme}>
+      <GalleryCtx.Provider value={galleryImages}>
       <MetaCtx.Provider value={meta}>
         <RsvpCtx.Provider value={rsvp}>
           {/* Opener gate */}
@@ -780,6 +1086,7 @@ export function InvitationView({
           </main>
         </RsvpCtx.Provider>
       </MetaCtx.Provider>
+      </GalleryCtx.Provider>
     </ThemeCtx.Provider>
   )
 }

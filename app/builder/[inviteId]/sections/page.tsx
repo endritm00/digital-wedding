@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useState } from 'react'
+import { use } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Hairline } from '@/components/builder/hairline'
@@ -19,33 +19,14 @@ const cardVariants = {
 
 export default function SectionsPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
-  const { sections, plan, addContentSection, removeContentSection } = useBuilder()
+  const { sections, toggleContentSection } = useBuilder()
   const router = useRouter()
-  const [busy, setBusy] = useState<string | null>(null)
   const reduced = useReducedMotion()
 
   const enabled = sections.filter(s => s.type !== 'opening').map(s => s.type)
-  const included = plan?.included_sections ?? null
-  const overageCount = included != null ? Math.max(0, enabled.length - included) : 0
 
-  const handleToggle = async (type: string) => {
-    if (busy) return
-    setBusy(type)
-    try {
-      if (enabled.includes(type)) {
-        await removeContentSection(type)
-      } else {
-        await addContentSection(type)
-      }
-    } finally {
-      setBusy(null)
-    }
-  }
-
-  const lede =
-    included != null
-      ? `${included} page${included !== 1 ? 's' : ''} included with your plan. Extra pages are priced individually.`
-      : 'Choose as many pages as you need.'
+  // Pages are all included — no per-page charge (only a custom opening video costs extra).
+  const lede = 'Add the pages you’d like — they’re all included.'
 
   return (
     <>
@@ -60,16 +41,12 @@ export default function SectionsPage({ params }: { params: Promise<{ inviteId: s
         <div className="grid grid-cols-2 gap-2.5">
           {CONTENT_SECTIONS.map((sec, i) => {
             const on = enabled.includes(sec.type)
-            const isOverage =
-              on && included != null && enabled.indexOf(sec.type) >= included
-            const isBusy = busy === sec.type
 
             return (
               <motion.button
                 key={sec.type}
                 type="button"
-                onClick={() => void handleToggle(sec.type)}
-                disabled={isBusy}
+                onClick={() => toggleContentSection(sec.type)}
                 aria-pressed={on}
                 custom={i}
                 variants={cardVariants}
@@ -104,24 +81,9 @@ export default function SectionsPage({ params }: { params: Promise<{ inviteId: s
                     </svg>
                   </motion.span>
                 )}
-                {isOverage && (
-                  <span
-                    className="font-inter rounded-full px-2 py-0.5 self-start"
-                    title="This section is outside your plan — an additional charge applies"
-                    style={{
-                      fontSize: 11,
-                      letterSpacing: '0.03em',
-                      background: 'rgba(168,133,75,0.12)',
-                      color: '#A8854B',
-                      border: '1px solid rgba(168,133,75,0.25)',
-                    }}
-                  >
-                    + Extra charge
-                  </span>
-                )}
                 <span
                   className="font-cormorant font-light leading-tight"
-                  style={{ fontSize: 15, color: '#1A1816', marginTop: isOverage ? 2 : 0 }}
+                  style={{ fontSize: 15, color: '#1A1816' }}
                 >
                   {sec.label}
                 </span>
@@ -135,17 +97,6 @@ export default function SectionsPage({ params }: { params: Promise<{ inviteId: s
             )
           })}
         </div>
-
-        {overageCount > 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="font-inter mt-4"
-            style={{ fontSize: 11, color: 'rgba(26,24,22,0.48)' }}
-          >
-            {overageCount} extra {overageCount === 1 ? 'page' : 'pages'} — cost reflected in the total above.
-          </motion.p>
-        )}
       </StepSheet>
     </>
   )

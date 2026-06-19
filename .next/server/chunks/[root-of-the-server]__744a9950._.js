@@ -298,8 +298,9 @@ async function buildQuote(inviteId, { useServiceClient = false } = {}) {
             });
         }
     }
-    // Overage price from the live catalog (not snapshotted — it's a config value)
-    const { data: overageExtra } = await db.from('extras').select('price_cents').eq('code', __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$pricing$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["SECTION_OVERAGE_CODE"]).eq('active', true).single();
+    // Pages are all included — we do NOT charge per page. The only paid add-on is a
+    // couple's own uploaded opening film (CUSTOM_VIDEO_CODE, added above). Passing a
+    // null overage price disables the section-overage line entirely.
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$pricing$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["computeTotal"])({
         plan: {
             code: plan.code,
@@ -308,7 +309,7 @@ async function buildQuote(inviteId, { useServiceClient = false } = {}) {
         },
         extras,
         sections_count: sections_count ?? 0,
-        overage_price_cents: overageExtra?.price_cents ?? null
+        overage_price_cents: null
     });
 }
 }}),

@@ -6,7 +6,6 @@ import { muxUrls } from '@/lib/mux'
 const SIGNED_URL_TTL = 365 * 24 * 60 * 60
 
 const MUX_KINDS   = new Set(['opening_video', 'hero_video'])
-const IMAGE_KINDS = new Set(['gallery_image', 'illustration'])
 
 // ── Public types (used by publish route + delivery endpoint) ─────────────────
 
@@ -80,7 +79,7 @@ export async function renderSnapshot(inviteId: string): Promise<SnapshotContent>
 
     service
       .from('media_assets')
-      .select('id, kind, storage_key, variants, duration_ms')
+      .select('id, kind, storage_key, variants, duration_ms, created_at')
       .eq('invite_id', inviteId)
       .eq('status', 'ready'),
   ])
@@ -127,10 +126,20 @@ async function buildAssetManifest(
     storage_key: string | null
     variants: unknown
     duration_ms: number | null
+    created_at: string
   }>,
   service: ReturnType<typeof createServiceClient>
 ): Promise<AssetManifest> {
   const manifest: AssetManifest = { gallery_images: [] }
+
+  const signImage = async (storageKey: string): Promise<Omit<StorageAssetEntry, 'asset_id' | 'kind'>> => {
+    const [url, url_medium, url_thumb] = await Promise.all([
+      signUrl(service, storageKey, SIGNED_URL_TTL, undefined),
+      signUrl(service, storageKey, SIGNED_URL_TTL, { width: 800, format: 'webp', quality: 85, resize: 'contain' }),
+      signUrl(service, storageKey, SIGNED_URL_TTL, { width: 200, height: 200, format: 'webp', quality: 80, resize: 'cover' }),
+    ])
+    return { url, url_medium, url_thumb }
+  }
 
   await Promise.all(
     assets.map(async (asset) => {
@@ -154,23 +163,11 @@ async function buildAssetManifest(
         return
       }
 
-      // ── Supabase Storage ───────────────────────────────────────────────────
+      // ── Supabase Storage (non-gallery; gallery handled in order below) ──────
       if (!asset.storage_key) return
 
-      if (IMAGE_KINDS.has(asset.kind)) {
-        const [url, url_medium, url_thumb] = await Promise.all([
-          signUrl(service, asset.storage_key, SIGNED_URL_TTL, undefined),
-          signUrl(service, asset.storage_key, SIGNED_URL_TTL, {
-            width: 800, format: 'webp', quality: 85, resize: 'contain',
-          }),
-          signUrl(service, asset.storage_key, SIGNED_URL_TTL, {
-            width: 200, height: 200, format: 'webp', quality: 80, resize: 'cover',
-          }),
-        ])
-
-        const entry: StorageAssetEntry = { asset_id: asset.id, kind: asset.kind, url, url_medium, url_thumb }
-        if (asset.kind === 'gallery_image') manifest.gallery_images.push(entry)
-        if (asset.kind === 'illustration')  manifest.illustration = entry
+      if (asset.kind === 'illustration') {
+        manifest.illustration = { asset_id: asset.id, kind: asset.kind, ...(await signImage(asset.storage_key)) }
         return
       }
 
@@ -179,6 +176,14 @@ async function buildAssetManifest(
         manifest.background_music = { asset_id: asset.id, kind: asset.kind, url }
       }
     })
+  )
+
+  // Gallery photos — kept in upload order so the "featured" first tile is stable.
+  const galleryAssets = assets
+    .filter((a) => a.kind === 'gallery_image' && a.storage_key)
+    .sort((a, b) => (a.created_at ?? '').localeCompare(b.created_at ?? ''))
+  manifest.gallery_images = await Promise.all(
+    galleryAssets.map(async (a) => ({ asset_id: a.id, kind: a.kind, ...(await signImage(a.storage_key!)) }))
   )
 
   return manifest

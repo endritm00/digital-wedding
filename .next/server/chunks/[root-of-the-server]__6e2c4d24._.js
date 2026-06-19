@@ -592,12 +592,58 @@ async function GET(request, { params }) {
         status: result.status
     });
     const service = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$service$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createServiceClient"])();
-    const { data, error } = await service.from('media_assets').select(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mux$2f$reconcile$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ASSET_COLUMNS"]).eq('invite_id', id).order('created_at');
+    const { data, error } = await service.from('media_assets').select(`${__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mux$2f$reconcile$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ASSET_COLUMNS"]}, storage_key`).eq('invite_id', id).order('created_at');
     if (error) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serverError"])();
     // Self-finalize any Mux videos still pending (webhook can't reach localhost,
     // and may be missed in prod) so the preview/builder sees them as ready.
     const rows = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$mux$2f$reconcile$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["reconcileMuxAssets"])(data ?? [], id, service);
-    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ok"])(rows);
+    // Attach short-lived signed URLs to image assets so the builder uploader AND
+    // the live/creator preview can display them (the published snapshot embeds its
+    // own long-lived URLs). storage_key is stripped from the response.
+    const enriched = await Promise.all(rows.map((r)=>withImageUrls(r, service)));
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ok"])(enriched);
+}
+const PREVIEW_IMAGE_KINDS = new Set([
+    'gallery_image',
+    'illustration'
+]);
+const PREVIEW_TTL = 3600 // 1h — builder/preview only
+;
+async function withImageUrls(row, service) {
+    const { storage_key, ...rest } = row;
+    if (!PREVIEW_IMAGE_KINDS.has(row.kind) || row.status !== 'ready' || !storage_key) {
+        return rest;
+    }
+    const bucket = service.storage.from('invite-media');
+    const sign = async (transform)=>{
+        const { data } = await bucket.createSignedUrl(storage_key, PREVIEW_TTL, transform ? {
+            transform
+        } : undefined);
+        return data?.signedUrl;
+    };
+    const [url, thumb, medium] = await Promise.all([
+        sign(),
+        sign({
+            width: 400,
+            height: 400,
+            resize: 'cover',
+            quality: 80
+        }),
+        sign({
+            width: 1000,
+            resize: 'contain',
+            quality: 85
+        })
+    ]);
+    return {
+        ...rest,
+        variants: {
+            ...row.variants ?? {},
+            url,
+            thumb,
+            medium
+        }
+    };
 }
 async function POST(request, { params }) {
     const { id } = await params;

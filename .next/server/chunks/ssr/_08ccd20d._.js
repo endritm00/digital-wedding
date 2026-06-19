@@ -150,6 +150,10 @@ const api = {
     getAsset: (id, assetId)=>request(`/api/invites/${id}/media/${assetId}`, {
             inviteId: id
         }),
+    deleteMedia: (id, assetId)=>request(`/api/invites/${id}/media/${assetId}`, {
+            method: 'DELETE',
+            inviteId: id
+        }),
     claim: (id, claimToken)=>request(`/api/invites/${id}/claim`, {
             method: 'POST',
             body: {

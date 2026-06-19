@@ -28,6 +28,9 @@ function snapshotMedia(am: SnapshotContent['asset_manifest']): MediaAsset[] {
   if (am.opening_video) pushVideo(am.opening_video, 'opening_video')
   if (am.hero_video) pushVideo(am.hero_video, 'hero_video')
   if (am.background_music) media.push({ id: am.background_music.asset_id, kind: 'background_music', status: 'ready', variants: { url: am.background_music.url }, bytes: null, duration_ms: null, mime: null })
+  for (const g of am.gallery_images ?? []) {
+    media.push({ id: g.asset_id, kind: 'gallery_image', status: 'ready', variants: { url: g.url, thumb: g.url_thumb, medium: g.url_medium }, bytes: null, duration_ms: null, mime: null })
+  }
   return media
 }
 
