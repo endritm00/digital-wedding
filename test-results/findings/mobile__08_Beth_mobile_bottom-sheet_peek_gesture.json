@@ -1,0 +1,19 @@
+{
+  "scenario": "08 Beth — mobile bottom-sheet & peek gesture",
+  "project": "mobile",
+  "status": "failed",
+  "durationMs": 28185,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite ff1dd523",
+    "performed drag-down peek gesture on mobile"
+  ]
+}

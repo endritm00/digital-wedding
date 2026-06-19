@@ -1,0 +1,25 @@
+{
+  "scenario": "06 Rachel — skips date, hits email gate at checkout, pays",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 27175,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 934a448e",
+    "date nudge appeared (good — explains why a date matters)",
+    "price resolved: \"Pay & publish — €49\"",
+    "email gate shown before payment",
+    "reached Stripe hosted checkout",
+    "redirected back to success page",
+    "SUCCESS: invitation published & live screen shown",
+    "manage/RSVP link surfaced on success screen"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "scenario": "05 Emma — complete flow + real test-card payment",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 42599,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite ef3e691f",
+    "price resolved: \"Pay & publish — €49\"",
+    "reached Stripe hosted checkout",
+    "redirected back to success page",
+    "SUCCESS: invitation published & live screen shown",
+    "manage/RSVP link surfaced on success screen"
+  ]
+}

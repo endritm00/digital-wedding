@@ -167,6 +167,7 @@ export type Database = {
           additional_notes: string | null
           needs_review: boolean
           published_snapshot_id: string | null
+          manage_token_hash: string | null
           created_at: string
           updated_at: string
         }
@@ -186,6 +187,7 @@ export type Database = {
           additional_notes?: string | null
           needs_review?: boolean
           published_snapshot_id?: string | null
+          manage_token_hash?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -205,6 +207,7 @@ export type Database = {
           additional_notes?: string | null
           needs_review?: boolean
           published_snapshot_id?: string | null
+          manage_token_hash?: string | null
           created_at?: string
           updated_at?: string
         }

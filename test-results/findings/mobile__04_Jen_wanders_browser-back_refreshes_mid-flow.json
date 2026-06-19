@@ -1,0 +1,23 @@
+{
+  "scenario": "04 Jen — wanders, browser-back, refreshes mid-flow",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 17047,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 1b4244da",
+    "refreshed on style step (testing persistence, not as a fix)",
+    "refresh kept us on the style step",
+    "names persisted after refresh + back (autosave OK)",
+    "price resolved: \"Pay & publish — €49\"",
+    "price still resolves after refresh + heavy back-navigation"
+  ]
+}

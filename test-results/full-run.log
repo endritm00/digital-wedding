@@ -1,0 +1,380 @@
+
+Running 20 tests using 1 worker
+
+   · builder started, invite f9466b8a
+   · Linda left all pages unselected (default plan only)
+   · price resolved: "Pay & publish — €49"
+  ok  1 [desktop] › tests\e2e\journeys.spec.ts:35:1 › 01 Linda — cautious minimalist, skips all optionals (22.9s)
+   · builder started, invite 266df115
+   · added 3 pages
+   ⚠ FRICTION: back navigation landed unexpectedly at http://localhost:3000/builder/266df115-5209-45d9-abf4-db2810e9239f/save
+   · pages persisted through back-navigation (autosave OK)
+   · price resolved: "Pay & publish — €49"
+  ok  2 [desktop] › tests\e2e\journeys.spec.ts:73:1 › 02 Sarah — adds pages, back-navigates to change palette (28.1s)
+   · builder started, invite cf371f07
+   · attempting custom video upload
+   · custom video upload accepted (UI shows uploaded/processing)
+   · switched to free curated film
+   · price resolved: "Pay & publish — €49"
+  ok  3 [desktop] › tests\e2e\journeys.spec.ts:133:1 › 03 Maria — uploads video then switches to a free preset (22.4s)
+   · builder started, invite b046ed1a
+   · refreshed on style step (testing persistence, not as a fix)
+   · refresh kept us on the style step
+   · names persisted after refresh + back (autosave OK)
+  x   4 [desktop] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow (41.9s)
+   · builder started, invite 30c98bea
+   · price resolved: "Pay & publish — €49"
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+  ok  5 [desktop] › tests\e2e\journeys.spec.ts:220:1 › 05 Emma — complete flow + real test-card payment (36.8s)
+   · builder started, invite d310dac2
+   · date nudge appeared (good — explains why a date matters)
+   · price resolved: "Pay & publish — €49"
+   · email gate shown before payment
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+  ok  6 [desktop] › tests\e2e\journeys.spec.ts:255:1 › 06 Rachel — skips date, hits email gate at checkout, pays (39.9s)
+   · builder started, invite c2c3fd57
+   · previewed a music track
+   · attempting custom music upload
+   ⚠ FRICTION: custom music upload: no confirmation within 25s
+   · Photos page exposed an uploader
+   · price resolved: "Pay & publish — €49"
+  ok  7 [desktop] › tests\e2e\journeys.spec.ts:286:1 › 07 Nicole — previews + uploads music, explores Photos page (50.1s)
+   · builder started, invite 53238fbb
+   · desktop — no bottom-sheet gesture (right-side panel)
+   · price resolved: "Pay & publish — €49"
+  ok  8 [desktop] › tests\e2e\journeys.spec.ts:337:1 › 08 Beth — mobile bottom-sheet & peek gesture (17.6s)
+   · builder started, invite 7a714210
+   · name retained on returning to edit
+   · corrected the name typo
+   ⚠ FRICTION: no obvious "Preview" affordance on the review step
+  ok  9 [desktop] › tests\e2e\journeys.spec.ts:383:1 › 09 Karen — edits names mid-flow, uses Preview (24.0s)
+   · builder started, invite df934e9e
+   · price resolved: "Pay & publish — €49"
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+   · manage link present & shaped correctly: http://localhost:3000/manage/1d61c64e-9f4c-426b-…
+   · published guest invitation renders (the thing she shares)
+  ok 10 [desktop] › tests\e2e\journeys.spec.ts:431:1 › 10 Amy — pays, opens published guest page + manage link (38.3s)
+   · builder started, invite 1b57e3d1
+   · Linda left all pages unselected (default plan only)
+   · price resolved: "Pay & publish — €49"
+  ok 11 [mobile] › tests\e2e\journeys.spec.ts:35:1 › 01 Linda — cautious minimalist, skips all optionals (19.4s)
+   · builder started, invite 2ec20c15
+   · added 3 pages
+   ⚠ FRICTION: back navigation landed unexpectedly at http://localhost:3000/builder/2ec20c15-e83f-4ceb-a568-b705269ce533/save
+   · pages persisted through back-navigation (autosave OK)
+   · price resolved: "Pay & publish — €49"
+  ok 12 [mobile] › tests\e2e\journeys.spec.ts:73:1 › 02 Sarah — adds pages, back-navigates to change palette (23.9s)
+   · builder started, invite 2d83f715
+   · attempting custom video upload
+   · custom video upload accepted (UI shows uploaded/processing)
+   · switched to free curated film
+   · price resolved: "Pay & publish — €49"
+  ok 13 [mobile] › tests\e2e\journeys.spec.ts:133:1 › 03 Maria — uploads video then switches to a free preset (19.9s)
+   · builder started, invite 8819c4fe
+   · refreshed on style step (testing persistence, not as a fix)
+   · refresh kept us on the style step
+   · names persisted after refresh + back (autosave OK)
+  x  14 [mobile] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow (40.0s)
+   · builder started, invite 30d8336d
+  x  15 [mobile] › tests\e2e\journeys.spec.ts:220:1 › 05 Emma — complete flow + real test-card payment (9.0s)
+   · builder started, invite 934a448e
+   · date nudge appeared (good — explains why a date matters)
+   · price resolved: "Pay & publish — €49"
+   · email gate shown before payment
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+  ok 16 [mobile] › tests\e2e\journeys.spec.ts:255:1 › 06 Rachel — skips date, hits email gate at checkout, pays (29.7s)
+   · builder started, invite 5c35abd0
+  x  17 [mobile] › tests\e2e\journeys.spec.ts:286:1 › 07 Nicole — previews + uploads music, explores Photos page (8.3s)
+  x  18 [mobile] › tests\e2e\journeys.spec.ts:337:1 › 08 Beth — mobile bottom-sheet & peek gesture (47.4s)
+  x  19 [mobile] › tests\e2e\journeys.spec.ts:383:1 › 09 Karen — edits names mid-flow, uses Preview (47.5s)
+  x  20 [mobile] › tests\e2e\journeys.spec.ts:431:1 › 10 Amy — pays, opens published guest page + manage link (47.5s)
+
+
+  1) [desktop] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow 
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').last().getByRole('button', { name: /No music/ })
+
+
+       at helpers.ts:108
+
+      106 | export async function later(page: Page, name: string | RegExp) {
+      107 |   await settle(page)
+    > 108 |   await sheet(page).getByRole('button', { name }).click()
+          |                                                   ^
+      109 | }
+      110 |
+      111 | // Assert we actually advanced to the expected step; otherwise it's a breakage.
+        at later (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:108:51)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:208:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow 
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').last().getByRole('button', { name: /No music/ })
+
+
+       at helpers.ts:108
+
+      106 | export async function later(page: Page, name: string | RegExp) {
+      107 |   await settle(page)
+    > 108 |   await sheet(page).getByRole('button', { name }).click()
+          |                                                   ^
+      109 | }
+      110 |
+      111 | // Assert we actually advanced to the expected step; otherwise it's a breakage.
+        at later (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:108:51)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:208:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests\e2e\journeys.spec.ts:220:1 › 05 Emma — complete flow + real test-card payment 
+
+    Error: locator.click: Element is outside of the viewport
+    Call log:
+      - waiting for getByRole('dialog').last().getByRole('button', { name: /In Bloom/i }).first()
+        - locator resolved to <button type="button" aria-pressed="false" aria-label="In Bloom — An arch of flowers" class="rounded-2xl overflow-hidden transition-all focus-visible:outline-none">…</button>
+      - attempting click action
+        - scrolling into view if needed
+        - done scrolling
+
+
+       at helpers.ts:137
+
+      135 |   // The preset card has a gradient overlay <div> that intercepts pointer events,
+      136 |   // so force the click on the button itself.
+    > 137 |   await sheet(page).getByRole('button', { name: new RegExp(name, 'i') }).first().click({ force: true })
+          |                                                                                  ^
+      138 | }
+      139 |
+      140 | export async function uploadVideo(page: Page) {
+        at pickFilmPreset (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:137:82)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:225:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests\e2e\journeys.spec.ts:286:1 › 07 Nicole — previews + uploads music, explores Photos page 
+
+    Error: locator.click: Element is outside of the viewport
+    Call log:
+      - waiting for getByRole('dialog').last().getByRole('button', { name: /The Rings/i }).first()
+        - locator resolved to <button type="button" aria-pressed="false" aria-label="The Rings — Vows and promises" class="rounded-2xl overflow-hidden transition-all focus-visible:outline-none">…</button>
+      - attempting click action
+        - scrolling into view if needed
+        - done scrolling
+
+
+       at helpers.ts:137
+
+      135 |   // The preset card has a gradient overlay <div> that intercepts pointer events,
+      136 |   // so force the click on the button itself.
+    > 137 |   await sheet(page).getByRole('button', { name: new RegExp(name, 'i') }).first().click({ force: true })
+          |                                                                                  ^
+      138 | }
+      139 |
+      140 | export async function uploadVideo(page: Page) {
+        at pickFilmPreset (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:137:82)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:291:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests\e2e\journeys.spec.ts:337:1 › 08 Beth — mobile bottom-sheet & peek gesture ────
+
+    TimeoutError: page.waitForURL: Timeout 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+       at helpers.ts:95
+
+      93 | export async function startBuilder(page: Page, rec: Recorder): Promise<string> {
+      94 |   await page.goto('/builder')
+    > 95 |   await page.waitForURL(/\/builder\/[0-9a-f-]+\/names/, { timeout: 45_000 })
+         |              ^
+      96 |   const id = page.url().match(/builder\/([0-9a-f-]+)\//)![1]
+      97 |   await expect(sheet(page).getByRole('heading')).toBeVisible()
+      98 |   rec.note(`builder started, invite ${id.slice(0, 8)}`)
+        at startBuilder (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:95:14)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:338:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile] › tests\e2e\journeys.spec.ts:383:1 › 09 Karen — edits names mid-flow, uses Preview ───
+
+    TimeoutError: page.waitForURL: Timeout 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+       at helpers.ts:95
+
+      93 | export async function startBuilder(page: Page, rec: Recorder): Promise<string> {
+      94 |   await page.goto('/builder')
+    > 95 |   await page.waitForURL(/\/builder\/[0-9a-f-]+\/names/, { timeout: 45_000 })
+         |              ^
+      96 |   const id = page.url().match(/builder\/([0-9a-f-]+)\//)![1]
+      97 |   await expect(sheet(page).getByRole('heading')).toBeVisible()
+      98 |   rec.note(`builder started, invite ${id.slice(0, 8)}`)
+        at startBuilder (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:95:14)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:384:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [mobile] › tests\e2e\journeys.spec.ts:431:1 › 10 Amy — pays, opens published guest page + manage link 
+
+    TimeoutError: page.waitForURL: Timeout 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================
+
+       at helpers.ts:95
+
+      93 | export async function startBuilder(page: Page, rec: Recorder): Promise<string> {
+      94 |   await page.goto('/builder')
+    > 95 |   await page.waitForURL(/\/builder\/[0-9a-f-]+\/names/, { timeout: 45_000 })
+         |              ^
+      96 |   const id = page.url().match(/builder\/([0-9a-f-]+)\//)![1]
+      97 |   await expect(sheet(page).getByRole('heading')).toBeVisible()
+      98 |   rec.note(`builder started, invite ${id.slice(0, 8)}`)
+        at startBuilder (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:95:14)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:432:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    [desktop] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow 
+    [mobile] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow 
+    [mobile] › tests\e2e\journeys.spec.ts:220:1 › 05 Emma — complete flow + real test-card payment ─
+    [mobile] › tests\e2e\journeys.spec.ts:286:1 › 07 Nicole — previews + uploads music, explores Photos page 
+    [mobile] › tests\e2e\journeys.spec.ts:337:1 › 08 Beth — mobile bottom-sheet & peek gesture ─────
+    [mobile] › tests\e2e\journeys.spec.ts:383:1 › 09 Karen — edits names mid-flow, uses Preview ────
+    [mobile] › tests\e2e\journeys.spec.ts:431:1 › 10 Amy — pays, opens published guest page + manage link 
+  13 passed (11.2m)

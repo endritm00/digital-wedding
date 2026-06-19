@@ -1,0 +1,22 @@
+{
+  "scenario": "03 Maria — uploads video then switches to a free preset",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 17690,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 2d83f715",
+    "attempting custom video upload",
+    "custom video upload accepted (UI shows uploaded/processing)",
+    "switched to free curated film",
+    "price resolved: \"Pay & publish — €49\""
+  ]
+}

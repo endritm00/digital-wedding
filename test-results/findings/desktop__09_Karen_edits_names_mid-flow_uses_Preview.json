@@ -1,0 +1,22 @@
+{
+  "scenario": "09 Karen — edits names mid-flow, uses Preview",
+  "project": "desktop",
+  "status": "passed",
+  "durationMs": 19797,
+  "breakages": [],
+  "frictions": [
+    "no obvious \"Preview\" affordance on the review step"
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 7a714210",
+    "name retained on returning to edit",
+    "corrected the name typo"
+  ]
+}

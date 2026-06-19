@@ -76,7 +76,7 @@ export default function SectionsPage({ params }: { params: Promise<{ inviteId: s
                 initial={reduced ? false : 'hidden'}
                 animate="visible"
                 whileTap={reduced ? {} : { scale: 0.96 }}
-                className="relative flex flex-col gap-1 rounded-2xl p-3.5 text-left disabled:opacity-60"
+                className="relative flex flex-col gap-1 rounded-2xl p-3.5 text-left"
                 style={{
                   background: on ? 'rgba(168,133,75,0.09)' : 'rgba(255,255,255,0.5)',
                   border: on ? '1px solid rgba(168,133,75,0.38)' : '1px solid rgba(26,24,22,0.08)',

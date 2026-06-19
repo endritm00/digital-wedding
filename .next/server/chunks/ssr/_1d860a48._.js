@@ -27,12 +27,12 @@ const STEPS = [
         name: 'Your names'
     },
     {
-        slug: 'style',
-        name: 'Your style'
-    },
-    {
         slug: 'opening-video',
         name: 'Your film'
+    },
+    {
+        slug: 'style',
+        name: 'Your style'
     },
     {
         slug: 'music',
@@ -211,7 +211,7 @@ function Hairline({ step }) {
                                 lineNumber: 66,
                                 columnNumber: 11
                             }, this),
-                            invite?.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            invite?.id && step === 'style' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 href: `/invite/${invite.id}/preview?skipOpener=1`,
                                 className: "flex items-center gap-1.5 rounded-full px-3 py-1.5",
                                 style: {
@@ -235,7 +235,7 @@ function Hairline({ step }) {
                                                 strokeWidth: "1"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/builder/hairline.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 104,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -245,13 +245,13 @@ function Hairline({ step }) {
                                                 fill: "#A8854B"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/builder/hairline.tsx",
-                                                lineNumber: 103,
+                                                lineNumber: 105,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/builder/hairline.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 103,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -264,13 +264,13 @@ function Hairline({ step }) {
                                         children: "Preview"
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/hairline.tsx",
-                                        lineNumber: 105,
+                                        lineNumber: 107,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/builder/hairline.tsx",
-                                lineNumber: 95,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -302,28 +302,81 @@ __turbopack_context__.s({
     "StepSheet": (()=>StepSheet)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/animation/animate/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$gestures$2f$drag$2f$use$2d$drag$2d$controls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/gestures/drag/use-drag-controls.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
+;
+// The one question surface: bottom sheet on phones, right panel on desktop.
+// Vellum paper over the live preview. One decision per screen.
+//
+// On phones the sheet is DRAGGABLE: pull it down (or tap the grip) to "peek" —
+// it slides away leaving a slim handle, so the live film fills the screen. Drag
+// it back up (or tap the handle) to keep editing. This is how you actually SEE
+// your invitation while building on a small screen.
+// How much of the sheet stays on-screen when peeked (the grip handle).
+const PEEK_VISIBLE = 64;
+function useIsMobile() {
+    const [mobile, setMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const mq = window.matchMedia('(max-width: 1023px)');
+        const update = ()=>setMobile(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return ()=>mq.removeEventListener('change', update);
+    }, []);
+    return mobile;
+}
 function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisabled, primaryBusy, laterLabel, onLater, backHref }) {
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-        initial: reduced ? {
-            opacity: 0
-        } : {
-            opacity: 0,
-            y: 48
-        },
-        animate: {
-            opacity: 1,
-            y: 0
-        },
-        transition: {
+    const isMobile = useIsMobile();
+    const sheetRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const scrollRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const dragControls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$gestures$2f$drag$2f$use$2d$drag$2d$controls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDragControls"])();
+    const y = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
+    const [peeked, setPeeked] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [peekOffset, setPeekOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [moreBelow, setMoreBelow] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showHint, setShowHint] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const entered = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // One-time "drag down to preview" nudge — shown once ever, on the first mobile
+    // step, so people discover the peek gesture. Dismissed on the first peek.
+    const HINT_KEY = 'di:peek-hint-seen';
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isMobile) return;
+        let seen = true;
+        try {
+            seen = localStorage.getItem(HINT_KEY) === '1';
+        } catch  {}
+        if (seen) return;
+        try {
+            localStorage.setItem(HINT_KEY, '1');
+        } catch  {}
+        setShowHint(true);
+        const t = setTimeout(()=>setShowHint(false), 6000);
+        return ()=>clearTimeout(t);
+    }, [
+        isMobile
+    ]);
+    // Entrance — slide up once on mount (skip for reduced motion).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (entered.current) return;
+        entered.current = true;
+        if (reduced) {
+            y.set(0);
+            return;
+        }
+        y.set(48);
+        const controls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, 0, {
             duration: 0.55,
             ease: [
                 0.22,
@@ -331,50 +384,286 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                 0.36,
                 1
             ]
+        });
+        return ()=>controls.stop();
+    }, [
+        reduced,
+        y
+    ]);
+    // Measure how far down "peeked" sits (sheet height minus the visible grip).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isMobile) {
+            setPeekOffset(0);
+            return;
+        }
+        const measure = ()=>{
+            const h = sheetRef.current?.offsetHeight ?? 0;
+            setPeekOffset(Math.max(0, h - PEEK_VISIBLE));
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        const ro = new ResizeObserver(measure);
+        if (sheetRef.current) ro.observe(sheetRef.current);
+        return ()=>{
+            window.removeEventListener('resize', measure);
+            ro.disconnect();
+        };
+    }, [
+        isMobile
+    ]);
+    // Keep the sheet pinned correctly when the layout changes (orientation, height
+    // recompute) — but skip the first run so it never overrides the entrance, and
+    // only re-pin while peeked (when open, y is owned by the entrance / drag).
+    const didSync = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!didSync.current) {
+            didSync.current = true;
+            return;
+        }
+        if (!isMobile) {
+            y.set(0);
+            return;
+        }
+        if (peeked) y.set(peekOffset);
+    }, [
+        isMobile,
+        peekOffset
+    ]) // eslint-disable-line react-hooks/exhaustive-deps
+    ;
+    const applyPeek = (next)=>{
+        setPeeked(next);
+        if (next) setShowHint(false);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, next ? peekOffset : 0, {
+            type: 'spring',
+            stiffness: 360,
+            damping: 38
+        });
+    };
+    // Scroll affordance — show a soft fade + cue when there's more content below.
+    const updateScrollCue = ()=>{
+        const el = scrollRef.current;
+        if (!el) {
+            setMoreBelow(false);
+            return;
+        }
+        setMoreBelow(el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        updateScrollCue();
+    }, [
+        children,
+        isMobile
+    ]);
+    const startDrag = (e)=>{
+        if (isMobile) dragControls.start(e);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+        ref: sheetRef,
+        initial: {
+            opacity: 0
         },
-        className: " fixed z-30 inset-x-0 bottom-0 lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px] flex flex-col rounded-t-[26px] lg:rounded-[26px] max-h-[66dvh] lg:max-h-none ",
+        animate: {
+            opacity: 1
+        },
+        transition: {
+            duration: 0.45,
+            ease: [
+                0.22,
+                1,
+                0.36,
+                1
+            ]
+        },
+        className: " fixed z-30 inset-x-0 bottom-0 lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px] flex flex-col rounded-t-[26px] lg:rounded-[26px] max-h-[64dvh] lg:max-h-none ",
         style: {
+            y,
             background: '#F3EFE7',
-            boxShadow: '0 -12px 48px rgba(26,24,22,0.14), 0 2px 8px rgba(26,24,22,0.05)'
+            boxShadow: '0 -12px 48px rgba(26,24,22,0.14), 0 2px 8px rgba(26,24,22,0.05)',
+            touchAction: isMobile ? 'none' : undefined
+        },
+        drag: isMobile ? 'y' : false,
+        dragControls: dragControls,
+        dragListener: false,
+        dragConstraints: {
+            top: 0,
+            bottom: peekOffset
+        },
+        dragElastic: 0.06,
+        onDragEnd: (_e, info)=>{
+            const moved = Math.abs(info.offset.y);
+            if (moved < 6) {
+                applyPeek(!peeked);
+                return;
+            } // a tap on the grip
+            const pos = y.get();
+            const next = info.velocity.y > 350 ? true : info.velocity.y < -350 ? false : pos > peekOffset * 0.42;
+            applyPeek(next);
         },
         role: "dialog",
         "aria-label": title,
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex justify-center pt-3 lg:hidden",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                    className: "h-1 rounded-full",
-                    style: {
-                        background: 'rgba(26,24,22,0.12)'
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                children: showHint && !peeked && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                    initial: {
+                        opacity: 0,
+                        y: 8
                     },
-                    animate: reduced ? {} : {
-                        width: [
-                            36,
-                            24,
-                            36
-                        ]
+                    animate: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    exit: {
+                        opacity: 0,
+                        y: 8
                     },
                     transition: {
-                        duration: 3,
-                        ease: 'easeInOut',
-                        repeat: Infinity,
-                        repeatDelay: 1
+                        duration: 0.4,
+                        ease: [
+                            0.22,
+                            1,
+                            0.36,
+                            1
+                        ]
                     },
-                    initial: {
-                        width: 36
-                    }
-                }, void 0, false, {
+                    className: "pointer-events-none absolute inset-x-0 -top-11 flex justify-center lg:hidden",
+                    "aria-hidden": true,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "font-inter inline-flex items-center gap-1.5 rounded-full px-3.5 py-2",
+                        style: {
+                            fontSize: 11,
+                            letterSpacing: '0.04em',
+                            color: '#FDFCF9',
+                            background: 'rgba(26,24,22,0.82)',
+                            backdropFilter: 'blur(8px)',
+                            boxShadow: '0 6px 20px rgba(26,24,22,0.28)'
+                        },
+                        children: [
+                            "Drag down to preview",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                                width: "12",
+                                height: "12",
+                                viewBox: "0 0 12 12",
+                                fill: "none",
+                                animate: reduced ? {} : {
+                                    y: [
+                                        0,
+                                        3,
+                                        0
+                                    ]
+                                },
+                                transition: {
+                                    duration: 1.4,
+                                    ease: 'easeInOut',
+                                    repeat: Infinity
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                    d: "M3 4.5L6 7.5L9 4.5",
+                                    stroke: "#FDFCF9",
+                                    strokeWidth: "1.3",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/builder/step-sheet.tsx",
+                                    lineNumber: 199,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 194,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 185,
+                        columnNumber: 13
+                    }, this)
+                }, "peek-hint", false, {
                     fileName: "[project]/components/builder/step-sheet.tsx",
-                    lineNumber: 58,
-                    columnNumber: 9
+                    lineNumber: 176,
+                    columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 57,
+                lineNumber: 174,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto overscroll-contain px-6 pt-5 pb-3 lg:px-8 lg:pt-8",
+                className: "flex flex-col items-center pt-3 pb-1 lg:hidden",
+                style: {
+                    cursor: 'grab',
+                    touchAction: 'none'
+                },
+                onPointerDown: startDrag,
+                role: "button",
+                tabIndex: 0,
+                "aria-label": peeked ? 'Pull up to keep editing' : 'Pull down to see your invitation',
+                "aria-expanded": !peeked,
+                onKeyDown: (e)=>{
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        applyPeek(!peeked);
+                    }
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "h-1 rounded-full",
+                        style: {
+                            background: 'rgba(26,24,22,0.16)'
+                        },
+                        animate: reduced || peeked ? {
+                            width: 36
+                        } : {
+                            width: [
+                                36,
+                                24,
+                                36
+                            ]
+                        },
+                        transition: {
+                            duration: 3,
+                            ease: 'easeInOut',
+                            repeat: Infinity,
+                            repeatDelay: 1
+                        },
+                        initial: {
+                            width: 36
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 217,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                        className: "font-inter uppercase mt-2",
+                        style: {
+                            fontSize: 8.5,
+                            letterSpacing: '0.16em',
+                            color: 'rgba(26,24,22,0.4)'
+                        },
+                        animate: {
+                            opacity: peeked ? 1 : 0,
+                            height: peeked ? 'auto' : 0
+                        },
+                        transition: {
+                            duration: 0.25
+                        },
+                        children: "Pull up to keep editing"
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 224,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/builder/step-sheet.tsx",
+                lineNumber: 207,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: scrollRef,
+                onScroll: updateScrollCue,
+                className: "relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
                 children: [
                     backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
@@ -398,58 +687,111 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                     strokeLinecap: "round"
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 243,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/step-sheet.tsx",
-                                lineNumber: 75,
+                                lineNumber: 242,
                                 columnNumber: 13
                             }, this),
                             "Back"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 69,
+                        lineNumber: 236,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "font-cormorant font-light leading-tight",
                         style: {
-                            fontSize: 'clamp(1.7rem, 6vw, 2.1rem)',
+                            fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
                             color: '#1A1816',
                             letterSpacing: '-0.01em'
                         },
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 82,
+                        lineNumber: 249,
                         columnNumber: 9
                     }, this),
                     lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "font-inter mt-2 leading-relaxed",
+                        className: "font-inter mt-1.5 leading-relaxed",
                         style: {
-                            fontSize: 13,
+                            fontSize: 12.5,
                             color: 'rgba(26,24,22,0.55)'
                         },
                         children: lede
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 89,
+                        lineNumber: 256,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-6",
+                        className: "mt-5",
                         children: children
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 94,
+                        lineNumber: 261,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 67,
+                lineNumber: 234,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                className: "pointer-events-none absolute inset-x-0 flex justify-center",
+                style: {
+                    bottom: primaryLabel || laterLabel ? 92 : 8,
+                    height: 32,
+                    background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
+                },
+                animate: {
+                    opacity: moreBelow ? 1 : 0
+                },
+                transition: {
+                    duration: 0.3
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                    width: "16",
+                    height: "16",
+                    viewBox: "0 0 16 16",
+                    fill: "none",
+                    className: "self-end mb-1",
+                    animate: reduced ? {} : {
+                        y: [
+                            0,
+                            3,
+                            0
+                        ]
+                    },
+                    transition: {
+                        duration: 1.6,
+                        ease: 'easeInOut',
+                        repeat: Infinity
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M4 6l4 4 4-4",
+                        stroke: "rgba(168,133,75,0.7)",
+                        strokeWidth: "1.4",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 277,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/components/builder/step-sheet.tsx",
+                    lineNumber: 272,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/components/builder/step-sheet.tsx",
+                lineNumber: 265,
                 columnNumber: 7
             }, this),
             (primaryLabel || laterLabel) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -497,29 +839,29 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                             repeatCount: "indefinite"
                                         }, void 0, false, {
                                             fileName: "[project]/components/builder/step-sheet.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 306,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/step-sheet.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 305,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 304,
                                     columnNumber: 19
                                 }, this),
                                 "One moment…"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/builder/step-sheet.tsx",
-                            lineNumber: 119,
+                            lineNumber: 303,
                             columnNumber: 17
                         }, this) : primaryLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 103,
+                        lineNumber: 287,
                         columnNumber: 13
                     }, this),
                     laterLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -533,19 +875,19 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                         children: laterLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 131,
+                        lineNumber: 315,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 98,
+                lineNumber: 282,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/builder/step-sheet.tsx",
-        lineNumber: 38,
+        lineNumber: 137,
         columnNumber: 5
     }, this);
 }
@@ -1301,7 +1643,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/invite/openers/shared.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$realistic$2d$seal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/invite/openers/realistic-seal.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$video$2f$use$2d$film$2d$video$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/video/use-film-video.ts [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -1362,36 +1706,19 @@ function useReveal() {
 }
 // The film, behind everything. Plays the moment the reveal begins so it's already
 // in motion by the time the white light clears.
-function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmScale, mode = 'auto', focal }) {
+function FilmStage({ videoSrc, videoHls, poster, play, videoOpacity, scrimOpacity, filmScale, mode = 'auto', focal }) {
     const ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Match OpeningHero's framing so the film doesn't reframe at handoff: honour the
     // couple's chosen mode for custom films; auto (aspect-aware) for presets.
     const [autoFit, setAutoFit] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('cover');
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const v = ref.current;
-        if (!v) return;
-        if (!play) {
-            v.pause();
-            return;
-        }
-        let cancelled = false;
-        const tryPlay = ()=>{
-            const p = v.play();
-            if (p && typeof p.catch === 'function') {
-                p.catch(()=>{
-                    if (!cancelled) requestAnimationFrame(()=>{
-                        void v.play().catch(()=>{});
-                    });
-                });
-            }
-        };
-        tryPlay();
-        return ()=>{
-            cancelled = true;
-        };
-    }, [
+    // Adaptive HLS / MP4 source + robust play. The reveal is triggered by a user
+    // gesture (tap/drag to open), so play() is already unlocked here.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$video$2f$use$2d$film$2d$video$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useFilmVideo"])(ref, {
+        hls: videoHls,
+        mp4: videoSrc
+    }, {
         play
-    ]);
+    });
     // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
     // always fill (cover) — the original behaviour.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -1434,7 +1761,7 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 100,
+                lineNumber: 90,
                 columnNumber: 7
             }, this),
             videoSrc && poster && fit === 'contain' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1449,13 +1776,12 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 102,
+                lineNumber: 92,
                 columnNumber: 9
             }, this),
             videoSrc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].video, {
                 ref: ref,
                 className: "absolute inset-0 h-full w-full",
-                src: videoSrc,
                 poster: poster ?? undefined,
                 preload: "auto",
                 muted: true,
@@ -1466,9 +1792,9 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                     objectFit: fit,
                     objectPosition
                 }
-            }, void 0, false, {
+            }, videoHls ?? videoSrc, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 115,
+                lineNumber: 105,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1479,13 +1805,13 @@ function FilmStage({ videoSrc, poster, play, videoOpacity, scrimOpacity, filmSca
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 128,
+                lineNumber: 118,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 99,
+        lineNumber: 89,
         columnNumber: 5
     }, this);
 }
@@ -1511,7 +1837,7 @@ function WhiteCurtain({ scale, opacity, originY = '52%' }) {
         }
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 137,
+        lineNumber: 127,
         columnNumber: 5
     }, this);
 }
@@ -1532,7 +1858,7 @@ function Greeting({ theme, names, fade }) {
                 children: "You are invited"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 155,
+                lineNumber: 145,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1548,13 +1874,13 @@ function Greeting({ theme, names, fade }) {
                 children: names
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 156,
+                lineNumber: 146,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 154,
+        lineNumber: 144,
         columnNumber: 5
     }, this);
 }
@@ -1568,7 +1894,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 164,
+        lineNumber: 154,
         columnNumber: 7
     }, this) : dir === 'apart' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
         d: "M6 4L3 7.5L6 11M9 4l3 3.5L9 11",
@@ -1578,7 +1904,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 166,
+        lineNumber: 156,
         columnNumber: 7
     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
         d: "M7.5 3v8M4 7.5l3.5 3.5L11 7.5",
@@ -1588,7 +1914,7 @@ function Hint({ label, show, dir }) {
         strokeLinejoin: "round"
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 167,
+        lineNumber: 157,
         columnNumber: 7
     }, this);
     const bob = reduced ? {} : dir === 'up' ? {
@@ -1642,12 +1968,12 @@ function Hint({ label, show, dir }) {
                     children: icon
                 }, void 0, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 175,
+                    lineNumber: 165,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 172,
+                lineNumber: 162,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1660,17 +1986,17 @@ function Hint({ label, show, dir }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 177,
+                lineNumber: 167,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 170,
+        lineNumber: 160,
         columnNumber: 5
     }, this);
 }
-function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }) {
+function EnvelopeOpener({ theme, names, onOpen, videoSrc, videoHls, poster, videoFit, videoFocal }) {
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
     const [opening, setOpening] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const mono = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["initials"])(names);
@@ -1739,6 +2065,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FilmStage, {
                 videoSrc: videoSrc,
+                videoHls: videoHls,
                 poster: poster,
                 play: opening,
                 videoOpacity: rv.videoOpacity,
@@ -1748,7 +2075,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 focal: videoFocal
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 225,
+                lineNumber: 215,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WhiteCurtain, {
@@ -1757,7 +2084,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 originY: "52%"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 226,
+                lineNumber: 216,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1774,7 +2101,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                         accent: theme.accent
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 230,
+                        lineNumber: 220,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1808,12 +2135,12 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                                         vectorEffect: "non-scaling-stroke"
                                     }, void 0, false, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 244,
+                                        lineNumber: 234,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                                    lineNumber: 243,
+                                    lineNumber: 233,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1824,24 +2151,24 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                                    lineNumber: 246,
+                                    lineNumber: 236,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 233,
+                            lineNumber: 223,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 232,
+                        lineNumber: 222,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 229,
+                lineNumber: 219,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Greeting, {
@@ -1850,7 +2177,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 fade: greet
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 251,
+                lineNumber: 241,
                 columnNumber: 7
             }, this),
             !opening && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SealButton, {
@@ -1860,7 +2187,7 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 reduced: !!reduced
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 254,
+                lineNumber: 244,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Hint, {
@@ -1869,13 +2196,13 @@ function EnvelopeOpener({ theme, names, onOpen, videoSrc, poster, videoFit, vide
                 show: !opening
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 256,
+                lineNumber: 246,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 224,
+        lineNumber: 214,
         columnNumber: 5
     }, this);
 }
@@ -1923,12 +2250,12 @@ function SealButton({ onOpen, mono, font, reduced }) {
             font: font
         }, void 0, false, {
             fileName: "[project]/components/invite/openers/interactive.tsx",
-            lineNumber: 277,
+            lineNumber: 267,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 265,
+        lineNumber: 255,
         columnNumber: 5
     }, this);
 }
@@ -1958,7 +2285,7 @@ function BotanicalPaper({ ivory, accent }) {
                                 seed: "4"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 288,
+                                lineNumber: 278,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("feColorMatrix", {
@@ -1966,13 +2293,13 @@ function BotanicalPaper({ ivory, accent }) {
                                 values: "0 0 0 0 0.42  0 0 0 0 0.35  0 0 0 0 0.24  0 0 0 0.05 0"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 288,
+                                lineNumber: 278,
                                 columnNumber: 114
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 288,
+                        lineNumber: 278,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -1981,13 +2308,13 @@ function BotanicalPaper({ ivory, accent }) {
                         filter: "url(#paperGrain)"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 289,
+                        lineNumber: 279,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 287,
+                lineNumber: 277,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2015,20 +2342,20 @@ function BotanicalPaper({ ivory, accent }) {
                                                 d: "M20 130 C40 110 40 70 22 40 M22 40 C8 56 6 80 20 96 M22 64 C36 60 46 70 46 86 M22 88 C8 86 0 98 0 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 297,
+                                                lineNumber: 287,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M90 20 C108 36 110 70 96 100 M96 64 C82 60 72 70 72 86 M96 88 C112 86 120 100 120 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 298,
+                                                lineNumber: 288,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 286,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -2038,36 +2365,36 @@ function BotanicalPaper({ ivory, accent }) {
                                                 d: "M20 130 C40 110 40 70 22 40 M22 40 C8 56 6 80 20 96 M22 64 C36 60 46 70 46 86 M22 88 C8 86 0 98 0 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 301,
+                                                lineNumber: 291,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M90 20 C108 36 110 70 96 100 M96 64 C82 60 72 70 72 86 M96 88 C112 86 120 100 120 112"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                                lineNumber: 302,
+                                                lineNumber: 292,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                                        lineNumber: 300,
+                                        lineNumber: 290,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 295,
+                                lineNumber: 285,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 294,
+                            lineNumber: 284,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 293,
+                        lineNumber: 283,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -2077,13 +2404,13 @@ function BotanicalPaper({ ivory, accent }) {
                         opacity: "0.6"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 307,
+                        lineNumber: 297,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 292,
+                lineNumber: 282,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2100,7 +2427,7 @@ function BotanicalPaper({ ivory, accent }) {
                         vectorEffect: "non-scaling-stroke"
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 312,
+                        lineNumber: 302,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2108,7 +2435,7 @@ function BotanicalPaper({ ivory, accent }) {
                         fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#000', 0.018)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 313,
+                        lineNumber: 303,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2116,13 +2443,13 @@ function BotanicalPaper({ ivory, accent }) {
                         fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#000', 0.018)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 314,
+                        lineNumber: 304,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 311,
+                lineNumber: 301,
                 columnNumber: 7
             }, this),
             [
@@ -2156,14 +2483,14 @@ function BotanicalPaper({ ivory, accent }) {
                                 d: "M0 0 C18 -4 30 -16 34 -36 M10 -8 C8 -22 16 -32 30 -34 M0 0 C-2 -16 6 -26 18 -28"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 321,
+                                lineNumber: 311,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                 d: "M30 -34 C40 -30 44 -20 40 -10"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 322,
+                                lineNumber: 312,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -2175,18 +2502,18 @@ function BotanicalPaper({ ivory, accent }) {
                                 stroke: "none"
                             }, void 0, false, {
                                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                                lineNumber: 323,
+                                lineNumber: 313,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 320,
+                        lineNumber: 310,
                         columnNumber: 11
                     }, this)
                 }, k, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 319,
+                    lineNumber: 309,
                     columnNumber: 9
                 }, this)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2196,17 +2523,17 @@ function BotanicalPaper({ ivory, accent }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 329,
+                lineNumber: 319,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 285,
+        lineNumber: 275,
         columnNumber: 5
     }, this);
 }
-function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFocal }) {
+function VeilOpener({ theme, names, onOpen, videoSrc, videoHls, poster, videoFit, videoFocal }) {
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
     const [opening, setOpening] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const y = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
@@ -2275,6 +2602,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FilmStage, {
                 videoSrc: videoSrc,
+                videoHls: videoHls,
                 poster: poster,
                 play: opening,
                 videoOpacity: rv.videoOpacity,
@@ -2284,7 +2612,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 focal: videoFocal
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 372,
+                lineNumber: 362,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WhiteCurtain, {
@@ -2293,7 +2621,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 originY: "50%"
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 373,
+                lineNumber: 363,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Greeting, {
@@ -2302,7 +2630,7 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 fade: opening ? greet : reduced ? 1 : greetFade
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 375,
+                lineNumber: 365,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -2362,22 +2690,22 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                             fill: (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$invite$2f$openers$2f$shared$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["hexA"])('#ffffff', theme.dark ? 0.16 : 0.6)
                         }, void 0, false, {
                             fileName: "[project]/components/invite/openers/interactive.tsx",
-                            lineNumber: 390,
+                            lineNumber: 380,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/invite/openers/interactive.tsx",
-                        lineNumber: 389,
+                        lineNumber: 379,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/invite/openers/interactive.tsx",
-                    lineNumber: 385,
+                    lineNumber: 375,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 378,
+                lineNumber: 368,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Hint, {
@@ -2386,13 +2714,13 @@ function VeilOpener({ theme, names, onOpen, videoSrc, poster, videoFit, videoFoc
                 show: !opening
             }, void 0, false, {
                 fileName: "[project]/components/invite/openers/interactive.tsx",
-                lineNumber: 395,
+                lineNumber: 385,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/invite/openers/interactive.tsx",
-        lineNumber: 371,
+        lineNumber: 361,
         columnNumber: 5
     }, this);
 }
@@ -2707,8 +3035,8 @@ function StylePage({ params }) {
                 title: "Set the scene",
                 lede: "Choose how your invitation opens, then dress it in a palette and lettering. Tap an opening to preview it.",
                 primaryLabel: "Continue",
-                onPrimary: ()=>router.push(`/builder/${inviteId}/opening-video`),
-                backHref: `/builder/${inviteId}/names`,
+                onPrimary: ()=>router.push(`/builder/${inviteId}/music`),
+                backHref: `/builder/${inviteId}/opening-video`,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         className: "font-inter uppercase",

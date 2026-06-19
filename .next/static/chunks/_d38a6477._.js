@@ -5,8 +5,16 @@
 
 var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
-// Real FULL-HD wedding film presets. Sources are Pexels CDN (free license,
-// CORS: access-control-allow-origin: *), served at 1080p to stay smooth.
+// Real FULL-HD wedding film presets.
+//
+// Assets are mirrored into our own Supabase Storage bucket "preset-media"
+// via scripts/mirror-presets.mjs so we are NOT dependent on Pexels CDN.
+// Pexels source URLs are preserved below as provenance comments only.
+//
+// Public URL pattern (after running the mirror script):
+//   Film  : {SUPABASE_URL}/storage/v1/object/public/preset-media/presets/<id>/film.mp4
+//   Poster: {SUPABASE_URL}/storage/v1/object/public/preset-media/presets/<id>/poster.jpg
+//
 // Every consumer degrades gracefully: posterImg paints instantly, then the
 // gradient `poster` is the final fallback if both image and video fail.
 __turbopack_context__.s({
@@ -21,13 +29,12 @@ __turbopack_context__.s({
     "SECTION_LABELS": (()=>SECTION_LABELS),
     "VIDEO_PRESETS": (()=>VIDEO_PRESETS)
 });
-const pexelsVideo = (id, file)=>`https://videos.pexels.com/video-files/${id}/${file}`;
-// Older clips expose `pexels-photo-{id}.jpeg`; newer ones only expose the
-// auto-generated `pictures/preview-0.jpg`. Use whichever a given clip serves.
-const pexelsPoster = (id)=>`https://images.pexels.com/videos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1280`;
-const pexelsPreview = (id)=>`https://images.pexels.com/videos/${id}/pictures/preview-0.jpg`;
-// Some newer clips serve the preview still as `.jpeg` (not `.jpg`).
-const pexelsPreviewJpeg = (id)=>`https://images.pexels.com/videos/${id}/pictures/preview-0.jpeg`;
+// ── Supabase Storage public base URL ────────────────────────────────────────
+// This is the stable, self-owned CDN. Run scripts/mirror-presets.mjs once to
+// populate the bucket. Preset ids must stay stable (existing drafts reference them).
+const SUPABASE_URL = 'https://gngoqwenvnhyfbkkszfl.supabase.co';
+const presetFilm = (id)=>`${SUPABASE_URL}/storage/v1/object/public/preset-media/presets/${id}/film.mp4`;
+const presetPoster = (id)=>`${SUPABASE_URL}/storage/v1/object/public/preset-media/presets/${id}/poster.jpg`;
 const VIDEO_PRESETS = [
     {
         // id kept stable for existing drafts; content is now a lush floral ceremony
@@ -35,8 +42,8 @@ const VIDEO_PRESETS = [
         id: 'golden-hour',
         name: 'In Bloom',
         mood: 'An arch of flowers',
-        src: pexelsVideo('33113979', '14114596_1920_1080_25fps.mp4'),
-        posterImg: pexelsPreview('33113979'),
+        src: presetFilm('golden-hour'),
+        posterImg: presetPoster('golden-hour'),
         poster: {
             from: '#E7D8DC',
             to: '#B9A7A0'
@@ -47,8 +54,8 @@ const VIDEO_PRESETS = [
         id: 'first-dance',
         name: 'First Dance',
         mood: 'Held close, swaying',
-        src: pexelsVideo('8775886', '8775886-hd_1920_1080_25fps.mp4'),
-        posterImg: pexelsPoster('8775886'),
+        src: presetFilm('first-dance'),
+        posterImg: presetPoster('first-dance'),
         poster: {
             from: '#E2D2BE',
             to: '#A98C66'
@@ -60,8 +67,8 @@ const VIDEO_PRESETS = [
         id: 'the-vows',
         name: 'The Vows',
         mood: 'An aisle in bloom',
-        src: pexelsVideo('27979648', '12279941_1920_1080_25fps.mp4'),
-        posterImg: pexelsPreview('27979648'),
+        src: presetFilm('the-vows'),
+        posterImg: presetPoster('the-vows'),
         poster: {
             from: '#EAF0EE',
             to: '#C2D0CB'
@@ -72,8 +79,8 @@ const VIDEO_PRESETS = [
         id: 'the-rings',
         name: 'The Rings',
         mood: 'Vows and promises',
-        src: pexelsVideo('8776123', '8776123-hd_1920_1080_25fps.mp4'),
-        posterImg: pexelsPoster('8776123'),
+        src: presetFilm('the-rings'),
+        posterImg: presetPoster('the-rings'),
         poster: {
             from: '#1E1A16',
             to: '#3A2E22'
@@ -85,8 +92,8 @@ const VIDEO_PRESETS = [
         id: 'open-air',
         name: 'Open Air',
         mood: 'The venue, from above',
-        src: pexelsVideo('11038003', '11038003-hd_2560_1440_24fps.mp4'),
-        posterImg: pexelsPreviewJpeg('11038003'),
+        src: presetFilm('open-air'),
+        posterImg: presetPoster('open-air'),
         poster: {
             from: '#4A5142',
             to: '#23291F'
@@ -98,8 +105,8 @@ const VIDEO_PRESETS = [
         id: 'eternal',
         name: 'Eternal',
         mood: 'A stage in bloom',
-        src: pexelsVideo('13038199', '13038199-hd_1920_1080_25fps.mp4'),
-        posterImg: pexelsPreviewJpeg('13038199'),
+        src: presetFilm('eternal'),
+        posterImg: presetPoster('eternal'),
         poster: {
             from: '#E8D2B8',
             to: '#B98E6A'
@@ -111,8 +118,8 @@ const VIDEO_PRESETS = [
         id: 'the-letter',
         name: 'The Letter',
         mood: 'Candlelit, intimate, written',
-        src: pexelsVideo('7343467', '7343467-hd_1920_1080_25fps.mp4'),
-        posterImg: pexelsPoster('7343467'),
+        src: presetFilm('the-letter'),
+        posterImg: presetPoster('the-letter'),
         poster: {
             from: '#F5EDD8',
             to: '#8B4A2A'
@@ -125,8 +132,8 @@ const VIDEO_PRESETS = [
         id: 'the-veil',
         name: 'The Reception',
         mood: 'Tables set under the sky',
-        src: pexelsVideo('8442722', '8442722-hd_1920_1080_30fps.mp4'),
-        posterImg: pexelsPreviewJpeg('8442722'),
+        src: presetFilm('the-veil'),
+        posterImg: presetPoster('the-veil'),
         poster: {
             from: '#46503C',
             to: '#22271C'

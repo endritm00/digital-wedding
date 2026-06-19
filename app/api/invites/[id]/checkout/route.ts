@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/service'
+import { resolveInviteWriteAccess } from '@/lib/invites/access'
 import { buildQuote } from '@/lib/invites/quote'
 import { stripe } from '@/lib/stripe'
-import { ok, badRequest, unauthorized, notFound, serverError } from '@/lib/api/response'
+import { ok, badRequest, serverError } from '@/lib/api/response'
 import { limiters, rateLimitedResponse } from '@/lib/rate-limit'
 import { logger } from '@/lib/logger'
 
@@ -20,33 +20,31 @@ type Params = { params: Promise<{ id: string }> }
 //   3. Unique constraint on orders.stripe_session_id: if a concurrent request
 //      slips past layer 1 and Stripe returns the same session, the DB insert
 //      conflicts — we catch that and return the existing order's URL.
-export async function POST(_req: NextRequest, { params }: Params) {
+export async function POST(request: NextRequest, { params }: Params) {
   const { id } = await params
 
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return unauthorized()
+  // Login-free: the authenticated owner OR the anonymous draft's claim-token holder.
+  const access = await resolveInviteWriteAccess(id, request.headers)
+  if (!access.ok) return Response.json({ error: access.message }, { status: access.status })
+  const invite = access.invite
 
-  // 5 checkout attempts per user per 10 min
-  const checkoutLimit = await limiters.checkout(`checkout:${user.id}`)
+  // 5 checkout attempts per buyer per 10 min (keyed by account, or by invite for anon)
+  const checkoutLimit = await limiters.checkout(`checkout:${access.userId ?? id}`)
   if (!checkoutLimit.allowed) return rateLimitedResponse(checkoutLimit)
 
-  type InviteRow = { id: string; status: 'draft' | 'paid' | 'published' | 'archived'; plan_id: string | null }
-
-  // Fetch invite through RLS — confirms ownership
-  const { data: invite } = await supabase
-    .from('invites')
-    .select('id, status, plan_id')
-    .eq('id', id)
-    .single() as unknown as { data: InviteRow | null }
-
-  if (!invite)                     return notFound('invite_not_found')
   if (invite.status === 'paid')    return badRequest('invite_already_paid')
   if (invite.status !== 'draft')   return badRequest('invite_not_checkoutable')
   if (!invite.plan_id)             return badRequest('no_plan_selected')
 
-  // Server-side price — the client total is never trusted
-  const quote = await buildQuote(id)
+  // Require the buyer's email up front (collected on the review step if missing),
+  // so we can email the manage link after payment.
+  const buyerEmail = invite.draft_email ?? ''
+  if (!buyerEmail) return badRequest('email_required')
+
+  // Server-side price — the client total is never trusted. Anonymous (login-free)
+  // buyers reach here via their claim token, so the price must be computed with
+  // the service client; the RLS server client would read nothing as an anon user.
+  const quote = await buildQuote(id, { useServiceClient: access.via === 'claim_token' })
   if ('error' in quote) return badRequest(quote.error)
 
   // Layer 1: existing pending order at the same price, created < 30 min ago
@@ -80,9 +78,6 @@ export async function POST(_req: NextRequest, { params }: Params) {
     .eq('id', invite.plan_id)
     .single() as { data: PlanRow | null }
 
-  const { data: { user: freshUser } } = await supabase.auth.getUser()
-
-  const buyerEmail = freshUser?.email ?? ''
   const appUrl     = process.env.NEXT_PUBLIC_APP_URL!
   const orderId    = crypto.randomUUID()
 
@@ -106,7 +101,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
         client_reference_id: id,
         metadata: { order_id: orderId, invite_id: id },
         success_url: `${appUrl}/invite/${id}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url:  `${appUrl}/invite/${id}/build`,
+        cancel_url:  `${appUrl}/builder/${id}/review`,
       },
       { idempotencyKey: `checkout_${id}_${quote.amount_cents}` }
     )

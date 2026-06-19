@@ -19,6 +19,7 @@ export interface InviteRow {
   additional_notes: string | null
   needs_review: boolean
   published_snapshot_id: string | null
+  manage_token_hash: string | null
   created_at: string
   updated_at: string
 }
@@ -68,4 +69,46 @@ export async function resolveInviteAccess(
 
   if (error || !data) return { ok: false, status: 403, message: 'forbidden' }
   return { ok: true, invite: data as InviteRow, via: 'claim_token' }
+}
+
+export type WriteAccessResult =
+  | { ok: true; invite: InviteRow; via: AccessVia; userId: string | null }
+  | { ok: false; status: 401 | 403 | 404; message: string }
+
+// Like resolveInviteAccess, but for the buyer completing/publishing THEIR OWN
+// invite — the anonymous `claim_token` grants access at ANY status (not just
+// draft). The product is login-free: the unguessable claim_token (held in the
+// creator's browser) is the capability. Each caller still enforces its own
+// status rules (e.g. checkout requires draft, publish requires paid/published).
+export async function resolveInviteWriteAccess(
+  inviteId: string,
+  headers: Headers
+): Promise<WriteAccessResult> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (user) {
+    const { data, error } = await supabase
+      .from('invites')
+      .select('*')
+      .eq('id', inviteId)
+      .single()
+    if (error || !data) return { ok: false, status: 404, message: 'invite_not_found' }
+    const via: AccessVia = data.owner_id === user.id ? 'owner' : 'staff'
+    return { ok: true, invite: data as InviteRow, via, userId: user.id }
+  }
+
+  const claimToken = headers.get('x-claim-token')
+  if (!claimToken) return { ok: false, status: 401, message: 'unauthorized' }
+
+  const service = createServiceClient()
+  const { data, error } = await service
+    .from('invites')
+    .select('*')
+    .eq('id', inviteId)
+    .eq('claim_token', claimToken)
+    .single()
+
+  if (error || !data) return { ok: false, status: 403, message: 'forbidden' }
+  return { ok: true, invite: data as InviteRow, via: 'claim_token', userId: null }
 }

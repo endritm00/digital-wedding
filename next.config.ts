@@ -16,7 +16,9 @@ const securityHeaders = [
       "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://image.mux.com https://*.supabase.co https://*.supabase.in https://images.unsplash.com https://images.pexels.com",
-      "media-src 'self' blob: https://stream.mux.com https://videos.pexels.com",
+      // Preset films are now served from Supabase Storage (preset-media bucket).
+      // videos.pexels.com removed — no longer referenced by presets.ts.
+      "media-src 'self' blob: https://stream.mux.com https://*.supabase.co https://*.supabase.in",
       // *.mux.com covers api.mux.com plus the region-varying direct-upload hosts (e.g. direct-uploads-oci-us-ashburn-1-vop1.mux.com)
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.supabase.in wss://*.supabase.in https://api.stripe.com https://*.mux.com https://*.upstash.io",
       "frame-src https://js.stripe.com https://hooks.stripe.com",

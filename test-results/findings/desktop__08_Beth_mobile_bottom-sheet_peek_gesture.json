@@ -1,0 +1,20 @@
+{
+  "scenario": "08 Beth — mobile bottom-sheet & peek gesture",
+  "project": "desktop",
+  "status": "passed",
+  "durationMs": 14805,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 53238fbb",
+    "desktop — no bottom-sheet gesture (right-side panel)",
+    "price resolved: \"Pay & publish — €49\""
+  ]
+}

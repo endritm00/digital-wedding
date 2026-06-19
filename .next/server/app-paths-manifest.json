@@ -1,5 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/extras/route": "app/api/extras/route.js",
   "/api/invites/[id]/extras/route": "app/api/invites/[id]/extras/route.js",
   "/api/invites/[id]/media/route": "app/api/invites/[id]/media/route.js",
@@ -12,7 +11,9 @@
   "/builder/[inviteId]/music/page": "app/builder/[inviteId]/music/page.js",
   "/builder/[inviteId]/names/page": "app/builder/[inviteId]/names/page.js",
   "/builder/[inviteId]/opening-video/page": "app/builder/[inviteId]/opening-video/page.js",
+  "/builder/[inviteId]/save/page": "app/builder/[inviteId]/save/page.js",
+  "/builder/[inviteId]/sections/page": "app/builder/[inviteId]/sections/page.js",
+  "/builder/[inviteId]/style/page": "app/builder/[inviteId]/style/page.js",
   "/builder/page": "app/builder/page.js",
-  "/invite/[id]/preview/page": "app/invite/[id]/preview/page.js",
   "/page": "app/page.js"
 }

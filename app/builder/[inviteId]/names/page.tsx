@@ -17,6 +17,8 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
   const [nameA, setNameA] = useState(config.name_a ?? '')
   const [nameB, setNameB] = useState(config.name_b ?? '')
   const [date, setDate] = useState(invite?.event_date ?? '')
+  // Gentle one-time prompt if they try to continue without a date.
+  const [dateNudge, setDateNudge] = useState(false)
 
   // Sync once the context loads from the server
   useEffect(() => {
@@ -52,16 +54,19 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
   }, [invite])
 
   const handleContinue = async () => {
+    // First press without a date → gently prompt, don't leave the step yet.
+    if (!date && !dateNudge) { setDateNudge(true); return }
     setOpening({ name_a: nameA, name_b: nameB })
     if (date) patchDraft({ event_date: date })
     await flushDraft()
-    router.push(`/builder/${inviteId}/style`)
+    router.push(`/builder/${inviteId}/opening-video`)
   }
 
   const showAnd = nameA.trim().length > 0 && nameB.trim().length > 0
 
   const inputBase =
-    'w-full rounded-xl bg-white/60 px-4 py-3 font-cormorant font-light text-[#1A1816] placeholder:text-[#1A1816]/28 outline-none transition-all'
+    'w-full rounded-xl bg-white/60 px-4 py-2.5 font-cormorant font-light text-[#1A1816] placeholder:text-[#1A1816]/28 outline-none transition-all'
+  const inputFont = 'clamp(20px, 5.6vw, 25px)'
 
   return (
     <>
@@ -69,13 +74,13 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
       <StepSheet
         title="Who's getting married?"
         lede="These names appear at the heart of your invitation."
-        primaryLabel="Continue"
+        primaryLabel={!date && dateNudge ? 'Continue without a date' : 'Continue'}
         onPrimary={handleContinue}
         primaryDisabled={!nameA.trim() && !nameB.trim()}
         laterLabel="Decide later"
-        onLater={() => router.push(`/builder/${inviteId}/style`)}
+        onLater={() => router.push(`/builder/${inviteId}/opening-video`)}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           {/* First name */}
           <label className="flex flex-col gap-1.5">
             <span
@@ -94,7 +99,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               placeholder="e.g. Emma"
               autoComplete="given-name"
               className={inputBase}
-              style={{ fontSize: 26, border: '1px solid rgba(26,24,22,0.12)' }}
+              style={{ fontSize: inputFont, border: '1px solid rgba(26,24,22,0.12)' }}
               onFocus={e => {
                 e.currentTarget.style.borderColor = 'rgba(168,133,75,0.5)'
                 e.currentTarget.style.boxShadow = '0 0 0 3px rgba(168,133,75,0.1)'
@@ -147,7 +152,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               placeholder="e.g. Luca"
               autoComplete="given-name"
               className={inputBase}
-              style={{ fontSize: 26, border: '1px solid rgba(26,24,22,0.12)' }}
+              style={{ fontSize: inputFont, border: '1px solid rgba(26,24,22,0.12)' }}
               onFocus={e => {
                 e.currentTarget.style.borderColor = 'rgba(168,133,75,0.5)'
                 e.currentTarget.style.boxShadow = '0 0 0 3px rgba(168,133,75,0.1)'
@@ -161,10 +166,15 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
 
           {/* Date — appears with a gentle fade once names are set */}
           <motion.label
-            className="flex flex-col gap-1.5"
+            className="flex flex-col gap-1.5 rounded-2xl"
             initial={{ opacity: 0.5 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.4 }}
+            style={{
+              margin: -8, padding: 8,
+              boxShadow: !date && dateNudge ? '0 0 0 2px rgba(168,133,75,0.55)' : '0 0 0 0 rgba(168,133,75,0)',
+              transition: 'box-shadow 0.4s ease',
+            }}
           >
             <span
               className="font-inter uppercase"
@@ -176,10 +186,27 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               value={date}
               onChange={(iso) => {
                 setDate(iso)
+                setDateNudge(false)
                 patchDraft({ event_date: iso })
               }}
             />
           </motion.label>
+
+          {/* Gentle nudge if they tried to continue without a date */}
+          <AnimatePresence initial={false}>
+            {!date && dateNudge && (
+              <motion.p
+                initial={{ opacity: 0, y: -4, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: 'auto' }}
+                exit={{ opacity: 0, y: -4, height: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="font-inter -mt-1"
+                style={{ fontSize: 11.5, lineHeight: 1.5, color: 'rgba(168,133,75,0.95)' }}
+              >
+                Adding your date lets guests save it and powers the countdown — or continue and add it later.
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </StepSheet>
     </>

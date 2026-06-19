@@ -75,11 +75,11 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
         lede="Guests see this first. Pick a mood or upload a clip from your day."
         primaryLabel="Continue"
         onPrimary={() =>
-          router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'music'}`)
+          router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'style'}`)
         }
         laterLabel="No video"
-        onLater={() => router.push(`/builder/${inviteId}/music`)}
-        backHref={`/builder/${inviteId}/style`}
+        onLater={() => router.push(`/builder/${inviteId}/style`)}
+        backHref={`/builder/${inviteId}/names`}
       >
         {/* Vertical grid of film moods — scrolls with the sheet */}
         <div className="grid grid-cols-2 gap-3">

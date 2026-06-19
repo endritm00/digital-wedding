@@ -1,0 +1,20 @@
+{
+  "scenario": "01 Linda — cautious minimalist, skips all optionals",
+  "project": "desktop",
+  "status": "passed",
+  "durationMs": 19097,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite f9466b8a",
+    "Linda left all pages unselected (default plan only)",
+    "price resolved: \"Pay & publish — €49\""
+  ]
+}

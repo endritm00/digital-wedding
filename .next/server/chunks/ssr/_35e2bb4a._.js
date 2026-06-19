@@ -27,12 +27,12 @@ const STEPS = [
         name: 'Your names'
     },
     {
-        slug: 'style',
-        name: 'Your style'
-    },
-    {
         slug: 'opening-video',
         name: 'Your film'
+    },
+    {
+        slug: 'style',
+        name: 'Your style'
     },
     {
         slug: 'music',
@@ -211,7 +211,7 @@ function Hairline({ step }) {
                                 lineNumber: 66,
                                 columnNumber: 11
                             }, this),
-                            invite?.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            invite?.id && step === 'style' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 href: `/invite/${invite.id}/preview?skipOpener=1`,
                                 className: "flex items-center gap-1.5 rounded-full px-3 py-1.5",
                                 style: {
@@ -235,7 +235,7 @@ function Hairline({ step }) {
                                                 strokeWidth: "1"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/builder/hairline.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 104,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -245,13 +245,13 @@ function Hairline({ step }) {
                                                 fill: "#A8854B"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/builder/hairline.tsx",
-                                                lineNumber: 103,
+                                                lineNumber: 105,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/builder/hairline.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 103,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -264,13 +264,13 @@ function Hairline({ step }) {
                                         children: "Preview"
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/hairline.tsx",
-                                        lineNumber: 105,
+                                        lineNumber: 107,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/builder/hairline.tsx",
-                                lineNumber: 95,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -302,28 +302,81 @@ __turbopack_context__.s({
     "StepSheet": (()=>StepSheet)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/animation/animate/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$gestures$2f$drag$2f$use$2d$drag$2d$controls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/gestures/drag/use-drag-controls.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
+;
+// The one question surface: bottom sheet on phones, right panel on desktop.
+// Vellum paper over the live preview. One decision per screen.
+//
+// On phones the sheet is DRAGGABLE: pull it down (or tap the grip) to "peek" —
+// it slides away leaving a slim handle, so the live film fills the screen. Drag
+// it back up (or tap the handle) to keep editing. This is how you actually SEE
+// your invitation while building on a small screen.
+// How much of the sheet stays on-screen when peeked (the grip handle).
+const PEEK_VISIBLE = 64;
+function useIsMobile() {
+    const [mobile, setMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const mq = window.matchMedia('(max-width: 1023px)');
+        const update = ()=>setMobile(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return ()=>mq.removeEventListener('change', update);
+    }, []);
+    return mobile;
+}
 function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisabled, primaryBusy, laterLabel, onLater, backHref }) {
     const reduced = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useReducedMotion"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-        initial: reduced ? {
-            opacity: 0
-        } : {
-            opacity: 0,
-            y: 48
-        },
-        animate: {
-            opacity: 1,
-            y: 0
-        },
-        transition: {
+    const isMobile = useIsMobile();
+    const sheetRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const scrollRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const dragControls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$gestures$2f$drag$2f$use$2d$drag$2d$controls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDragControls"])();
+    const y = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
+    const [peeked, setPeeked] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [peekOffset, setPeekOffset] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [moreBelow, setMoreBelow] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showHint, setShowHint] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const entered = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // One-time "drag down to preview" nudge — shown once ever, on the first mobile
+    // step, so people discover the peek gesture. Dismissed on the first peek.
+    const HINT_KEY = 'di:peek-hint-seen';
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isMobile) return;
+        let seen = true;
+        try {
+            seen = localStorage.getItem(HINT_KEY) === '1';
+        } catch  {}
+        if (seen) return;
+        try {
+            localStorage.setItem(HINT_KEY, '1');
+        } catch  {}
+        setShowHint(true);
+        const t = setTimeout(()=>setShowHint(false), 6000);
+        return ()=>clearTimeout(t);
+    }, [
+        isMobile
+    ]);
+    // Entrance — slide up once on mount (skip for reduced motion).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (entered.current) return;
+        entered.current = true;
+        if (reduced) {
+            y.set(0);
+            return;
+        }
+        y.set(48);
+        const controls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, 0, {
             duration: 0.55,
             ease: [
                 0.22,
@@ -331,50 +384,286 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                 0.36,
                 1
             ]
+        });
+        return ()=>controls.stop();
+    }, [
+        reduced,
+        y
+    ]);
+    // Measure how far down "peeked" sits (sheet height minus the visible grip).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isMobile) {
+            setPeekOffset(0);
+            return;
+        }
+        const measure = ()=>{
+            const h = sheetRef.current?.offsetHeight ?? 0;
+            setPeekOffset(Math.max(0, h - PEEK_VISIBLE));
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        const ro = new ResizeObserver(measure);
+        if (sheetRef.current) ro.observe(sheetRef.current);
+        return ()=>{
+            window.removeEventListener('resize', measure);
+            ro.disconnect();
+        };
+    }, [
+        isMobile
+    ]);
+    // Keep the sheet pinned correctly when the layout changes (orientation, height
+    // recompute) — but skip the first run so it never overrides the entrance, and
+    // only re-pin while peeked (when open, y is owned by the entrance / drag).
+    const didSync = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!didSync.current) {
+            didSync.current = true;
+            return;
+        }
+        if (!isMobile) {
+            y.set(0);
+            return;
+        }
+        if (peeked) y.set(peekOffset);
+    }, [
+        isMobile,
+        peekOffset
+    ]) // eslint-disable-line react-hooks/exhaustive-deps
+    ;
+    const applyPeek = (next)=>{
+        setPeeked(next);
+        if (next) setShowHint(false);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, next ? peekOffset : 0, {
+            type: 'spring',
+            stiffness: 360,
+            damping: 38
+        });
+    };
+    // Scroll affordance — show a soft fade + cue when there's more content below.
+    const updateScrollCue = ()=>{
+        const el = scrollRef.current;
+        if (!el) {
+            setMoreBelow(false);
+            return;
+        }
+        setMoreBelow(el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        updateScrollCue();
+    }, [
+        children,
+        isMobile
+    ]);
+    const startDrag = (e)=>{
+        if (isMobile) dragControls.start(e);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+        ref: sheetRef,
+        initial: {
+            opacity: 0
         },
-        className: " fixed z-30 inset-x-0 bottom-0 lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px] flex flex-col rounded-t-[26px] lg:rounded-[26px] max-h-[66dvh] lg:max-h-none ",
+        animate: {
+            opacity: 1
+        },
+        transition: {
+            duration: 0.45,
+            ease: [
+                0.22,
+                1,
+                0.36,
+                1
+            ]
+        },
+        className: " fixed z-30 inset-x-0 bottom-0 lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px] flex flex-col rounded-t-[26px] lg:rounded-[26px] max-h-[64dvh] lg:max-h-none ",
         style: {
+            y,
             background: '#F3EFE7',
-            boxShadow: '0 -12px 48px rgba(26,24,22,0.14), 0 2px 8px rgba(26,24,22,0.05)'
+            boxShadow: '0 -12px 48px rgba(26,24,22,0.14), 0 2px 8px rgba(26,24,22,0.05)',
+            touchAction: isMobile ? 'none' : undefined
+        },
+        drag: isMobile ? 'y' : false,
+        dragControls: dragControls,
+        dragListener: false,
+        dragConstraints: {
+            top: 0,
+            bottom: peekOffset
+        },
+        dragElastic: 0.06,
+        onDragEnd: (_e, info)=>{
+            const moved = Math.abs(info.offset.y);
+            if (moved < 6) {
+                applyPeek(!peeked);
+                return;
+            } // a tap on the grip
+            const pos = y.get();
+            const next = info.velocity.y > 350 ? true : info.velocity.y < -350 ? false : pos > peekOffset * 0.42;
+            applyPeek(next);
         },
         role: "dialog",
         "aria-label": title,
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex justify-center pt-3 lg:hidden",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                    className: "h-1 rounded-full",
-                    style: {
-                        background: 'rgba(26,24,22,0.12)'
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                children: showHint && !peeked && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                    initial: {
+                        opacity: 0,
+                        y: 8
                     },
-                    animate: reduced ? {} : {
-                        width: [
-                            36,
-                            24,
-                            36
-                        ]
+                    animate: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    exit: {
+                        opacity: 0,
+                        y: 8
                     },
                     transition: {
-                        duration: 3,
-                        ease: 'easeInOut',
-                        repeat: Infinity,
-                        repeatDelay: 1
+                        duration: 0.4,
+                        ease: [
+                            0.22,
+                            1,
+                            0.36,
+                            1
+                        ]
                     },
-                    initial: {
-                        width: 36
-                    }
-                }, void 0, false, {
+                    className: "pointer-events-none absolute inset-x-0 -top-11 flex justify-center lg:hidden",
+                    "aria-hidden": true,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "font-inter inline-flex items-center gap-1.5 rounded-full px-3.5 py-2",
+                        style: {
+                            fontSize: 11,
+                            letterSpacing: '0.04em',
+                            color: '#FDFCF9',
+                            background: 'rgba(26,24,22,0.82)',
+                            backdropFilter: 'blur(8px)',
+                            boxShadow: '0 6px 20px rgba(26,24,22,0.28)'
+                        },
+                        children: [
+                            "Drag down to preview",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                                width: "12",
+                                height: "12",
+                                viewBox: "0 0 12 12",
+                                fill: "none",
+                                animate: reduced ? {} : {
+                                    y: [
+                                        0,
+                                        3,
+                                        0
+                                    ]
+                                },
+                                transition: {
+                                    duration: 1.4,
+                                    ease: 'easeInOut',
+                                    repeat: Infinity
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                    d: "M3 4.5L6 7.5L9 4.5",
+                                    stroke: "#FDFCF9",
+                                    strokeWidth: "1.3",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/builder/step-sheet.tsx",
+                                    lineNumber: 199,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/components/builder/step-sheet.tsx",
+                                lineNumber: 194,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 185,
+                        columnNumber: 13
+                    }, this)
+                }, "peek-hint", false, {
                     fileName: "[project]/components/builder/step-sheet.tsx",
-                    lineNumber: 58,
-                    columnNumber: 9
+                    lineNumber: 176,
+                    columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 57,
+                lineNumber: 174,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto overscroll-contain px-6 pt-5 pb-3 lg:px-8 lg:pt-8",
+                className: "flex flex-col items-center pt-3 pb-1 lg:hidden",
+                style: {
+                    cursor: 'grab',
+                    touchAction: 'none'
+                },
+                onPointerDown: startDrag,
+                role: "button",
+                tabIndex: 0,
+                "aria-label": peeked ? 'Pull up to keep editing' : 'Pull down to see your invitation',
+                "aria-expanded": !peeked,
+                onKeyDown: (e)=>{
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        applyPeek(!peeked);
+                    }
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "h-1 rounded-full",
+                        style: {
+                            background: 'rgba(26,24,22,0.16)'
+                        },
+                        animate: reduced || peeked ? {
+                            width: 36
+                        } : {
+                            width: [
+                                36,
+                                24,
+                                36
+                            ]
+                        },
+                        transition: {
+                            duration: 3,
+                            ease: 'easeInOut',
+                            repeat: Infinity,
+                            repeatDelay: 1
+                        },
+                        initial: {
+                            width: 36
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 217,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
+                        className: "font-inter uppercase mt-2",
+                        style: {
+                            fontSize: 8.5,
+                            letterSpacing: '0.16em',
+                            color: 'rgba(26,24,22,0.4)'
+                        },
+                        animate: {
+                            opacity: peeked ? 1 : 0,
+                            height: peeked ? 'auto' : 0
+                        },
+                        transition: {
+                            duration: 0.25
+                        },
+                        children: "Pull up to keep editing"
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 224,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/builder/step-sheet.tsx",
+                lineNumber: 207,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: scrollRef,
+                onScroll: updateScrollCue,
+                className: "relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8",
                 children: [
                     backHref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
@@ -398,58 +687,111 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                     strokeLinecap: "round"
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 243,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/builder/step-sheet.tsx",
-                                lineNumber: 75,
+                                lineNumber: 242,
                                 columnNumber: 13
                             }, this),
                             "Back"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 69,
+                        lineNumber: 236,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "font-cormorant font-light leading-tight",
                         style: {
-                            fontSize: 'clamp(1.7rem, 6vw, 2.1rem)',
+                            fontSize: 'clamp(1.6rem, 6vw, 2.1rem)',
                             color: '#1A1816',
                             letterSpacing: '-0.01em'
                         },
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 82,
+                        lineNumber: 249,
                         columnNumber: 9
                     }, this),
                     lede && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "font-inter mt-2 leading-relaxed",
+                        className: "font-inter mt-1.5 leading-relaxed",
                         style: {
-                            fontSize: 13,
+                            fontSize: 12.5,
                             color: 'rgba(26,24,22,0.55)'
                         },
                         children: lede
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 89,
+                        lineNumber: 256,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-6",
+                        className: "mt-5",
                         children: children
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 94,
+                        lineNumber: 261,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 67,
+                lineNumber: 234,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                className: "pointer-events-none absolute inset-x-0 flex justify-center",
+                style: {
+                    bottom: primaryLabel || laterLabel ? 92 : 8,
+                    height: 32,
+                    background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)'
+                },
+                animate: {
+                    opacity: moreBelow ? 1 : 0
+                },
+                transition: {
+                    duration: 0.3
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].svg, {
+                    width: "16",
+                    height: "16",
+                    viewBox: "0 0 16 16",
+                    fill: "none",
+                    className: "self-end mb-1",
+                    animate: reduced ? {} : {
+                        y: [
+                            0,
+                            3,
+                            0
+                        ]
+                    },
+                    transition: {
+                        duration: 1.6,
+                        ease: 'easeInOut',
+                        repeat: Infinity
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M4 6l4 4 4-4",
+                        stroke: "rgba(168,133,75,0.7)",
+                        strokeWidth: "1.4",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/components/builder/step-sheet.tsx",
+                        lineNumber: 277,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/components/builder/step-sheet.tsx",
+                    lineNumber: 272,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/components/builder/step-sheet.tsx",
+                lineNumber: 265,
                 columnNumber: 7
             }, this),
             (primaryLabel || laterLabel) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -497,29 +839,29 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                                             repeatCount: "indefinite"
                                         }, void 0, false, {
                                             fileName: "[project]/components/builder/step-sheet.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 306,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/builder/step-sheet.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 305,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/builder/step-sheet.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 304,
                                     columnNumber: 19
                                 }, this),
                                 "One moment…"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/builder/step-sheet.tsx",
-                            lineNumber: 119,
+                            lineNumber: 303,
                             columnNumber: 17
                         }, this) : primaryLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 103,
+                        lineNumber: 287,
                         columnNumber: 13
                     }, this),
                     laterLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -533,19 +875,19 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                         children: laterLabel
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 131,
+                        lineNumber: 315,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/builder/step-sheet.tsx",
-                lineNumber: 98,
+                lineNumber: 282,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/builder/step-sheet.tsx",
-        lineNumber: 38,
+        lineNumber: 137,
         columnNumber: 5
     }, this);
 }
@@ -650,10 +992,10 @@ function OpeningVideoPage({ params }) {
                 title: "Your opening film",
                 lede: "Guests see this first. Pick a mood or upload a clip from your day.",
                 primaryLabel: "Continue",
-                onPrimary: ()=>router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'music'}`),
+                onPrimary: ()=>router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'style'}`),
                 laterLabel: "No video",
-                onLater: ()=>router.push(`/builder/${inviteId}/music`),
-                backHref: `/builder/${inviteId}/style`,
+                onLater: ()=>router.push(`/builder/${inviteId}/style`),
+                backHref: `/builder/${inviteId}/names`,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-2 gap-3",

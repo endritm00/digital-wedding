@@ -2915,7 +2915,7 @@ function PillLink({ href, accent, children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 78,
+        lineNumber: 79,
         columnNumber: 5
     }, this);
 }
@@ -2953,7 +2953,7 @@ function OrnamentDivider() {
         }
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 114,
+        lineNumber: 115,
         columnNumber: 40
     }, this);
     if (t.layout === 'ethereal') return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2966,12 +2966,12 @@ function OrnamentDivider() {
             }
         }, void 0, false, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 116,
+            lineNumber: 117,
             columnNumber: 60
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 116,
+        lineNumber: 117,
         columnNumber: 5
     }, this);
     if (t.layout === 'paper') return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2986,12 +2986,12 @@ function OrnamentDivider() {
             }
         }, void 0, false, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 119,
+            lineNumber: 120,
             columnNumber: 60
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 119,
+        lineNumber: 120,
         columnNumber: 5
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3013,7 +3013,7 @@ function OrnamentDivider() {
                     strokeWidth: "0.75"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 124,
+                    lineNumber: 125,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -3026,7 +3026,7 @@ function OrnamentDivider() {
                     fillOpacity: "0.35"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 125,
+                    lineNumber: 126,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3039,7 +3039,7 @@ function OrnamentDivider() {
                     fill: "none"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 126,
+                    lineNumber: 127,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3050,7 +3050,7 @@ function OrnamentDivider() {
                     fillOpacity: "0.45"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 127,
+                    lineNumber: 128,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -3065,7 +3065,7 @@ function OrnamentDivider() {
                     fill: "none"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 128,
+                    lineNumber: 129,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -3078,7 +3078,7 @@ function OrnamentDivider() {
                     fillOpacity: "0.35"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 129,
+                    lineNumber: 130,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -3091,18 +3091,18 @@ function OrnamentDivider() {
                     strokeWidth: "0.75"
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 130,
+                    lineNumber: 131,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 123,
+            lineNumber: 124,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 122,
+        lineNumber: 123,
         columnNumber: 5
     }, this);
 }
@@ -3191,7 +3191,7 @@ function CountdownTimer({ eventDate }) {
                 children: "Counting Down"
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 184,
+                lineNumber: 185,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3230,12 +3230,12 @@ function CountdownTimer({ eventDate }) {
                                     children: String(value).padStart(2, '0')
                                 }, value, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 192,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 190,
+                                lineNumber: 191,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3249,24 +3249,24 @@ function CountdownTimer({ eventDate }) {
                                 children: label
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 203,
+                                lineNumber: 204,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, label, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 189,
+                        lineNumber: 190,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 187,
+                lineNumber: 188,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 177,
+        lineNumber: 178,
         columnNumber: 5
     }, this);
 }
@@ -3355,7 +3355,7 @@ function RsvpSection({ inviteId }) {
                 children: "Be Our Guest"
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 267,
+                lineNumber: 268,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3369,7 +3369,7 @@ function RsvpSection({ inviteId }) {
                 children: "Kindly let us know if you’ll be joining us"
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 270,
+                lineNumber: 271,
                 columnNumber: 7
             }, this),
             status === 'success' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -3399,7 +3399,7 @@ function RsvpSection({ inviteId }) {
                                 fill: hexA(t.accent, 0.05)
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 281,
+                                lineNumber: 282,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -3410,13 +3410,13 @@ function RsvpSection({ inviteId }) {
                                 strokeLinejoin: "round"
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 282,
+                                lineNumber: 283,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 280,
+                        lineNumber: 281,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3432,7 +3432,7 @@ function RsvpSection({ inviteId }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 284,
+                        lineNumber: 285,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3447,7 +3447,7 @@ function RsvpSection({ inviteId }) {
                         children: attendance === 'accept' ? "We can't wait to celebrate with you." : "We'll miss you, but thank you for letting us know."
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 287,
+                        lineNumber: 288,
                         columnNumber: 11
                     }, this),
                     attendance === 'accept' && rsvpCalUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3473,7 +3473,7 @@ function RsvpSection({ inviteId }) {
                                             strokeWidth: "0.9"
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 294,
+                                            lineNumber: 295,
                                             columnNumber: 87
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -3483,31 +3483,31 @@ function RsvpSection({ inviteId }) {
                                             strokeLinecap: "round"
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 294,
+                                            lineNumber: 295,
                                             columnNumber: 174
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 294,
+                                    lineNumber: 295,
                                     columnNumber: 15
                                 }, this),
                                 "Add to Calendar"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 293,
+                            lineNumber: 294,
                             columnNumber: 35
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 293,
+                        lineNumber: 294,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 275,
+                lineNumber: 276,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleSubmit,
@@ -3527,7 +3527,7 @@ function RsvpSection({ inviteId }) {
                         required: true
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 301,
+                        lineNumber: 302,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3555,12 +3555,12 @@ function RsvpSection({ inviteId }) {
                                 children: label
                             }, val, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 315,
+                                lineNumber: 316,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 313,
+                        lineNumber: 314,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -3576,7 +3576,7 @@ function RsvpSection({ inviteId }) {
                         onBlur: (e)=>focusOff(e.currentTarget)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 339,
+                        lineNumber: 340,
                         columnNumber: 11
                     }, this),
                     status === 'error' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3588,7 +3588,7 @@ function RsvpSection({ inviteId }) {
                         children: "Something went wrong — please try again."
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 350,
+                        lineNumber: 351,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -3608,19 +3608,19 @@ function RsvpSection({ inviteId }) {
                         children: status === 'submitting' ? 'Sending…' : 'Send RSVP'
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 355,
+                        lineNumber: 356,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 300,
+                lineNumber: 301,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 260,
+        lineNumber: 261,
         columnNumber: 5
     }, this);
 }
@@ -3706,7 +3706,7 @@ function SectionBlock({ section, index }) {
                     children: String(index + 1).padStart(2, '0')
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 410,
+                    lineNumber: 411,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3721,7 +3721,7 @@ function SectionBlock({ section, index }) {
                     children: children
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 414,
+                    lineNumber: 415,
                     columnNumber: 7
                 }, this),
                 ls.rule === 'bar' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3734,7 +3734,7 @@ function SectionBlock({ section, index }) {
                     }
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 417,
+                    lineNumber: 418,
                     columnNumber: 29
                 }, this),
                 ls.rule === 'hair' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3746,13 +3746,13 @@ function SectionBlock({ section, index }) {
                     }
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 418,
+                    lineNumber: 419,
                     columnNumber: 30
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 408,
+            lineNumber: 409,
             columnNumber: 5
         }, this);
     const Body = ({ children })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3766,7 +3766,7 @@ function SectionBlock({ section, index }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 423,
+            lineNumber: 424,
             columnNumber: 5
         }, this);
     let content = null;
@@ -3778,7 +3778,7 @@ function SectionBlock({ section, index }) {
                         children: "Our Story"
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 434,
+                        lineNumber: 435,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3794,14 +3794,14 @@ function SectionBlock({ section, index }) {
                         children: "“"
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 435,
+                        lineNumber: 436,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Body, {
                         children: cfg.text
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 436,
+                        lineNumber: 437,
                         columnNumber: 11
                     }, this)
                 ]
@@ -3827,7 +3827,7 @@ function SectionBlock({ section, index }) {
                             children: "The Day"
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 448,
+                            lineNumber: 449,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Timeline, {
@@ -3835,7 +3835,7 @@ function SectionBlock({ section, index }) {
                             t: t
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 449,
+                            lineNumber: 450,
                             columnNumber: 11
                         }, this),
                         !!cfg.notes && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3844,12 +3844,12 @@ function SectionBlock({ section, index }) {
                                 children: String(cfg.notes)
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 450,
+                                lineNumber: 451,
                                 columnNumber: 49
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 450,
+                            lineNumber: 451,
                             columnNumber: 27
                         }, this)
                     ]
@@ -3864,7 +3864,7 @@ function SectionBlock({ section, index }) {
                     t: t
                 }, void 0, false, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 458,
+                    lineNumber: 459,
                     columnNumber: 30
                 }, this) : null;
                 break;
@@ -3876,14 +3876,14 @@ function SectionBlock({ section, index }) {
                         children: "Photos"
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 465,
+                        lineNumber: 466,
                         columnNumber: 11
                     }, this),
                     cfg.note && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Body, {
                         children: cfg.note
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 466,
+                        lineNumber: 467,
                         columnNumber: 24
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3926,7 +3926,7 @@ function SectionBlock({ section, index }) {
                                                 strokeWidth: "1.2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 472,
+                                                lineNumber: 473,
                                                 columnNumber: 91
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3936,7 +3936,7 @@ function SectionBlock({ section, index }) {
                                                 fill: t.accent
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 472,
+                                                lineNumber: 473,
                                                 columnNumber: 176
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -3946,28 +3946,28 @@ function SectionBlock({ section, index }) {
                                                 fill: "none"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 472,
+                                                lineNumber: 473,
                                                 columnNumber: 226
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 472,
+                                        lineNumber: 473,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 471,
+                                    lineNumber: 472,
                                     columnNumber: 17
                                 }, this)
                             }, i, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 469,
+                                lineNumber: 470,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 467,
+                        lineNumber: 468,
                         columnNumber: 11
                     }, this)
                 ]
@@ -3980,7 +3980,7 @@ function SectionBlock({ section, index }) {
                         children: "Travel & Stay"
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 484,
+                        lineNumber: 485,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4007,12 +4007,12 @@ function SectionBlock({ section, index }) {
                                         fill: hexA(t.accent, 0.85)
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 487,
+                                        lineNumber: 488,
                                         columnNumber: 116
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 487,
+                                    lineNumber: 488,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4026,18 +4026,18 @@ function SectionBlock({ section, index }) {
                                     children: cfg.content
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 488,
+                                    lineNumber: 489,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 486,
+                            lineNumber: 487,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 485,
+                        lineNumber: 486,
                         columnNumber: 11
                     }, this)
                 ]
@@ -4053,14 +4053,14 @@ function SectionBlock({ section, index }) {
                             children: "Gifts"
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 500,
+                            lineNumber: 501,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Body, {
                             children: url ? giftText.replace(url, '').trim() || 'Your presence is the greatest gift — but if you wish to give, our registry is here.' : giftText
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 501,
+                            lineNumber: 502,
                             columnNumber: 11
                         }, this),
                         url && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4086,7 +4086,7 @@ function SectionBlock({ section, index }) {
                                                 strokeWidth: "0.9"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 505,
+                                                lineNumber: 506,
                                                 columnNumber: 89
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -4097,25 +4097,25 @@ function SectionBlock({ section, index }) {
                                                 fill: "none"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 505,
+                                                lineNumber: 506,
                                                 columnNumber: 178
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 505,
+                                        lineNumber: 506,
                                         columnNumber: 17
                                     }, this),
                                     "View Gift List"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 504,
+                                lineNumber: 505,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 503,
+                            lineNumber: 504,
                             columnNumber: 13
                         }, this)
                     ]
@@ -4129,7 +4129,7 @@ function SectionBlock({ section, index }) {
                         children: "What to Wear"
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 518,
+                        lineNumber: 519,
                         columnNumber: 11
                     }, this),
                     cfg.code && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4144,14 +4144,14 @@ function SectionBlock({ section, index }) {
                         children: cfg.code
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 520,
+                        lineNumber: 521,
                         columnNumber: 13
                     }, this),
                     cfg.notes && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Body, {
                         children: cfg.notes
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 527,
+                        lineNumber: 528,
                         columnNumber: 25
                     }, this)
                 ]
@@ -4166,7 +4166,7 @@ function SectionBlock({ section, index }) {
                             children: "Questions"
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 536,
+                            lineNumber: 537,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4189,7 +4189,7 @@ function SectionBlock({ section, index }) {
                                             children: item.q
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 541,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4203,18 +4203,18 @@ function SectionBlock({ section, index }) {
                                             children: item.a
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 541,
+                                            lineNumber: 542,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 539,
+                                    lineNumber: 540,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 537,
+                            lineNumber: 538,
                             columnNumber: 11
                         }, this)
                     ]
@@ -4226,7 +4226,7 @@ function SectionBlock({ section, index }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 551,
+                lineNumber: 552,
                 columnNumber: 17
             }, this);
     }
@@ -4270,7 +4270,7 @@ function SectionBlock({ section, index }) {
         children: content
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 557,
+        lineNumber: 558,
         columnNumber: 5
     }, this);
 }
@@ -4292,7 +4292,7 @@ function Timeline({ items, t }) {
                 "aria-hidden": true
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 585,
+                lineNumber: 586,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4317,12 +4317,12 @@ function Timeline({ items, t }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 590,
+                                    lineNumber: 591,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 589,
+                                lineNumber: 590,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4336,7 +4336,7 @@ function Timeline({ items, t }) {
                                 children: it.label
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 592,
+                                lineNumber: 593,
                                 columnNumber: 13
                             }, this),
                             it.time && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4349,7 +4349,7 @@ function Timeline({ items, t }) {
                                 children: it.time
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 593,
+                                lineNumber: 594,
                                 columnNumber: 25
                             }, this),
                             it.venue && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4363,24 +4363,24 @@ function Timeline({ items, t }) {
                                 children: it.venue
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 594,
+                                lineNumber: 595,
                                 columnNumber: 26
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 588,
+                        lineNumber: 589,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 586,
+                lineNumber: 587,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 584,
+        lineNumber: 585,
         columnNumber: 5
     }, this);
 }
@@ -4403,7 +4403,7 @@ function VenueBlock({ cfg, t }) {
                 children: cfg.name || 'The Venue'
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 609,
+                lineNumber: 610,
                 columnNumber: 7
             }, this),
             !!cfg.address && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4417,7 +4417,7 @@ function VenueBlock({ cfg, t }) {
                 children: cfg.address
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 612,
+                lineNumber: 613,
                 columnNumber: 25
             }, this),
             !!cfg.details && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4431,7 +4431,7 @@ function VenueBlock({ cfg, t }) {
                 children: cfg.details
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 613,
+                lineNumber: 614,
                 columnNumber: 25
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4455,7 +4455,7 @@ function VenueBlock({ cfg, t }) {
                                         fill: hexA(t.accent, 0.15)
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 617,
+                                        lineNumber: 618,
                                         columnNumber: 85
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -4465,20 +4465,20 @@ function VenueBlock({ cfg, t }) {
                                         fill: t.accent
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 617,
+                                        lineNumber: 618,
                                         columnNumber: 228
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 617,
+                                lineNumber: 618,
                                 columnNumber: 13
                             }, this),
                             "Open in Maps"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 616,
+                        lineNumber: 617,
                         columnNumber: 11
                     }, this),
                     calUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PillLink, {
@@ -4502,7 +4502,7 @@ function VenueBlock({ cfg, t }) {
                                         strokeWidth: "0.9"
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 623,
+                                        lineNumber: 624,
                                         columnNumber: 85
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -4512,26 +4512,26 @@ function VenueBlock({ cfg, t }) {
                                         strokeLinecap: "round"
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 623,
+                                        lineNumber: 624,
                                         columnNumber: 172
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 623,
+                                lineNumber: 624,
                                 columnNumber: 13
                             }, this),
                             "Add to Calendar"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 622,
+                        lineNumber: 623,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 614,
+                lineNumber: 615,
                 columnNumber: 7
             }, this)
         ]
@@ -4601,7 +4601,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                 reduced: !!reduced
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 703,
+                lineNumber: 704,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4611,7 +4611,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 713,
+                lineNumber: 714,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -4655,7 +4655,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                         children: familiesNote
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 733,
+                        lineNumber: 734,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h1, {
@@ -4680,7 +4680,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                         children: names
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 737,
+                        lineNumber: 738,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4692,7 +4692,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 747,
+                        lineNumber: 748,
                         columnNumber: 9
                     }, this),
                     date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4705,7 +4705,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                         children: date
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 750,
+                        lineNumber: 751,
                         columnNumber: 11
                     }, this),
                     invite.venue_name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4719,7 +4719,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                         children: invite.venue_name
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 755,
+                        lineNumber: 756,
                         columnNumber: 11
                     }, this),
                     musicSrc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4765,12 +4765,12 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                                             }
                                         }, i, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 778,
+                                            lineNumber: 779,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 776,
+                                    lineNumber: 777,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4778,7 +4778,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                                     children: track?.title ?? 'Music'
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 786,
+                                    lineNumber: 787,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -4795,12 +4795,12 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                                         fill: th.accent
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 791,
+                                        lineNumber: 792,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 790,
+                                    lineNumber: 791,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4808,20 +4808,20 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                                     children: "Play music"
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 793,
+                                    lineNumber: 794,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 761,
+                        lineNumber: 762,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 718,
+                lineNumber: 719,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -4850,7 +4850,7 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                             children: "Scroll"
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 809,
+                            lineNumber: 810,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -4879,34 +4879,34 @@ function OpeningHero({ invite, opening, media, musicRef }) {
                                     strokeLinecap: "round"
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 817,
+                                    lineNumber: 818,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 816,
+                                lineNumber: 817,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 812,
+                            lineNumber: 813,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                    lineNumber: 802,
+                    lineNumber: 803,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 800,
+                lineNumber: 801,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 702,
+        lineNumber: 703,
         columnNumber: 5
     }, this);
 }
@@ -5036,7 +5036,7 @@ function PreviewPage() {
                                 children: "Draft preview"
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 936,
+                                lineNumber: 937,
                                 columnNumber: 9
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5069,12 +5069,12 @@ function PreviewPage() {
                                                         strokeLinejoin: "round"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                        lineNumber: 956,
+                                                        lineNumber: 957,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                    lineNumber: 955,
+                                                    lineNumber: 956,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Copied!"
@@ -5098,7 +5098,7 @@ function PreviewPage() {
                                                             strokeWidth: "1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                            lineNumber: 963,
+                                                            lineNumber: 964,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -5108,13 +5108,13 @@ function PreviewPage() {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                            lineNumber: 964,
+                                                            lineNumber: 965,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                    lineNumber: 962,
+                                                    lineNumber: 963,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Copy link"
@@ -5122,7 +5122,7 @@ function PreviewPage() {
                                         }, void 0, true)
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 941,
+                                        lineNumber: 942,
                                         columnNumber: 11
                                     }, this),
                                     skipOpener ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5140,7 +5140,7 @@ function PreviewPage() {
                                         children: "← Editing"
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 972,
+                                        lineNumber: 973,
                                         columnNumber: 13
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: `/builder/${id}/review`,
@@ -5153,19 +5153,19 @@ function PreviewPage() {
                                         children: "Edit →"
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 981,
+                                        lineNumber: 982,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 940,
+                                lineNumber: 941,
                                 columnNumber: 9
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 932,
+                        lineNumber: 933,
                         columnNumber: 7
                     }, this),
                     state === 'loading' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5188,7 +5188,7 @@ function PreviewPage() {
                                             strokeWidth: "2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 997,
+                                            lineNumber: 998,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -5205,18 +5205,18 @@ function PreviewPage() {
                                                 repeatCount: "indefinite"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 999,
+                                                lineNumber: 1000,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                            lineNumber: 998,
+                                            lineNumber: 999,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 996,
+                                    lineNumber: 997,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5229,18 +5229,18 @@ function PreviewPage() {
                                     children: "Preparing your invitation…"
                                 }, void 0, false, {
                                     fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                    lineNumber: 1002,
+                                    lineNumber: 1003,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 995,
+                            lineNumber: 996,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 994,
+                        lineNumber: 995,
                         columnNumber: 9
                     }, this),
                     state === 'error' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5255,7 +5255,7 @@ function PreviewPage() {
                                 children: "Couldn’t load the invitation"
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1012,
+                                lineNumber: 1013,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5267,7 +5267,7 @@ function PreviewPage() {
                                 children: "Make sure you’re on the same device you used to create it, or go back and try again."
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1015,
+                                lineNumber: 1016,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5281,13 +5281,13 @@ function PreviewPage() {
                                 children: "Back to builder"
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1018,
+                                lineNumber: 1019,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 1011,
+                        lineNumber: 1012,
                         columnNumber: 9
                     }, this),
                     state === 'ready' && invite && !opened && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -5327,12 +5327,12 @@ function PreviewPage() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                            lineNumber: 1035,
+                            lineNumber: 1036,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 1030,
+                        lineNumber: 1031,
                         columnNumber: 9
                     }, this),
                     state === 'ready' && invite && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -5345,7 +5345,7 @@ function PreviewPage() {
                                 musicRef: musicRef
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1055,
+                                lineNumber: 1056,
                                 columnNumber: 11
                             }, this),
                             contentSections.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5360,7 +5360,7 @@ function PreviewPage() {
                                         children: [
                                             i > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 1068,
+                                                lineNumber: 1069,
                                                 columnNumber: 31
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionBlock, {
@@ -5368,19 +5368,19 @@ function PreviewPage() {
                                                 index: i
                                             }, void 0, false, {
                                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                                lineNumber: 1069,
+                                                lineNumber: 1070,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, sec.id, true, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1067,
+                                        lineNumber: 1068,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1059,
+                                lineNumber: 1060,
                                 columnNumber: 13
                             }, this),
                             invite.event_date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5390,20 +5390,20 @@ function PreviewPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1079,
+                                        lineNumber: 1080,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CountdownTimer, {
                                         eventDate: invite.event_date
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1080,
+                                        lineNumber: 1081,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1078,
+                                lineNumber: 1079,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5413,20 +5413,20 @@ function PreviewPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1086,
+                                        lineNumber: 1087,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(RsvpSection, {
                                         inviteId: id
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1087,
+                                        lineNumber: 1088,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1085,
+                                lineNumber: 1086,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -5437,7 +5437,7 @@ function PreviewPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1092,
+                                        lineNumber: 1093,
                                         columnNumber: 13
                                     }, this),
                                     (nameA || nameB) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5452,7 +5452,7 @@ function PreviewPage() {
                                         children: nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1094,
+                                        lineNumber: 1095,
                                         columnNumber: 15
                                     }, this),
                                     date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5464,7 +5464,7 @@ function PreviewPage() {
                                         children: date
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1099,
+                                        lineNumber: 1100,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5476,7 +5476,7 @@ function PreviewPage() {
                                         children: "We can’t wait to celebrate with you."
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1103,
+                                        lineNumber: 1104,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5490,35 +5490,35 @@ function PreviewPage() {
                                         children: "Made with Digital Invite"
                                     }, void 0, false, {
                                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                        lineNumber: 1106,
+                                        lineNumber: 1107,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                                lineNumber: 1091,
+                                lineNumber: 1092,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                        lineNumber: 1054,
+                        lineNumber: 1055,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/invite/[id]/preview/page.tsx",
-                lineNumber: 930,
+                lineNumber: 931,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/invite/[id]/preview/page.tsx",
-            lineNumber: 929,
+            lineNumber: 930,
             columnNumber: 5
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/invite/[id]/preview/page.tsx",
-        lineNumber: 928,
+        lineNumber: 929,
         columnNumber: 4
     }, this);
 }

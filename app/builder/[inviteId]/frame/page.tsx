@@ -31,7 +31,7 @@ export default function FramePage({ params }: { params: Promise<{ inviteId: stri
 
   // No custom film (or it was removed) → this step doesn't apply; skip ahead.
   useEffect(() => {
-    if (!loading && !cfg.video_asset_id) router.replace(`/builder/${inviteId}/music`)
+    if (!loading && !cfg.video_asset_id) router.replace(`/builder/${inviteId}/style`)
   }, [loading, cfg.video_asset_id, inviteId, router])
 
   const mode: FilmFit = cfg.video_fit === 'crop' ? 'crop' : 'blend'
@@ -48,7 +48,7 @@ export default function FramePage({ params }: { params: Promise<{ inviteId: stri
         title="Frame your film"
         lede="Your film is taller or wider than some screens. Choose how it should sit behind your invitation."
         primaryLabel="Continue"
-        onPrimary={() => router.push(`/builder/${inviteId}/music`)}
+        onPrimary={() => router.push(`/builder/${inviteId}/style`)}
         backHref={`/builder/${inviteId}/opening-video`}
       >
         <div className="flex flex-col gap-3">

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useBuilder } from './builder-provider'
 import { useFilmVideo } from '@/lib/video/use-film-video'
+import { cardLegibility } from '@/lib/invite/legibility'
 import {
   VIDEO_PRESETS, MUSIC_TRACKS, SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
@@ -53,6 +54,8 @@ export function InvitePreview() {
   const headingFont = HEADING_FONT_MAP[config.heading_font ?? ''] ?? DEFAULT_HEADING_FONT
   const headingStyle = headingFont.italic ? 'italic' : 'normal'
   const darkPaper = !!palette.dark
+  // Universal feathered-glass legibility (matches the public preview hero).
+  const leg = cardLegibility({ paper: palette.paper, dark: darkPaper })
 
   const nameA = (config.name_a ?? '').trim()
   const nameB = (config.name_b ?? '').trim()
@@ -226,19 +229,13 @@ export function InvitePreview() {
       {/* the invitation card (+ section chips) — top-anchored & compact on mobile
           so it's never hidden behind the sheet; centered on desktop */}
       <div className="absolute inset-0 flex flex-col items-center px-6 pt-[4dvh] lg:justify-center lg:pt-0 lg:px-7 lg:pb-[14dvh]">
-        <div
-          className="w-full max-w-[320px] px-7 py-8 lg:max-w-[400px] lg:px-8 lg:py-12 text-center"
-          style={{
-            background: hexA(palette.paper, darkPaper ? 0.9 : 0.93),
-            backdropFilter: 'blur(16px)',
-            borderRadius: 18,
-            boxShadow: '0 24px 80px rgba(26,24,22,0.22), 0 4px 16px rgba(26,24,22,0.08)',
-            border: `1px solid ${palette.accentSoft}`,
-          }}
-        >
+        <div className="relative w-full max-w-[320px] px-9 py-8 lg:max-w-[400px] lg:px-9 lg:py-12 text-center">
+          {/* feathered glass — behind the text, dissolves into the film */}
+          <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
+
           <span
             className="font-inter uppercase"
-            style={{ fontSize: 9, letterSpacing: '0.3em', color: darkPaper ? 'rgba(236,234,227,0.5)' : 'rgba(26,24,22,0.34)' }}
+            style={{ fontSize: 9, letterSpacing: '0.3em', color: darkPaper ? 'rgba(236,234,227,0.72)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
           >
             Together with their families
           </span>
@@ -257,9 +254,10 @@ export function InvitePreview() {
                   fontSize: `calc(clamp(1.7rem, 7.2vw, 2.9rem) * ${headingFont.scale})`,
                   lineHeight: 1.05,
                   color: isPlaceholder
-                    ? (darkPaper ? 'rgba(236,234,227,0.3)' : 'rgba(26,24,22,0.26)')
+                    ? (darkPaper ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.4)')
                     : palette.accent,
                   letterSpacing: '0.01em',
+                  textShadow: leg.textShadow,
                 }}
               >
                 {names}
@@ -280,8 +278,9 @@ export function InvitePreview() {
               style={{
                 fontSize: 18,
                 color: date
-                  ? (darkPaper ? 'rgba(236,234,227,0.72)' : 'rgba(26,24,22,0.72)')
-                  : (darkPaper ? 'rgba(236,234,227,0.3)' : 'rgba(26,24,22,0.24)'),
+                  ? (darkPaper ? 'rgba(236,234,227,0.9)' : 'rgba(26,24,22,0.82)')
+                  : (darkPaper ? 'rgba(236,234,227,0.42)' : 'rgba(26,24,22,0.36)'),
+                textShadow: leg.textShadow,
               }}
             >
               {date ?? 'Your wedding day'}
@@ -291,7 +290,7 @@ export function InvitePreview() {
           {invite?.venue_name ? (
             <p
               className="font-inter mt-2"
-              style={{ fontSize: 11, letterSpacing: '0.08em', color: darkPaper ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.45)' }}
+              style={{ fontSize: 11, letterSpacing: '0.08em', color: darkPaper ? 'rgba(236,234,227,0.66)' : 'rgba(26,24,22,0.6)', textShadow: leg.textShadow }}
             >
               {invite.venue_name}
             </p>

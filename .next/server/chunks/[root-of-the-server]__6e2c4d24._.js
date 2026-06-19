@@ -110,7 +110,8 @@ function createServiceClient() {
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "resolveInviteAccess": (()=>resolveInviteAccess)
+    "resolveInviteAccess": (()=>resolveInviteAccess),
+    "resolveInviteWriteAccess": (()=>resolveInviteWriteAccess)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/server.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$service$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/service.ts [app-route] (ecmascript)");
@@ -151,6 +152,44 @@ async function resolveInviteAccess(inviteId, headers) {
         ok: true,
         invite: data,
         via: 'claim_token'
+    };
+}
+async function resolveInviteWriteAccess(inviteId, headers) {
+    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+        const { data, error } = await supabase.from('invites').select('*').eq('id', inviteId).single();
+        if (error || !data) return {
+            ok: false,
+            status: 404,
+            message: 'invite_not_found'
+        };
+        const via = data.owner_id === user.id ? 'owner' : 'staff';
+        return {
+            ok: true,
+            invite: data,
+            via,
+            userId: user.id
+        };
+    }
+    const claimToken = headers.get('x-claim-token');
+    if (!claimToken) return {
+        ok: false,
+        status: 401,
+        message: 'unauthorized'
+    };
+    const service = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$service$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createServiceClient"])();
+    const { data, error } = await service.from('invites').select('*').eq('id', inviteId).eq('claim_token', claimToken).single();
+    if (error || !data) return {
+        ok: false,
+        status: 403,
+        message: 'forbidden'
+    };
+    return {
+        ok: true,
+        invite: data,
+        via: 'claim_token',
+        userId: null
     };
 }
 }}),

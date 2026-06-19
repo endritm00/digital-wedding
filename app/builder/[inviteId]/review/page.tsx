@@ -1,12 +1,12 @@
 'use client'
 
-import { use, useEffect, useRef, useState } from 'react'
+import { use, useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
-import { api, euros, lineItemLabel } from '@/lib/builder/api'
+import { api, euros, lineItemLabel, ApiError } from '@/lib/builder/api'
 import { SECTION_LABELS } from '@/lib/builder/presets'
 
 function OrnamentLine() {
@@ -22,13 +22,19 @@ function OrnamentLine() {
 
 export default function ReviewPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
-  const { invite, quote, plan, sections, flushDraft } = useBuilder()
+  const { invite, quote, plan, sections, flushDraft, patchDraft } = useBuilder()
   const router = useRouter()
   const reduced = useReducedMotion()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const pulsed = useRef(false)
   const [pulseTotal, setPulseTotal] = useState(false)
+
+  // Email gate — we must have the buyer's email before payment so we can send the
+  // RSVP-management link afterward. Shown only if they skipped the save step.
+  const [needEmail, setNeedEmail] = useState(false)
+  const [email, setEmail] = useState('')
+  const [savingEmail, setSavingEmail] = useState(false)
 
   useEffect(() => { void flushDraft() }, [flushDraft])
 
@@ -41,16 +47,48 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
     }
   }, [quote])
 
-  const handleCheckout = async () => {
+  // Login-free purchase: redirect straight to Stripe (the checkout API accepts
+  // the anonymous draft's claim token). The manage link is emailed AFTER payment.
+  const proceedToCheckout = useCallback(async () => {
     setBusy(true)
     setError(null)
     try {
       await flushDraft()
       const { url } = await api.checkout(inviteId)
       window.location.href = url
-    } catch {
+    } catch (e) {
+      // The API guards that we have the buyer's email — surface the email field.
+      if (e instanceof ApiError && e.code === 'email_required') {
+        setBusy(false)
+        setEmail(invite?.draft_email ?? '')
+        setNeedEmail(true)
+        return
+      }
       setError('Something went wrong — please try again.')
       setBusy(false)
+    }
+  }, [inviteId, flushDraft, invite?.draft_email])
+
+  // "Pay & publish": go straight to payment if we already have an email; otherwise
+  // ask for it first (it's the one thing we must have to email the RSVP link later).
+  const handleCheckout = () => {
+    setError(null)
+    if (invite?.draft_email) { void proceedToCheckout(); return }
+    setEmail(invite?.draft_email ?? '')
+    setNeedEmail(true)
+  }
+
+  const saveEmailAndPay = async () => {
+    const value = email.trim()
+    if (!value.includes('@')) { setError('Please enter a valid email.'); return }
+    setSavingEmail(true)
+    setError(null)
+    try {
+      patchDraft({ draft_email: value })
+      await flushDraft()
+      await proceedToCheckout()
+    } finally {
+      setSavingEmail(false)
     }
   }
 
@@ -188,6 +226,44 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
             </span>
           )}
         </motion.button>
+
+        {/* Email gate — collected before payment so the RSVP link can be emailed after */}
+        <AnimatePresence>
+          {needEmail && (
+            <motion.div
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+            >
+              <div className="mt-3 rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(168,133,75,0.25)' }}>
+                <p className="font-inter leading-relaxed" style={{ fontSize: 11.5, color: 'rgba(26,24,22,0.6)' }}>
+                  What&rsquo;s your email? After payment we&rsquo;ll send you a private link to see who&rsquo;s coming.
+                </p>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                  autoComplete="email"
+                  inputMode="email"
+                  autoFocus
+                  className="mt-3 w-full rounded-xl px-4 py-3 font-inter outline-none"
+                  style={{ fontSize: 14, color: '#1A1816', background: 'rgba(26,24,22,0.03)', border: '1px solid rgba(26,24,22,0.12)' }}
+                  onKeyDown={(e) => { if (e.key === 'Enter') void saveEmailAndPay() }}
+                />
+                <button
+                  type="button"
+                  onClick={() => void saveEmailAndPay()}
+                  disabled={savingEmail || busy}
+                  className="mt-2.5 w-full rounded-full py-3 font-inter disabled:opacity-50"
+                  style={{ background: '#A8854B', color: '#FDFCF9', fontSize: 12.5, letterSpacing: '0.04em' }}
+                >
+                  {savingEmail || busy ? 'One moment…' : quote ? `Continue to payment — ${euros(quote.amount_cents)}` : 'Continue to payment'}
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {error && (

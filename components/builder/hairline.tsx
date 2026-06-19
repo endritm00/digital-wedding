@@ -6,8 +6,8 @@ import { useBuilder } from './builder-provider'
 
 export const STEPS = [
   { slug: 'names',         name: 'Your names' },
-  { slug: 'style',         name: 'Your style' },
   { slug: 'opening-video', name: 'Your film' },
+  { slug: 'style',         name: 'Your style' },
   { slug: 'music',         name: 'Your music' },
   { slug: 'save',          name: 'Keep it safe' },
   { slug: 'sections',      name: 'Your pages' },
@@ -91,7 +91,9 @@ export function Hairline({ step }: { step: StepSlug }) {
             )}
           </AnimatePresence>
 
-          {invite?.id && (
+          {/* Preview lives on the style step: the film is already chosen, so this
+              is where you check the lettering/palette against it. Hidden elsewhere. */}
+          {invite?.id && step === 'style' && (
             <Link
               href={`/invite/${invite.id}/preview?skipOpener=1`}
               className="flex items-center gap-1.5 rounded-full px-3 py-1.5"

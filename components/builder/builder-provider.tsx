@@ -102,9 +102,24 @@ export function BuilderProvider({
           api.listMedia(inviteId).catch(() => [] as MediaAsset[]),
         ])
         if (cancelled) return
-        setInvite(inv)
+
+        // The builder uses a single default plan — there's no plan-picker step.
+        // Drafts are created without a plan_id, so the quote/checkout would fail
+        // with `no_plan_selected`. Persist the default plan the first time we load
+        // a planless draft so pricing and checkout work (self-heals old drafts too).
+        const resolvedPlan = plans.find((p) => p.id === inv.plan_id) ?? plans[0] ?? null
+        if (!inv.plan_id && resolvedPlan) {
+          try {
+            const updated = await api.patchInvite(inviteId, { plan_id: resolvedPlan.id })
+            if (cancelled) return
+            setInvite(updated)
+          } catch { setInvite(inv) }
+        } else {
+          setInvite(inv)
+        }
+
         setSections(secs)
-        setPlan(plans.find((p) => p.id === inv.plan_id) ?? plans[0] ?? null)
+        setPlan(resolvedPlan)
         setTheme(themes.find((t) => t.id === inv.theme_id) ?? null)
         setExtrasCatalog(catalog)
         setInviteExtras(ext)
@@ -206,9 +221,18 @@ export function BuilderProvider({
 
   // ── content sections ───────────────────────────────────────────────────────
   const addContentSection = useCallback(async (type: string) => {
-    const created = await api.addSection(inviteId, type)
-    setSections((prev) => [...prev, created])
-    void refreshQuote()
+    // Optimistic: flip the card instantly with a temp placeholder, then reconcile
+    // with the server row (or roll back on failure). Mirrors removeContentSection.
+    const tempId = `temp-${type}-${Date.now()}`
+    const optimistic = { id: tempId, type, position: 9999, config: {} } as Section
+    setSections((prev) => [...prev, optimistic])
+    try {
+      const created = await api.addSection(inviteId, type)
+      setSections((prev) => prev.map((s) => (s.id === tempId ? created : s)))
+      void refreshQuote()
+    } catch {
+      setSections((prev) => prev.filter((s) => s.id !== tempId))  // roll back
+    }
   }, [inviteId, refreshQuote])
 
   const removeContentSection = useCallback(async (type: string) => {

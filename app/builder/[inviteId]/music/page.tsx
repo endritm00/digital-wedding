@@ -133,7 +133,7 @@ export default function MusicPage({ params }: { params: Promise<{ inviteId: stri
           setOpening({ music_track: null, music_asset_id: null })
           router.push(`/builder/${inviteId}/save`)
         }}
-        backHref={`/builder/${inviteId}/opening-video`}
+        backHref={`/builder/${inviteId}/style`}
       >
         <div className="flex flex-col gap-2">
           {MUSIC_TRACKS.map((track) => {

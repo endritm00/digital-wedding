@@ -81,7 +81,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
                 <circle cx="6" cy="6" r="5.5" stroke="#A8854B" strokeWidth="0.8"/>
                 <path d="M3.5 6l1.5 1.5 3.5-3" stroke="#A8854B" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              Link sent! Check your inbox.
+              Saved! We'll email your private link the moment you publish.
             </span>
           )}
         </label>
@@ -90,7 +90,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
           className="font-inter mt-4 leading-relaxed"
           style={{ fontSize: 11, color: 'rgba(26,24,22,0.38)' }}
         >
-          No password needed — no spam, ever. We&rsquo;ll send a secure link so you can return from any device.
+          We&rsquo;ll send a secure link so you can return from any device.
         </p>
       </StepSheet>
     </>

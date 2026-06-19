@@ -1,0 +1,635 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Endrit\\Desktop\\Digital Invite\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--last-failed"
+    ],
+    "configFile": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\playwright.config.ts",
+    "rootDir": "C:/Users/Endrit/Desktop/Digital Invite/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Endrit/Desktop/Digital Invite/test-results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "C:/Users/Endrit/Desktop/Digital Invite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "C:/Users/Endrit/Desktop/Digital Invite/test-results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "C:/Users/Endrit/Desktop/Digital Invite/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "test-results/html",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "journeys.spec.ts",
+      "file": "journeys.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "04 Jen — wanders, browser-back, refreshes mid-flow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 36366,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite 626e79ed\n"
+                    },
+                    {
+                      "text": "   · refreshed on style step (testing persistence, not as a fix)\n"
+                    },
+                    {
+                      "text": "   · refresh kept us on the style step\n"
+                    },
+                    {
+                      "text": "   · names persisted after refresh + back (autosave OK)\n"
+                    },
+                    {
+                      "text": "   · price resolved: \"Pay & publish — €49\"\n"
+                    },
+                    {
+                      "text": "   · price still resolves after refresh + heavy back-navigation\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:10:54.000Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-desktop\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-2c3f143ebcabf831587e",
+          "file": "journeys.spec.ts",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "04 Jen — wanders, browser-back, refreshes mid-flow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18959,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite 1b4244da\n"
+                    },
+                    {
+                      "text": "   · refreshed on style step (testing persistence, not as a fix)\n"
+                    },
+                    {
+                      "text": "   · refresh kept us on the style step\n"
+                    },
+                    {
+                      "text": "   · names persisted after refresh + back (autosave OK)\n"
+                    },
+                    {
+                      "text": "   · price resolved: \"Pay & publish — €49\"\n"
+                    },
+                    {
+                      "text": "   · price still resolves after refresh + heavy back-navigation\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:11:34.483Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-04-Jen-—-wanders-browser-back-refreshes-mid-flow-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-28c31c37189a090fe564",
+          "file": "journeys.spec.ts",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "05 Emma — complete flow + real test-card payment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 45596,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite ef3e691f\n"
+                    },
+                    {
+                      "text": "   · price resolved: \"Pay & publish — €49\"\n"
+                    },
+                    {
+                      "text": "   · reached Stripe hosted checkout\n"
+                    },
+                    {
+                      "text": "   · redirected back to success page\n"
+                    },
+                    {
+                      "text": "   · SUCCESS: invitation published & live screen shown\n"
+                    },
+                    {
+                      "text": "   · manage/RSVP link surfaced on success screen\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:11:55.192Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-05-Emma-—-complete-flow-real-test-card-payment-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-fe3aabbe357dd682e894",
+          "file": "journeys.spec.ts",
+          "line": 219,
+          "column": 1
+        },
+        {
+          "title": "07 Nicole — previews + uploads music, explores Photos page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 45786,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite 7967df72\n"
+                    },
+                    {
+                      "text": "   · previewed a music track\n"
+                    },
+                    {
+                      "text": "   · attempting custom music upload\n"
+                    },
+                    {
+                      "text": "   ⚠ FRICTION: custom music upload: no confirmation within 25s\n"
+                    },
+                    {
+                      "text": "   · Photos page exposed an uploader\n"
+                    },
+                    {
+                      "text": "   · price resolved: \"Pay & publish — €49\"\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:12:43.733Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-07-Nicole-—-previ-badc3--music-explores-Photos-page-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-3180fa8ef9d27581be25",
+          "file": "journeys.spec.ts",
+          "line": 285,
+          "column": 1
+        },
+        {
+          "title": "08 Beth — mobile bottom-sheet & peek gesture",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 29738,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog').last().getByRole('button', { name: /Continue/ })\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter disabled:opacity-40\">Continue</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog').last().getByRole('button', { name: /Continue/ })\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter disabled:opacity-40\">Continue</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at primary (C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\helpers.ts:104:51)\n    at C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts:364:3",
+                    "location": {
+                      "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\helpers.ts",
+                      "column": 51,
+                      "line": 104
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mhelpers.ts:104\n\n\u001b[0m \u001b[90m 102 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m primary(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m\u001b[33m,\u001b[39m name\u001b[33m:\u001b[39m string \u001b[33m|\u001b[39m \u001b[33mRegExp\u001b[39m) {\n \u001b[90m 103 |\u001b[39m   \u001b[36mawait\u001b[39m settle(page)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 104 |\u001b[39m   \u001b[36mawait\u001b[39m sheet(page)\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name })\u001b[33m.\u001b[39mclick()\n \u001b[90m     |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 105 |\u001b[39m }\n \u001b[90m 106 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m later(page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m\u001b[33m,\u001b[39m name\u001b[33m:\u001b[39m string \u001b[33m|\u001b[39m \u001b[33mRegExp\u001b[39m) {\n \u001b[90m 107 |\u001b[39m   \u001b[36mawait\u001b[39m settle(page)\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\helpers.ts",
+                        "column": 51,
+                        "line": 104
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog').last().getByRole('button', { name: /Continue/ })\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter disabled:opacity-40\">Continue</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n   at helpers.ts:104\n\n  102 | export async function primary(page: Page, name: string | RegExp) {\n  103 |   await settle(page)\n> 104 |   await sheet(page).getByRole('button', { name }).click()\n      |                                                   ^\n  105 | }\n  106 | export async function later(page: Page, name: string | RegExp) {\n  107 |   await settle(page)\n    at primary (C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\helpers.ts:104:51)\n    at C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts:364:3"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite ff1dd523\n"
+                    },
+                    {
+                      "text": "   · performed drag-down peek gesture on mobile\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:13:31.839Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\helpers.ts",
+                    "column": 51,
+                    "line": 104
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-183c0f32e6db2b2656d2",
+          "file": "journeys.spec.ts",
+          "line": 336,
+          "column": 1
+        },
+        {
+          "title": "09 Karen — edits names mid-flow, uses Preview",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 39892,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Preview my invitation/i }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter mb-3\">Preview my invitation →</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  9 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Preview my invitation/i }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter mb-3\">Preview my invitation →</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  9 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n    at C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts:413:22",
+                    "location": {
+                      "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts",
+                      "column": 22,
+                      "line": 413
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 411 |\u001b[39m   \u001b[36mconst\u001b[39m previewBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/Preview my invitation/i\u001b[39m })\u001b[33m.\u001b[39mfirst()\n \u001b[90m 412 |\u001b[39m   \u001b[36mif\u001b[39m (\u001b[36mawait\u001b[39m previewBtn\u001b[33m.\u001b[39misVisible()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mfalse\u001b[39m)) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 413 |\u001b[39m     \u001b[36mawait\u001b[39m previewBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m     |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 414 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[35m/\\/invite\\/[0-9a-f-]+\\/preview/\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\n \u001b[90m 415 |\u001b[39m     \u001b[36mif\u001b[39m (\u001b[35m/\\/preview/\u001b[39m\u001b[33m.\u001b[39mtest(page\u001b[33m.\u001b[39murl())) {\n \u001b[90m 416 |\u001b[39m       rec\u001b[33m.\u001b[39mnote(\u001b[32m'Preview opened the full invitation before paying (good for confidence)'\u001b[39m)\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts",
+                        "column": 22,
+                        "line": 413
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Preview my invitation/i }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" class=\"w-full rounded-full py-4 font-inter mb-3\">Preview my invitation →</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  9 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"rounded-2xl p-4 mb-4\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"mt-5\">…</div> from <div>…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\n\n  411 |   const previewBtn = page.getByRole('button', { name: /Preview my invitation/i }).first()\n  412 |   if (await previewBtn.isVisible().catch(() => false)) {\n> 413 |     await previewBtn.click()\n      |                      ^\n  414 |     await page.waitForURL(/\\/invite\\/[0-9a-f-]+\\/preview/, { timeout: 20_000 }).catch(() => {})\n  415 |     if (/\\/preview/.test(page.url())) {\n  416 |       rec.note('Preview opened the full invitation before paying (good for confidence)')\n    at C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts:413:22"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite 391c8c61\n"
+                    },
+                    {
+                      "text": "   · name retained on returning to edit\n"
+                    },
+                    {
+                      "text": "   · corrected the name typo\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:14:04.091Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\tests\\e2e\\journeys.spec.ts",
+                    "column": 22,
+                    "line": 413
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-f0ca32d43e30ef39ad05",
+          "file": "journeys.spec.ts",
+          "line": 382,
+          "column": 1
+        },
+        {
+          "title": "10 Amy — pays, opens published guest page + manage link",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35361,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "   · builder started, invite e2e6d8ba\n"
+                    },
+                    {
+                      "text": "   · price resolved: \"Pay & publish — €49\"\n"
+                    },
+                    {
+                      "text": "   · reached Stripe hosted checkout\n"
+                    },
+                    {
+                      "text": "   · redirected back to success page\n"
+                    },
+                    {
+                      "text": "   · SUCCESS: invitation published & live screen shown\n"
+                    },
+                    {
+                      "text": "   · manage/RSVP link surfaced on success screen\n"
+                    },
+                    {
+                      "text": "   · manage link present & shaped correctly: http://localhost:3000/manage/f2b3d6ab-a921-4fc7-…\n"
+                    },
+                    {
+                      "text": "   · published guest invitation renders (the thing she shares)\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-18T22:14:48.007Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\Endrit\\Desktop\\Digital Invite\\test-results\\artifacts\\journeys-10-Amy-—-pays-ope-6ed14-shed-guest-page-manage-link-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-0324938222057465061c",
+          "file": "journeys.spec.ts",
+          "line": 430,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-06-18T22:10:53.016Z",
+    "duration": 273416.126,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

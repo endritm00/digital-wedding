@@ -1,10 +1,31 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { animate, AnimatePresence, motion, useDragControls, useMotionValue, useReducedMotion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 
 // The one question surface: bottom sheet on phones, right panel on desktop.
 // Vellum paper over the live preview. One decision per screen.
+//
+// On phones the sheet is DRAGGABLE: pull it down (or tap the grip) to "peek" —
+// it slides away leaving a slim handle, so the live film fills the screen. Drag
+// it back up (or tap the handle) to keep editing. This is how you actually SEE
+// your invitation while building on a small screen.
+
+// How much of the sheet stays on-screen when peeked (the grip handle).
+const PEEK_VISIBLE = 64
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)')
+    const update = () => setMobile(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  return mobile
+}
 
 export interface StepSheetProps {
   title: string
@@ -33,38 +54,184 @@ export function StepSheet({
 }: StepSheetProps) {
   const reduced = useReducedMotion()
   const router = useRouter()
+  const isMobile = useIsMobile()
+
+  const sheetRef = useRef<HTMLDivElement | null>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const dragControls = useDragControls()
+  const y = useMotionValue(0)
+
+  const [peeked, setPeeked] = useState(false)
+  const [peekOffset, setPeekOffset] = useState(0)
+  const [moreBelow, setMoreBelow] = useState(false)
+  const [showHint, setShowHint] = useState(false)
+  const entered = useRef(false)
+
+  // One-time "drag down to preview" nudge — shown once ever, on the first mobile
+  // step, so people discover the peek gesture. Dismissed on the first peek.
+  const HINT_KEY = 'di:peek-hint-seen'
+  useEffect(() => {
+    if (!isMobile) return
+    let seen = true
+    try { seen = localStorage.getItem(HINT_KEY) === '1' } catch { /* private mode */ }
+    if (seen) return
+    try { localStorage.setItem(HINT_KEY, '1') } catch { /* noop */ }
+    setShowHint(true)
+    const t = setTimeout(() => setShowHint(false), 6000)
+    return () => clearTimeout(t)
+  }, [isMobile])
+
+  // Entrance — slide up once on mount (skip for reduced motion).
+  useEffect(() => {
+    if (entered.current) return
+    entered.current = true
+    if (reduced) { y.set(0); return }
+    y.set(48)
+    const controls = animate(y, 0, { duration: 0.55, ease: [0.22, 1, 0.36, 1] })
+    return () => controls.stop()
+  }, [reduced, y])
+
+  // Measure how far down "peeked" sits (sheet height minus the visible grip).
+  useEffect(() => {
+    if (!isMobile) { setPeekOffset(0); return }
+    const measure = () => {
+      const h = sheetRef.current?.offsetHeight ?? 0
+      setPeekOffset(Math.max(0, h - PEEK_VISIBLE))
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    const ro = new ResizeObserver(measure)
+    if (sheetRef.current) ro.observe(sheetRef.current)
+    return () => { window.removeEventListener('resize', measure); ro.disconnect() }
+  }, [isMobile])
+
+  // Keep the sheet pinned correctly when the layout changes (orientation, height
+  // recompute) — but skip the first run so it never overrides the entrance, and
+  // only re-pin while peeked (when open, y is owned by the entrance / drag).
+  const didSync = useRef(false)
+  useEffect(() => {
+    if (!didSync.current) { didSync.current = true; return }
+    if (!isMobile) { y.set(0); return }
+    if (peeked) y.set(peekOffset)
+  }, [isMobile, peekOffset]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const applyPeek = (next: boolean) => {
+    setPeeked(next)
+    if (next) setShowHint(false)
+    animate(y, next ? peekOffset : 0, { type: 'spring', stiffness: 360, damping: 38 })
+  }
+
+  // Scroll affordance — show a soft fade + cue when there's more content below.
+  const updateScrollCue = () => {
+    const el = scrollRef.current
+    if (!el) { setMoreBelow(false); return }
+    setMoreBelow(el.scrollHeight - el.scrollTop - el.clientHeight > 8)
+  }
+  useEffect(() => { updateScrollCue() }, [children, isMobile])
+
+  const startDrag = (e: React.PointerEvent) => {
+    if (isMobile) dragControls.start(e)
+  }
 
   return (
     <motion.div
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 48 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      ref={sheetRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className="
         fixed z-30 inset-x-0 bottom-0
         lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px]
         flex flex-col
         rounded-t-[26px] lg:rounded-[26px]
-        max-h-[66dvh] lg:max-h-none
+        max-h-[64dvh] lg:max-h-none
       "
       style={{
+        y,
         background: '#F3EFE7',
         boxShadow: '0 -12px 48px rgba(26,24,22,0.14), 0 2px 8px rgba(26,24,22,0.05)',
+        touchAction: isMobile ? 'none' : undefined,
+      }}
+      drag={isMobile ? 'y' : false}
+      dragControls={dragControls}
+      dragListener={false}
+      dragConstraints={{ top: 0, bottom: peekOffset }}
+      dragElastic={0.06}
+      onDragEnd={(_e, info) => {
+        const moved = Math.abs(info.offset.y)
+        if (moved < 6) { applyPeek(!peeked); return }   // a tap on the grip
+        const pos = y.get()
+        const next =
+          info.velocity.y > 350 ? true
+          : info.velocity.y < -350 ? false
+          : pos > peekOffset * 0.42
+        applyPeek(next)
       }}
       role="dialog"
       aria-label={title}
     >
-      {/* grab notch (mobile only) — pulses width on mount to signal draggability */}
-      <div className="flex justify-center pt-3 lg:hidden">
+      {/* one-time discovery nudge — floats just above the sheet, points at the grip */}
+      <AnimatePresence>
+        {showHint && !peeked && (
+          <motion.div
+            key="peek-hint"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-none absolute inset-x-0 -top-11 flex justify-center lg:hidden"
+            aria-hidden
+          >
+            <span
+              className="font-inter inline-flex items-center gap-1.5 rounded-full px-3.5 py-2"
+              style={{
+                fontSize: 11, letterSpacing: '0.04em', color: '#FDFCF9',
+                background: 'rgba(26,24,22,0.82)', backdropFilter: 'blur(8px)',
+                boxShadow: '0 6px 20px rgba(26,24,22,0.28)',
+              }}
+            >
+              Drag down to preview
+              <motion.svg
+                width="12" height="12" viewBox="0 0 12 12" fill="none"
+                animate={reduced ? {} : { y: [0, 3, 0] }}
+                transition={{ duration: 1.4, ease: 'easeInOut', repeat: Infinity }}
+              >
+                <path d="M3 4.5L6 7.5L9 4.5" stroke="#FDFCF9" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              </motion.svg>
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* grab handle (mobile) — drag to peek the film / tap to toggle */}
+      <div
+        className="flex flex-col items-center pt-3 pb-1 lg:hidden"
+        style={{ cursor: 'grab', touchAction: 'none' }}
+        onPointerDown={startDrag}
+        role="button"
+        tabIndex={0}
+        aria-label={peeked ? 'Pull up to keep editing' : 'Pull down to see your invitation'}
+        aria-expanded={!peeked}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); applyPeek(!peeked) } }}
+      >
         <motion.div
           className="h-1 rounded-full"
-          style={{ background: 'rgba(26,24,22,0.12)' }}
-          animate={reduced ? {} : { width: [36, 24, 36] }}
+          style={{ background: 'rgba(26,24,22,0.16)' }}
+          animate={reduced || peeked ? { width: 36 } : { width: [36, 24, 36] }}
           transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1 }}
           initial={{ width: 36 }}
         />
+        <motion.span
+          className="font-inter uppercase mt-2"
+          style={{ fontSize: 8.5, letterSpacing: '0.16em', color: 'rgba(26,24,22,0.4)' }}
+          animate={{ opacity: peeked ? 1 : 0, height: peeked ? 'auto' : 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          Pull up to keep editing
+        </motion.span>
       </div>
 
-      <div className="flex-1 overflow-y-auto overscroll-contain px-6 pt-5 pb-3 lg:px-8 lg:pt-8">
+      <div ref={scrollRef} onScroll={updateScrollCue} className="relative flex-1 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8">
         {backHref && (
           <button
             type="button"
@@ -81,18 +248,35 @@ export function StepSheet({
 
         <h2
           className="font-cormorant font-light leading-tight"
-          style={{ fontSize: 'clamp(1.7rem, 6vw, 2.1rem)', color: '#1A1816', letterSpacing: '-0.01em' }}
+          style={{ fontSize: 'clamp(1.6rem, 6vw, 2.1rem)', color: '#1A1816', letterSpacing: '-0.01em' }}
         >
           {title}
         </h2>
         {lede && (
-          <p className="font-inter mt-2 leading-relaxed" style={{ fontSize: 13, color: 'rgba(26,24,22,0.55)' }}>
+          <p className="font-inter mt-1.5 leading-relaxed" style={{ fontSize: 12.5, color: 'rgba(26,24,22,0.55)' }}>
             {lede}
           </p>
         )}
 
-        <div className="mt-6">{children}</div>
+        <div className="mt-5">{children}</div>
       </div>
+
+      {/* "more below" cue — soft fade so the date (and any tail content) isn't missed */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 flex justify-center"
+        style={{ bottom: primaryLabel || laterLabel ? 92 : 8, height: 32, background: 'linear-gradient(to top, #F3EFE7 0%, rgba(243,239,231,0) 100%)' }}
+        animate={{ opacity: moreBelow ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.svg
+          width="16" height="16" viewBox="0 0 16 16" fill="none" className="self-end mb-1"
+          animate={reduced ? {} : { y: [0, 3, 0] }}
+          transition={{ duration: 1.6, ease: 'easeInOut', repeat: Infinity }}
+        >
+          <path d="M4 6l4 4 4-4" stroke="rgba(168,133,75,0.7)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </motion.svg>
+      </motion.div>
 
       {(primaryLabel || laterLabel) && (
         <div

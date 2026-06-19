@@ -1,0 +1,26 @@
+{
+  "scenario": "07 Nicole — previews + uploads music, explores Photos page",
+  "project": "desktop",
+  "status": "passed",
+  "durationMs": 46672,
+  "breakages": [],
+  "frictions": [
+    "custom music upload: no confirmation within 25s"
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Loading media from  'https://cdn.pixabay.com/audio/2021/11/25/audio_91b32e02f9.mp3' violates the following Content Security Policy directive: \"media-src 'self' blob: https://stream.mux.com https://*.supabase.co https://*.supabase.in\". The action has been blocked."
+  ],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite c2c3fd57",
+    "previewed a music track",
+    "attempting custom music upload",
+    "Photos page exposed an uploader",
+    "price resolved: \"Pay & publish — €49\""
+  ]
+}

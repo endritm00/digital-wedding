@@ -1,0 +1,23 @@
+{
+  "scenario": "02 Sarah — adds pages, back-navigates to change palette",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 21316,
+  "breakages": [],
+  "frictions": [
+    "back navigation landed unexpectedly at http://localhost:3000/builder/2ec20c15-e83f-4ceb-a568-b705269ce533/save"
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite 2ec20c15",
+    "added 3 pages",
+    "pages persisted through back-navigation (autosave OK)",
+    "price resolved: \"Pay & publish — €49\""
+  ]
+}

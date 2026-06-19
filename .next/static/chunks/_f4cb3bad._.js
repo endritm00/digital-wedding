@@ -162,6 +162,12 @@ const api = {
         }),
     verifyPayment: (id, sessionId)=>request(`/api/invites/${id}/verify-payment?session_id=${encodeURIComponent(sessionId)}`, {
             inviteId: id
+        }),
+    // Renders the snapshot + flips the invite to 'published'. Requires the
+    // authenticated owner. `manage_url` is present only on the FIRST publish.
+    publish: (id)=>request(`/api/invites/${id}/publish`, {
+            method: 'POST',
+            inviteId: id
         })
 };
 // ── upload pipeline ──────────────────────────────────────────────────────────

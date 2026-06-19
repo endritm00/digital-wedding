@@ -1,0 +1,27 @@
+{
+  "scenario": "10 Amy — pays, opens published guest page + manage link",
+  "project": "mobile",
+  "status": "passed",
+  "durationMs": 31993,
+  "breakages": [],
+  "frictions": [],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Loading media from  'https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3' violates the following Content Security Policy directive: \"media-src 'self' blob: https://stream.mux.com https://*.supabase.co https://*.supabase.in\". The action has been blocked."
+  ],
+  "serverErrors": [],
+  "failedRequests": [],
+  "consoleWarnings": [
+    "Skipping auto-scroll behavior due to `position: sticky` or `position: fixed` on element: JSHandle@node"
+  ],
+  "notes": [
+    "builder started, invite e2e6d8ba",
+    "price resolved: \"Pay & publish — €49\"",
+    "reached Stripe hosted checkout",
+    "redirected back to success page",
+    "SUCCESS: invitation published & live screen shown",
+    "manage/RSVP link surfaced on success screen",
+    "manage link present & shaped correctly: http://localhost:3000/manage/f2b3d6ab-a921-4fc7-…",
+    "published guest invitation renders (the thing she shares)"
+  ]
+}

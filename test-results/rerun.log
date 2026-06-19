@@ -1,0 +1,199 @@
+
+Running 7 tests using 1 worker
+
+   · builder started, invite 626e79ed
+   · refreshed on style step (testing persistence, not as a fix)
+   · refresh kept us on the style step
+   · names persisted after refresh + back (autosave OK)
+   · price resolved: "Pay & publish — €49"
+   · price still resolves after refresh + heavy back-navigation
+  ok 1 [desktop] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow (36.4s)
+   · builder started, invite 1b4244da
+   · refreshed on style step (testing persistence, not as a fix)
+   · refresh kept us on the style step
+   · names persisted after refresh + back (autosave OK)
+   · price resolved: "Pay & publish — €49"
+   · price still resolves after refresh + heavy back-navigation
+  ok 2 [mobile] › tests\e2e\journeys.spec.ts:177:1 › 04 Jen — wanders, browser-back, refreshes mid-flow (19.0s)
+   · builder started, invite ef3e691f
+   · price resolved: "Pay & publish — €49"
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+  ok 3 [mobile] › tests\e2e\journeys.spec.ts:219:1 › 05 Emma — complete flow + real test-card payment (45.6s)
+   · builder started, invite 7967df72
+   · previewed a music track
+   · attempting custom music upload
+   ⚠ FRICTION: custom music upload: no confirmation within 25s
+   · Photos page exposed an uploader
+   · price resolved: "Pay & publish — €49"
+  ok 4 [mobile] › tests\e2e\journeys.spec.ts:285:1 › 07 Nicole — previews + uploads music, explores Photos page (45.8s)
+   · builder started, invite ff1dd523
+   · performed drag-down peek gesture on mobile
+  x  5 [mobile] › tests\e2e\journeys.spec.ts:336:1 › 08 Beth — mobile bottom-sheet & peek gesture (29.7s)
+   · builder started, invite 391c8c61
+   · name retained on returning to edit
+   · corrected the name typo
+  x  6 [mobile] › tests\e2e\journeys.spec.ts:382:1 › 09 Karen — edits names mid-flow, uses Preview (39.9s)
+   · builder started, invite e2e6d8ba
+   · price resolved: "Pay & publish — €49"
+   · reached Stripe hosted checkout
+   · redirected back to success page
+   · SUCCESS: invitation published & live screen shown
+   · manage/RSVP link surfaced on success screen
+   · manage link present & shaped correctly: http://localhost:3000/manage/f2b3d6ab-a921-4fc7-…
+   · published guest invitation renders (the thing she shares)
+  ok 7 [mobile] › tests\e2e\journeys.spec.ts:430:1 › 10 Amy — pays, opens published guest page + manage link (35.4s)
+
+
+  1) [mobile] › tests\e2e\journeys.spec.ts:336:1 › 08 Beth — mobile bottom-sheet & peek gesture ────
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').last().getByRole('button', { name: /Continue/ })
+        - locator resolved to <button tabindex="0" type="button" class="w-full rounded-full py-4 font-inter disabled:opacity-40">Continue</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        39 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - element is outside of the viewport
+         - retrying click action
+           - waiting 500ms
+
+
+       at helpers.ts:104
+
+      102 | export async function primary(page: Page, name: string | RegExp) {
+      103 |   await settle(page)
+    > 104 |   await sheet(page).getByRole('button', { name }).click()
+          |                                                   ^
+      105 | }
+      106 | export async function later(page: Page, name: string | RegExp) {
+      107 |   await settle(page)
+        at primary (C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\helpers.ts:104:51)
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:364:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-08-Beth-—-mobile-bottom-sheet-peek-gesture-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\e2e\journeys.spec.ts:382:1 › 09 Karen — edits names mid-flow, uses Preview ───
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Preview my invitation/i }).first()
+        - locator resolved to <button tabindex="0" type="button" class="w-full rounded-full py-4 font-inter mb-3">Preview my invitation →</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not stable
+        - retrying click action
+        - waiting 20ms
+        - waiting for element to be visible, enabled and stable
+        - element is not stable
+      2 × retrying click action
+          - waiting 100ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="rounded-2xl p-4 mb-4">…</div> from <div>…</div> subtree intercepts pointer events
+      9 × retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="mt-5">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="rounded-2xl p-4 mb-4">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="rounded-2xl p-4 mb-4">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+          - waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="rounded-2xl p-4 mb-4">…</div> from <div>…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="mt-5">…</div> from <div>…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+
+
+      411 |   const previewBtn = page.getByRole('button', { name: /Preview my invitation/i }).first()
+      412 |   if (await previewBtn.isVisible().catch(() => false)) {
+    > 413 |     await previewBtn.click()
+          |                      ^
+      414 |     await page.waitForURL(/\/invite\/[0-9a-f-]+\/preview/, { timeout: 20_000 }).catch(() => {})
+      415 |     if (/\/preview/.test(page.url())) {
+      416 |       rec.note('Preview opened the full invitation before paying (good for confidence)')
+        at C:\Users\Endrit\Desktop\Digital Invite\tests\e2e\journeys.spec.ts:413:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\journeys-09-Karen-—-edits-names-mid-flow-uses-Preview-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [mobile] › tests\e2e\journeys.spec.ts:336:1 › 08 Beth — mobile bottom-sheet & peek gesture ─────
+    [mobile] › tests\e2e\journeys.spec.ts:382:1 › 09 Karen — edits names mid-flow, uses Preview ────
+  5 passed (4.6m)
