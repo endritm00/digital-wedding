@@ -88,7 +88,7 @@ export function OpeningFilmSection() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             onCanPlay={() => setReady(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: ready ? 1 : 0 }}

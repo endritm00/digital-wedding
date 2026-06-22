@@ -69,27 +69,54 @@ export function useFilmVideo(
       if (mp4 && video.src !== mp4) video.src = mp4
     }
 
-    const nativeHls = hls && video.canPlayType('application/vnd.apple.mpegurl') !== ''
-    if (hls && nativeHls) {
-      // Safari / iOS — native adaptive HLS, no library needed.
-      video.src = hls
-    } else if (hls) {
-      // Non-Safari (Android Chrome, desktop Chrome/Firefox) — use hls.js. Only
-      // fall back to the MP4 if hls.js is unavailable or hits a fatal error, so
-      // we don't double-download both renditions on the happy path. The poster
-      // covers the brief moment while hls.js is imported.
+    // Native HLS exists (canPlayType !== '') on Safari/iOS — AND, misleadingly,
+    // some Chromium builds report 'maybe' too, where native HLS is actually stuck
+    // on the lowest rendition with no real ABR. So we do NOT prefer native just
+    // because it's reported; we prefer hls.js wherever MSE exists (real ABR
+    // control), and only use native where hls.js genuinely can't run (older iOS).
+    const nativeHls = !!hls && video.canPlayType('application/vnd.apple.mpegurl') !== ''
+    const canUseMse =
+      typeof window !== 'undefined' &&
+      ('MediaSource' in window || 'ManagedMediaSource' in window)
+
+    const useNativeOrMp4 = () => {
+      if (nativeHls && hls) video.src = hls
+      else setMp4()
+    }
+
+    if (hls && canUseMse) {
+      // hls.js path (Chrome/Firefox/Edge/Chromium + desktop Safari + iOS 17+).
       void loadHls().then((Hls) => {
         if (destroyed) return
-        if (!Hls || !Hls.isSupported()) { setMp4(); return }
+        if (!Hls || !Hls.isSupported()) { useNativeOrMp4(); return }
         try {
-          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: false })
+          // ABR for SHORT LOOPING background films. A 5–20s clip buffers fully at
+          // whatever rung it starts on and then loops from memory, so hls.js never
+          // re-measures to "climb" — the start rung is effectively the final one.
+          // We therefore target the TOP rung from the start (assume broadband via a
+          // high default estimate) so capable links get 1080p immediately and buffer
+          // it once; if a segment can't be fetched in time, ABR steps DOWN to a
+          // sustainable rung (poster covers the first instant) — degrade, never freeze.
+          hlsInstance = new Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
+            capLevelToPlayerSize: false,          // a full-bleed film should reach 1080p
+            startLevel: -1,                       // auto, seeded by the estimate below
+            abrEwmaDefaultEstimate: 8_000_000,    // assume ~8Mbps → start at the 1080p rung
+            abrBandWidthFactor: 0.95,             // use most of measured bandwidth
+            abrBandWidthUpFactor: 0.9,
+            startFragPrefetch: true,
+          })
           hlsInstance.on(Hls.Events.ERROR, (_e, data) => {
-            if (data.fatal) { try { hlsInstance?.destroy() } catch { /* noop */ } ; hlsInstance = null; setMp4() }
+            if (data.fatal) { try { hlsInstance?.destroy() } catch { /* noop */ } ; hlsInstance = null; useNativeOrMp4() }
           })
           hlsInstance.loadSource(hls)
           hlsInstance.attachMedia(video)
-        } catch { setMp4() }
+        } catch { useNativeOrMp4() }
       })
+    } else if (hls && nativeHls) {
+      // Older iOS Safari — no MSE, native HLS is the correct (and only) choice.
+      video.src = hls
     } else {
       setMp4()
     }

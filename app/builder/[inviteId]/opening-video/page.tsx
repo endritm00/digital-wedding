@@ -10,7 +10,7 @@ import { uploadFile, pollAsset, ApiError } from '@/lib/builder/api'
 
 export default function OpeningVideoPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
-  const { opening, setOpening, setMediaAsset, refreshQuote } = useBuilder()
+  const { opening, setOpening, setMediaAsset, refreshQuote, media } = useBuilder()
   const router = useRouter()
   const fileRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
@@ -26,6 +26,13 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
   }
   const selectedPreset = config.video_preset ?? null
   const hasCustomVideo = Boolean(config.video_asset_id)
+
+  // Block Continue until the uploaded video is processed and previewing.
+  // Once status==='ready' the background preview loads it automatically.
+  const uploadedAsset = config.video_asset_id
+    ? media.find((m) => m.id === config.video_asset_id) ?? null
+    : null
+  const uploadedProcessing = uploadedAsset !== null && uploadedAsset.status !== 'ready'
 
   // The opening section persists ~800ms after setOpening; the quote derives the
   // custom-film fee from it server-side, so refresh shortly after a change for a
@@ -54,10 +61,12 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
         if (asset.status === 'ready' || asset.status === 'failed') stop()
       })
     } catch (err) {
-      if (err instanceof ApiError && err.code === 'video_provider_error') {
+      if (err instanceof ApiError && err.code === 'video_provider_unavailable') {
+        // Mux is not configured on this environment — permanent disable
         setVideoUnavailable(true)
         setUploadError('Custom video upload is coming soon — pick a film above for now.')
       } else {
+        // Transient error (plan limit, network, etc.) — card stays enabled so they can retry
         setUploadError('Upload failed — please try again.')
       }
     } finally {
@@ -74,6 +83,8 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
         title="Your opening film"
         lede="Guests see this first. Pick a mood or upload a clip from your day."
         primaryLabel="Continue"
+        primaryBusy={uploading || uploadedProcessing}
+        primaryDisabled={uploading || uploadedProcessing}
         onPrimary={() =>
           router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'style'}`)
         }
@@ -174,13 +185,40 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
           </button>
         </div>
 
+        {/* Upload / processing banner — two phases, same design */}
+        {(uploading || uploadedProcessing) && (
+          <div
+            className="mt-3 flex items-center gap-2.5 rounded-2xl px-4 py-3"
+            style={{ background: 'rgba(168,133,75,0.08)', border: '1px solid rgba(168,133,75,0.22)' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="flex-none">
+              <circle cx="7" cy="7" r="5.5" stroke="rgba(168,133,75,0.3)" strokeWidth="1.4" />
+              <path d="M7 1.5A5.5 5.5 0 0 1 12.5 7" stroke="#A8854B" strokeWidth="1.4" strokeLinecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 7 7" to="360 7 7" dur="0.9s" repeatCount="indefinite" />
+              </path>
+            </svg>
+            <div className="min-w-0">
+              <p className="font-inter leading-tight" style={{ fontSize: 12, color: '#1A1816' }}>
+                {uploading ? 'Uploading your video…' : 'Getting your film ready…'}
+              </p>
+              <p className="font-inter mt-0.5" style={{ fontSize: 10, color: 'rgba(26,24,22,0.5)' }}>
+                {uploading
+                  ? 'This takes 10–15 seconds. Please wait before continuing.'
+                  : 'Your video will show in the preview. This may take a few seconds.'}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* gentle note on the custom-film fee */}
-        <p
-          className="font-inter mt-3 text-center"
-          style={{ fontSize: 10.5, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.42)' }}
-        >
-          Curated films are included. Uploading your own adds €4.99.
-        </p>
+        {!uploading && !uploadedProcessing && (
+          <p
+            className="font-inter mt-3 text-center"
+            style={{ fontSize: 10.5, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.42)' }}
+          >
+            Curated films are included. Uploading your own adds €4.99.
+          </p>
+        )}
 
         <input
           ref={fileRef}
@@ -199,14 +237,6 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
           </p>
         )}
 
-        {hasCustomVideo && !uploading && (
-          <p
-            className="font-inter mt-3 text-center"
-            style={{ fontSize: 10, letterSpacing: '0.04em', color: 'rgba(26,24,22,0.4)' }}
-          >
-            Your film is processing — it will appear in the preview once ready.
-          </p>
-        )}
       </StepSheet>
     </>
   )

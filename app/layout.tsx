@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Inter, Pinyon_Script, Great_Vibes } from 'next/font/google'
+import {
+  Cormorant_Garamond, Inter, Pinyon_Script, Great_Vibes,
+  Baskervville, Fraunces, EB_Garamond, Corinthia,
+} from 'next/font/google'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -31,6 +34,36 @@ const greatVibes = Great_Vibes({
   display:  'swap',
 })
 
+const baskervville = Baskervville({
+  weight:   '400',
+  subsets:  ['latin'],
+  variable: '--font-baskervville',
+  display:  'swap',
+})
+
+const fraunces = Fraunces({
+  subsets:  ['latin'],
+  weight:   ['300', '400', '500', '600'],
+  style:    ['normal', 'italic'],
+  variable: '--font-fraunces',
+  display:  'swap',
+})
+
+const corinthia = Corinthia({
+  weight:   '400',
+  subsets:  ['latin'],
+  variable: '--font-corinthia',
+  display:  'swap',
+})
+
+const ebGaramond = EB_Garamond({
+  subsets:  ['latin'],
+  weight:   ['400', '500', '600'],
+  style:    ['normal', 'italic'],
+  variable: '--font-eb-garamond',
+  display:  'swap',
+})
+
 export const metadata: Metadata = {
   title:       'Digital Invite — Premium Digital Wedding Invitations',
   description: 'Design your wedding invitation yourself in minutes. Share on WhatsApp. From €99.',
@@ -52,7 +85,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable} ${pinyonScript.variable} ${greatVibes.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable} ${pinyonScript.variable} ${greatVibes.variable} ${baskervville.variable} ${fraunces.variable} ${ebGaramond.variable} ${corinthia.variable}`}>
       <body className="bg-[#F8F4EF] text-[#1A1A1A] antialiased">
         {children}
       </body>

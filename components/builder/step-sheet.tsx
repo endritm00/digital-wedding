@@ -86,8 +86,8 @@ export function StepSheet({
     if (entered.current) return
     entered.current = true
     if (reduced) { y.set(0); return }
-    y.set(48)
-    const controls = animate(y, 0, { duration: 0.55, ease: [0.22, 1, 0.36, 1] })
+    y.set(40)
+    const controls = animate(y, 0, { duration: 0.4, ease: [0.22, 1, 0.36, 1] })
     return () => controls.stop()
   }, [reduced, y])
 
@@ -138,7 +138,7 @@ export function StepSheet({
       ref={sheetRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="
         fixed z-30 inset-x-0 bottom-0
         lg:inset-x-auto lg:right-6 lg:top-16 lg:bottom-6 lg:w-[420px]
@@ -214,12 +214,12 @@ export function StepSheet({
         aria-expanded={!peeked}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); applyPeek(!peeked) } }}
       >
-        <motion.div
+        {/* Static handle. A per-frame width keyframe loop here cost ~15% of the
+            main thread at idle on mobile (continuous style recalc) for an
+            imperceptible 1px pulse — not worth it. */}
+        <div
           className="h-1 rounded-full"
-          style={{ background: 'rgba(26,24,22,0.16)' }}
-          animate={reduced || peeked ? { width: 36 } : { width: [36, 24, 36] }}
-          transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1 }}
-          initial={{ width: 36 }}
+          style={{ width: 36, background: 'rgba(26,24,22,0.16)' }}
         />
         <motion.span
           className="font-inter uppercase mt-2"

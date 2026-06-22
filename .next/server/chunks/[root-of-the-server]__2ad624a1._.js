@@ -291,8 +291,21 @@ async function PATCH(request, { params }) {
     const parsed = PatchSectionSchema.safeParse(body);
     if (!parsed.success) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["badRequest"])(parsed.error.issues[0].message);
     const db = result.via === 'claim_token' ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$service$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createServiceClient"])() : await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+    // MERGE the incoming config into the existing one instead of replacing it.
+    // The `opening` section is edited across five builder steps (names, video,
+    // frame, music, style); each sends what IT knows. A wholesale replace meant a
+    // stale/partial send from one step wiped the others' fields (e.g. the music
+    // step erasing video_preset + names). Merging server-side makes the DB the
+    // source of truth so an omitted key keeps its stored value. (No editor deletes
+    // keys — they set null/'' — so a "concat" merge never loses an intended clear.)
+    const { data: existing, error: readErr } = await db.from('invite_sections').select('config').eq('id', sectionId).eq('invite_id', id).single();
+    if (readErr || !existing) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notFound"])('section_not_found');
+    const mergedConfig = {
+        ...existing.config ?? {},
+        ...parsed.data.config
+    };
     const { data, error } = await db.from('invite_sections').update({
-        config: parsed.data.config
+        config: mergedConfig
     }).eq('id', sectionId).eq('invite_id', id) // prevents cross-invite writes
     .select('id, type, position, config, updated_at').single();
     if (error) {

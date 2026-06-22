@@ -15,11 +15,17 @@ export interface VideoPreset {
   id: string
   name: string
   mood: string
-  src: string          // 1080p H.264 mp4 (full HD, lightweight)
+  src: string          // 1080p H.264 mp4 (full HD) — the universal fallback
+  hls?: string         // adaptive HLS (Mux). When present, players PREFER it (ABR
+                       // climbs to 1080p on capable links) and fall back to `src`.
   posterImg: string    // real still frame — paints before the video loads
   poster: { from: string; to: string } // gradient fallback (no network)
   ink: string
 }
+
+// Adaptive HLS playlist for a Mux-transcoded preset (public playback id).
+// Client-safe (just a URL) — unlike lib/mux which is server-only.
+const muxHls = (playbackId: string) => `https://stream.mux.com/${playbackId}.m3u8`
 
 // ── Supabase Storage public base URL ────────────────────────────────────────
 // This is the stable, self-owned CDN. Run scripts/mirror-presets.mjs once to
@@ -42,16 +48,16 @@ const presetPoster = (id: string) =>
 //
 // golden-hour  film: pexelsVideo('33113979', '14114596_1920_1080_25fps.mp4')
 //              poster: pexelsPreview('33113979')
-// first-dance  film: pexelsVideo('8775886', '8775886-hd_1920_1080_25fps.mp4')
-//              poster: pexelsPoster('8775886')
+// first-dance  film: pexels.com/download/video/32320878/  (1080p; poster = frame @3s)
+//              [was pexels 8775886; swapped 2026-06-19]
 // the-vows     film: pexelsVideo('27979648', '12279941_1920_1080_25fps.mp4')
 //              poster: pexelsPreview('27979648')
 // the-rings    film: pexelsVideo('8776123', '8776123-hd_1920_1080_25fps.mp4')
 //              poster: pexelsPoster('8776123')
 // open-air     film: pexelsVideo('11038003', '11038003-hd_2560_1440_24fps.mp4')
 //              poster: pexelsPreviewJpeg('11038003')
-// eternal      film: pexelsVideo('13038199', '13038199-hd_1920_1080_25fps.mp4')
-//              poster: pexelsPreviewJpeg('13038199')
+// eternal      film: pexels.com/download/video/27471504/  (4K→1080p; poster = frame @1s)
+//              [was pexels 13038199; swapped 2026-06-19]
 // the-letter   film: pexelsVideo('7343467', '7343467-hd_1920_1080_25fps.mp4')
 //              poster: pexelsPoster('7343467')
 // the-veil     film: pexelsVideo('8442722', '8442722-hd_1920_1080_30fps.mp4')
@@ -65,17 +71,20 @@ export const VIDEO_PRESETS: VideoPreset[] = [
     name: 'In Bloom',
     mood: 'An arch of flowers',
     src: presetFilm('golden-hour'),
+    hls: muxHls('lWsz00A95012Md025lu01a5Xs1029yquxeDtuMNUlvSULEoo'),
     posterImg: presetPoster('golden-hour'),
     poster: { from: '#E7D8DC', to: '#B9A7A0' },
     ink: '#FDFCF9',
   },
   {
+    // a couple (legs only, no faces) by a white bridal bouquet on sunlit grass
     id: 'first-dance',
     name: 'First Dance',
-    mood: 'Held close, swaying',
+    mood: 'A bouquet in the garden',
     src: presetFilm('first-dance'),
+    hls: muxHls('s7U2JmXZAUUIYkOCvvVVmpqUzbNN4EHKsAWwOWyDkgM'),
     posterImg: presetPoster('first-dance'),
-    poster: { from: '#E2D2BE', to: '#A98C66' },
+    poster: { from: '#DCD3BF', to: '#7E885C' },
     ink: '#FDFCF9',
   },
   {
@@ -84,6 +93,7 @@ export const VIDEO_PRESETS: VideoPreset[] = [
     name: 'The Vows',
     mood: 'An aisle in bloom',
     src: presetFilm('the-vows'),
+    hls: muxHls('4hkfQ1wFn5wFekS9b2qZk9exFU00JPwQYEQ9Bex02amNA'),
     posterImg: presetPoster('the-vows'),
     poster: { from: '#EAF0EE', to: '#C2D0CB' },
     ink: '#FDFCF9',
@@ -108,13 +118,13 @@ export const VIDEO_PRESETS: VideoPreset[] = [
     ink: '#FDFCF9',
   },
   {
-    // now a grand, flower-dressed wedding stage / setting (no faces)
+    // a barefoot couple (legs only, no faces) walking at the water's edge
     id: 'eternal',
     name: 'Eternal',
-    mood: 'A stage in bloom',
+    mood: 'Barefoot by the sea',
     src: presetFilm('eternal'),
     posterImg: presetPoster('eternal'),
-    poster: { from: '#E8D2B8', to: '#B98E6A' },
+    poster: { from: '#CCC5BA', to: '#A0978A' },
     ink: '#FDFCF9',
   },
   // ── Signature openers (paired with the three signature aesthetics) ──────────
@@ -129,7 +139,6 @@ export const VIDEO_PRESETS: VideoPreset[] = [
   },
   {
     // now an aerial of an elegant outdoor reception, tables set (no faces).
-    // id kept stable; the lifting-veil opener still uses this as its backdrop film.
     id: 'the-veil',
     name: 'The Reception',
     mood: 'Tables set under the sky',
@@ -272,18 +281,54 @@ export const DEFAULT_PALETTE = PALETTES[0]
 
 export interface HeadingFont {
   id: string
-  name: string
-  var: string      // CSS font-family value
+  name: string     // short aesthetic label shown in picker
+  pair: string     // "Heading · Body" display string
+  var: string      // CSS font-family for headings
+  bodyVar: string  // CSS font-family for body copy
   sample: string   // shown in the picker
-  scale: number    // size multiplier (scripts read large; serifs read smaller)
-  italic?: boolean // render headings in italic (e.g. Cormorant for The Letter)
+  scale: number    // heading size multiplier
+  italic?: boolean // render headings italic
 }
 
 export const HEADING_FONTS: HeadingFont[] = [
-  { id: 'pinyon',           name: 'Pinyon',      var: 'var(--font-pinyon)',      sample: 'Forever', scale: 1.15 },
-  { id: 'great-vibes',      name: 'Great Vibes', var: 'var(--font-great-vibes)', sample: 'Forever', scale: 1.1 },
-  { id: 'cormorant',        name: 'Cormorant',   var: 'var(--font-cormorant)',   sample: 'Forever', scale: 0.82 },
-  { id: 'cormorant-italic', name: 'Cormorant Italic', var: 'var(--font-cormorant)', sample: 'Forever', scale: 0.84, italic: true },
+  {
+    id: 'pinyon-baskerville',
+    name: 'Pinyon Script · Baskerville',
+    pair: 'Romantic calligraphy',
+    var: 'var(--font-pinyon)',
+    bodyVar: 'var(--font-baskervville)',
+    sample: 'Forever',
+    scale: 1.15,
+  },
+  {
+    id: 'fraunces-inter',
+    name: 'Canela · Helvetica Neue',
+    pair: 'Luxury editorial',
+    var: 'var(--font-fraunces)',
+    bodyVar: 'var(--font-inter)',
+    sample: 'Forever',
+    scale: 0.84,
+    italic: true,
+  },
+  {
+    id: 'cormorant-garamond',
+    name: 'Corme · EB Garamond',
+    pair: 'Classical elegance',
+    var: 'var(--font-cormorant)',
+    bodyVar: 'var(--font-eb-garamond)',
+    sample: 'Forever',
+    scale: 0.82,
+    italic: true,
+  },
+  {
+    id: 'corinthia-cormorant',
+    name: 'Corinthia · Cormorant',
+    pair: 'Ornate luxury',
+    var: 'var(--font-corinthia)',
+    bodyVar: 'var(--font-cormorant)',
+    sample: 'Forever',
+    scale: 1.18,
+  },
 ]
 
 export const HEADING_FONT_MAP: Record<string, HeadingFont> = Object.fromEntries(

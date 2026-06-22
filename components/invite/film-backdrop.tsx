@@ -131,7 +131,7 @@ export function FilmBackdrop({
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: fit, objectPosition }}
           poster={poster ?? undefined}
-          preload="auto"
+          preload="metadata"
           muted
           loop
           playsInline

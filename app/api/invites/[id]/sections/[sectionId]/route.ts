@@ -31,9 +31,30 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const db = result.via === 'claim_token' ? createServiceClient() : await createClient()
 
+  // MERGE the incoming config into the existing one instead of replacing it.
+  // The `opening` section is edited across five builder steps (names, video,
+  // frame, music, style); each sends what IT knows. A wholesale replace meant a
+  // stale/partial send from one step wiped the others' fields (e.g. the music
+  // step erasing video_preset + names). Merging server-side makes the DB the
+  // source of truth so an omitted key keeps its stored value. (No editor deletes
+  // keys — they set null/'' — so a "concat" merge never loses an intended clear.)
+  const { data: existing, error: readErr } = await db
+    .from('invite_sections')
+    .select('config')
+    .eq('id', sectionId)
+    .eq('invite_id', id)
+    .single()
+
+  if (readErr || !existing) return notFound('section_not_found')
+
+  const mergedConfig = {
+    ...((existing.config as Record<string, unknown> | null) ?? {}),
+    ...parsed.data.config,
+  }
+
   const { data, error } = await db
     .from('invite_sections')
-    .update({ config: parsed.data.config as Json })
+    .update({ config: mergedConfig as Json })
     .eq('id', sectionId)
     .eq('invite_id', id)   // prevents cross-invite writes
     .select('id, type, position, config, updated_at')

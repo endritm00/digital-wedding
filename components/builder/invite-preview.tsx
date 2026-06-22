@@ -31,6 +31,23 @@ export function InvitePreview() {
   const { invite, opening, sections, media } = useBuilder()
   const reduced = useReducedMotion()
   const [videoReady, setVideoReady] = useState(false)
+  // Defer the background film until the step has painted and is interactive. The
+  // poster (painted instantly below) holds the frame; with preload="none" no
+  // video bytes are fetched until playback is armed here — so opening the builder
+  // no longer blocks on a multi-MB film download before you can type.
+  const [filmArmed, setFilmArmed] = useState(false)
+  useEffect(() => {
+    const w = window as typeof window & {
+      requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number
+      cancelIdleCallback?: (id: number) => void
+    }
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(() => setFilmArmed(true), { timeout: 900 })
+      return () => w.cancelIdleCallback?.(id)
+    }
+    const t = setTimeout(() => setFilmArmed(true), 400)
+    return () => clearTimeout(t)
+  }, [])
   // Aspect-aware fit: edge-to-edge cover when the film roughly matches the
   // viewport, whole-frame contain (+ blurred fill) when a crop would be severe.
   const videoElRef = useRef<HTMLVideoElement | null>(null)
@@ -74,9 +91,6 @@ export function InvitePreview() {
   }, [media, config.video_asset_id])
 
   const uploadedReady = uploadedVideo?.status === 'ready'
-  const uploadedBusy =
-    uploadedVideo != null &&
-    (uploadedVideo.status === 'uploading' || uploadedVideo.status === 'processing')
   const uploadedMp4 = uploadedReady
     ? (uploadedVideo!.variants as { mp4?: string }).mp4 ?? null
     : null
@@ -90,9 +104,14 @@ export function InvitePreview() {
   // Resolve the active film + poster. Uploaded film wins, then chosen preset,
   // then the FIRST preset as the default background — so every step shows a real
   // HD film (not a stretched low-res still) until the couple pick their own.
-  const videoSrc = uploadedMp4 ?? preset?.src ?? VIDEO_PRESETS[0].src
-  // Adaptive HLS only exists for the couple's own upload; presets are MP4 files.
-  const videoHls = uploadedHls
+  // The active film is the chosen preset, or VIDEO_PRESETS[0] as the default
+  // background. Resolve src/hls from that SAME preset so a preset without its own
+  // HLS uses its own MP4 — never another preset's ladder.
+  const activePreset = preset ?? VIDEO_PRESETS[0]
+  const videoSrc = uploadedMp4 ?? activePreset.src
+  // Prefer adaptive HLS: the couple's own Mux upload while ready, otherwise the
+  // active preset's Mux ladder when it has one. Falls back to the MP4 `src`.
+  const videoHls = uploadedReady ? uploadedHls : (activePreset.hls ?? null)
   const posterImg = uploadedPoster ?? preset?.posterImg ?? VIDEO_PRESETS[0].posterImg
   const gradient = preset
     ? `linear-gradient(160deg, ${preset.poster.from} 0%, ${preset.poster.to} 100%)`
@@ -136,7 +155,7 @@ export function InvitePreview() {
 
   // Adaptive HLS / MP4 source + robust autoplay (gesture retry) for the live
   // background film. Decorative + behind the sheet, so no tap-to-play overlay.
-  useFilmVideo(videoElRef, { hls: videoHls, mp4: videoSrc }, { play: !reduced, reduced: !!reduced })
+  useFilmVideo(videoElRef, { hls: videoHls, mp4: videoSrc }, { play: filmArmed && !reduced, reduced: !!reduced })
 
   const track = MUSIC_TRACKS.find((t) => t.id === config.music_track)
   const hasMusic = Boolean(track || config.music_asset_id)
@@ -183,7 +202,7 @@ export function InvitePreview() {
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: fit, objectPosition }}
           poster={posterImg}
-          preload="auto"
+          preload="none"
           muted
           loop
           playsInline
@@ -202,32 +221,15 @@ export function InvitePreview() {
         style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }}
       />
 
-      {/* processing veil for an uploading film */}
-      <AnimatePresence>
-        {uploadedBusy && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute inset-x-0 top-[12dvh] flex justify-center"
-          >
-            <div
-              className="rounded-full px-5 py-2.5"
-              style={{ background: 'rgba(253,252,249,0.82)', backdropFilter: 'blur(6px)' }}
-            >
-              <span className="font-inter text-[11px] tracking-[0.08em]" style={{ color: '#1A1816' }}>
-                We&rsquo;re preparing your film — you can keep going.
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* the invitation card (+ section chips) — top-anchored & compact on mobile
           so it's never hidden behind the sheet; centered on desktop */}
       <div className="absolute inset-0 flex flex-col items-center px-6 pt-[4dvh] lg:justify-center lg:pt-0 lg:px-7 lg:pb-[14dvh]">
-        <div className="relative w-full max-w-[320px] px-9 py-8 lg:max-w-[400px] lg:px-9 lg:py-12 text-center">
+        {/* `isolate` creates a stacking context so the glass's zIndex:-1 stays
+            behind the text but ABOVE the film — without it the glass escapes and
+            paints behind the opaque video (card invisible). Mirrors OpeningHero's
+            z-10 card in invitation-view.tsx so the builder matches the preview. */}
+        <div className="relative isolate w-full max-w-[320px] px-9 py-8 lg:max-w-[400px] lg:px-9 lg:py-12 text-center">
           {/* feathered glass — behind the text, dissolves into the film */}
           <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
 
@@ -245,7 +247,7 @@ export function InvitePreview() {
                 initial={reduced ? { opacity: 0 } : { opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   fontFamily: headingFont.var,
                   fontStyle: headingStyle,

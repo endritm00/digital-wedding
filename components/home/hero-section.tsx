@@ -15,14 +15,19 @@ export function HeroSection() {
   const [ready, setReady] = useState(false)
   const sectionRef = useRef<HTMLElement | null>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  // Only run the film while the hero is on screen — frees the decoder once the
-  // user scrolls past, so the rest of the page stays smooth.
+  // Only mount/run the film once the hero is on screen — and only ONCE (armed),
+  // so we never re-create the <video> (which would re-download the whole file).
+  // Playback is driven explicitly here, not via autoPlay, so the browser issues
+  // exactly one controlled fetch instead of autoPlay + play()-after-pause racing
+  // into a double download.
+  const [armed, setArmed] = useState(false)
   const inView = useInView(sectionRef, { amount: 0.25 })
+  useEffect(() => { if (inView) setArmed(true) }, [inView])
   useEffect(() => {
     const v = videoRef.current
     if (!v || reduced) return
     if (inView) { void v.play().catch(() => {}) } else v.pause()
-  }, [inView, reduced])
+  }, [inView, armed, reduced])
 
   return (
     <section ref={sectionRef} className="relative h-[100dvh] overflow-hidden" style={{ background: '#14100C' }} aria-label="Hero">
@@ -41,17 +46,16 @@ export function HeroSection() {
             transition: 'opacity 1s ease',
           }}
         />
-        {!reduced && (
+        {!reduced && armed && (
           <motion.video
             ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover"
             src={HERO.src}
             poster={HERO.posterImg}
-            autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             onCanPlay={() => setReady(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: ready ? 1 : 0 }}

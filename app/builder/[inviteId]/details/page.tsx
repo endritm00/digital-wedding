@@ -69,6 +69,66 @@ function TextField({
   )
 }
 
+// ── Elegant time picker (Hour : Minute : AM/PM styled selects) ────────────────
+// Stores a display string like "3:00 PM" so the renderer just prints it. Internal
+// state holds partial selections; mount it keyed by a stable id (one per event).
+function TimePicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const init = value.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
+  const [h, setH] = useState(init ? init[1] : '')
+  const [m, setM] = useState(init ? init[2] : '')
+  const [p, setP] = useState(init ? init[3].toUpperCase() : '')
+
+  const compose = (hh: string, mm: string, pp: string) => {
+    setH(hh); setM(mm); setP(pp)
+    onChange(hh && mm && pp ? `${Number(hh)}:${mm} ${pp}` : '')
+  }
+
+  const caret =
+    "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='rgba(26,24,22,0.4)' stroke-width='1.2' stroke-linecap='round'/></svg>\")"
+  const sel: React.CSSProperties = {
+    border: '1px solid rgba(26,24,22,0.12)', background: 'rgba(255,255,255,0.6)', borderRadius: 12,
+    padding: '9px 22px 9px 11px', fontSize: 13, color: value ? '#1A1816' : 'rgba(26,24,22,0.4)',
+    outline: 'none', appearance: 'none', WebkitAppearance: 'none', cursor: 'pointer', fontFamily: 'var(--font-inter)',
+    backgroundImage: caret, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center',
+  }
+  const hours = Array.from({ length: 12 }, (_, i) => String(i + 1))
+  const mins = Array.from({ length: 12 }, (_, i) => String(i * 5).padStart(2, '0'))
+
+  return (
+    <div className="grid grid-cols-[1fr_1fr_1fr] gap-2">
+      <select aria-label="Hour" value={h} onChange={e => compose(e.target.value, m, p)} style={sel}>
+        <option value="">Hr</option>
+        {hours.map(hh => <option key={hh} value={hh}>{hh}</option>)}
+      </select>
+      <select aria-label="Minute" value={m} onChange={e => compose(h, e.target.value, p)} style={sel}>
+        <option value="">Min</option>
+        {mins.map(mm => <option key={mm} value={mm}>{mm}</option>)}
+      </select>
+      <select aria-label="AM or PM" value={p} onChange={e => compose(h, m, e.target.value)} style={sel}>
+        <option value="">—</option>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+  )
+}
+
+// Common wedding moments offered as one-tap "add" chips in the schedule editor.
+const SCHEDULE_PRESETS = ['Ceremony', 'Cocktails', 'Dinner', 'Speeches', 'First Dance', 'Dancing', 'Cake Cutting', 'Send-off']
+
+interface SchedEvent { id: string; label: string; time: string; venue: string }
+const newEventId = () => `ev-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
+
+// Seed the events list from the old ceremony/reception fields for invites that
+// predate custom events (only used until the couple makes their first edit).
+function legacyToEvents(cfg: Record<string, unknown>): SchedEvent[] {
+  const out: SchedEvent[] = []
+  const s = (k: string) => (cfg[k] as string) ?? ''
+  if (s('ceremony_time') || s('ceremony_venue')) out.push({ id: newEventId(), label: 'Ceremony', time: s('ceremony_time'), venue: s('ceremony_venue') })
+  if (s('reception_time') || s('reception_venue')) out.push({ id: newEventId(), label: 'Reception', time: s('reception_time'), venue: s('reception_venue') })
+  return out
+}
+
 // ── Gallery photo uploader ────────────────────────────────────────────────────
 // Real in-builder photo upload: pick (multiple) images → upload to Storage as
 // `gallery_image` assets → show thumbnails (signed URLs from the media GET) →
@@ -218,46 +278,73 @@ function SectionForm({
         />
       )
 
-    case 'schedule':
+    case 'schedule': {
+      const events: SchedEvent[] = Array.isArray(cfg.events) && (cfg.events as SchedEvent[]).length
+        ? (cfg.events as SchedEvent[]).map(e => ({ id: e.id || newEventId(), label: e.label || '', time: e.time || '', venue: e.venue || '' }))
+        : legacyToEvents(cfg)
+      const write = (next: SchedEvent[]) => patch({ events: next })
+      const add = (label = '') => write([...events, { id: newEventId(), label, time: '', venue: '' }])
+      const update = (id: string, k: 'label' | 'time' | 'venue', v: string) =>
+        write(events.map(e => (e.id === id ? { ...e, [k]: v } : e)))
+      const remove = (id: string) => write(events.filter(e => e.id !== id))
+      const used = new Set(events.map(e => e.label.toLowerCase()))
+
       return (
         <div className="flex flex-col gap-3">
-          <div className="grid grid-cols-2 gap-2">
-            <TextField
-              label="Ceremony time"
-              value={str('ceremony_time')}
-              placeholder="3:00 PM"
-              onChange={v => patch({ ceremony_time: v })}
-            />
-            <TextField
-              label="Ceremony venue"
-              value={str('ceremony_venue')}
-              placeholder="St Mary's Church"
-              onChange={v => patch({ ceremony_venue: v })}
-            />
+          <AnimatePresence initial={false}>
+            {events.map(ev => (
+              <motion.div
+                key={ev.id}
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="relative rounded-xl p-3 pt-2.5"
+                style={{ background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(26,24,22,0.08)' }}
+              >
+                <button type="button" onClick={() => remove(ev.id)} className="absolute right-2.5 top-2.5" aria-label="Remove event">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(26,24,22,0.28)" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <input
+                  value={ev.label}
+                  onChange={e => update(ev.id, 'label', e.target.value)}
+                  placeholder="Event name (e.g. Dinner)"
+                  className="mb-2 w-full bg-transparent font-cormorant text-[15px] text-[#1A1816] placeholder:text-[#1A1816]/30 outline-none pr-5"
+                />
+                <TimePicker value={ev.time} onChange={v => update(ev.id, 'time', v)} />
+                <input
+                  value={ev.venue}
+                  onChange={e => update(ev.id, 'venue', e.target.value)}
+                  placeholder="Location (optional)"
+                  className="mt-2 w-full bg-transparent font-inter text-xs text-[#1A1816]/68 placeholder:text-[#1A1816]/24 outline-none"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {/* one-tap chips for the usual wedding moments */}
+          <div className="flex flex-wrap gap-1.5">
+            {SCHEDULE_PRESETS.filter(l => !used.has(l.toLowerCase())).map(l => (
+              <button
+                key={l} type="button" onClick={() => add(l)}
+                className="rounded-full px-2.5 py-1 font-inter transition-all"
+                style={{ fontSize: 11.5, background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(26,24,22,0.1)', color: '#1A1816' }}
+              >
+                + {l}
+              </button>
+            ))}
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            <TextField
-              label="Reception time"
-              value={str('reception_time')}
-              placeholder="6:30 PM"
-              onChange={v => patch({ reception_time: v })}
-            />
-            <TextField
-              label="Reception venue"
-              value={str('reception_venue')}
-              placeholder="The Grand Ballroom"
-              onChange={v => patch({ reception_venue: v })}
-            />
-          </div>
-          <TextField
-            label="Other notes"
-            value={str('notes')}
-            placeholder="Any other timings or details…"
-            multiline
-            onChange={v => patch({ notes: v })}
-          />
+          <button type="button" onClick={() => add('')} className="flex items-center gap-2 self-start font-inter" style={{ fontSize: 11, color: '#A8854B' }}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1v10M1 6h10" stroke="#A8854B" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+            Add a custom moment
+          </button>
+
+          <TextField label="Other notes" value={str('notes')} placeholder="Any other timings or details…" multiline onChange={v => patch({ notes: v })} />
         </div>
       )
+    }
 
     case 'venue':
       return (

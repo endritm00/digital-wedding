@@ -40,8 +40,10 @@ export function cardLegibility({ dark }: LegibilityInput): CardLegibility {
   // Wash tone: warm near-black for dark themes, warm near-white for light themes.
   const tone = dark ? '16, 12, 9' : '253, 251, 247'
   // Center opacity guarantees the read; edges fall to ~0 so the film shows through.
-  const c0 = dark ? 0.52 : 0.5
-  const c1 = dark ? 0.36 : 0.34
+  // Light themes need a denser core — accent-coloured names + a white halo wash out
+  // over a bright film otherwise (the caption lines were nearly invisible).
+  const c0 = dark ? 0.52 : 0.62
+  const c1 = dark ? 0.36 : 0.45
   const wash = `radial-gradient(125% 115% at 50% 42%, rgba(${tone}, ${c0}) 0%, rgba(${tone}, ${c1}) 46%, rgba(${tone}, 0.07) 78%, rgba(${tone}, 0) 100%)`
   // The mask feathers the glass *box* (incl. its backdrop-blur) to nothing, so
   // there is no visible rectangular edge — the solid core stays well inside the

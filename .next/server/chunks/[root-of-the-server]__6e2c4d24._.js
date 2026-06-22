@@ -706,11 +706,17 @@ async function initiateMuxUpload({ inviteId, kind, mime, bytes, service }) {
             }
         });
     } catch (err) {
+        const msg = String(err);
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$logger$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["logger"].error({
             event: 'mux.upload.create.failed',
             invite_id: inviteId,
-            error: String(err)
+            error: msg
         });
+        // Distinguish "Mux not configured" (permanent → coming soon) from transient
+        // API failures like plan limits (retryable → show error + keep card enabled).
+        if (msg.includes('not configured') || msg.includes('MUX_TOKEN')) {
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serverError"])('video_provider_unavailable');
+        }
         return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2f$response$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serverError"])('video_provider_error');
     }
     const { error } = await service.from('media_assets').insert({

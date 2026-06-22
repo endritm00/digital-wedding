@@ -375,9 +375,9 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
             y.set(0);
             return;
         }
-        y.set(48);
+        y.set(40);
         const controls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, 0, {
-            duration: 0.55,
+            duration: 0.4,
             ease: [
                 0.22,
                 1,
@@ -466,7 +466,7 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
             opacity: 1
         },
         transition: {
-            duration: 0.45,
+            duration: 0.3,
             ease: [
                 0.22,
                 1,
@@ -606,32 +606,15 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                     }
                 },
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "h-1 rounded-full",
                         style: {
+                            width: 36,
                             background: 'rgba(26,24,22,0.16)'
-                        },
-                        animate: reduced || peeked ? {
-                            width: 36
-                        } : {
-                            width: [
-                                36,
-                                24,
-                                36
-                            ]
-                        },
-                        transition: {
-                            duration: 3,
-                            ease: 'easeInOut',
-                            repeat: Infinity,
-                            repeatDelay: 1
-                        },
-                        initial: {
-                            width: 36
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 217,
+                        lineNumber: 220,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
@@ -927,7 +910,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts_
 ;
 function OpeningVideoPage({ params }) {
     const { inviteId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["use"])(params);
-    const { opening, setOpening, setMediaAsset, refreshQuote } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
+    const { opening, setOpening, setMediaAsset, refreshQuote, media } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$builder$2d$provider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useBuilder"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const fileRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [uploading, setUploading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -939,6 +922,10 @@ function OpeningVideoPage({ params }) {
     const config = opening?.config ?? {};
     const selectedPreset = config.video_preset ?? null;
     const hasCustomVideo = Boolean(config.video_asset_id);
+    // Block Continue until the uploaded video is processed and previewing.
+    // Once status==='ready' the background preview loads it automatically.
+    const uploadedAsset = config.video_asset_id ? media.find((m)=>m.id === config.video_asset_id) ?? null : null;
+    const uploadedProcessing = uploadedAsset !== null && uploadedAsset.status !== 'ready';
     // The opening section persists ~800ms after setOpening; the quote derives the
     // custom-film fee from it server-side, so refresh shortly after a change for a
     // prompt total update.
@@ -975,10 +962,12 @@ function OpeningVideoPage({ params }) {
                 if (asset.status === 'ready' || asset.status === 'failed') stop();
             });
         } catch (err) {
-            if (err instanceof __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApiError"] && err.code === 'video_provider_error') {
+            if (err instanceof __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$builder$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ApiError"] && err.code === 'video_provider_unavailable') {
+                // Mux is not configured on this environment — permanent disable
                 setVideoUnavailable(true);
                 setUploadError('Custom video upload is coming soon — pick a film above for now.');
             } else {
+                // Transient error (plan limit, network, etc.) — card stays enabled so they can retry
                 setUploadError('Upload failed — please try again.');
             }
         } finally{
@@ -993,13 +982,15 @@ function OpeningVideoPage({ params }) {
                 step: "opening-video"
             }, void 0, false, {
                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                lineNumber: 72,
+                lineNumber: 81,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$builder$2f$step$2d$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StepSheet"], {
                 title: "Your opening film",
                 lede: "Guests see this first. Pick a mood or upload a clip from your day.",
                 primaryLabel: "Continue",
+                primaryBusy: uploading || uploadedProcessing,
+                primaryDisabled: uploading || uploadedProcessing,
                 onPrimary: ()=>router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'style'}`),
                 laterLabel: "No video",
                 onLater: ()=>router.push(`/builder/${inviteId}/style`),
@@ -1044,7 +1035,7 @@ function OpeningVideoPage({ params }) {
                                                 children: preset.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                lineNumber: 118,
+                                                lineNumber: 129,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1057,18 +1048,18 @@ function OpeningVideoPage({ params }) {
                                                 children: preset.mood
                                             }, void 0, false, {
                                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 132,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 112,
+                                        lineNumber: 123,
                                         columnNumber: 17
                                     }, this)
                                 }, preset.id, false, {
                                     fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 100,
                                     columnNumber: 15
                                 }, this);
                             }),
@@ -1110,7 +1101,7 @@ function OpeningVideoPage({ params }) {
                                                     strokeWidth: "1.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                    lineNumber: 147,
+                                                    lineNumber: 158,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1127,18 +1118,18 @@ function OpeningVideoPage({ params }) {
                                                         repeatCount: "indefinite"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                        lineNumber: 149,
+                                                        lineNumber: 160,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 159,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 157,
                                             columnNumber: 17
                                         }, this) : videoUnavailable ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                             width: "16",
@@ -1155,7 +1146,7 @@ function OpeningVideoPage({ params }) {
                                                     strokeWidth: "1.4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 165,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1166,13 +1157,13 @@ function OpeningVideoPage({ params }) {
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 166,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 164,
                                             columnNumber: 17
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                             width: "16",
@@ -1187,17 +1178,17 @@ function OpeningVideoPage({ params }) {
                                                 strokeLinecap: "round"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                                lineNumber: 159,
+                                                lineNumber: 170,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                            lineNumber: 158,
+                                            lineNumber: 169,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 144,
+                                        lineNumber: 155,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1210,7 +1201,7 @@ function OpeningVideoPage({ params }) {
                                         children: uploading ? 'Uploading…' : videoUnavailable ? 'Coming soon' : hasCustomVideo ? 'Uploaded ✓' : 'Your own clip'
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 174,
                                         columnNumber: 13
                                     }, this),
                                     !uploading && !videoUnavailable && !hasCustomVideo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1224,22 +1215,115 @@ function OpeningVideoPage({ params }) {
                                         children: "+€4.99"
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 178,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                lineNumber: 130,
+                                lineNumber: 141,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 85,
+                        lineNumber: 96,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    (uploading || uploadedProcessing) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mt-3 flex items-center gap-2.5 rounded-2xl px-4 py-3",
+                        style: {
+                            background: 'rgba(168,133,75,0.08)',
+                            border: '1px solid rgba(168,133,75,0.22)'
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                width: "14",
+                                height: "14",
+                                viewBox: "0 0 14 14",
+                                fill: "none",
+                                "aria-hidden": "true",
+                                className: "flex-none",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                        cx: "7",
+                                        cy: "7",
+                                        r: "5.5",
+                                        stroke: "rgba(168,133,75,0.3)",
+                                        strokeWidth: "1.4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                        lineNumber: 195,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        d: "M7 1.5A5.5 5.5 0 0 1 12.5 7",
+                                        stroke: "#A8854B",
+                                        strokeWidth: "1.4",
+                                        strokeLinecap: "round",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("animateTransform", {
+                                            attributeName: "transform",
+                                            type: "rotate",
+                                            from: "0 7 7",
+                                            to: "360 7 7",
+                                            dur: "0.9s",
+                                            repeatCount: "indefinite"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                            lineNumber: 197,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                        lineNumber: 196,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                lineNumber: 194,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "min-w-0",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "font-inter leading-tight",
+                                        style: {
+                                            fontSize: 12,
+                                            color: '#1A1816'
+                                        },
+                                        children: uploading ? 'Uploading your video…' : 'Getting your film ready…'
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                        lineNumber: 201,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "font-inter mt-0.5",
+                                        style: {
+                                            fontSize: 10,
+                                            color: 'rgba(26,24,22,0.5)'
+                                        },
+                                        children: uploading ? 'This takes 10–15 seconds. Please wait before continuing.' : 'Your video will show in the preview. This may take a few seconds.'
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                        lineNumber: 204,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                lineNumber: 200,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                        lineNumber: 190,
+                        columnNumber: 11
+                    }, this),
+                    !uploading && !uploadedProcessing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "font-inter mt-3 text-center",
                         style: {
                             fontSize: 10.5,
@@ -1249,8 +1333,8 @@ function OpeningVideoPage({ params }) {
                         children: "Curated films are included. Uploading your own adds €4.99."
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 178,
-                        columnNumber: 9
+                        lineNumber: 215,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         ref: fileRef,
@@ -1260,7 +1344,7 @@ function OpeningVideoPage({ params }) {
                         onChange: handleFileChange
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 185,
+                        lineNumber: 223,
                         columnNumber: 9
                     }, this),
                     uploadError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1272,26 +1356,13 @@ function OpeningVideoPage({ params }) {
                         children: uploadError
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 194,
-                        columnNumber: 11
-                    }, this),
-                    hasCustomVideo && !uploading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "font-inter mt-3 text-center",
-                        style: {
-                            fontSize: 10,
-                            letterSpacing: '0.04em',
-                            color: 'rgba(26,24,22,0.4)'
-                        },
-                        children: "Your film is processing — it will appear in the preview once ready."
-                    }, void 0, false, {
-                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 203,
+                        lineNumber: 232,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                lineNumber: 73,
+                lineNumber: 82,
                 columnNumber: 7
             }, this)
         ]

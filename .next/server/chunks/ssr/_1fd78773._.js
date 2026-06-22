@@ -29,6 +29,9 @@ __turbopack_context__.s({
     "SECTION_LABELS": (()=>SECTION_LABELS),
     "VIDEO_PRESETS": (()=>VIDEO_PRESETS)
 });
+// Adaptive HLS playlist for a Mux-transcoded preset (public playback id).
+// Client-safe (just a URL) — unlike lib/mux which is server-only.
+const muxHls = (playbackId)=>`https://stream.mux.com/${playbackId}.m3u8`;
 // ── Supabase Storage public base URL ────────────────────────────────────────
 // This is the stable, self-owned CDN. Run scripts/mirror-presets.mjs once to
 // populate the bucket. Preset ids must stay stable (existing drafts reference them).
@@ -43,6 +46,7 @@ const VIDEO_PRESETS = [
         name: 'In Bloom',
         mood: 'An arch of flowers',
         src: presetFilm('golden-hour'),
+        hls: muxHls('lWsz00A95012Md025lu01a5Xs1029yquxeDtuMNUlvSULEoo'),
         posterImg: presetPoster('golden-hour'),
         poster: {
             from: '#E7D8DC',
@@ -51,14 +55,16 @@ const VIDEO_PRESETS = [
         ink: '#FDFCF9'
     },
     {
+        // a couple (legs only, no faces) by a white bridal bouquet on sunlit grass
         id: 'first-dance',
         name: 'First Dance',
-        mood: 'Held close, swaying',
+        mood: 'A bouquet in the garden',
         src: presetFilm('first-dance'),
+        hls: muxHls('s7U2JmXZAUUIYkOCvvVVmpqUzbNN4EHKsAWwOWyDkgM'),
         posterImg: presetPoster('first-dance'),
         poster: {
-            from: '#E2D2BE',
-            to: '#A98C66'
+            from: '#DCD3BF',
+            to: '#7E885C'
         },
         ink: '#FDFCF9'
     },
@@ -68,6 +74,7 @@ const VIDEO_PRESETS = [
         name: 'The Vows',
         mood: 'An aisle in bloom',
         src: presetFilm('the-vows'),
+        hls: muxHls('4hkfQ1wFn5wFekS9b2qZk9exFU00JPwQYEQ9Bex02amNA'),
         posterImg: presetPoster('the-vows'),
         poster: {
             from: '#EAF0EE',
@@ -101,15 +108,15 @@ const VIDEO_PRESETS = [
         ink: '#FDFCF9'
     },
     {
-        // now a grand, flower-dressed wedding stage / setting (no faces)
+        // a barefoot couple (legs only, no faces) walking at the water's edge
         id: 'eternal',
         name: 'Eternal',
-        mood: 'A stage in bloom',
+        mood: 'Barefoot by the sea',
         src: presetFilm('eternal'),
         posterImg: presetPoster('eternal'),
         poster: {
-            from: '#E8D2B8',
-            to: '#B98E6A'
+            from: '#CCC5BA',
+            to: '#A0978A'
         },
         ink: '#FDFCF9'
     },
@@ -128,7 +135,6 @@ const VIDEO_PRESETS = [
     },
     {
         // now an aerial of an elegant outdoor reception, tables set (no faces).
-        // id kept stable; the lifting-veil opener still uses this as its backdrop film.
         id: 'the-veil',
         name: 'The Reception',
         mood: 'Tables set under the sky',
@@ -364,33 +370,42 @@ const PALETTE_MAP = Object.fromEntries(PALETTES.map((p)=>[
 const DEFAULT_PALETTE = PALETTES[0];
 const HEADING_FONTS = [
     {
-        id: 'pinyon',
-        name: 'Pinyon',
+        id: 'pinyon-baskerville',
+        name: 'Pinyon Script · Baskerville',
+        pair: 'Romantic calligraphy',
         var: 'var(--font-pinyon)',
+        bodyVar: 'var(--font-baskervville)',
         sample: 'Forever',
         scale: 1.15
     },
     {
-        id: 'great-vibes',
-        name: 'Great Vibes',
-        var: 'var(--font-great-vibes)',
-        sample: 'Forever',
-        scale: 1.1
-    },
-    {
-        id: 'cormorant',
-        name: 'Cormorant',
-        var: 'var(--font-cormorant)',
-        sample: 'Forever',
-        scale: 0.82
-    },
-    {
-        id: 'cormorant-italic',
-        name: 'Cormorant Italic',
-        var: 'var(--font-cormorant)',
+        id: 'fraunces-inter',
+        name: 'Canela · Helvetica Neue',
+        pair: 'Luxury editorial',
+        var: 'var(--font-fraunces)',
+        bodyVar: 'var(--font-inter)',
         sample: 'Forever',
         scale: 0.84,
         italic: true
+    },
+    {
+        id: 'cormorant-garamond',
+        name: 'Corme · EB Garamond',
+        pair: 'Classical elegance',
+        var: 'var(--font-cormorant)',
+        bodyVar: 'var(--font-eb-garamond)',
+        sample: 'Forever',
+        scale: 0.82,
+        italic: true
+    },
+    {
+        id: 'jakarta-inter',
+        name: 'Neue Haas Grotesk · Inter',
+        pair: 'Modern minimalist',
+        var: 'var(--font-jakarta)',
+        bodyVar: 'var(--font-inter)',
+        sample: 'Forever',
+        scale: 0.78
     }
 ];
 const HEADING_FONT_MAP = Object.fromEntries(HEADING_FONTS.map((f)=>[
@@ -429,11 +444,20 @@ function HeroSection() {
     const [ready, setReady] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const sectionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const videoRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Only run the film while the hero is on screen — frees the decoder once the
-    // user scrolls past, so the rest of the page stays smooth.
+    // Only mount/run the film once the hero is on screen — and only ONCE (armed),
+    // so we never re-create the <video> (which would re-download the whole file).
+    // Playback is driven explicitly here, not via autoPlay, so the browser issues
+    // exactly one controlled fetch instead of autoPlay + play()-after-pause racing
+    // into a double download.
+    const [armed, setArmed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const inView = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$in$2d$view$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useInView"])(sectionRef, {
         amount: 0.25
     });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (inView) setArmed(true);
+    }, [
+        inView
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const v = videoRef.current;
         if (!v || reduced) return;
@@ -442,6 +466,7 @@ function HeroSection() {
         } else v.pause();
     }, [
         inView,
+        armed,
         reduced
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -462,7 +487,7 @@ function HeroSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 32,
+                        lineNumber: 37,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,19 +501,18 @@ function HeroSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 34,
+                        lineNumber: 39,
                         columnNumber: 9
                     }, this),
-                    !reduced && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].video, {
+                    !reduced && armed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].video, {
                         ref: videoRef,
                         className: "absolute inset-0 h-full w-full object-cover",
                         src: HERO.src,
                         poster: HERO.posterImg,
-                        autoPlay: true,
                         muted: true,
                         loop: true,
                         playsInline: true,
-                        preload: "auto",
+                        preload: "metadata",
                         onCanPlay: ()=>setReady(true),
                         initial: {
                             opacity: 0
@@ -509,13 +533,13 @@ function HeroSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 45,
+                        lineNumber: 50,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 30,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -525,7 +549,7 @@ function HeroSection() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 67,
+                lineNumber: 71,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -535,7 +559,7 @@ function HeroSection() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 68,
+                lineNumber: 72,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -546,7 +570,7 @@ function HeroSection() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 71,
+                lineNumber: 75,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -581,7 +605,7 @@ function HeroSection() {
                         children: "Digital Wedding Invitations"
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 78,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h1, {
@@ -619,7 +643,7 @@ function HeroSection() {
                                 children: "Begin your"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 95,
+                                lineNumber: 99,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -633,13 +657,13 @@ function HeroSection() {
                                 children: "Forever"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 98,
+                                lineNumber: 102,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 88,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -672,7 +696,7 @@ function HeroSection() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 114,
+                                lineNumber: 118,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -684,7 +708,7 @@ function HeroSection() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 115,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -695,13 +719,13 @@ function HeroSection() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 116,
+                                lineNumber: 120,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 107,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -736,14 +760,14 @@ function HeroSection() {
                             "A film that opens your invitation.",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 126,
+                                lineNumber: 130,
                                 columnNumber: 45
                             }, this),
                             "Shared with a single link. Live in minutes."
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 119,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -781,7 +805,7 @@ function HeroSection() {
                                 children: "Start creating"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 135,
+                                lineNumber: 139,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -795,19 +819,19 @@ function HeroSection() {
                                 children: "See the films →"
                             }, void 0, false, {
                                 fileName: "[project]/components/home/hero-section.tsx",
-                                lineNumber: 142,
+                                lineNumber: 146,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 129,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 77,
+                lineNumber: 81,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -833,7 +857,7 @@ function HeroSection() {
                         children: "Scroll"
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 159,
+                        lineNumber: 163,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
@@ -862,19 +886,19 @@ function HeroSection() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/home/hero-section.tsx",
-                        lineNumber: 160,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home/hero-section.tsx",
-                lineNumber: 153,
+                lineNumber: 157,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/home/hero-section.tsx",
-        lineNumber: 28,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 }
@@ -2333,7 +2357,7 @@ function OpeningFilmSection() {
                         muted: true,
                         loop: true,
                         playsInline: true,
-                        preload: "auto",
+                        preload: "metadata",
                         onCanPlay: ()=>setReady(true),
                         initial: {
                             opacity: 0

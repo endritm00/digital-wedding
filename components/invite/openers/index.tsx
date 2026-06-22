@@ -12,12 +12,11 @@ export interface OpenerDef {
   id: string
   name: string
   blurb: string
-  motif: 'letter' | 'veil'   // small icon for the picker card
+  motif: 'letter'   // small icon for the picker card
 }
 
 export const OPENERS: OpenerDef[] = [
-  { id: 'wax-letter',  name: 'The Letter', blurb: 'A wax-sealed envelope — press the seal to open it.', motif: 'letter' },
-  { id: 'lifting-veil', name: 'The Veil',  blurb: 'A soft veil — lift it away to reveal the day.', motif: 'veil' },
+  { id: 'wax-letter', name: 'The Letter', blurb: 'A wax-sealed envelope — press the seal to open it.', motif: 'letter' },
 ]
 
 export const OPENER_MAP: Record<string, OpenerDef> = Object.fromEntries(OPENERS.map(o => [o.id, o]))

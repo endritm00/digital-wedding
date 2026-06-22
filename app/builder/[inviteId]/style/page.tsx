@@ -11,25 +11,12 @@ import {
 } from '@/lib/builder/presets'
 import { OPENERS, DEFAULT_OPENER, InviteOpener } from '@/components/invite/openers'
 
-// film shown behind the opener preview — matches the opener motif, falls back to the chosen film
-const OPENER_FILM: Record<string, string> = { 'wax-letter': 'the-letter', 'lifting-veil': 'the-veil' }
+// film shown behind the opener preview
+const OPENER_FILM: Record<string, string> = { 'wax-letter': 'the-letter' }
 
-// Small motif thumbnails for the opener cards (closed-state idea).
-function OpenerMotif({ motif, accent, ink }: { motif: string; accent: string; ink: string }) {
-  if (motif === 'gates') return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden>
-      {[11, 20, 29].map((x, i) => (<g key={i}><line x1={x} y1="12" x2={x} y2="34" stroke={accent} strokeWidth="1.6" /><path d={`M${x - 3} 12 L${x} 7 L${x + 3} 12 Z`} fill={accent} /></g>))}
-      <line x1="7" y1="20" x2="33" y2="20" stroke={accent} strokeWidth="1.4" />
-      <circle cx="20" cy="20" r="4.5" fill="none" stroke={accent} strokeWidth="1.4" />
-    </svg>
-  )
-  if (motif === 'veil') return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden>
-      <path d="M8 9 Q20 4 32 9 L32 26 Q26 33 20 26 Q14 33 8 26 Z" fill="none" stroke={accent} strokeWidth="1.5" opacity="0.85" />
-      <path d="M8 26 q3 5 6 0 q3 5 6 0 q3 5 6 0 q3 5 6 0" fill="none" stroke={accent} strokeWidth="1.2" opacity="0.6" />
-    </svg>
-  )
-  return ( // letter
+// Small motif thumbnail for the opener card.
+function OpenerMotif({ accent }: { accent: string }) {
+  return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden>
       <rect x="7" y="11" width="26" height="19" rx="1.5" fill="none" stroke={accent} strokeWidth="1.5" />
       <path d="M7 12 L20 22 L33 12" fill="none" stroke={accent} strokeWidth="1.3" />
@@ -118,7 +105,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                 }}
               >
                 <span className="flex-none flex items-center justify-center rounded-xl" style={{ width: 52, height: 52, background: on ? 'rgba(168,133,75,0.1)' : 'rgba(26,24,22,0.035)' }}>
-                  <OpenerMotif motif={o.motif} accent={on ? '#A8854B' : 'rgba(26,24,22,0.55)'} ink="#1A1816" />
+                  <OpenerMotif accent={on ? '#A8854B' : 'rgba(26,24,22,0.55)'} />
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col">
                   <span className="flex items-center gap-2">
@@ -176,10 +163,21 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
             const on = activeFont === f.id
             return (
               <motion.button key={f.id} type="button" onClick={() => setOpening({ heading_font: f.id })} aria-pressed={on}
-                whileTap={reduced ? {} : { scale: 0.98 }} className="flex items-center justify-between rounded-2xl px-4 py-3 text-left transition-all"
+                whileTap={reduced ? {} : { scale: 0.98 }} className="flex items-center gap-4 rounded-2xl px-4 py-3 text-left transition-all"
                 style={{ background: on ? 'rgba(168,133,75,0.08)' : 'rgba(255,255,255,0.55)', border: on ? '1px solid rgba(168,133,75,0.45)' : '1px solid rgba(26,24,22,0.08)' }}>
-                <span style={{ fontFamily: f.var, fontStyle: f.italic ? 'italic' : 'normal', fontSize: `calc(26px * ${f.scale})`, color: on ? '#A8854B' : '#1A1816', lineHeight: 1 }}>{f.sample}</span>
-                <span className="font-inter" style={{ fontSize: 11, letterSpacing: '0.06em', color: on ? '#A8854B' : 'rgba(26,24,22,0.5)' }}>{f.name}</span>
+                {/* heading font sample */}
+                <span className="flex-none" style={{ fontFamily: f.var, fontStyle: f.italic ? 'italic' : 'normal', fontSize: `calc(28px * ${f.scale})`, color: on ? '#A8854B' : '#1A1816', lineHeight: 1, minWidth: 90 }}>{f.sample}</span>
+                {/* pair label */}
+                <span className="flex min-w-0 flex-1 flex-col">
+                  <span className="font-inter leading-tight truncate" style={{ fontSize: 12, color: on ? '#A8854B' : '#1A1816' }}>{f.name}</span>
+                  <span className="font-inter leading-tight truncate mt-0.5" style={{ fontSize: 9.5, letterSpacing: '0.04em', color: on ? 'rgba(168,133,75,0.7)' : 'rgba(26,24,22,0.4)' }}>{f.pair}</span>
+                </span>
+                {on && (
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden className="flex-none">
+                    <circle cx="7" cy="7" r="6.5" stroke="#A8854B" />
+                    <path d="M4.5 7.5l1.8 1.8L9.5 5" stroke="#A8854B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </motion.button>
             )
           })}

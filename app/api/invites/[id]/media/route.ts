@@ -132,7 +132,13 @@ async function initiateMuxUpload({
       },
     })
   } catch (err) {
-    logger.error({ event: 'mux.upload.create.failed', invite_id: inviteId, error: String(err) })
+    const msg = String(err)
+    logger.error({ event: 'mux.upload.create.failed', invite_id: inviteId, error: msg })
+    // Distinguish "Mux not configured" (permanent → coming soon) from transient
+    // API failures like plan limits (retryable → show error + keep card enabled).
+    if (msg.includes('not configured') || msg.includes('MUX_TOKEN')) {
+      return serverError('video_provider_unavailable')
+    }
     return serverError('video_provider_error')
   }
 

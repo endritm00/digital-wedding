@@ -353,7 +353,11 @@ export function BuilderProvider({
     })
   }, [])
 
-  const value: BuilderContextValue = {
+  // Memoized so consumers (notably the heavy InvitePreview) don't re-render when
+  // unrelated provider state settles (e.g. the saved→idle timer, a quote refresh).
+  // All callbacks are useCallback'd, so listing them as deps is stable; the object
+  // identity only changes when something it carries actually changes.
+  const value = useMemo<BuilderContextValue>(() => ({
     inviteId,
     invite,
     sections,
@@ -378,7 +382,12 @@ export function BuilderProvider({
     refreshQuote,
     refreshMedia,
     setMediaAsset,
-  }
+  }), [
+    inviteId, invite, sections, quote, plan, theme, extrasCatalog, inviteExtras,
+    media, loading, loadError, saveState, patchDraft, flushDraft, opening,
+    setOpening, addContentSection, removeContentSection, toggleContentSection,
+    updateSectionConfig, toggleExtra, refreshQuote, refreshMedia, setMediaAsset,
+  ])
 
   return <BuilderContext.Provider value={value}>{children}</BuilderContext.Provider>
 }

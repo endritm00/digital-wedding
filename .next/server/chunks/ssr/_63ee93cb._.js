@@ -375,9 +375,9 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
             y.set(0);
             return;
         }
-        y.set(48);
+        y.set(40);
         const controls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$animation$2f$animate$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["animate"])(y, 0, {
-            duration: 0.55,
+            duration: 0.4,
             ease: [
                 0.22,
                 1,
@@ -466,7 +466,7 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
             opacity: 1
         },
         transition: {
-            duration: 0.45,
+            duration: 0.3,
             ease: [
                 0.22,
                 1,
@@ -606,32 +606,15 @@ function StepSheet({ title, lede, children, primaryLabel, onPrimary, primaryDisa
                     }
                 },
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "h-1 rounded-full",
                         style: {
+                            width: 36,
                             background: 'rgba(26,24,22,0.16)'
-                        },
-                        animate: reduced || peeked ? {
-                            width: 36
-                        } : {
-                            width: [
-                                36,
-                                24,
-                                36
-                            ]
-                        },
-                        transition: {
-                            duration: 3,
-                            ease: 'easeInOut',
-                            repeat: Infinity,
-                            repeatDelay: 1
-                        },
-                        initial: {
-                            width: 36
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/builder/step-sheet.tsx",
-                        lineNumber: 217,
+                        lineNumber: 220,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {

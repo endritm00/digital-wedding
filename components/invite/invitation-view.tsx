@@ -11,6 +11,7 @@ import type { LayoutFamily } from '@/lib/builder/presets'
 import { InviteOpener } from '@/components/invite/openers'
 import { FilmBackdrop, type FilmFit, type FilmFocal } from '@/components/invite/film-backdrop'
 import { cardLegibility } from '@/lib/invite/legibility'
+import { Sprig, BotanicalSpray } from '@/components/invite/ornaments'
 
 // ════════════════════════════════════════════════════════════════════════════════
 // InvitationView — the ONE renderer for a complete invitation.
@@ -143,6 +144,7 @@ function CountdownTimer({ eventDate }: { eventDate: string | null }) {
   }, [eventDate])
 
   if (!eventDate || isPast || !timeLeft) return null
+  const center = t.layout !== 'editorial'
   const units = [
     { value: timeLeft.days, label: 'Days' }, { value: timeLeft.hours, label: 'Hours' },
     { value: timeLeft.minutes, label: 'Minutes' }, { value: timeLeft.seconds, label: 'Seconds' },
@@ -151,7 +153,7 @@ function CountdownTimer({ eventDate }: { eventDate: string | null }) {
     <motion.div
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="flex flex-col items-center py-16 px-8 text-center w-full"
+      className={`flex flex-col py-16 px-8 w-full ${center ? 'items-center text-center' : 'items-start text-left'}`}
     >
       <h3 className="mb-8" style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(clamp(2.4rem, 7vw, 3.2rem) * ${t.fontScale})`, color: t.accent, letterSpacing: '0.01em', lineHeight: 1.1 }}>
         Counting Down
@@ -193,6 +195,7 @@ function RsvpSection() {
   const [status, setStatus] = useState<RsvpStatus>('idle')
 
   const isValid = name.trim().length > 0 && attendance !== null
+  const center = t.layout !== 'editorial'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -229,12 +232,12 @@ function RsvpSection() {
     <motion.div
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="flex flex-col items-center py-16 px-8 w-full"
+      className={`flex flex-col py-16 px-8 w-full ${center ? 'items-center' : 'items-start'}`}
     >
-      <h3 className="text-center mb-2" style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(clamp(2.4rem, 7vw, 3.2rem) * ${t.fontScale})`, color: t.accent, letterSpacing: '0.01em', lineHeight: 1.1 }}>
+      <h3 className={`mb-2 ${center ? 'text-center' : 'text-left'}`} style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(clamp(2.4rem, 7vw, 3.2rem) * ${t.fontScale})`, color: t.accent, letterSpacing: '0.01em', lineHeight: 1.1 }}>
         Be Our Guest
       </h3>
-      <p className="font-inter text-center mb-8" style={{ fontSize: 12, letterSpacing: '0.06em', color: t.ink, opacity: 0.55 }}>
+      <p className={`font-inter mb-8 ${center ? 'text-center' : 'text-left'}`} style={{ fontSize: 12, letterSpacing: '0.06em', color: t.ink, opacity: 0.55 }}>
         Kindly let us know if you&rsquo;ll be joining us
       </p>
 
@@ -291,9 +294,15 @@ function RsvpSection() {
 
           {status === 'error' && <p className="font-inter text-center" style={{ fontSize: 11, color: '#8A4030' }}>Something went wrong — please try again.</p>}
 
-          <motion.button type="submit" disabled={!isValid || status === 'submitting'} whileTap={reduced ? {} : { scale: 0.97 }}
-            className="w-full rounded-full py-4 font-inter disabled:opacity-40 transition-opacity"
-            style={{ background: t.accent, color: '#FDFCF9', fontSize: 13, letterSpacing: '0.06em', boxShadow: `0 6px 20px ${hexA(t.accent, 0.3)}` }}>
+          <motion.button type="submit" disabled={!isValid || status === 'submitting'} whileTap={reduced || !isValid ? {} : { scale: 0.97 }}
+            className="w-full rounded-full py-4 font-inter transition-all"
+            style={{
+              background: isValid ? t.accent : (t.dark ? 'rgba(255,255,255,0.08)' : 'rgba(26,24,22,0.07)'),
+              color: isValid ? '#FDFCF9' : (t.dark ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.38)'),
+              fontSize: 13, letterSpacing: '0.06em',
+              boxShadow: isValid ? `0 6px 20px ${hexA(t.accent, 0.3)}` : 'none',
+              cursor: isValid ? 'pointer' : 'not-allowed',
+            }}>
             {status === 'submitting' ? 'Sending…' : 'Send RSVP'}
           </motion.button>
         </form>
@@ -306,13 +315,13 @@ function RsvpSection() {
 function layoutStyle(t: Theme) {
   switch (t.layout) {
     case 'editorial':
-      return { align: 'left' as const, items: 'items-start', text: 'text-left' as const, maxW: 640, pad: 'px-7 py-16', headingScale: 1.18, eyebrow: true, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'bar' as const }
+      return { align: 'left' as const, items: 'items-start', text: 'text-left' as const, maxW: 660, pad: 'px-7 py-16', headingScale: 1.22, eyebrow: true, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'bar' as const }
     case 'paper':
-      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 540, pad: 'px-7 py-12', headingScale: 0.78, eyebrow: false, frame: true, headFont: 'var(--font-cormorant)', headItalic: true, rule: 'diamond' as const }
+      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 540, pad: 'px-7 py-14', headingScale: 0.8, eyebrow: false, frame: true, headFont: 'var(--font-cormorant)', headItalic: true, rule: 'diamond' as const }
     case 'ethereal':
-      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 460, pad: 'px-8 py-24', headingScale: 1.05, eyebrow: false, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'hair' as const }
+      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 480, pad: 'px-8 py-[4.5rem]', headingScale: 1.08, eyebrow: false, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'hair' as const }
     default:
-      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 560, pad: 'px-8 py-14', headingScale: 1, eyebrow: false, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'ornament' as const }
+      return { align: 'center' as const, items: 'items-center', text: 'text-center' as const, maxW: 580, pad: 'px-8 py-14', headingScale: 1.02, eyebrow: false, frame: false, headFont: t.font, headItalic: t.fontStyle === 'italic', rule: 'ornament' as const }
   }
 }
 
@@ -326,10 +335,16 @@ function SectionBlock({ section, index }: { section: Section; index: number }) {
       content = cfg.text ? <StoryBlock t={t} ls={ls} index={index} text={String(cfg.text)} /> : null
       break
     case 'schedule': {
-      const items = [
+      // New model: an ordered `events` list. Legacy ceremony/reception fields are
+      // read as a fallback so invites built before custom events still render.
+      const events = (Array.isArray(cfg.events) ? cfg.events : []) as { label?: string; time?: string; venue?: string }[]
+      const legacy = [
         (cfg.ceremony_time || cfg.ceremony_venue) && { label: 'Ceremony', time: cfg.ceremony_time as string, venue: cfg.ceremony_venue as string },
         (cfg.reception_time || cfg.reception_venue) && { label: 'Reception', time: cfg.reception_time as string, venue: cfg.reception_venue as string },
       ].filter(Boolean) as { label: string; time?: string; venue?: string }[]
+      const items = (events.length ? events : legacy)
+        .filter((e) => e && (e.label || e.time || e.venue))
+        .map((e) => ({ label: e.label || 'Event', time: e.time, venue: e.venue }))
       content = items.length ? <ScheduleBlock t={t} ls={ls} index={index} items={items} notes={cfg.notes ? String(cfg.notes) : null} /> : null
       break
     }
@@ -412,9 +427,46 @@ function SectionHeader({ t, ls, index, title }: { t: Theme; ls: LS; index: numbe
   const center = ls.align !== 'left'
   return (
     <div className={center ? 'text-center' : 'text-left'}>
+      {/* a small themed sprig — the stationery signature above each title */}
+      <span className={`mb-3.5 flex ${center ? 'justify-center' : 'justify-start'}`} aria-hidden>
+        <Sprig color={t.accent} opacity={0.5} style={{ width: center ? 76 : 58, height: 'auto' }} />
+      </span>
       {ls.eyebrow ? <Eyebrow t={t} index={index} number /> : null}
-      <h3 className={ls.eyebrow ? 'mt-2' : ''} style={{ fontFamily: ls.headFont, fontStyle: ls.headItalic ? 'italic' : 'normal', fontSize: `calc(clamp(2rem, 6.5vw, 3rem) * ${t.fontScale * ls.headingScale})`, color: ls.frame ? t.ink : t.accent, letterSpacing: ls.headItalic ? '0.005em' : '0.01em', lineHeight: 1.12 }}>{title}</h3>
+      <h3 className={ls.eyebrow ? 'mt-2' : ''} style={{ fontFamily: ls.headFont, fontStyle: ls.headItalic ? 'italic' : 'normal', fontSize: `calc(clamp(2.2rem, 7.2vw, 3.4rem) * ${t.fontScale * ls.headingScale})`, color: ls.frame ? t.ink : t.accent, letterSpacing: ls.headItalic ? '0.005em' : '0.01em', lineHeight: 1.1 }}>{title}</h3>
       <SectionRule t={t} kind={ls.rule} center={center} />
+    </div>
+  )
+}
+
+// Atmospheric band wrapper: an alternating background + a faint, corner-anchored
+// botanical watermark (variant + side rotate by index, so neighbouring sections
+// never share a silhouette) + the divider. All vector & static — paint-cheap.
+function SectionBand({ index, children }: { index: number; children: React.ReactNode }) {
+  const t = useTheme()
+  const bands =
+    t.layout === 'ethereal' ? [t.paper, t.wash]
+    : t.layout === 'editorial' ? [t.wash, t.washAlt]
+    : [t.wash, t.washAlt]
+  const bg = bands[index % 2]
+  const left = index % 2 === 0
+  const variant = (['a', 'b', 'c'] as const)[index % 3]
+  return (
+    <div className="relative overflow-hidden" style={{ background: bg }}>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute"
+        style={{
+          left: left ? '-5%' : 'auto', right: left ? 'auto' : '-5%', bottom: '-4%',
+          width: 'clamp(160px, 30vw, 320px)', aspectRatio: '22 / 30', zIndex: 0,
+          transform: left ? 'none' : 'scaleX(-1)',
+        }}
+      >
+        <BotanicalSpray variant={variant} color={t.accent} opacity={t.dark ? 0.09 : 0.06} />
+      </div>
+      <div className="relative" style={{ zIndex: 1 }}>
+        {index > 0 && <OrnamentDivider />}
+        {children}
+      </div>
     </div>
   )
 }
@@ -452,7 +504,8 @@ function ScheduleBlock({ t, ls, index, items, notes }: { t: Theme; ls: LS; index
                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: t.accent }} />
               </span>
               <span className="font-inter uppercase" style={{ fontSize: 9.5, letterSpacing: '0.24em', color: t.accent }}>{it.label}</span>
-              {it.time && <p className="leading-none mt-1.5" style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(34px * ${t.fontScale})`, color: t.ink, letterSpacing: '-0.01em' }}>{it.time}</p>}
+              {/* Times always in a serif (not the theme's script face) so "3:00 PM" stays legible. */}
+              {it.time && <p className="leading-none mt-1.5" style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: 30, color: t.ink, letterSpacing: '-0.01em' }}>{it.time}</p>}
               {it.venue && <p className="font-inter mt-1.5" style={{ fontSize: 12.5, color: t.ink, opacity: 0.6 }}>{it.venue}</p>}
             </div>
           ))}
@@ -928,7 +981,7 @@ function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: 
         className="relative z-10 mx-6 px-9 py-12 text-center" style={{ maxWidth: 420, width: '100%' }}>
         <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
         <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.3em', color: th.ink, opacity: 0.62, textShadow: leg.textShadow }}>{familiesNote}</span>
-        <motion.h1 className="leading-tight mt-4 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(2.8rem, 10vw, 4rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
+        <motion.h1 className="leading-tight mt-4 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 11vw, 4.6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
         <div className="mx-auto mb-4" style={{ width: 60, height: 1, background: `linear-gradient(90deg, transparent, ${hexA(th.accent, 0.75)}, transparent)` }} />
         {date && <p className="font-cormorant italic font-light" style={{ fontSize: 18, color: th.ink, opacity: 0.92, textShadow: leg.textShadow }}>{date}</p>}
@@ -1003,7 +1056,6 @@ export function InvitationView({
     wash: palette.wash, washAlt: palette.washAlt, font: headingFont.var, fontScale: headingFont.scale,
     fontStyle: headingFont.italic ? 'italic' : 'normal', dark: !!palette.dark, layout: palette.layout,
   }
-  const sectionBgs = [theme.wash, theme.washAlt]
 
   // The film revealed behind the opener as it opens.
   const openPreset = VIDEO_PRESETS.find(p => p.id === (cfg.video_preset as string)) ?? null
@@ -1022,6 +1074,30 @@ export function InvitationView({
       return { url: v.url ?? v.medium ?? v.thumb ?? '', thumb: v.thumb, medium: v.medium }
     })
     .filter(g => g.url)
+
+  // A section the couple enabled but left empty must NOT render — otherwise its
+  // band + divider + watermark paint as a phantom block with huge empty space
+  // (the "broken/sparse" look). Mirror SectionBlock's own content checks here so
+  // only sections that will actually paint get a band, and band index parity
+  // (alternating bg + the "index > 0" divider) is computed off the filtered list.
+  const sectionHasContent = (sec: Section): boolean => {
+    const c = (sec.config ?? {}) as Record<string, unknown>
+    switch (sec.type) {
+      case 'story': return !!c.text
+      case 'schedule': {
+        const ev = (Array.isArray(c.events) ? c.events : []) as Array<{ label?: string; time?: string; venue?: string }>
+        return ev.some(e => e && (e.label || e.time || e.venue)) || !!(c.ceremony_time || c.ceremony_venue || c.reception_time || c.reception_venue)
+      }
+      case 'venue': return !!(c.name || c.address)
+      case 'gallery': return galleryImages.length > 0
+      case 'travel': return !!c.content
+      case 'gifts': return !!c.content
+      case 'dress_code': return !!(c.code || c.notes)
+      case 'faq': return Array.isArray(c.questions) && c.questions.length > 0
+      default: return true
+    }
+  }
+  const visibleSections = contentSections.filter(sectionHasContent)
 
   return (
     <ThemeCtx.Provider value={theme}>
@@ -1048,35 +1124,27 @@ export function InvitationView({
           <main style={{ background: theme.wash }}>
             <OpeningHero invite={invite} opening={opening} media={media} musicRef={musicRef} inPreview={rsvp.kind === 'preview'} />
 
-            {contentSections.length > 0 && (
+            {visibleSections.length > 0 && (
               <div>
-                {contentSections.map((sec, i) => {
-                  const bg = theme.layout === 'editorial' ? theme.wash
-                    : theme.layout === 'ethereal' ? (i % 2 === 0 ? theme.paper : theme.wash)
-                    : sectionBgs[i % 2]
-                  return (
-                    <div key={sec.id} style={{ background: bg }}>
-                      {i > 0 && <OrnamentDivider />}
-                      <SectionBlock section={sec} index={i} />
-                    </div>
-                  )
-                })}
+                {visibleSections.map((sec, i) => (
+                  <SectionBand key={sec.id} index={i}>
+                    <SectionBlock section={sec} index={i} />
+                  </SectionBand>
+                ))}
               </div>
             )}
 
             {invite.event_date && (
-              <div style={{ background: sectionBgs[contentSections.length % 2] }}>
-                <OrnamentDivider />
+              <SectionBand index={visibleSections.length}>
                 <CountdownTimer eventDate={invite.event_date} />
-              </div>
+              </SectionBand>
             )}
 
-            <div style={{ background: sectionBgs[(contentSections.length + 1) % 2] }}>
-              <OrnamentDivider />
+            <SectionBand index={visibleSections.length + 1}>
               <RsvpSection />
-            </div>
+            </SectionBand>
 
-            <footer className="flex flex-col items-center gap-4 py-20 px-8 text-center" style={{ background: '#1A1816' }}>
+            <footer className={`flex flex-col gap-4 py-20 px-8 ${theme.layout === 'editorial' ? 'items-start text-left' : 'items-center text-center'}`} style={{ background: theme.dark ? theme.washAlt : '#1A1816' }}>
               <OrnamentDivider />
               {(nameA || nameB) && <p style={{ fontFamily: theme.font, fontStyle: theme.fontStyle, fontSize: `calc(clamp(2rem, 8vw, 3rem) * ${theme.fontScale})`, color: 'rgba(253,252,249,0.9)', letterSpacing: '0.01em', lineHeight: 1.1 }}>{nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB}</p>}
               {date && <p className="font-cormorant italic font-light" style={{ fontSize: 16, color: 'rgba(253,252,249,0.4)' }}>{date}</p>}
