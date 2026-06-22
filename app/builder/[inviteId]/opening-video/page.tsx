@@ -171,16 +171,21 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
                 </svg>
               )}
             </div>
-            <span className="font-inter px-2 text-center leading-snug" style={{ fontSize: 10, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.52)' }}>
+            <span className="font-inter px-2 text-center leading-snug" style={{ fontSize: 13, letterSpacing: '0.01em', color: 'rgba(26,24,22,0.7)', fontWeight: 500 }}>
               {uploading ? 'Uploading…' : videoUnavailable ? 'Coming soon' : hasCustomVideo ? 'Uploaded ✓' : 'Your own clip'}
             </span>
             {!uploading && !videoUnavailable && !hasCustomVideo && (
-              <span
-                className="font-inter rounded-full px-2 py-0.5"
-                style={{ fontSize: 9, letterSpacing: '0.04em', color: '#A8854B', background: 'rgba(168,133,75,0.12)' }}
-              >
-                +€4.99
-              </span>
+              <>
+                <span className="font-inter px-4 text-center leading-snug" style={{ fontSize: 11, color: 'rgba(26,24,22,0.5)', letterSpacing: '0.01em', lineHeight: 1.5 }}>
+                  Only upload videos with a maximum duration of 10 seconds in MP4 or MOV format.
+                </span>
+                <span
+                  className="font-inter rounded-full px-2.5 py-1"
+                  style={{ fontSize: 10, letterSpacing: '0.04em', color: '#A8854B', background: 'rgba(168,133,75,0.12)' }}
+                >
+                  +€4.99
+                </span>
+              </>
             )}
           </button>
         </div>

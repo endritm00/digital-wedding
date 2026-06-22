@@ -11,7 +11,8 @@ import type { LayoutFamily } from '@/lib/builder/presets'
 import { InviteOpener } from '@/components/invite/openers'
 import { FilmBackdrop, type FilmFit, type FilmFocal } from '@/components/invite/film-backdrop'
 import { cardLegibility } from '@/lib/invite/legibility'
-import { Sprig, BotanicalSpray } from '@/components/invite/ornaments'
+import { Sprig, BotanicalSpray, MiniFlourish } from '@/components/invite/ornaments'
+import { HeroCrest, HeroCorners, HeroFrame } from '@/components/invite/hero-card'
 
 // ════════════════════════════════════════════════════════════════════════════════
 // InvitationView — the ONE renderer for a complete invitation.
@@ -154,6 +155,7 @@ function CountdownTimer({ eventDate }: { eventDate: string | null }) {
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`flex flex-col py-16 px-8 w-full ${center ? 'items-center text-center' : 'items-start text-left'}`}
+      style={{ maxWidth: layoutStyle(t).maxW, margin: '0 auto' }}
     >
       <h3 className="mb-8" style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(clamp(2.4rem, 7vw, 3.2rem) * ${t.fontScale})`, color: t.accent, letterSpacing: '0.01em', lineHeight: 1.1 }}>
         Counting Down
@@ -233,6 +235,7 @@ function RsvpSection() {
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`flex flex-col py-16 px-8 w-full ${center ? 'items-center' : 'items-start'}`}
+      style={{ maxWidth: layoutStyle(t).maxW, margin: '0 auto' }}
     >
       <h3 className={`mb-2 ${center ? 'text-center' : 'text-left'}`} style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(clamp(2.4rem, 7vw, 3.2rem) * ${t.fontScale})`, color: t.accent, letterSpacing: '0.01em', lineHeight: 1.1 }}>
         Be Our Guest
@@ -353,9 +356,6 @@ function SectionBlock({ section, index }: { section: Section; index: number }) {
       break
     case 'gallery':
       content = <GalleryBlock t={t} ls={ls} index={index} note={cfg.note ? String(cfg.note) : null} />
-      break
-    case 'travel':
-      content = cfg.content ? <TravelBlock t={t} ls={ls} index={index} text={String(cfg.content)} /> : null
       break
     case 'gifts':
       content = cfg.content ? <GiftsBlock t={t} ls={ls} index={index} text={String(cfg.content)} /> : null
@@ -851,22 +851,6 @@ function GalleryLightbox({ images, index, onClose, onIndex, accent }: {
 }
 
 // TRAVEL — a boarding-pass card with an accent stub and a plane mark.
-function TravelBlock({ t, ls, index, text }: { t: Theme; ls: LS; index: number; text: string }) {
-  const center = ls.align !== 'left'
-  return (
-    <div className="w-full" style={{ maxWidth: 480, margin: center ? '0 auto' : '0' }}>
-      <SectionHeader t={t} ls={ls} index={index} title="Getting There" />
-      <div className="relative mt-6 overflow-hidden rounded-2xl" style={{ background: t.dark ? hexA('#ffffff', 0.05) : hexA(t.paper, 0.6), border: `1px solid ${hexA(t.accent, 0.22)}` }}>
-        <div aria-hidden className="absolute left-0 top-0 bottom-0" style={{ width: 4, background: t.accent }} />
-        <div className="flex items-start gap-3.5 p-5 pl-6">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="flex-none mt-0.5" aria-hidden><path d="M21 16l-7-4V5.5a1.5 1.5 0 0 0-3 0V12l-7 4v2l7-2v3l-2 1.5V22l3.5-1L16 22v-1.5L14 19v-3l7 2v-2z" fill={hexA(t.accent, 0.85)} /></svg>
-          <p className="font-inter text-left" style={{ fontSize: 13.5, lineHeight: 1.72, color: t.ink, opacity: 0.82 }}>{text}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 // GIFTS — a soft gift card with a ribboned-box mark and an optional registry link.
 function GiftsBlock({ t, ls, index, text }: { t: Theme; ls: LS; index: number; text: string }) {
   const center = ls.align !== 'left'
@@ -889,19 +873,31 @@ function GiftsBlock({ t, ls, index, text }: { t: Theme; ls: LS; index: number; t
 }
 
 // DRESS CODE — a coordinated swatch palette (from the theme) above the attire note.
+const DRESS_CODE_SWATCHES: Record<string, { hex: string; name: string }[]> = {
+  'black-tie':   [{ hex: '#1A1816', name: 'Black' }, { hex: '#191970', name: 'Midnight Blue' }, { hex: '#F8F6F2', name: 'White' }, { hex: '#B8B8B8', name: 'Silver' }, { hex: '#4A0E2A', name: 'Deep Burgundy' }],
+  'formal':      [{ hex: '#1B2A4A', name: 'Navy' }, { hex: '#4A4A4A', name: 'Charcoal' }, { hex: '#722F37', name: 'Burgundy' }, { hex: '#2D5016', name: 'Forest Green' }, { hex: '#FFFFF0', name: 'Ivory' }],
+  'cocktail':    [{ hex: '#2E8B57', name: 'Emerald' }, { hex: '#0047AB', name: 'Cobalt Blue' }, { hex: '#673147', name: 'Plum' }, { hex: '#722F37', name: 'Burgundy' }, { hex: '#1A1816', name: 'Black' }],
+  'semi-formal': [{ hex: '#91A694', name: 'Sage Green' }, { hex: '#7BA7BC', name: 'Dusty Blue' }, { hex: '#C8A2A2', name: 'Mauve' }, { hex: '#D3D3D3', name: 'Light Gray' }, { hex: '#E8DCC8', name: 'Beige' }],
+}
+
 function DressCodeBlock({ t, ls, index, code, notes }: { t: Theme; ls: LS; index: number; code: string | null; notes: string | null }) {
   const center = ls.align !== 'left'
-  const swatches = [t.accent, t.ink, t.washAlt, t.paper]
+  const swatches = code ? (DRESS_CODE_SWATCHES[code] ?? null) : null
   return (
     <div className="w-full" style={{ maxWidth: 440, margin: center ? '0 auto' : '0' }}>
       <SectionHeader t={t} ls={ls} index={index} title="Dress Code" />
-      <div className={`mt-6 flex gap-2.5 ${center ? 'justify-center' : ''}`} aria-hidden>
-        {swatches.map((c, i) => (
-          <span key={i} style={{ width: 38, height: 38, borderRadius: '50%', background: c, border: `1px solid ${hexA(t.ink, 0.18)}`, boxShadow: '0 2px 8px rgba(26,24,22,0.12)' }} />
-        ))}
-      </div>
-      {code && <p className={`mt-5 ${center ? 'text-center' : 'text-left'}`} style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(22px * ${t.fontScale})`, color: t.accent, textTransform: 'capitalize' }}>{code}</p>}
-      {notes && <p className={`font-inter mt-2 ${center ? 'mx-auto text-center' : 'text-left'}`} style={{ fontSize: 13.5, lineHeight: 1.7, color: t.ink, opacity: 0.74, maxWidth: '40ch' }}>{notes}</p>}
+      {code && <p className={`mt-5 ${center ? 'text-center' : 'text-left'}`} style={{ fontFamily: t.font, fontStyle: t.fontStyle, fontSize: `calc(22px * ${t.fontScale})`, color: t.accent, textTransform: 'capitalize' }}>{code.replace('-', '‑')}</p>}
+      {swatches && (
+        <div className={`mt-4 flex gap-3 ${center ? 'justify-center' : ''}`} aria-hidden>
+          {swatches.map((s, i) => (
+            <div key={i} className="flex flex-col items-center gap-1.5">
+              <span style={{ width: 34, height: 34, borderRadius: '50%', background: s.hex, border: `1px solid rgba(26,24,22,0.14)`, boxShadow: '0 2px 8px rgba(26,24,22,0.10)', display: 'block' }} />
+              <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.04em', color: hexA(t.ink, 0.5), textAlign: 'center', lineHeight: 1.2, maxWidth: 44 }}>{s.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {notes && <p className={`font-inter mt-4 ${center ? 'mx-auto text-center' : 'text-left'}`} style={{ fontSize: 13.5, lineHeight: 1.7, color: t.ink, opacity: 0.74, maxWidth: '40ch' }}>{notes}</p>}
     </div>
   )
 }
@@ -935,7 +931,7 @@ function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: 
   const nameB = (cfg.name_b as string | undefined)?.trim() ?? ''
   const names = nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB || invite.display_title || 'Your names'
   const date = formatDate(invite.event_date ?? null)
-  const familiesNote = (cfg.families_note as string | undefined)?.trim() || 'Together with their families'
+  const familiesNote = (cfg.families_note as string | undefined)?.trim() || 'You are invited to the wedding of'
 
   const preset = VIDEO_PRESETS.find(p => p.id === cfg.video_preset) ?? null
   const uploadedAsset = media.find(m => m.id === cfg.video_asset_id && m.status === 'ready') ?? null
@@ -978,12 +974,18 @@ function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: 
       <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }} />
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        className="relative z-10 mx-6 px-9 py-12 text-center" style={{ maxWidth: 420, width: '100%' }}>
+        className="relative isolate z-10 mx-6 px-10 py-14 text-center" style={{ maxWidth: 430, width: '100%' }}>
         <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
-        <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.3em', color: th.ink, opacity: 0.62, textShadow: leg.textShadow }}>{familiesNote}</span>
-        <motion.h1 className="leading-tight mt-4 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 11vw, 4.6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
+        <HeroFrame color={th.accent} />
+        <HeroCorners color={th.accent} />
+
+        <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.7 }} className="block">
+          <HeroCrest color={th.accent} style={{ margin: '0 auto' }} />
+        </motion.span>
+        <span className="font-inter uppercase block mt-3.5" style={{ fontSize: 9, letterSpacing: '0.32em', color: th.ink, opacity: 0.6, textShadow: leg.textShadow }}>{familiesNote}</span>
+        <motion.h1 className="leading-tight mt-3 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 11vw, 4.6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
-        <div className="mx-auto mb-4" style={{ width: 60, height: 1, background: `linear-gradient(90deg, transparent, ${hexA(th.accent, 0.75)}, transparent)` }} />
+        <MiniFlourish color={th.accent} className="mx-auto mb-4" style={{ width: 78, height: 'auto', opacity: 0.9 }} />
         {date && <p className="font-cormorant italic font-light" style={{ fontSize: 18, color: th.ink, opacity: 0.92, textShadow: leg.textShadow }}>{date}</p>}
         {invite.venue_name && <p className="font-inter mt-1.5" style={{ fontSize: 11, letterSpacing: '0.08em', color: th.ink, opacity: 0.7, textShadow: leg.textShadow }}>{invite.venue_name}</p>}
 
@@ -1090,7 +1092,6 @@ export function InvitationView({
       }
       case 'venue': return !!(c.name || c.address)
       case 'gallery': return galleryImages.length > 0
-      case 'travel': return !!c.content
       case 'gifts': return !!c.content
       case 'dress_code': return !!(c.code || c.notes)
       case 'faq': return Array.isArray(c.questions) && c.questions.length > 0
@@ -1144,12 +1145,14 @@ export function InvitationView({
               <RsvpSection />
             </SectionBand>
 
-            <footer className={`flex flex-col gap-4 py-20 px-8 ${theme.layout === 'editorial' ? 'items-start text-left' : 'items-center text-center'}`} style={{ background: theme.dark ? theme.washAlt : '#1A1816' }}>
-              <OrnamentDivider />
-              {(nameA || nameB) && <p style={{ fontFamily: theme.font, fontStyle: theme.fontStyle, fontSize: `calc(clamp(2rem, 8vw, 3rem) * ${theme.fontScale})`, color: 'rgba(253,252,249,0.9)', letterSpacing: '0.01em', lineHeight: 1.1 }}>{nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB}</p>}
-              {date && <p className="font-cormorant italic font-light" style={{ fontSize: 16, color: 'rgba(253,252,249,0.4)' }}>{date}</p>}
-              <p className="font-cormorant italic font-light mt-2" style={{ fontSize: 18, color: 'rgba(253,252,249,0.55)' }}>We can&rsquo;t wait to celebrate with you.</p>
-              <p className="font-inter mt-4" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(253,252,249,0.18)', textTransform: 'uppercase' }}>Made with Digital Invite</p>
+            <footer className="py-20" style={{ background: theme.dark ? theme.washAlt : '#1A1816' }}>
+              <div className={`flex flex-col gap-4 w-full px-8 ${theme.layout === 'editorial' ? 'items-start text-left' : 'items-center text-center'}`} style={{ maxWidth: layoutStyle(theme).maxW, margin: '0 auto' }}>
+                <OrnamentDivider />
+                {(nameA || nameB) && <p style={{ fontFamily: theme.font, fontStyle: theme.fontStyle, fontSize: `calc(clamp(2rem, 8vw, 3rem) * ${theme.fontScale})`, color: 'rgba(253,252,249,0.9)', letterSpacing: '0.01em', lineHeight: 1.1 }}>{nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB}</p>}
+                {date && <p className="font-cormorant italic font-light" style={{ fontSize: 16, color: 'rgba(253,252,249,0.4)' }}>{date}</p>}
+                <p className="font-cormorant italic font-light mt-2" style={{ fontSize: 18, color: 'rgba(253,252,249,0.55)' }}>We can&rsquo;t wait to celebrate with you.</p>
+                <p className="font-inter mt-4" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(253,252,249,0.18)', textTransform: 'uppercase' }}>Made with Digital Invite</p>
+              </div>
             </footer>
           </main>
         </RsvpCtx.Provider>

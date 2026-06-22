@@ -344,11 +344,6 @@ body {
   right: 0;
 }
 
-.inset-x-\[-12\%\] {
-  left: -12%;
-  right: -12%;
-}
-
 .-top-11 {
   top: -2.75rem;
 }
@@ -371,10 +366,6 @@ body {
 
 .bottom-8 {
   bottom: 2rem;
-}
-
-.bottom-\[8\%\] {
-  bottom: 8%;
 }
 
 .left-0 {
@@ -453,12 +444,8 @@ body {
   top: 1.75rem;
 }
 
-.top-\[-8\%\] {
-  top: -8%;
-}
-
-.top-\[12\%\] {
-  top: 12%;
+.top-\[9\%\] {
+  top: 9%;
 }
 
 .isolate {
@@ -611,6 +598,10 @@ body {
 
 .mt-3 {
   margin-top: .75rem;
+}
+
+.mt-3\.5 {
+  margin-top: .875rem;
 }
 
 .mt-4 {
@@ -785,6 +776,10 @@ body {
   max-width: 320px;
 }
 
+.max-w-\[330px\] {
+  max-width: 330px;
+}
+
 .max-w-\[360px\] {
   max-width: 360px;
 }
@@ -799,10 +794,6 @@ body {
 
 .max-w-\[640px\] {
   max-width: 640px;
-}
-
-.max-w-\[92vw\] {
-  max-width: 92vw;
 }
 
 .max-w-sm {
@@ -995,10 +986,6 @@ body {
   overflow: hidden;
 }
 
-.whitespace-nowrap {
-  white-space: nowrap;
-}
-
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -1097,6 +1084,11 @@ body {
   padding-right: .375rem;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 .px-2 {
   padding-left: .5rem;
   padding-right: .5rem;
@@ -1167,11 +1159,6 @@ body {
   padding-bottom: 2.5rem;
 }
 
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
 .py-14 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -1237,6 +1224,11 @@ body {
   padding-bottom: 2rem;
 }
 
+.py-9 {
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+}
+
 .py-\[4\.5rem\] {
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
@@ -1262,8 +1254,8 @@ body {
   padding-bottom: 1.5rem;
 }
 
-.pl-6 {
-  padding-left: 1.5rem;
+.pb-\[9\%\] {
+  padding-bottom: 9%;
 }
 
 .pr-5 {
@@ -1397,6 +1389,10 @@ body {
 .text-\[\#1A1816\] {
   --tw-text-opacity: 1;
   color: rgb(26 24 22 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#1A1816\]\/70 {
+  color: #1a1816b3;
 }
 
 .text-\[\#1A1A1A\] {
@@ -1704,8 +1700,8 @@ body {
     width: 420px;
   }
 
-  .lg\:max-w-\[400px\] {
-    max-width: 400px;
+  .lg\:max-w-\[410px\] {
+    max-width: 410px;
   }
 
   .lg\:justify-center {
@@ -1716,6 +1712,11 @@ body {
     border-radius: 26px;
   }
 
+  .lg\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .lg\:px-7 {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
@@ -1724,11 +1725,6 @@ body {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-
-  .lg\:px-9 {
-    padding-left: 2.25rem;
-    padding-right: 2.25rem;
   }
 
   .lg\:py-12 {

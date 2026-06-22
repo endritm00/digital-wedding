@@ -1194,9 +1194,10 @@ function OpeningVideoPage({ params }) {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-inter px-2 text-center leading-snug",
                                         style: {
-                                            fontSize: 10,
-                                            letterSpacing: '0.03em',
-                                            color: 'rgba(26,24,22,0.52)'
+                                            fontSize: 13,
+                                            letterSpacing: '0.01em',
+                                            color: 'rgba(26,24,22,0.7)',
+                                            fontWeight: 500
                                         },
                                         children: uploading ? 'Uploading…' : videoUnavailable ? 'Coming soon' : hasCustomVideo ? 'Uploaded ✓' : 'Your own clip'
                                     }, void 0, false, {
@@ -1204,20 +1205,38 @@ function OpeningVideoPage({ params }) {
                                         lineNumber: 174,
                                         columnNumber: 13
                                     }, this),
-                                    !uploading && !videoUnavailable && !hasCustomVideo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-inter rounded-full px-2 py-0.5",
-                                        style: {
-                                            fontSize: 9,
-                                            letterSpacing: '0.04em',
-                                            color: '#A8854B',
-                                            background: 'rgba(168,133,75,0.12)'
-                                        },
-                                        children: "+€4.99"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 178,
-                                        columnNumber: 15
-                                    }, this)
+                                    !uploading && !videoUnavailable && !hasCustomVideo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "font-inter px-4 text-center leading-snug",
+                                                style: {
+                                                    fontSize: 11,
+                                                    color: 'rgba(26,24,22,0.5)',
+                                                    letterSpacing: '0.01em',
+                                                    lineHeight: 1.5
+                                                },
+                                                children: "Only upload videos with a maximum duration of 10 seconds in MP4 or MOV format."
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                                lineNumber: 179,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "font-inter rounded-full px-2.5 py-1",
+                                                style: {
+                                                    fontSize: 10,
+                                                    letterSpacing: '0.04em',
+                                                    color: '#A8854B',
+                                                    background: 'rgba(168,133,75,0.12)'
+                                                },
+                                                children: "+€4.99"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
+                                                lineNumber: 182,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
@@ -1253,7 +1272,7 @@ function OpeningVideoPage({ params }) {
                                         strokeWidth: "1.4"
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 195,
+                                        lineNumber: 200,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1270,18 +1289,18 @@ function OpeningVideoPage({ params }) {
                                             repeatCount: "indefinite"
                                         }, void 0, false, {
                                             fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 202,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 196,
+                                        lineNumber: 201,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                lineNumber: 194,
+                                lineNumber: 199,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1296,7 +1315,7 @@ function OpeningVideoPage({ params }) {
                                         children: uploading ? 'Uploading your video…' : 'Getting your film ready…'
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 206,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1308,19 +1327,19 @@ function OpeningVideoPage({ params }) {
                                         children: uploading ? 'This takes 10–15 seconds. Please wait before continuing.' : 'Your video will show in the preview. This may take a few seconds.'
                                     }, void 0, false, {
                                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                        lineNumber: 204,
+                                        lineNumber: 209,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                                lineNumber: 200,
+                                lineNumber: 205,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 190,
+                        lineNumber: 195,
                         columnNumber: 11
                     }, this),
                     !uploading && !uploadedProcessing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1333,7 +1352,7 @@ function OpeningVideoPage({ params }) {
                         children: "Curated films are included. Uploading your own adds €4.99."
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 215,
+                        lineNumber: 220,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1344,7 +1363,7 @@ function OpeningVideoPage({ params }) {
                         onChange: handleFileChange
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 223,
+                        lineNumber: 228,
                         columnNumber: 9
                     }, this),
                     uploadError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1356,7 +1375,7 @@ function OpeningVideoPage({ params }) {
                         children: uploadError
                     }, void 0, false, {
                         fileName: "[project]/app/builder/[inviteId]/opening-video/page.tsx",
-                        lineNumber: 232,
+                        lineNumber: 237,
                         columnNumber: 11
                     }, this)
                 ]

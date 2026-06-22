@@ -206,11 +206,6 @@ const CONTENT_SECTIONS = [
         blurb: 'A few favourite pictures of you two.'
     },
     {
-        type: 'travel',
-        label: 'Getting there',
-        blurb: 'Travel and hotel tips for guests from afar.'
-    },
-    {
         type: 'gifts',
         label: 'Gifts',
         blurb: 'A gentle note about gifts or contributions.'
@@ -401,13 +396,13 @@ const HEADING_FONTS = [
         italic: true
     },
     {
-        id: 'jakarta-inter',
-        name: 'Neue Haas Grotesk · Inter',
-        pair: 'Modern minimalist',
-        var: 'var(--font-jakarta)',
-        bodyVar: 'var(--font-inter)',
+        id: 'corinthia-cormorant',
+        name: 'Corinthia · Cormorant',
+        pair: 'Ornate luxury',
+        var: 'var(--font-corinthia)',
+        bodyVar: 'var(--font-cormorant)',
         sample: 'Forever',
-        scale: 0.78
+        scale: 1.18
     }
 ];
 const HEADING_FONT_MAP = Object.fromEntries(_c7 = HEADING_FONTS.map(_c6 = (f)=>[

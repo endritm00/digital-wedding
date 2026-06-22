@@ -178,7 +178,6 @@ export const CONTENT_SECTIONS: SectionDef[] = [
   { type: 'schedule',   label: 'The day',      blurb: 'Ceremony, dinner, dancing — when things happen.' },
   { type: 'venue',      label: 'The venue',    blurb: 'Where to be, with the address.' },
   { type: 'gallery',    label: 'Photos',       blurb: 'A few favourite pictures of you two.' },
-  { type: 'travel',     label: 'Getting there', blurb: 'Travel and hotel tips for guests from afar.' },
   { type: 'gifts',      label: 'Gifts',        blurb: 'A gentle note about gifts or contributions.' },
   { type: 'dress_code', label: 'What to wear', blurb: 'Help guests dress for the occasion.' },
   { type: 'faq',        label: 'Questions',    blurb: 'Parking, children, dietary needs — the practical bits.' },

@@ -9,6 +9,8 @@ import {
   VIDEO_PRESETS, MUSIC_TRACKS, SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
 } from '@/lib/builder/presets'
+import { MiniFlourish } from '@/components/invite/ornaments'
+import { HeroCrest, HeroCorners, HeroFrame } from '@/components/invite/hero-card'
 
 // The live invitation. It fills the viewport; every step's sheet slides over
 // it, and answers re-render it in place. ONE background system: real poster
@@ -229,13 +231,17 @@ export function InvitePreview() {
             behind the text but ABOVE the film — without it the glass escapes and
             paints behind the opaque video (card invisible). Mirrors OpeningHero's
             z-10 card in invitation-view.tsx so the builder matches the preview. */}
-        <div className="relative isolate w-full max-w-[320px] px-9 py-8 lg:max-w-[400px] lg:px-9 lg:py-12 text-center">
+        <div className="relative isolate w-full max-w-[330px] px-9 py-9 lg:max-w-[410px] lg:px-10 lg:py-12 text-center">
           {/* feathered glass — behind the text, dissolves into the film */}
           <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
+          {/* engraved frame + botanical corner flourishes — fine stationery, echoes the envelope */}
+          <HeroFrame color={palette.accent} />
+          <HeroCorners color={palette.accent} />
 
+          <HeroCrest color={palette.accent} style={{ margin: '0 auto' }} />
           <span
-            className="font-inter uppercase"
-            style={{ fontSize: 9, letterSpacing: '0.3em', color: darkPaper ? 'rgba(236,234,227,0.72)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
+            className="font-inter uppercase block mt-3"
+            style={{ fontSize: 9, letterSpacing: '0.32em', color: darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
           >
             You are invited to the wedding of
           </span>
@@ -265,7 +271,7 @@ export function InvitePreview() {
             </AnimatePresence>
           </div>
 
-          <div className="mx-auto mb-5" style={{ width: 60, height: 1, background: `linear-gradient(90deg, transparent, ${palette.accent}, transparent)` }} />
+          <MiniFlourish color={palette.accent} className="mx-auto mb-5" style={{ width: 76, height: 'auto', opacity: 0.9 }} />
 
           <AnimatePresence mode="wait" initial={false}>
             <motion.p
@@ -319,32 +325,6 @@ export function InvitePreview() {
           )}
         </div>
 
-        {/* enabled sections as small chips, directly under the card */}
-        {enabledSections.length > 0 && (
-          <div className="mt-3 flex max-w-[92vw] flex-wrap justify-center gap-1.5">
-            {enabledSections.map((s, i) => (
-              <motion.div
-                key={s.id}
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
-                className="rounded-full px-2.5 py-1"
-                style={{
-                  background: hexA(palette.washAlt, darkPaper ? 0.85 : 0.92),
-                  boxShadow: '0 2px 10px rgba(26,24,22,0.08)',
-                  border: `1px solid ${palette.accentSoft}`,
-                }}
-              >
-                <span
-                  className="font-inter uppercase whitespace-nowrap"
-                  style={{ fontSize: 8, letterSpacing: '0.16em', color: darkPaper ? 'rgba(236,234,227,0.6)' : 'rgba(26,24,22,0.5)' }}
-                >
-                  {SECTION_LABELS[s.type] ?? s.type}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   )

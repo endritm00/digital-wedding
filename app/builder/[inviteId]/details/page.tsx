@@ -312,12 +312,19 @@ function SectionForm({
                   className="mb-2 w-full bg-transparent font-cormorant text-[15px] text-[#1A1816] placeholder:text-[#1A1816]/30 outline-none pr-5"
                 />
                 <TimePicker value={ev.time} onChange={v => update(ev.id, 'time', v)} />
-                <input
-                  value={ev.venue}
-                  onChange={e => update(ev.id, 'venue', e.target.value)}
-                  placeholder="Location (optional)"
-                  className="mt-2 w-full bg-transparent font-inter text-xs text-[#1A1816]/68 placeholder:text-[#1A1816]/24 outline-none"
-                />
+                <div className="mt-2.5 flex items-center gap-1.5" style={{ borderBottom: '1px dashed rgba(26,24,22,0.15)' }}>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden className="flex-none mb-1">
+                    <path d="M5 1a2.5 2.5 0 0 1 2.5 2.5C7.5 5.5 5 9 5 9S2.5 5.5 2.5 3.5A2.5 2.5 0 0 1 5 1Z" stroke="rgba(26,24,22,0.3)" strokeWidth="1" fill="none"/>
+                    <circle cx="5" cy="3.5" r="0.9" fill="rgba(26,24,22,0.3)"/>
+                  </svg>
+                  <input
+                    value={ev.venue}
+                    onChange={e => update(ev.id, 'venue', e.target.value)}
+                    placeholder="Add location"
+                    className="w-full bg-transparent font-inter text-[#1A1816]/70 placeholder:text-[#1A1816]/30 outline-none pb-1"
+                    style={{ fontSize: 11 }}
+                  />
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -376,17 +383,6 @@ function SectionForm({
         <GalleryUploader note={str('note')} onNote={v => patch({ note: v })} />
       )
 
-    case 'travel':
-      return (
-        <TextField
-          label="Travel notes"
-          value={str('content')}
-          placeholder="Hotels nearby, airports, transport options…"
-          multiline
-          onChange={v => patch({ content: v })}
-        />
-      )
-
     case 'gifts':
       return (
         <TextField
@@ -399,7 +395,7 @@ function SectionForm({
       )
 
     case 'dress_code': {
-      const codes = ['formal', 'semi-formal', 'cocktail', 'black-tie', 'casual', 'themed']
+      const codes = ['black-tie', 'formal', 'cocktail', 'semi-formal']
       const current = str('code')
       return (
         <div className="flex flex-col gap-3">
