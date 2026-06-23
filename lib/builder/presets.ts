@@ -339,3 +339,27 @@ export const HEADING_FONT_MAP: Record<string, HeadingFont> = Object.fromEntries(
   HEADING_FONTS.map((f) => [f.id, f])
 )
 export const DEFAULT_HEADING_FONT = HEADING_FONTS[0]
+
+// ── Customization: hero layout ──────────────────────────────────────────────
+// How the opening hero presents the couple's names over the film. Both styles
+// adapt to the active palette (accent / ink / paper). 'open' = names large,
+// directly over the film, no card; 'card' = the glass "stationery" card with
+// frame + corners + crest. Stored on the opening section as `hero_layout`.
+
+export type HeroLayout = 'open' | 'card'
+
+export interface HeroLayoutDef {
+  id: HeroLayout
+  name: string
+  blurb: string
+}
+
+export const HERO_LAYOUTS: HeroLayoutDef[] = [
+  { id: 'open', name: 'Open over the film', blurb: 'Large names directly over the film — nothing covering it.' },
+  { id: 'card', name: 'Framed card', blurb: 'A bordered stationery card with the names set inside.' },
+]
+
+export const HERO_LAYOUT_MAP: Record<string, HeroLayoutDef> = Object.fromEntries(
+  HERO_LAYOUTS.map((h) => [h.id, h])
+)
+export const DEFAULT_HERO_LAYOUT: HeroLayout = 'open'

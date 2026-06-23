@@ -8,7 +8,9 @@ import { cardLegibility } from '@/lib/invite/legibility'
 import {
   VIDEO_PRESETS, MUSIC_TRACKS, SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
+  DEFAULT_HERO_LAYOUT,
 } from '@/lib/builder/presets'
+import type { HeroLayout } from '@/lib/builder/presets'
 import { MiniFlourish } from '@/components/invite/ornaments'
 import { HeroCrest, HeroCorners, HeroFrame } from '@/components/invite/hero-card'
 
@@ -71,12 +73,16 @@ export function InvitePreview() {
     music_asset_id?: string
     palette?: string
     heading_font?: string
+    hero_layout?: string
   }
 
   const palette = PALETTE_MAP[config.palette ?? ''] ?? DEFAULT_PALETTE
   const headingFont = HEADING_FONT_MAP[config.heading_font ?? ''] ?? DEFAULT_HEADING_FONT
   const headingStyle = headingFont.italic ? 'italic' : 'normal'
   const darkPaper = !!palette.dark
+  // 'open' = names large directly over the film (no card); 'card' = glass card.
+  const heroLayout = (config.hero_layout as HeroLayout) ?? DEFAULT_HERO_LAYOUT
+  const onFilm = heroLayout === 'open'
   // Universal feathered-glass legibility (matches the public preview hero).
   const leg = cardLegibility({ paper: palette.paper, dark: darkPaper })
 
@@ -221,10 +227,13 @@ export function InvitePreview() {
 
       {/* legibility wash — IDENTICAL to the published/preview hero (OpeningHero in
           invitation-view.tsx) so the live build preview looks exactly like the final
-          invitation: a clear, bright centre rather than a dimmed/opaque card. */}
+          invitation. 'open' uses a top→bottom cinematic scrim (names sit over the
+          film); 'card' uses the soft radial (a bright centre behind the glass card). */}
       <div
         className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }}
+        style={{ background: onFilm
+          ? 'linear-gradient(180deg, rgba(12,10,8,0.46) 0%, rgba(12,10,8,0.12) 40%, rgba(12,10,8,0.30) 70%, rgba(12,10,8,0.62) 100%)'
+          : 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }}
       />
 
 
@@ -235,17 +244,22 @@ export function InvitePreview() {
             behind the text but ABOVE the film — without it the glass escapes and
             paints behind the opaque video (card invisible). Mirrors OpeningHero's
             z-10 card in invitation-view.tsx so the builder matches the preview. */}
-        <div className="relative isolate w-full max-w-[330px] px-9 py-9 lg:max-w-[410px] lg:px-10 lg:py-12 text-center">
-          {/* feathered glass — behind the text, dissolves into the film */}
-          <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
-          {/* engraved frame + botanical corner flourishes — fine stationery, echoes the envelope */}
-          <HeroFrame color={palette.accent} />
-          <HeroCorners color={palette.accent} />
-
-          <HeroCrest color={palette.accent} />
+        <div className={`relative isolate w-full text-center ${onFilm ? 'max-w-[420px] px-6 py-8 lg:max-w-[560px]' : 'max-w-[330px] px-9 py-9 lg:max-w-[410px] lg:px-10 lg:py-12'}`}>
+          {/* CARD-only chrome — feathered glass + engraved frame + corner flourishes
+              + crest. 'open' shows the names directly on the film with none of it. */}
+          {!onFilm && (
+            <>
+              <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
+              <HeroFrame color={palette.accent} />
+              <HeroCorners color={palette.accent} />
+              <HeroCrest color={palette.accent} />
+            </>
+          )}
           <span
-            className="font-inter uppercase block mt-3"
-            style={{ fontSize: 9, letterSpacing: '0.32em', color: darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
+            className={`font-inter uppercase block ${onFilm ? '' : 'mt-3'}`}
+            style={{ fontSize: onFilm ? 10 : 9, letterSpacing: '0.32em',
+              color: onFilm ? hexA(palette.accent, 0.95) : (darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)'),
+              textShadow: onFilm ? '0 1px 12px rgba(0,0,0,0.5)' : leg.textShadow }}
           >
             You are invited to the wedding of
           </span>
@@ -265,13 +279,13 @@ export function InvitePreview() {
                 style={{
                   fontFamily: headingFont.var,
                   fontStyle: headingStyle,
-                  fontSize: `calc(clamp(1.7rem, 7.2vw, 2.9rem) * ${headingFont.scale})`,
-                  lineHeight: 1.05,
-                  color: isPlaceholder
-                    ? (darkPaper ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.4)')
-                    : palette.accent,
-                  letterSpacing: '0.01em',
-                  textShadow: leg.textShadow,
+                  fontSize: `calc(clamp(${onFilm ? '2rem' : '1.7rem'}, ${onFilm ? '9vw' : '7.2vw'}, ${onFilm ? '3.6rem' : '2.9rem'}) * ${headingFont.scale})`,
+                  lineHeight: onFilm ? 0.98 : 1.05,
+                  color: onFilm
+                    ? (isPlaceholder ? 'rgba(253,252,249,0.55)' : palette.accent)
+                    : (isPlaceholder ? (darkPaper ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.4)') : palette.accent),
+                  letterSpacing: onFilm ? '0.005em' : '0.01em',
+                  textShadow: onFilm ? '0 2px 10px rgba(0,0,0,0.45), 0 2px 30px rgba(0,0,0,0.5)' : leg.textShadow,
                 }}
               >
                 {names}
@@ -291,10 +305,10 @@ export function InvitePreview() {
               className="font-cormorant italic font-light"
               style={{
                 fontSize: 18,
-                color: date
-                  ? (darkPaper ? 'rgba(236,234,227,0.9)' : 'rgba(26,24,22,0.82)')
-                  : (darkPaper ? 'rgba(236,234,227,0.42)' : 'rgba(26,24,22,0.36)'),
-                textShadow: leg.textShadow,
+                color: onFilm
+                  ? (date ? 'rgba(253,252,249,0.92)' : 'rgba(253,252,249,0.55)')
+                  : (date ? (darkPaper ? 'rgba(236,234,227,0.9)' : 'rgba(26,24,22,0.82)') : (darkPaper ? 'rgba(236,234,227,0.42)' : 'rgba(26,24,22,0.36)')),
+                textShadow: onFilm ? '0 1px 14px rgba(0,0,0,0.5)' : leg.textShadow,
               }}
             >
               {date ?? 'Your wedding day'}
@@ -304,7 +318,9 @@ export function InvitePreview() {
           {invite?.venue_name ? (
             <p
               className="font-inter mt-2"
-              style={{ fontSize: 11, letterSpacing: '0.08em', color: darkPaper ? 'rgba(236,234,227,0.66)' : 'rgba(26,24,22,0.6)', textShadow: leg.textShadow }}
+              style={{ fontSize: 11, letterSpacing: '0.08em',
+                color: onFilm ? 'rgba(253,252,249,0.78)' : (darkPaper ? 'rgba(236,234,227,0.66)' : 'rgba(26,24,22,0.6)'),
+                textShadow: onFilm ? '0 1px 14px rgba(0,0,0,0.5)' : leg.textShadow }}
             >
               {invite.venue_name}
             </p>

@@ -25,6 +25,13 @@ export interface TemplateSample {
   venueAddress: string
   story: string            // "your story" paragraph
   schedule: { time: string; title: string }[]
+  // Optional extras for the fully-filled /themes sample. When omitted, shared
+  // defaults from lib/templates/sample-invite.ts fill them in (these read the
+  // same across themes, so they're not worth authoring per-template).
+  gifts?: string
+  dressCode?: { code: string; notes: string }
+  faq?: { q: string; a: string }[]
+  galleryNote?: string
 }
 
 export interface Template {
@@ -273,6 +280,14 @@ export const TEMPLATES: Template[] = [
     },
   },
 ]
+
+// Shared sample gallery — face-free, scenery-only royalty-free stills mirrored to
+// our own Supabase bucket (see scripts/mirror-sample-gallery.mjs). Used only to
+// fill the /themes sample invitation's photo gallery so buyers see a complete page.
+const SUPABASE_URL = 'https://gngoqwenvnhyfbkkszfl.supabase.co'
+const samplePhoto = (n: number) =>
+  `${SUPABASE_URL}/storage/v1/object/public/preset-media/samples/${n}.jpg`
+export const SAMPLE_GALLERY: string[] = [1, 2, 3, 4].map(samplePhoto)
 
 export const TEMPLATE_MAP: Record<string, Template> = Object.fromEntries(
   TEMPLATES.map((t) => [t.slug, t])

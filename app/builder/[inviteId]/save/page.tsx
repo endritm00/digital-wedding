@@ -48,7 +48,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
         primaryBusy={busy}
         laterLabel="Skip for now"
         onLater={() => router.push(`/builder/${inviteId}/sections`)}
-        backHref={`/builder/${inviteId}/music`}
+        backHref={`/builder/${inviteId}/style`}
       >
         <label className="flex flex-col gap-1.5">
           <span

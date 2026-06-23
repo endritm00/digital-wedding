@@ -6,8 +6,9 @@ import type { Section, MediaAsset } from '@/lib/builder/api'
 import {
   VIDEO_PRESETS, /* MUSIC_TRACKS, */ SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
+  DEFAULT_HERO_LAYOUT,
 } from '@/lib/builder/presets'
-import type { LayoutFamily } from '@/lib/builder/presets'
+import type { LayoutFamily, HeroLayout } from '@/lib/builder/presets'
 import { InviteOpener } from '@/components/invite/openers'
 import { FilmBackdrop, type FilmFit, type FilmFocal } from '@/components/invite/film-backdrop'
 import { cardLegibility } from '@/lib/invite/legibility'
@@ -932,6 +933,7 @@ function OpeningHero({ invite, opening, media, inPreview }: { invite: Invitation
   const names = nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB || invite.display_title || 'Your names'
   const date = formatDate(invite.event_date ?? null)
   const familiesNote = (cfg.families_note as string | undefined)?.trim() || 'You are invited to the wedding of'
+  const heroLayout = ((cfg.hero_layout as HeroLayout | undefined) ?? DEFAULT_HERO_LAYOUT)
 
   const preset = VIDEO_PRESETS.find(p => p.id === cfg.video_preset) ?? null
   const uploadedAsset = media.find(m => m.id === cfg.video_asset_id && m.status === 'ready') ?? null
@@ -971,26 +973,46 @@ function OpeningHero({ invite, opening, media, inPreview }: { invite: Invitation
           stop-and-restart. (Do not gate this on `opened`.) */}
       <FilmBackdrop videoSrc={videoSrc} hlsSrc={videoHls} poster={posterImg} fallbackStyle={posterStyle}
         mode={uploadedAsset ? ((cfg.video_fit as FilmFit) ?? 'blend') : 'auto'} focal={(cfg.video_focal as FilmFocal) ?? null} autoPlay reduced={!!reduced} />
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }} />
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        className="relative isolate z-10 mx-6 px-10 py-14 text-center" style={{ maxWidth: 430, width: '100%' }}>
-        <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
-        <HeroFrame color={th.accent} />
-        <HeroCorners color={th.accent} />
+      {heroLayout === 'open' ? (
+        <>
+          {/* OPEN — names large, directly over the film. A cinematic top→bottom
+              scrim keeps the type legible while leaving the film visible. Accent
+              drives the eyebrow + flourish so every palette restyles it. */}
+          <div className="absolute inset-0" aria-hidden style={{ background: 'linear-gradient(180deg, rgba(12,10,8,0.46) 0%, rgba(12,10,8,0.12) 40%, rgba(12,10,8,0.30) 70%, rgba(12,10,8,0.62) 100%)' }} />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            className="relative z-10 mx-6 flex flex-col items-center text-center" style={{ maxWidth: 760, width: '100%' }}>
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.7 }}
+              className="font-inter uppercase block" style={{ fontSize: 10.5, letterSpacing: '0.32em', color: hexA(th.accent, 0.95), textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>{familiesNote}</motion.span>
+            <motion.h1 className="leading-[0.95] mt-5 mb-6" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 12vw, 6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.005em', textShadow: '0 2px 12px rgba(0,0,0,0.45), 0 2px 44px rgba(0,0,0,0.5)' }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
+            <MiniFlourish color={hexA(th.accent, 0.92)} className="mx-auto mb-6" style={{ width: 96, height: 'auto' }} />
+            {date && <p className="font-inter uppercase" style={{ fontSize: 12, letterSpacing: '0.22em', color: 'rgba(253,252,249,0.94)', textShadow: '0 1px 14px rgba(0,0,0,0.5)' }}>{date}</p>}
+            {invite.venue_name && <p className="font-inter mt-2.5" style={{ fontSize: 11.5, letterSpacing: '0.08em', color: 'rgba(253,252,249,0.78)', textShadow: '0 1px 14px rgba(0,0,0,0.5)' }}>{invite.venue_name}</p>}
+          </motion.div>
+        </>
+      ) : (
+        <>
+          {/* CARD — the glass "stationery" card: frame + corners + crest, names inside. */}
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 40%, rgba(253,252,249,0.08) 0%, rgba(26,24,22,0.38) 100%)' }} />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            className="relative isolate z-10 mx-6 px-10 py-14 text-center" style={{ maxWidth: 430, width: '100%' }}>
+            <div aria-hidden className="absolute inset-0" style={{ ...leg.glass, zIndex: -1 }} />
+            <HeroFrame color={th.accent} />
+            <HeroCorners color={th.accent} />
 
-        <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.7 }} className="block">
-          <HeroCrest color={th.accent} style={{ margin: '0 auto' }} />
-        </motion.span>
-        <span className="font-inter uppercase block mt-3.5" style={{ fontSize: 9, letterSpacing: '0.32em', color: th.ink, opacity: 0.6, textShadow: leg.textShadow }}>{familiesNote}</span>
-        <motion.h1 className="leading-tight mt-3 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 11vw, 4.6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
-        <MiniFlourish color={th.accent} className="mx-auto mb-4" style={{ width: 78, height: 'auto', opacity: 0.9 }} />
-        {date && <p className="font-cormorant italic font-light" style={{ fontSize: 18, color: th.ink, opacity: 0.92, textShadow: leg.textShadow }}>{date}</p>}
-        {invite.venue_name && <p className="font-inter mt-1.5" style={{ fontSize: 11, letterSpacing: '0.08em', color: th.ink, opacity: 0.7, textShadow: leg.textShadow }}>{invite.venue_name}</p>}
-
-        {/* Music button disabled — step removed. To restore: uncomment music code in this file and re-add music to STEPS in hairline.tsx */}
-      </motion.div>
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.7 }} className="block">
+              <HeroCrest color={th.accent} style={{ margin: '0 auto' }} />
+            </motion.span>
+            <span className="font-inter uppercase block mt-3.5" style={{ fontSize: 9, letterSpacing: '0.32em', color: th.ink, opacity: 0.6, textShadow: leg.textShadow }}>{familiesNote}</span>
+            <motion.h1 className="leading-tight mt-3 mb-4" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 11vw, 4.6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.01em', textShadow: leg.textShadow }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
+            <MiniFlourish color={th.accent} className="mx-auto mb-4" style={{ width: 78, height: 'auto', opacity: 0.9 }} />
+            {date && <p className="font-cormorant italic font-light" style={{ fontSize: 18, color: th.ink, opacity: 0.92, textShadow: leg.textShadow }}>{date}</p>}
+            {invite.venue_name && <p className="font-inter mt-1.5" style={{ fontSize: 11, letterSpacing: '0.08em', color: th.ink, opacity: 0.7, textShadow: leg.textShadow }}>{invite.venue_name}</p>}
+          </motion.div>
+        </>
+      )}
 
       <AnimatePresence>
         {!scrolled && (

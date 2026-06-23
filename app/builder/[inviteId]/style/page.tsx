@@ -8,6 +8,7 @@ import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
 import {
   PALETTES, HEADING_FONTS, DEFAULT_PALETTE, DEFAULT_HEADING_FONT, PALETTE_MAP, HEADING_FONT_MAP, VIDEO_PRESETS,
+  HERO_LAYOUTS, DEFAULT_HERO_LAYOUT,
 } from '@/lib/builder/presets'
 import { OPENERS, DEFAULT_OPENER, InviteOpener } from '@/components/invite/openers'
 
@@ -44,11 +45,12 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
   }
 
   const config = (opening?.config ?? {}) as {
-    palette?: string; heading_font?: string; opener?: string; name_a?: string; name_b?: string
+    palette?: string; heading_font?: string; opener?: string; name_a?: string; name_b?: string; hero_layout?: string
   }
   const activePalette = config.palette ?? DEFAULT_PALETTE.id
   const activeFont = config.heading_font ?? DEFAULT_HEADING_FONT.id
   const activeOpener = config.opener ?? DEFAULT_OPENER.id
+  const activeHeroLayout = config.hero_layout ?? DEFAULT_HERO_LAYOUT
 
   const palette = PALETTE_MAP[activePalette] ?? DEFAULT_PALETTE
   const font = HEADING_FONT_MAP[activeFont] ?? DEFAULT_HEADING_FONT
@@ -147,6 +149,48 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                 <span className="flex min-w-0 flex-col">
                   <span className="font-cormorant font-light leading-tight truncate" style={{ fontSize: 13.5, color: '#1A1816' }}>{p.name}</span>
                   {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: p.accent }}>Selected</span>}
+                </span>
+              </motion.button>
+            )
+          })}
+        </div>
+
+        {/* ── How it opens over the film ────────────────────────────────────── */}
+        <div className="mt-6 flex items-center gap-3">
+          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>How the names open</span>
+          <div className="h-px flex-1" style={{ background: 'rgba(26,24,22,0.08)' }} />
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-2.5">
+          {HERO_LAYOUTS.map((h) => {
+            const on = activeHeroLayout === h.id
+            return (
+              <motion.button key={h.id} type="button" onClick={() => setOpening({ hero_layout: h.id })} aria-pressed={on}
+                whileTap={reduced ? {} : { scale: 0.98 }} className="flex flex-col gap-2.5 rounded-2xl p-3 text-left transition-all"
+                style={{ background: on ? 'rgba(168,133,75,0.08)' : 'rgba(255,255,255,0.55)', border: on ? `1px solid ${palette.accent}` : '1px solid rgba(26,24,22,0.08)' }}>
+                {/* tiny palette-driven mock of the hero over a "film" */}
+                <span className="relative block w-full overflow-hidden rounded-lg" style={{ height: 72, background: 'linear-gradient(157deg, #2a2622 0%, #4b4138 55%, #2e2823 100%)' }} aria-hidden>
+                  {h.id === 'card' ? (
+                    <span className="absolute flex items-center justify-center" style={{ inset: 9, border: `1px solid ${palette.accent}`, borderRadius: 4, background: 'rgba(255,255,255,0.12)' }}>
+                      <span style={{ fontFamily: font.var, fontStyle: font.italic ? 'italic' : 'normal', fontSize: 15, color: palette.accent, lineHeight: 1 }}>A &amp; B</span>
+                    </span>
+                  ) : (
+                    <span className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+                      <span style={{ fontFamily: font.var, fontStyle: font.italic ? 'italic' : 'normal', fontSize: 20, color: palette.accent, lineHeight: 1, textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>A &amp; B</span>
+                      <span style={{ width: 22, height: 1, background: palette.accent }} />
+                    </span>
+                  )}
+                </span>
+                <span className="flex items-center justify-between">
+                  <span className="flex min-w-0 flex-col">
+                    <span className="font-cormorant font-light leading-tight truncate" style={{ fontSize: 13.5, color: '#1A1816' }}>{h.name}</span>
+                    {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: palette.accent }}>Selected</span>}
+                  </span>
+                  {on && (
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden className="flex-none">
+                      <circle cx="8" cy="8" r="7.5" stroke={palette.accent} />
+                      <path d="M5 8.5l2 2L11 5.5" stroke={palette.accent} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
                 </span>
               </motion.button>
             )
