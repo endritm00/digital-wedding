@@ -1,0 +1,22 @@
+{
+  "project": "desktop",
+  "cpuRate": 1,
+  "metrics": [
+    {
+      "step": "home load",
+      "wallMs": 1783,
+      "tbtMs": 22,
+      "longtaskMs": 72,
+      "longtaskCount": 1,
+      "maxLongtaskMs": 72
+    },
+    {
+      "step": "home scroll (10 steps)",
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0,
+      "clsX1000": 0
+    }
+  ]
+}

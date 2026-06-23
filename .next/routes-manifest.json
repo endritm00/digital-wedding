@@ -349,6 +349,14 @@
         "nxtPtoken": "nxtPtoken"
       },
       "namedRegex": "^/manage/(?<nxtPtoken>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/themes/[slug]",
+      "regex": "^/themes/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/themes/(?<nxtPslug>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [
@@ -369,6 +377,24 @@
       "regex": "^/builder(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/builder(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/themes",
+      "regex": "^/themes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/themes(?:/)?$"
     }
   ],
   "dataRoutes": [],

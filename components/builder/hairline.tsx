@@ -1,14 +1,16 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useBuilder } from './builder-provider'
+import { useBuilder, useBuilderStatus } from './builder-provider'
 
 export const STEPS = [
   { slug: 'names',         name: 'Your names' },
   { slug: 'opening-video', name: 'Your film' },
   { slug: 'style',         name: 'Your style' },
-  { slug: 'music',         name: 'Your music' },
+  // { slug: 'music',      name: 'Your music' },  // MUSIC DISABLED — CSP + preload issues
   { slug: 'save',          name: 'Keep it safe' },
   { slug: 'sections',      name: 'Your pages' },
   { slug: 'details',       name: 'The details' },
@@ -26,9 +28,24 @@ export function stepHref(inviteId: string, slug: StepSlug): string {
 }
 
 export function Hairline({ step }: { step: StepSlug }) {
-  const { saveState, invite } = useBuilder()
+  const { invite } = useBuilder()
+  const { saveState } = useBuilderStatus()
+  const router = useRouter()
   const idx = stepIndex(step)
   const progress = (idx + 1) / STEPS.length
+
+  // Warm the NEXT step while this one is open, so "Continue" is near-instant.
+  // The step buttons navigate with router.push(), which — unlike <Link> — does
+  // NOT prefetch, so without this the next step's code is fetched (and in dev,
+  // compiled) only on click = the ~1s wait. Also prefetch the conditional 'frame'
+  // branch that can follow opening-video.
+  const inviteId = invite?.id
+  useEffect(() => {
+    if (!inviteId) return
+    const next = STEPS[idx + 1]
+    if (next) router.prefetch(stepHref(inviteId, next.slug))
+    if (step === 'opening-video') router.prefetch(`/builder/${inviteId}/frame`)
+  }, [inviteId, idx, step, router])
 
   return (
     <div className="fixed inset-x-0 top-0 z-40">

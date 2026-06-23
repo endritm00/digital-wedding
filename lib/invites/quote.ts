@@ -15,36 +15,31 @@ export async function buildQuote(
 ): Promise<ComputeTotalResult | { error: string }> {
   const db = useServiceClient ? createServiceClient() : await createClient()
 
-  // Fetch plan via the invite's plan_id
-  const { data: invite } = await db
-    .from('invites')
-    .select('plan_id')
-    .eq('id', inviteId)
-    .single()
+  // All the reads this quote needs in ONE parallel round-trip instead of 6
+  // sequential ones (the old version was ~6×DB-latency ≈ 700ms on a remote DB).
+  // None of these depend on each other's RESULTS — `plan` is resolved from the
+  // (tiny) plans catalog in memory rather than via a second query keyed on plan_id,
+  // and the custom-video price is fetched unconditionally and only applied if used.
+  const [inviteRes, sectionsRes, extrasRes, plansRes, cvRes] = await Promise.all([
+    db.from('invites').select('plan_id').eq('id', inviteId).single(),
+    // One read covers BOTH the section count and the opening-section config.
+    db.from('invite_sections').select('type, config').eq('invite_id', inviteId),
+    db.from('invite_extras').select('id, quantity, unit_price_cents, extras(code)').eq('invite_id', inviteId),
+    db.from('plans').select('id, code, base_price_cents, included_sections'),
+    db.from('extras').select('price_cents').eq('code', CUSTOM_VIDEO_CODE).eq('active', true).maybeSingle(),
+  ])
 
-  if (!invite?.plan_id) return { error: 'no_plan_selected' }
+  const planId = inviteRes.data?.plan_id
+  if (!planId) return { error: 'no_plan_selected' }
 
-  const { data: plan } = await db
-    .from('plans')
-    .select('code, base_price_cents, included_sections')
-    .eq('id', invite.plan_id)
-    .single()
-
+  const plan = (plansRes.data ?? []).find((p) => p.id === planId)
   if (!plan) return { error: 'plan_not_found' }
 
-  // Section count drives overage calculation
-  const { count: sections_count } = await db
-    .from('invite_sections')
-    .select('*', { count: 'exact', head: true })
-    .eq('invite_id', inviteId)
+  const sections = sectionsRes.data ?? []
+  const sections_count = sections.length
 
   // Extras with snapshotted prices + their catalog code for labels
-  const { data: rawExtras } = await db
-    .from('invite_extras')
-    .select('id, quantity, unit_price_cents, extras(code)')
-    .eq('invite_id', inviteId)
-
-  const extras = (rawExtras ?? []).map((ie) => ({
+  const extras = (extrasRes.data ?? []).map((ie) => ({
     invite_extra_id: ie.id,
     extra_code: (ie.extras as { code: string } | null)?.code ?? '',
     quantity: ie.quantity,
@@ -55,29 +50,15 @@ export async function buildQuote(
   // own opening video (vs. a curated preset). Derived server-side from the
   // opening section so it can't be skipped and stays consistent across the live
   // quote and checkout (both call buildQuote). Preset films are free.
-  const { data: openingSection } = await db
-    .from('invite_sections')
-    .select('config')
-    .eq('invite_id', inviteId)
-    .eq('type', 'opening')
-    .maybeSingle()
-
+  const openingSection = sections.find((s) => s.type === 'opening')
   const hasCustomVideo = !!(openingSection?.config as { video_asset_id?: string | null } | null)?.video_asset_id
-  if (hasCustomVideo) {
-    const { data: cv } = await db
-      .from('extras')
-      .select('price_cents')
-      .eq('code', CUSTOM_VIDEO_CODE)
-      .eq('active', true)
-      .single()
-    if (cv?.price_cents) {
-      extras.push({
-        invite_extra_id: CUSTOM_VIDEO_CODE,
-        extra_code: CUSTOM_VIDEO_CODE,
-        quantity: 1,
-        unit_price_cents: cv.price_cents,
-      })
-    }
+  if (hasCustomVideo && cvRes.data?.price_cents) {
+    extras.push({
+      invite_extra_id: CUSTOM_VIDEO_CODE,
+      extra_code: CUSTOM_VIDEO_CODE,
+      quantity: 1,
+      unit_price_cents: cvRes.data.price_cents,
+    })
   }
 
   // Pages are all included — we do NOT charge per page. The only paid add-on is a

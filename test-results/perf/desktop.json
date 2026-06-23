@@ -1,0 +1,175 @@
+{
+  "project": "desktop",
+  "cpuRate": 1,
+  "inviteId": "fd536a83-2c68-4568-8fca-e01254a31fb5",
+  "metrics": [
+    {
+      "step": "builder open (create+load)",
+      "wallMs": 1229,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "type names (19 chars)",
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0,
+      "note": "live preview updates per keystroke"
+    },
+    {
+      "step": "nav → opening-video",
+      "wallMs": 240,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "select film preset",
+      "wallMs": 424,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "nav → style",
+      "wallMs": 97,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "select palette",
+      "wallMs": 457,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "nav → music",
+      "wallMs": 91,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "nav → save (email)",
+      "wallMs": 68,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "nav → sections",
+      "wallMs": 67,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "toggle section: Your story",
+      "wallMs": 407,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "toggle section: The day",
+      "wallMs": 380,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "toggle section: Photos",
+      "wallMs": 408,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "toggle section: Gifts",
+      "wallMs": 403,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "toggle section: Questions",
+      "wallMs": 407,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "nav → details",
+      "wallMs": 91,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "add schedule item: Dinner",
+      "wallMs": 411,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "add schedule item: First Dance",
+      "wallMs": 406,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "add schedule item: Speeches",
+      "wallMs": 407,
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "type in details field (26 chars)",
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0
+    },
+    {
+      "step": "invite preview load",
+      "wallMs": 440,
+      "tbtMs": 2,
+      "longtaskMs": 52,
+      "longtaskCount": 1,
+      "maxLongtaskMs": 52
+    },
+    {
+      "step": "invite scroll (9 bands)",
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0,
+      "clsX1000": 0,
+      "note": "main-thread during scroll"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 import type { Database } from '@/lib/supabase/database.types'
-import { ok, serverError } from '@/lib/api/response'
+import { cached, serverError } from '@/lib/api/response'
 
 type ThemeCategory = Database['public']['Enums']['theme_category']
 const THEME_CATEGORIES: ThemeCategory[] = ['wedding', 'save_the_date', 'birthday']
@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const category = searchParams.get('category')
 
-  const supabase = await createClient()
+  // Public catalog → cookieless service client so the response is shareable and
+  // CDN-cacheable (a cookie-reading client forces a private, per-request render).
+  const supabase = createServiceClient()
   let query = supabase
     .from('themes')
     .select('id, slug, name, category, status, config, preview_url, sort_order')
@@ -24,5 +26,5 @@ export async function GET(request: NextRequest) {
 
   const { data, error } = await query
   if (error) return serverError()
-  return ok(data)
+  return cached(data)
 }

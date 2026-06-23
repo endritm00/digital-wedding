@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
-import { useBuilder } from '@/components/builder/builder-provider'
+import { useBuilder, useBuilderStatus } from '@/components/builder/builder-provider'
 import { api, euros, lineItemLabel, ApiError } from '@/lib/builder/api'
 import { SECTION_LABELS } from '@/lib/builder/presets'
 
@@ -22,7 +22,8 @@ function OrnamentLine() {
 
 export default function ReviewPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
-  const { invite, quote, plan, sections, flushDraft, patchDraft } = useBuilder()
+  const { invite, plan, sections, flushDraft, patchDraft } = useBuilder()
+  const { quote } = useBuilderStatus()
   const router = useRouter()
   const reduced = useReducedMotion()
   const [busy, setBusy] = useState(false)

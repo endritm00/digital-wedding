@@ -5,7 +5,7 @@
 // spray) that the old flat blocks lacked. Colour comes from the theme accent;
 // callers control size/opacity/placement. Nothing animates by itself.
 
-import type { CSSProperties } from 'react'
+import { memo, type CSSProperties } from 'react'
 
 interface Base {
   color?: string
@@ -131,8 +131,10 @@ export function BotanicalSpray({ variant = 'a', color = 'currentColor', opacity 
   )
 }
 
-// A small diamond + hairlines flourish, for tight dividers.
-export function MiniFlourish({ color = 'currentColor', opacity = 1, className, style }: Base) {
+// A small diamond + hairlines flourish, for tight dividers. Memoized: it sits on
+// the live builder card that re-renders per keystroke, but only depends on the
+// (stable) accent colour, so it should skip those re-renders.
+export const MiniFlourish = memo(function MiniFlourish({ color = 'currentColor', opacity = 1, className, style }: Base) {
   return (
     <svg viewBox="0 0 64 8" width="64" height="8" fill="none" className={className} style={{ opacity, ...style }} aria-hidden>
       <line x1="0" y1="4" x2="26" y2="4" stroke={color} strokeWidth="0.75" opacity="0.5" />
@@ -140,4 +142,4 @@ export function MiniFlourish({ color = 'currentColor', opacity = 1, className, s
       <line x1="38" y1="4" x2="64" y2="4" stroke={color} strokeWidth="0.75" opacity="0.5" />
     </svg>
   )
-}
+})

@@ -28,7 +28,6 @@ interface BuilderContextValue {
   inviteId: string
   invite: Invite | null
   sections: Section[]
-  quote: Quote | null
   plan: Plan | null
   theme: Theme | null
   extrasCatalog: ExtraCatalogItem[]
@@ -36,7 +35,6 @@ interface BuilderContextValue {
   media: MediaAsset[]
   loading: boolean
   loadError: string | null
-  saveState: SaveState
 
   // Draft fields — optimistic merge, debounced 800ms PATCH
   patchDraft: (fields: InvitePatch) => void
@@ -65,6 +63,22 @@ const BuilderContext = createContext<BuilderContextValue | null>(null)
 export function useBuilder(): BuilderContextValue {
   const ctx = useContext(BuilderContext)
   if (!ctx) throw new Error('useBuilder must be used within BuilderProvider')
+  return ctx
+}
+
+// Volatile, frequently-changing status lives in its OWN context so its churn
+// (autosave saving→saved→idle, quote refreshes) doesn't rebuild the main context
+// value and re-render the heavy InvitePreview on every edit. Only the small
+// status indicators (Hairline save badge, TotalPill, review price) read it.
+interface BuilderStatusValue {
+  saveState: SaveState
+  quote: Quote | null
+}
+const BuilderStatusContext = createContext<BuilderStatusValue | null>(null)
+
+export function useBuilderStatus(): BuilderStatusValue {
+  const ctx = useContext(BuilderStatusContext)
+  if (!ctx) throw new Error('useBuilderStatus must be used within BuilderProvider')
   return ctx
 }
 
@@ -105,34 +119,41 @@ export function BuilderProvider({
         ])
         if (cancelled) return
 
-        // The builder uses a single default plan — there's no plan-picker step.
-        // Drafts are created without a plan_id, so the quote/checkout would fail
-        // with `no_plan_selected`. Persist the default plan the first time we load
-        // a planless draft so pricing and checkout work (self-heals old drafts too).
         const resolvedPlan = plans.find((p) => p.id === inv.plan_id) ?? plans[0] ?? null
-        if (!inv.plan_id && resolvedPlan) {
-          try {
-            const updated = await api.patchInvite(inviteId, { plan_id: resolvedPlan.id })
-            if (cancelled) return
-            setInvite(updated)
-          } catch { setInvite(inv) }
-        } else {
-          setInvite(inv)
-        }
 
+        // Show the builder as soon as the core data is in. The planless-draft plan
+        // PATCH and the price quote are NOT needed to render the form, so blocking
+        // first paint on them just added two sequential round-trips to every open.
+        // Set core state + drop the loading veil now; finish pricing in the background.
+        setInvite(inv)
         setSections(secs)
         setPlan(resolvedPlan)
         setTheme(themes.find((t) => t.id === inv.theme_id) ?? null)
         setExtrasCatalog(catalog)
         setInviteExtras(ext)
         setMedia(med)
-        try { setQuote(await api.getQuote(inviteId)) } catch { /* no plan yet */ }
+        setLoading(false)
+
+        // Background: the builder uses a single default plan (no plan-picker step).
+        // Drafts are created without a plan_id, so persist the default the first
+        // time a planless draft loads (self-heals old drafts too) — then price it.
+        void (async () => {
+          if (!inv.plan_id && resolvedPlan) {
+            try {
+              const updated = await api.patchInvite(inviteId, { plan_id: resolvedPlan.id })
+              if (!cancelled) setInvite(updated)
+            } catch { /* retried on the next edit's autosave */ }
+          }
+          try {
+            const q = await api.getQuote(inviteId)
+            if (!cancelled) setQuote(q)
+          } catch { /* no plan yet — TotalPill shows its placeholder */ }
+        })()
       } catch (err) {
         if (!cancelled) {
           setLoadError(err instanceof Error ? err.message : 'load_failed')
+          setLoading(false)
         }
-      } finally {
-        if (!cancelled) setLoading(false)
       }
     })()
     return () => { cancelled = true }
@@ -361,7 +382,6 @@ export function BuilderProvider({
     inviteId,
     invite,
     sections,
-    quote,
     plan,
     theme,
     extrasCatalog,
@@ -369,7 +389,6 @@ export function BuilderProvider({
     media,
     loading,
     loadError,
-    saveState,
     patchDraft,
     flushDraft,
     opening,
@@ -383,11 +402,21 @@ export function BuilderProvider({
     refreshMedia,
     setMediaAsset,
   }), [
-    inviteId, invite, sections, quote, plan, theme, extrasCatalog, inviteExtras,
-    media, loading, loadError, saveState, patchDraft, flushDraft, opening,
+    inviteId, invite, sections, plan, theme, extrasCatalog, inviteExtras,
+    media, loading, loadError, patchDraft, flushDraft, opening,
     setOpening, addContentSection, removeContentSection, toggleContentSection,
     updateSectionConfig, toggleExtra, refreshQuote, refreshMedia, setMediaAsset,
   ])
 
-  return <BuilderContext.Provider value={value}>{children}</BuilderContext.Provider>
+  // Separate, tiny value — changes on every save/quote tick, but only the small
+  // status indicators subscribe to it, so InvitePreview is untouched.
+  const statusValue = useMemo<BuilderStatusValue>(() => ({ saveState, quote }), [saveState, quote])
+
+  return (
+    <BuilderContext.Provider value={value}>
+      <BuilderStatusContext.Provider value={statusValue}>
+        {children}
+      </BuilderStatusContext.Provider>
+    </BuilderContext.Provider>
+  )
 }

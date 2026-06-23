@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { useBuilder } from './builder-provider'
+import { useBuilder, useBuilderStatus } from './builder-provider'
 import { euros, lineItemLabel } from '@/lib/builder/api'
 
 // The running total. Server-priced, gently counted up, expandable into the
@@ -17,7 +17,8 @@ import { euros, lineItemLabel } from '@/lib/builder/api'
 // sheet or the keyboard.
 
 export function TotalPill() {
-  const { quote, plan } = useBuilder()
+  const { plan } = useBuilder()
+  const { quote } = useBuilderStatus()
   const reduced = useReducedMotion()
   const [open, setOpen] = useState(false)
 

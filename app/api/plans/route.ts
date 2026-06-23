@@ -1,8 +1,9 @@
-import { createClient } from '@/lib/supabase/server'
-import { ok, serverError } from '@/lib/api/response'
+import { createServiceClient } from '@/lib/supabase/service'
+import { cached, serverError } from '@/lib/api/response'
 
 export async function GET() {
-  const supabase = await createClient()
+  // Public catalog → cookieless service client so Vercel's CDN can cache it.
+  const supabase = createServiceClient()
 
   const { data, error } = await supabase
     .from('plans')
@@ -11,5 +12,5 @@ export async function GET() {
     .order('sort_order')
 
   if (error) return serverError()
-  return ok(data)
+  return cached(data)
 }

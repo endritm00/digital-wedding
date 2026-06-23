@@ -1,8 +1,8 @@
 {
-  "lib\\video\\use-film-video.ts -> hls.js": {
-    "id": 9588,
+  "lib\\video\\use-film-video.ts -> hls.js/light": {
+    "id": 3325,
     "files": [
-      "static/chunks/a4634e51.687c3044f25fd8ff.js"
+      "static/chunks/5b4b5207.4598a3d8ff8b7d65.js"
     ]
   },
   "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {

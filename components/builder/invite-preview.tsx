@@ -16,6 +16,10 @@ import { HeroCrest, HeroCorners, HeroFrame } from '@/components/invite/hero-card
 // it, and answers re-render it in place. ONE background system: real poster
 // paints instantly, the 1080p film fades in once it can play. No second layer.
 
+// Stable style identity so the memoized <MiniFlourish> isn't re-rendered on
+// every keystroke (a fresh inline object would defeat React.memo's shallow compare).
+const FLOURISH_STYLE = { width: 76, height: 'auto' as const, opacity: 0.9 }
+
 function formatDate(iso: string | null): string | null {
   if (!iso) return null
   const d = new Date(`${iso}T12:00:00`)
@@ -238,7 +242,7 @@ export function InvitePreview() {
           <HeroFrame color={palette.accent} />
           <HeroCorners color={palette.accent} />
 
-          <HeroCrest color={palette.accent} style={{ margin: '0 auto' }} />
+          <HeroCrest color={palette.accent} />
           <span
             className="font-inter uppercase block mt-3"
             style={{ fontSize: 9, letterSpacing: '0.32em', color: darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)', textShadow: leg.textShadow }}
@@ -247,9 +251,13 @@ export function InvitePreview() {
           </span>
 
           <div className="my-4 lg:my-6 flex min-h-[52px] lg:min-h-[80px] items-center justify-center">
+            {/* Key on the FONT only — not the names. Keying on `names` re-fired
+                this exit/enter animation on every keystroke (a measured per-char
+                main-thread hitch); the heading still updates its text live, it
+                just animates only when the lettering actually changes. */}
             <AnimatePresence mode="wait" initial={false}>
               <motion.h2
-                key={names + headingFont.id}
+                key={headingFont.id}
                 initial={reduced ? { opacity: 0 } : { opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
@@ -271,7 +279,7 @@ export function InvitePreview() {
             </AnimatePresence>
           </div>
 
-          <MiniFlourish color={palette.accent} className="mx-auto mb-5" style={{ width: 76, height: 'auto', opacity: 0.9 }} />
+          <MiniFlourish color={palette.accent} className="mx-auto mb-5" style={FLOURISH_STYLE} />
 
           <AnimatePresence mode="wait" initial={false}>
             <motion.p

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { api, claimStore } from '@/lib/builder/api'
+import { TEMPLATE_MAP } from '@/lib/templates/templates'
 
 export default function BuilderEntryPage() {
   const router = useRouter()
@@ -17,6 +18,27 @@ export default function BuilderEntryPage() {
         if (result.claim_token) {
           claimStore.set(result.id, result.claim_token)
         }
+
+        // Came from a theme page (/builder?from=<slug>)? Pre-seed the opening
+        // section with that design's palette, lettering and opening film so the
+        // builder opens already dressed in it. This is a single call here, while
+        // the "Creating…" spinner is up and BEFORE the builder mounts — so it
+        // adds nothing to the builder's own runtime. The steps are unchanged;
+        // the choices simply arrive pre-selected. Non-fatal: on any failure the
+        // builder just opens with defaults.
+        try {
+          const slug = new URLSearchParams(window.location.search).get('from')
+          const tpl = slug ? TEMPLATE_MAP[slug] : null
+          if (tpl) {
+            await api.addSection(result.id, 'opening', {
+              palette: tpl.paletteId,
+              heading_font: tpl.headingFontId,
+              video_preset: tpl.filmId,
+            })
+          }
+        } catch { /* ignore — open with defaults */ }
+        if (cancelled) return
+
         router.replace(`/builder/${result.id}/names`)
       } catch {
         if (!cancelled) setError(true)

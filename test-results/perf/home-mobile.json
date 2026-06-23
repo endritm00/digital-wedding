@@ -1,0 +1,22 @@
+{
+  "project": "mobile",
+  "cpuRate": 4,
+  "metrics": [
+    {
+      "step": "home load",
+      "wallMs": 2083,
+      "tbtMs": 458,
+      "longtaskMs": 658,
+      "longtaskCount": 4,
+      "maxLongtaskMs": 338
+    },
+    {
+      "step": "home scroll (10 steps)",
+      "tbtMs": 0,
+      "longtaskMs": 0,
+      "longtaskCount": 0,
+      "maxLongtaskMs": 0,
+      "clsX1000": 0
+    }
+  ]
+}

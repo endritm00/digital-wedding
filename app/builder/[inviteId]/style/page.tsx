@@ -76,7 +76,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
         title="Set the scene"
         lede="Choose how your invitation opens, then dress it in a palette and lettering. Tap an opening to preview it."
         primaryLabel="Continue"
-        onPrimary={() => router.push(`/builder/${inviteId}/music`)}
+        onPrimary={() => router.push(`/builder/${inviteId}/save`)}
         backHref={`/builder/${inviteId}/opening-video`}
       >
         {/* ── Opener ────────────────────────────────────────────────────────── */}

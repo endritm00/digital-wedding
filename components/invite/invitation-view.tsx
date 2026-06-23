@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import type { Section, MediaAsset } from '@/lib/builder/api'
 import {
-  VIDEO_PRESETS, MUSIC_TRACKS, SECTION_LABELS,
+  VIDEO_PRESETS, /* MUSIC_TRACKS, */ SECTION_LABELS,
   PALETTE_MAP, DEFAULT_PALETTE, HEADING_FONT_MAP, DEFAULT_HEADING_FONT,
 } from '@/lib/builder/presets'
 import type { LayoutFamily } from '@/lib/builder/presets'
@@ -924,7 +924,7 @@ function FaqBlock({ t, ls, index, items }: { t: Theme; ls: LS; index: number; it
 }
 
 // ── opening hero ──────────────────────────────────────────────────────────────
-function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: InvitationViewInvite; opening: Section | null; media: MediaAsset[]; musicRef: React.RefObject<HTMLAudioElement | null>; inPreview: boolean }) {
+function OpeningHero({ invite, opening, media, inPreview }: { invite: InvitationViewInvite; opening: Section | null; media: MediaAsset[]; inPreview: boolean }) {
   const reduced = useReducedMotion()
   const cfg = (opening?.config ?? {}) as Record<string, unknown>
   const nameA = (cfg.name_a as string | undefined)?.trim() ?? ''
@@ -940,29 +940,29 @@ function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: 
   const posterImg = uploadedAsset ? (uploadedAsset.variants as { poster?: string }).poster ?? null : preset?.posterImg ?? null
   const posterStyle = preset ? { background: `linear-gradient(160deg, ${preset.poster.from} 0%, ${preset.poster.to} 100%)` } : { background: 'linear-gradient(160deg, #F3EFE7 0%, #C9B89A 100%)' }
 
-  const track = MUSIC_TRACKS.find(tk => tk.id === cfg.music_track)
-  const musicAsset = media.find(m => m.id === cfg.music_asset_id && m.status === 'ready')
-  const musicSrc = musicAsset ? (musicAsset.variants as { url?: string }).url ?? null : track?.src ?? null
+  // const track = MUSIC_TRACKS.find(tk => tk.id === cfg.music_track)
+  // const musicAsset = media.find(m => m.id === cfg.music_asset_id && m.status === 'ready')
+  // const musicSrc = musicAsset ? (musicAsset.variants as { url?: string }).url ?? null : track?.src ?? null
 
   const th = useTheme()
   const leg = cardLegibility({ paper: th.paper, dark: th.dark })
-  const [musicPlaying, setMusicPlaying] = useState(false)
+  // const [musicPlaying, setMusicPlaying] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  useEffect(() => {
-    if (musicSrc && musicRef.current) { musicRef.current.src = musicSrc; musicRef.current.loop = true }
-  }, [musicSrc, musicRef])
+  // useEffect(() => {
+  //   if (musicSrc && musicRef.current) { musicRef.current.src = musicSrc; musicRef.current.loop = true }
+  // }, [musicSrc, musicRef])
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  const toggleMusic = () => {
-    if (!musicRef.current) return
-    if (musicPlaying) { musicRef.current.pause(); setMusicPlaying(false) }
-    else void musicRef.current.play().then(() => setMusicPlaying(true)).catch(() => {})
-  }
+  // const toggleMusic = () => {
+  //   if (!musicRef.current) return
+  //   if (musicPlaying) { musicRef.current.pause(); setMusicPlaying(false) }
+  //   else void musicRef.current.play().then(() => setMusicPlaying(true)).catch(() => {})
+  // }
 
   return (
     <section className="relative flex h-[100dvh] flex-col items-center justify-center overflow-hidden" style={{ paddingTop: inPreview ? 56 : 0 }}>
@@ -989,17 +989,7 @@ function OpeningHero({ invite, opening, media, musicRef, inPreview }: { invite: 
         {date && <p className="font-cormorant italic font-light" style={{ fontSize: 18, color: th.ink, opacity: 0.92, textShadow: leg.textShadow }}>{date}</p>}
         {invite.venue_name && <p className="font-inter mt-1.5" style={{ fontSize: 11, letterSpacing: '0.08em', color: th.ink, opacity: 0.7, textShadow: leg.textShadow }}>{invite.venue_name}</p>}
 
-        {musicSrc && (
-          <button type="button" onClick={toggleMusic} className="mt-6 flex items-center gap-2 mx-auto rounded-full px-4 py-2 transition-all"
-            style={{ background: musicPlaying ? hexA(th.accent, 0.14) : hexA(th.accent, 0.06), border: `1px solid ${hexA(th.accent, 0.22)}`, fontSize: 10, letterSpacing: '0.06em', color: th.accent }}
-            aria-label={musicPlaying ? 'Pause music' : 'Play music'}>
-            {musicPlaying ? (
-              <><span className="flex items-end gap-[2px]" aria-hidden>{[0, 1, 2].map(i => (<motion.span key={i} style={{ width: 2, borderRadius: 2, background: th.accent, display: 'block' }} animate={{ height: [3, 9, 3] }} transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut', delay: i * 0.18 }} />))}</span><span className="font-inter">{track?.title ?? 'Music'}</span></>
-            ) : (
-              <><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden><path d="M1 1.5L9 6L1 10.5V1.5Z" fill={th.accent} /></svg><span className="font-inter">Play music</span></>
-            )}
-          </button>
-        )}
+        {/* Music button disabled — step removed. To restore: uncomment music code in this file and re-add music to STEPS in hairline.tsx */}
       </motion.div>
 
       <AnimatePresence>
@@ -1028,13 +1018,12 @@ export function InvitationView({
 }) {
   const [opened, setOpened] = useState(!enableOpener)
   const [openerLeaving, setOpenerLeaving] = useState(false)
-  const musicRef = useRef<HTMLAudioElement | null>(null)
-
-  useEffect(() => {
-    musicRef.current = new Audio()
-    musicRef.current.volume = 0.55
-    return () => { musicRef.current?.pause() }
-  }, [])
+  // const musicRef = useRef<HTMLAudioElement | null>(null)
+  // useEffect(() => {
+  //   musicRef.current = new Audio()
+  //   musicRef.current.volume = 0.55
+  //   return () => { musicRef.current?.pause() }
+  // }, [])
 
   const opening = sections.find(s => s.type === 'opening') ?? null
   const contentSections = sections.filter(s => s.type !== 'opening')
@@ -1123,7 +1112,7 @@ export function InvitationView({
           )}
 
           <main style={{ background: theme.wash }}>
-            <OpeningHero invite={invite} opening={opening} media={media} musicRef={musicRef} inPreview={rsvp.kind === 'preview'} />
+            <OpeningHero invite={invite} opening={opening} media={media} inPreview={rsvp.kind === 'preview'} />
 
             {visibleSections.length > 0 && (
               <div>

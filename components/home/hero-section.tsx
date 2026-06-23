@@ -144,11 +144,11 @@ export function HeroSection() {
             Start creating
           </Link>
           <Link
-            href="#films"
+            href="#collection"
             className="font-inter uppercase transition-opacity duration-300 hover:opacity-70"
             style={{ fontSize: 11, color: 'rgba(253,252,249,0.78)', letterSpacing: '0.18em' }}
           >
-            See the films&nbsp;→
+            See the designs&nbsp;→
           </Link>
         </motion.div>
       </div>

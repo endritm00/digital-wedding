@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type RefObject } from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 
 // One reliable way to play the wedding film on every device.
 //
@@ -37,10 +37,14 @@ interface Options {
 }
 
 // hls.js is loaded lazily (only when a device needs it) and cached across calls.
+// We use the LIGHT build — it drops EME/DRM, subtitles, and alternate-audio
+// controllers the muted background films never use, cutting the chunk that the
+// guest invite parses (the Mux envelope opener is HLS) by ~30%. Same core ABR +
+// error-recovery API (startLoad / recoverMediaError) we rely on.
 let hlsCtorPromise: Promise<typeof import('hls.js').default | null> | null = null
 function loadHls() {
   if (!hlsCtorPromise) {
-    hlsCtorPromise = import('hls.js')
+    hlsCtorPromise = import('hls.js/light')
       .then((m) => m.default)
       .catch(() => null)
   }
@@ -56,6 +60,11 @@ export function useFilmVideo(
   const hls = sources.hls ?? null
   const mp4 = sources.mp4 ?? null
   const srcKey = `${hls ?? ''}|${mp4 ?? ''}`
+  // The live hls.js instance, shared with the resume path. When the tab is
+  // backgrounded the OS can flush MSE buffers / drop the decoder, so on return we
+  // need to re-prime hls (startLoad / recoverMediaError) — a bare play() leaves a
+  // frozen ("stale") frame. Native HLS / MP4 keep this null and just re-play().
+  const hlsRef = useRef<import('hls.js').default | null>(null)
 
   // ── attach the best source for this device ──────────────────────────────────
   useEffect(() => {
@@ -107,11 +116,22 @@ export function useFilmVideo(
             abrBandWidthUpFactor: 0.9,
             startFragPrefetch: true,
           })
+          let mediaRecoveries = 0
           hlsInstance.on(Hls.Events.ERROR, (_e, data) => {
-            if (data.fatal) { try { hlsInstance?.destroy() } catch { /* noop */ } ; hlsInstance = null; useNativeOrMp4() }
+            if (!data.fatal) return
+            // A media (decode/buffer) error is what a backgrounded tab usually
+            // throws when the decoder was dropped — recover in place a couple of
+            // times before giving up, so we don't needlessly fall back to MP4.
+            if (data.type === Hls.ErrorTypes.MEDIA_ERROR && mediaRecoveries < 3) {
+              mediaRecoveries++
+              try { hlsInstance?.recoverMediaError(); return } catch { /* fall through */ }
+            }
+            try { hlsInstance?.destroy() } catch { /* noop */ }
+            hlsInstance = null; hlsRef.current = null; useNativeOrMp4()
           })
           hlsInstance.loadSource(hls)
           hlsInstance.attachMedia(video)
+          hlsRef.current = hlsInstance
         } catch { useNativeOrMp4() }
       })
     } else if (hls && nativeHls) {
@@ -124,6 +144,7 @@ export function useFilmVideo(
     return () => {
       destroyed = true
       if (hlsInstance) { try { hlsInstance.destroy() } catch { /* noop */ } }
+      hlsRef.current = null
     }
   }, [ref, srcKey, hls, mp4])
 
@@ -158,29 +179,63 @@ export function useFilmVideo(
       }
     }
 
+    let watchdog: number | null = null
+    const clearWatchdog = () => { if (watchdog !== null) { clearTimeout(watchdog); watchdog = null } }
+
     const tryPlay = () => {
       if (cleanedUp) return
+      // Never restart a finished one-shot (e.g. the envelope opener after it has
+      // played through) — only looping films get (re)started here.
+      if (video.ended && !video.loop) return
       const p = video.play()
       if (p && typeof p.then === 'function') {
         p.then(() => setNeedsTap(false)).catch(() => armGesture())
       }
     }
 
+    // Returning from the background (home screen / app switch) routinely leaves a
+    // frozen frame: video-only media is paused to save power, and with hls.js the
+    // MSE buffer/decoder may have been dropped — a bare play() resolves but stays
+    // stale. So re-prime hls loading, replay, then watchdog a stronger recovery if
+    // it's still not advancing a beat later.
+    const resume = () => {
+      if (cleanedUp || document.visibilityState !== 'visible') return
+      if (video.ended && !video.loop) return
+      const h = hlsRef.current
+      if (h) { try { h.startLoad() } catch { /* noop */ } }
+      tryPlay()
+      clearWatchdog()
+      const mark = video.currentTime
+      watchdog = window.setTimeout(() => {
+        watchdog = null
+        if (cleanedUp || document.visibilityState !== 'visible') return
+        if (video.ended && !video.loop) return
+        const stalled = video.paused || video.currentTime === mark
+        if (!stalled) return
+        const hh = hlsRef.current
+        if (hh) { try { hh.recoverMediaError() } catch { /* noop */ } }
+        else { try { video.load() } catch { /* noop */ } }   // native/mp4: reload, then replay
+        tryPlay()
+      }, 1200)
+    }
+
     const onLoaded = () => tryPlay()
-    const onVisible = () => { if (document.visibilityState === 'visible') tryPlay() }
+    const onVisible = () => { if (document.visibilityState === 'visible') resume() }
+    const onPageShow = (e: PageTransitionEvent) => { if (e.persisted) resume() }   // bfcache restore (mobile Safari)
 
     video.addEventListener('loadedmetadata', onLoaded)
     video.addEventListener('canplay', onLoaded)
     document.addEventListener('visibilitychange', onVisible)
-    // Element may already be ready (cached) — try immediately.
-    if (video.readyState >= 2) tryPlay()
-    else tryPlay()
+    window.addEventListener('pageshow', onPageShow)
+    tryPlay()
 
     return () => {
       cleanedUp = true
+      clearWatchdog()
       video.removeEventListener('loadedmetadata', onLoaded)
       video.removeEventListener('canplay', onLoaded)
       document.removeEventListener('visibilitychange', onVisible)
+      window.removeEventListener('pageshow', onPageShow)
       removeGesture?.()
     }
   }, [ref, srcKey, play, reduced])

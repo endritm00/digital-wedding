@@ -10,25 +10,29 @@
 // Shared by the published hero (invitation-view) and the builder live preview so
 // the two stay pixel-identical.
 
-import type { CSSProperties } from 'react'
+import { memo, type CSSProperties } from 'react'
 import { LaurelCrest } from './ornaments'
 
+// These are pure, accent-coloured vector marks — memoized so the live builder
+// preview (which re-renders on every keystroke as the couple type) skips
+// re-rendering the SVG chrome when only the names/date change.
+
 // A small symmetric laurel crest that anchors the top of the card.
-export function HeroCrest({ color, opacity = 0.72, style }: { color: string; opacity?: number; style?: CSSProperties }) {
+export const HeroCrest = memo(function HeroCrest({ color, opacity = 0.72, style }: { color: string; opacity?: number; style?: CSSProperties }) {
   return (
     <LaurelCrest
       color={color}
       style={{ width: 'clamp(46px, 13vw, 62px)', height: 'clamp(26px, 7.5vw, 34px)', opacity, ...style }}
     />
   )
-}
+})
 
 // A delicate engraved rule, inset from the card edge — the single device that
 // turns the legibility scrim into a piece of "stationery". Two whisper-thin
 // accent hairlines (a classic double rule) with the inner one fainter, plus a
 // soft lit top edge so the surface reads as vellum, not flat glass. Its corners
 // are deliberately quiet because the corner sprigs sit on top of them.
-export function HeroFrame({ color, inset = 13 }: { color: string; inset?: number }) {
+export const HeroFrame = memo(function HeroFrame({ color, inset = 13 }: { color: string; inset?: number }) {
   return (
     <div aria-hidden className="pointer-events-none absolute" style={{ top: inset, left: inset, right: inset, bottom: inset }}>
       <div
@@ -46,7 +50,7 @@ export function HeroFrame({ color, inset = 13 }: { color: string; inset?: number
       />
     </div>
   )
-}
+})
 
 // One botanical corner flourish, drawn for the TOP-LEFT corner (origin at the
 // corner). The other three are the same art mirrored via transform.
@@ -74,7 +78,7 @@ function CornerArt({ color }: { color: string }) {
 
 // Four mirrored corner flourishes framing the card. Absolutely positioned inside
 // a `relative` parent.
-export function HeroCorners({ color, opacity = 0.66, inset = 7 }: { color: string; opacity?: number; inset?: number }) {
+export const HeroCorners = memo(function HeroCorners({ color, opacity = 0.66, inset = 7 }: { color: string; opacity?: number; inset?: number }) {
   const size = 'clamp(22px, 6.2vw, 34px)'
   const base: CSSProperties = { position: 'absolute', width: size, height: size }
   return (
@@ -85,4 +89,4 @@ export function HeroCorners({ color, opacity = 0.66, inset = 7 }: { color: strin
       <div style={{ ...base, bottom: inset, right: inset, transform: 'scale(-1, -1)' }}><CornerArt color={color} /></div>
     </div>
   )
-}
+})

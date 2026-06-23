@@ -15,6 +15,13 @@ import { useRouter } from 'next/navigation'
 // How much of the sheet stays on-screen when peeked (the grip handle).
 const PEEK_VISIBLE = 64
 
+// The sheet's slide-up entrance should play ONCE per builder session (the first
+// screen), not on every step — each step mounts a fresh StepSheet, so a per-
+// instance flag made the whole panel visibly re-bounce on every navigation
+// (the "moving between screens feels sloppy" complaint). Module scope persists
+// across step routes but resets on a full reload (a genuinely fresh load).
+let sheetHasEntered = false
+
 function useIsMobile() {
   const [mobile, setMobile] = useState(false)
   useEffect(() => {
@@ -65,7 +72,9 @@ export function StepSheet({
   const [peekOffset, setPeekOffset] = useState(0)
   const [moreBelow, setMoreBelow] = useState(false)
   const [showHint, setShowHint] = useState(false)
-  const entered = useRef(false)
+  // True only for the first sheet shown this session — drives the one-time entrance.
+  const firstEntrance = useRef(!sheetHasEntered)
+  useEffect(() => { sheetHasEntered = true }, [])
 
   // One-time "drag down to preview" nudge — shown once ever, on the first mobile
   // step, so people discover the peek gesture. Dismissed on the first peek.
@@ -81,11 +90,10 @@ export function StepSheet({
     return () => clearTimeout(t)
   }, [isMobile])
 
-  // Entrance — slide up once on mount (skip for reduced motion).
+  // Entrance — slide up once per session (skip on later steps + reduced motion),
+  // so navigating between steps doesn't re-bounce the whole sheet.
   useEffect(() => {
-    if (entered.current) return
-    entered.current = true
-    if (reduced) { y.set(0); return }
+    if (!firstEntrance.current || reduced) { y.set(0); return }
     y.set(40)
     const controls = animate(y, 0, { duration: 0.4, ease: [0.22, 1, 0.36, 1] })
     return () => controls.stop()
@@ -136,7 +144,7 @@ export function StepSheet({
   return (
     <motion.div
       ref={sheetRef}
-      initial={{ opacity: 0 }}
+      initial={firstEntrance.current ? { opacity: 0 } : false}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="
