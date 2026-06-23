@@ -257,9 +257,9 @@ export function InvitePreview() {
           )}
           <span
             className={`font-inter uppercase block ${onFilm ? '' : 'mt-3'}`}
-            style={{ fontSize: onFilm ? 10 : 9, letterSpacing: '0.32em',
-              color: onFilm ? hexA(palette.accent, 0.95) : (darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)'),
-              textShadow: onFilm ? '0 1px 12px rgba(0,0,0,0.5)' : leg.textShadow }}
+            style={{ fontSize: onFilm ? 11 : 9, fontWeight: onFilm ? 500 : 400, letterSpacing: onFilm ? '0.28em' : '0.32em',
+              color: onFilm ? 'rgba(253,252,249,0.96)' : (darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)'),
+              textShadow: onFilm ? '0 1px 3px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.5)' : leg.textShadow }}
           >
             You are invited to the wedding of
           </span>

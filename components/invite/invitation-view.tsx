@@ -78,6 +78,13 @@ function hexA(hex: string, a: number): string {
   const h = hex.replace('#', '')
   return `rgba(${parseInt(h.slice(0, 2), 16)}, ${parseInt(h.slice(2, 4), 16)}, ${parseInt(h.slice(4, 6), 16)}, ${a})`
 }
+// True when a hex is light enough that white text on it would be illegible (e.g.
+// the pearl-noir accent). Used to flip button text to dark on light-accent themes.
+function isLightHex(hex: string): boolean {
+  const h = hex.replace('#', '')
+  const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16)
+  return (0.299 * r + 0.587 * g + 0.114 * b) > 170
+}
 function googleCalUrl(m: InviteMeta): string {
   if (!m.dateISO) return ''
   const d = m.dateISO.replace(/-/g, '')
@@ -302,7 +309,7 @@ function RsvpSection() {
             className="w-full rounded-full py-4 font-inter transition-all"
             style={{
               background: isValid ? t.accent : (t.dark ? 'rgba(255,255,255,0.08)' : 'rgba(26,24,22,0.07)'),
-              color: isValid ? '#FDFCF9' : (t.dark ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.38)'),
+              color: isValid ? (isLightHex(t.accent) ? t.paper : '#FDFCF9') : (t.dark ? 'rgba(236,234,227,0.45)' : 'rgba(26,24,22,0.38)'),
               fontSize: 13, letterSpacing: '0.06em',
               boxShadow: isValid ? `0 6px 20px ${hexA(t.accent, 0.3)}` : 'none',
               cursor: isValid ? 'pointer' : 'not-allowed',
@@ -983,7 +990,7 @@ function OpeningHero({ invite, opening, media, inPreview }: { invite: Invitation
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             className="relative z-10 mx-6 flex flex-col items-center text-center" style={{ maxWidth: 760, width: '100%' }}>
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.7 }}
-              className="font-inter uppercase block" style={{ fontSize: 10.5, letterSpacing: '0.32em', color: hexA(th.accent, 0.95), textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>{familiesNote}</motion.span>
+              className="font-inter uppercase block" style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.28em', color: 'rgba(253,252,249,0.96)', textShadow: '0 1px 3px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.5)' }}>{familiesNote}</motion.span>
             <motion.h1 className="leading-[0.95] mt-5 mb-6" style={{ fontFamily: th.font, fontStyle: th.fontStyle, fontSize: `calc(clamp(3rem, 12vw, 6rem) * ${th.fontScale})`, color: th.accent, letterSpacing: '0.005em', textShadow: '0 2px 12px rgba(0,0,0,0.45), 0 2px 44px rgba(0,0,0,0.5)' }}
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.8 }}>{names}</motion.h1>
             <MiniFlourish color={hexA(th.accent, 0.92)} className="mx-auto mb-6" style={{ width: 96, height: 'auto' }} />

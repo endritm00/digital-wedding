@@ -364,7 +364,7 @@ function OpenStill({ t }: { t: ResolvedTemplate }) {
   return (
     <StillBase t={t} label="Open over the film">
       <div className="relative z-10 flex flex-col items-center px-6 text-center">
-        <span className="font-inter uppercase" style={{ fontSize: 8, letterSpacing: '0.3em', color: 'rgba(253,252,249,0.85)', textShadow: '0 1px 10px rgba(0,0,0,0.5)' }}>
+        <span className="font-inter uppercase" style={{ fontSize: 8.5, fontWeight: 500, letterSpacing: '0.26em', color: 'rgba(253,252,249,0.96)', textShadow: '0 1px 3px rgba(0,0,0,0.6), 0 1px 12px rgba(0,0,0,0.5)' }}>
           You are invited
         </span>
         <span className="mt-3" style={{ ...hs, fontSize: 'clamp(2rem,6vw,3rem)', lineHeight: 0.98, color: p.accent, textShadow: '0 2px 10px rgba(0,0,0,0.45), 0 2px 30px rgba(0,0,0,0.5)' }}>

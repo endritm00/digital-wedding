@@ -273,6 +273,40 @@ export const PALETTES: Palette[] = [
     swatch: ['#FAF7F2', '#C4927A', '#6B5B52'],
     layout: 'ethereal',
   },
+  // ── Added 2026-06-24 ────────────────────────────────────────────────────────
+  {
+    // soft "something blue" — dusty slate over cool ivory
+    id: 'dusk-blue', name: 'Dusk Blue',
+    accent: '#5C7C91', accentSoft: 'rgba(92,124,145,0.14)',
+    paper: '#F8FAFB', ink: '#27323A', wash: '#EDF3F6', washAlt: '#E0E9EE',
+    swatch: ['#EDF3F6', '#5C7C91', '#27323A'],
+    layout: 'ethereal',
+  },
+  {
+    // deep wine on warm cream — romantic, autumnal
+    id: 'claret', name: 'Claret & Cream',
+    accent: '#7E3340', accentSoft: 'rgba(126,51,64,0.13)',
+    paper: '#FCF6F4', ink: '#2D1A1D', wash: '#F6E7E4', washAlt: '#EFD8D3',
+    swatch: ['#F6E7E4', '#7E3340', '#2D1A1D'],
+    layout: 'classic',
+  },
+  {
+    // "just white text" — a warm pearl on near-black. The accent reads as a rich,
+    // nuanced ivory-white (names + ornaments), elegant on the dark ground.
+    id: 'pearl-noir', name: 'Pearl & Noir',
+    accent: '#ECE4D3', accentSoft: 'rgba(236,228,211,0.16)',
+    paper: '#1B1A18', ink: '#ECE8DF', wash: '#232220', washAlt: '#181715',
+    swatch: ['#1B1A18', '#ECE4D3', '#ECE8DF'], dark: true,
+    layout: 'editorial',
+  },
+  {
+    // soft wisteria — a muted lavender on cool ivory (the set's only purple)
+    id: 'wisteria', name: 'Wisteria',
+    accent: '#8775A6', accentSoft: 'rgba(135,117,166,0.14)',
+    paper: '#FAF8FC', ink: '#2E2838', wash: '#F1ECF7', washAlt: '#E6DEF1',
+    swatch: ['#F1ECF7', '#8775A6', '#2E2838'],
+    layout: 'ethereal',
+  },
 ]
 
 export const PALETTE_MAP: Record<string, Palette> = Object.fromEntries(
