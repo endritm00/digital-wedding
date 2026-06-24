@@ -200,7 +200,9 @@ export function useFilmVideo(
     }
 
     let cleanedUp = false
+    let started = false
     let removeGesture: (() => void) | null = null
+    let raf = 0
 
     const armGesture = () => {
       if (removeGesture) return
@@ -208,6 +210,7 @@ export function useFilmVideo(
       const onGesture = () => {
         video.muted = true
         video.play().then(() => {
+          started = true
           setNeedsTap(false)
           removeGesture?.()
         }).catch(() => { /* still blocked — keep the listener armed */ })
@@ -223,16 +226,43 @@ export function useFilmVideo(
     let watchdog: number | null = null
     const clearWatchdog = () => { if (watchdog !== null) { clearTimeout(watchdog); watchdog = null } }
 
-    const tryPlay = () => {
-      if (cleanedUp) return
-      // Never restart a finished one-shot (e.g. the envelope opener after it has
-      // played through) — only looping films get (re)started here.
+    // Start playback at the RIGHT moment — no polling, no retry loop. Calling play()
+    // at readyState 0 (synchronously after the source attaches) was being INTERRUPTED
+    // by the still-in-flight load on some phones: play() rejected with AbortError and
+    // the film stayed parked behind the tap button. Instead we attempt once on the
+    // next frame (which also kicks loading for preload="none"/"metadata"), and let
+    // the media's own `canplay` readiness event do the real, clean start. The instant
+    // it's actually playing we remove the starters, so there is exactly ONE
+    // successful call and never repeated attempts.
+    function onReady() { startPlayback() }
+    const stopStarters = () => {
+      if (raf) { cancelAnimationFrame(raf); raf = 0 }
+      video.removeEventListener('loadedmetadata', onReady)
+      video.removeEventListener('canplay', onReady)
+    }
+    const startPlayback = () => {
+      if (cleanedUp || started) return
       if (video.ended && !video.loop) return
       video.muted = true                 // autoplay is only permitted while muted
       const p = video.play()
       if (p && typeof p.then === 'function') {
-        p.then(() => setNeedsTap(false)).catch(() => armGesture())
+        p.then(() => { started = true; setNeedsTap(false); stopStarters() })
+         .catch((err: unknown) => {
+           // NotAllowedError = a genuine autoplay block → offer the tap fallback.
+           // Anything else (AbortError: the load interrupted play()) is transient —
+           // a readiness event will replay it cleanly, so we do NOT surrender here.
+           if (err instanceof DOMException && err.name === 'NotAllowedError') armGesture()
+         })
       }
+    }
+
+    // A bare re-play, used ONLY for background-return recovery (by then the media is
+    // already loaded, so no readiness gating is needed).
+    const replay = () => {
+      if (cleanedUp || (video.ended && !video.loop)) return
+      video.muted = true
+      const p = video.play()
+      if (p && typeof p.then === 'function') p.then(() => setNeedsTap(false)).catch(() => { /* noop */ })
     }
 
     // Returning from the background (home screen / app switch) routinely leaves a
@@ -245,7 +275,7 @@ export function useFilmVideo(
       if (video.ended && !video.loop) return
       const h = hlsRef.current
       if (h) { try { h.startLoad() } catch { /* noop */ } }
-      tryPlay()
+      replay()
       clearWatchdog()
       const mark = video.currentTime
       watchdog = window.setTimeout(() => {
@@ -257,25 +287,23 @@ export function useFilmVideo(
         const hh = hlsRef.current
         if (hh) { try { hh.recoverMediaError() } catch { /* noop */ } }
         else { try { video.load() } catch { /* noop */ } }   // native/mp4: reload, then replay
-        tryPlay()
+        replay()
       }, 1200)
     }
 
-    const onLoaded = () => tryPlay()
     const onVisible = () => { if (document.visibilityState === 'visible') resume() }
     const onPageShow = (e: PageTransitionEvent) => { if (e.persisted) resume() }   // bfcache restore (mobile Safari)
 
-    video.addEventListener('loadedmetadata', onLoaded)
-    video.addEventListener('canplay', onLoaded)
+    video.addEventListener('loadedmetadata', onReady)
+    video.addEventListener('canplay', onReady)
     document.addEventListener('visibilitychange', onVisible)
     window.addEventListener('pageshow', onPageShow)
-    tryPlay()
+    raf = requestAnimationFrame(startPlayback)
 
     return () => {
       cleanedUp = true
       clearWatchdog()
-      video.removeEventListener('loadedmetadata', onLoaded)
-      video.removeEventListener('canplay', onLoaded)
+      stopStarters()
       document.removeEventListener('visibilitychange', onVisible)
       window.removeEventListener('pageshow', onPageShow)
       removeGesture?.()
