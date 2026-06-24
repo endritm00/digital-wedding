@@ -234,6 +234,11 @@ function LanguageDropdown() {
   const options: { l: Locale; countryCode: string; label: string }[] = [
     { l: 'en', countryCode: 'gb', label: 'English' },
     { l: 'de', countryCode: 'de', label: 'Deutsch' },
+    { l: 'it', countryCode: 'it', label: 'Italiano' },
+    { l: 'fr', countryCode: 'fr', label: 'Français' },
+    { l: 'tr', countryCode: 'tr', label: 'Türkçe' },
+    { l: 'sq', countryCode: 'al', label: 'Shqip' },
+    { l: 'ar', countryCode: 'eg', label: 'العربية' },
   ]
   const active = options.find(o => o.l === locale)!
 

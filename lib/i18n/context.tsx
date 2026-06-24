@@ -3,10 +3,15 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import { en, type Translations } from './en'
 import { de } from './de'
+import { it } from './it'
+import { fr } from './fr'
+import { tr } from './tr'
+import { sq } from './sq'
+import { ar } from './ar'
 
-export type Locale = 'en' | 'de'
+export type Locale = 'en' | 'de' | 'it' | 'fr' | 'tr' | 'sq' | 'ar'
 
-const LOCALES: Record<Locale, Translations> = { en, de }
+const LOCALES: Record<Locale, Translations> = { en, de, it, fr, tr, sq, ar }
 const STORAGE_KEY = 'di:locale'
 
 interface I18nContextValue {
