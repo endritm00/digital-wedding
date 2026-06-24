@@ -169,27 +169,27 @@ export function FilmBackdrop({
         />
       )}
 
-      {/* tap-to-play — shown when autoplay is blocked (gesture required) or when
-          prefers-reduced-motion is on and the user hasn't opted in yet. */}
+      {/* tap-to-play — shown when autoplay is blocked or prefers-reduced-motion.
+          Positioned at the bottom of the hero so it doesn't cover the names. */}
       {videoSrc && needsTap && (
         <button
           type="button"
           onClick={handleTap}
-          aria-label={reduced && !userOverride ? 'Play film (motion reduced)' : 'Play film'}
-          className="absolute inset-0 z-10 flex items-center justify-center"
-          style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+          aria-label="Play film"
+          className="absolute z-10 left-1/2 -translate-x-1/2"
+          style={{ bottom: '10%', background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
         >
           <span className="flex flex-col items-center gap-3">
             <span
               className="flex items-center justify-center rounded-full"
               style={{
-                width: 64, height: 64,
-                background: 'rgba(20,16,12,0.42)',
-                backdropFilter: 'blur(6px)',
-                border: '1px solid rgba(255,255,255,0.55)',
+                width: 56, height: 56,
+                background: 'rgba(20,16,12,0.48)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255,255,255,0.5)',
               }}
             >
-              <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden>
+              <svg width="18" height="20" viewBox="0 0 22 24" fill="none" aria-hidden>
                 <path d="M3 2.5L19 12L3 21.5V2.5Z" fill="rgba(255,255,255,0.92)" />
               </svg>
             </span>

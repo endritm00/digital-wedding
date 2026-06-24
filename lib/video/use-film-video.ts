@@ -321,19 +321,24 @@ export function useFilmVideo(
     const video = ref.current
     if (!video) return
     hardenForAutoplay(video)
-    const doPlay = () => {
-      video.muted = true
-      video.play().then(() => setNeedsTap(false)).catch(() => { /* noop */ })
-    }
-    if (video.readyState >= 2) {
-      doPlay()
-    } else {
-      // Source is set but not buffered yet (preload="none/metadata" + reduced=true skipped play()).
-      // Kick loading on the user's explicit gesture so canplay fires and we can actually start.
-      if (video.readyState === 0) { video.preload = 'auto'; try { video.load() } catch { /* noop */ } }
-      const onCanPlay = () => { video.removeEventListener('canplay', onCanPlay); doPlay() }
-      video.addEventListener('canplay', onCanPlay)
-    }
+    // Call play() immediately — user gesture context matters on some browsers.
+    // If the source hasn't buffered yet (preload="none/metadata"), play() rejects
+    // with AbortError; we kick loading and retry once on canplay. Any other error
+    // (NotAllowedError, etc.) is a genuine block — leave needsTap true so the button stays.
+    video.play()
+      .then(() => setNeedsTap(false))
+      .catch((err: unknown) => {
+        const name = err instanceof DOMException ? err.name : ''
+        if (name !== 'AbortError') return            // genuine block — don't retry
+        video.preload = 'auto'
+        try { video.load() } catch { /* noop */ }
+        const onReady = () => {
+          video.removeEventListener('canplay', onReady)
+          video.muted = true
+          video.play().then(() => setNeedsTap(false)).catch(() => { /* noop */ })
+        }
+        video.addEventListener('canplay', onReady)
+      })
   }
 
   return { needsTap, playNow }
