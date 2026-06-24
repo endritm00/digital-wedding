@@ -23,10 +23,27 @@ export function HeroSection() {
   const [armed, setArmed] = useState(false)
   const inView = useInView(sectionRef, { amount: 0.25 })
   useEffect(() => { if (inView) setArmed(true) }, [inView])
+  // As soon as the <video> exists, imperatively guarantee muted + inline playback
+  // on the actual DOM element. React's `muted` JSX prop does NOT reliably set the
+  // DOM `muted` property, so without this the browser blocks muted autoplay and
+  // the film stays frozen on its poster (esp. iOS/Android).
+  useEffect(() => {
+    if (!armed) return
+    const v = videoRef.current
+    if (!v) return
+    v.muted = true
+    v.defaultMuted = true
+    v.setAttribute('muted', '')
+    v.playsInline = true
+    v.setAttribute('playsinline', '')
+    v.setAttribute('webkit-playsinline', '')
+    v.setAttribute('disablepictureinpicture', '')
+    v.setAttribute('disableremoteplayback', '')
+  }, [armed])
   useEffect(() => {
     const v = videoRef.current
     if (!v || reduced) return
-    if (inView) { void v.play().catch(() => {}) } else v.pause()
+    if (inView) { v.muted = true; void v.play().catch(() => {}) } else v.pause()
   }, [inView, armed, reduced])
 
   return (

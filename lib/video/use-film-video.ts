@@ -51,6 +51,38 @@ function loadHls() {
   return hlsCtorPromise
 }
 
+// React's `muted` JSX prop does NOT reliably set the DOM `muted` PROPERTY, and a
+// video the browser considers un-muted is blocked from autoplay on every mobile
+// browser (it freezes on the poster with a dead play button). Forcing the element
+// into a guaranteed muted + inline state imperatively is the single most important
+// fix — every play() path below calls this first.
+function hardenForAutoplay(video: HTMLVideoElement) {
+  video.muted = true
+  video.defaultMuted = true
+  video.setAttribute('muted', '')
+  video.playsInline = true
+  video.setAttribute('playsinline', '')
+  video.setAttribute('webkit-playsinline', '')        // legacy iOS
+  video.setAttribute('disablepictureinpicture', '')
+  video.setAttribute('disableremoteplayback', '')     // steadies iOS ManagedMediaSource
+}
+
+// Apple devices (iPhone/iPad/desktop Safari) where NATIVE HLS is both high-quality
+// (real ABR) AND autoplay-reliable, while hls.js over MSE/ManagedMediaSource is
+// autoplay-fragile. On these we attach the .m3u8 straight to video.src instead of
+// running hls.js — this is the iOS half of the "videos won't play" fix.
+function prefersNativeHls(video: HTMLVideoElement): boolean {
+  if (video.canPlayType('application/vnd.apple.mpegurl') === '') return false
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent || ''
+  const iOS = /iP(hone|od|ad)/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)
+  const appleVendor = (navigator.vendor || '').includes('Apple')
+  const safari = appleVendor && !/CriOS|FxiOS|EdgiOS|Chrome|Chromium|Android/.test(ua)
+  // ManagedMediaSource is an Apple-only API — a strong signal we're on Apple.
+  const managed = typeof window !== 'undefined' && 'ManagedMediaSource' in window
+  return iOS || safari || managed
+}
+
 export function useFilmVideo(
   ref: RefObject<HTMLVideoElement | null>,
   sources: FilmSources,
@@ -71,6 +103,9 @@ export function useFilmVideo(
     const video = ref.current
     if (!video || (!hls && !mp4)) return
 
+    // Force muted + inline BEFORE any source attach / play — the autoplay gate.
+    hardenForAutoplay(video)
+
     let destroyed = false
     let hlsInstance: import('hls.js').default | null = null
 
@@ -87,13 +122,18 @@ export function useFilmVideo(
     const canUseMse =
       typeof window !== 'undefined' &&
       ('MediaSource' in window || 'ManagedMediaSource' in window)
+    // On Apple, native HLS is adaptive AND autoplay-reliable; hls.js there is not.
+    const appleNative = !!hls && prefersNativeHls(video)
 
     const useNativeOrMp4 = () => {
       if (nativeHls && hls) video.src = hls
       else setMp4()
     }
 
-    if (hls && canUseMse) {
+    if (appleNative && hls) {
+      // Apple (iPhone/iPad/Safari): attach the .m3u8 natively — reliable autoplay.
+      video.src = hls
+    } else if (hls && canUseMse) {
       // hls.js path (Chrome/Firefox/Edge/Chromium + desktop Safari + iOS 17+).
       void loadHls().then((Hls) => {
         if (destroyed) return
@@ -166,6 +206,7 @@ export function useFilmVideo(
       if (removeGesture) return
       setNeedsTap(true)
       const onGesture = () => {
+        video.muted = true
         video.play().then(() => {
           setNeedsTap(false)
           removeGesture?.()
@@ -187,6 +228,7 @@ export function useFilmVideo(
       // Never restart a finished one-shot (e.g. the envelope opener after it has
       // played through) — only looping films get (re)started here.
       if (video.ended && !video.loop) return
+      video.muted = true                 // autoplay is only permitted while muted
       const p = video.play()
       if (p && typeof p.then === 'function') {
         p.then(() => setNeedsTap(false)).catch(() => armGesture())
@@ -243,6 +285,7 @@ export function useFilmVideo(
   const playNow = () => {
     const video = ref.current
     if (!video) return
+    video.muted = true
     video.play().then(() => setNeedsTap(false)).catch(() => { /* noop */ })
   }
 

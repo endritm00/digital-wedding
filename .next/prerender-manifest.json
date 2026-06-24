@@ -83,30 +83,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/themes": {
       "experimentalBypassFor": [
         {
@@ -122,6 +98,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/themes",
       "dataRoute": "/themes.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -353,8 +353,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "9e1ce1e340923b48885d74909e4874db",
-    "previewModeSigningKey": "e92ad261e40a9243c681ba4aa140d97ffc381abfdfd7e32b3cb1caead0060ff5",
-    "previewModeEncryptionKey": "46b0599e509a5b764e944c9098a57a8c39d9221d78e9f32b65910697a00c2d8d"
+    "previewModeId": "59834cf6263fb8a02edd6e675d771cbc",
+    "previewModeSigningKey": "c26a5c40885550ceaa4402610b591bb048b0a7e4553beeffa43397d249cf6102",
+    "previewModeEncryptionKey": "de02b9d2aa17368e9ad645b48d04ecaea6fe4edb468924f04dcd3074ced74d12"
   }
 }

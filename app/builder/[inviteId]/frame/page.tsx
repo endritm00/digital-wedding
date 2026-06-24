@@ -167,6 +167,21 @@ function FocalPicker({
         onPointerUp={() => { draggingRef.current = false }}
       >
         <video
+          // Imperatively guarantee muted + inline playback the moment the element
+          // mounts: React's `muted` JSX prop does NOT reliably set the DOM `muted`
+          // property, so the browser can block this autoplaying preview and freeze
+          // it on its poster (esp. iOS/Android).
+          ref={(v) => {
+            if (!v) return
+            v.muted = true
+            v.defaultMuted = true
+            v.setAttribute('muted', '')
+            v.playsInline = true
+            v.setAttribute('playsinline', '')
+            v.setAttribute('webkit-playsinline', '')
+            v.setAttribute('disablepictureinpicture', '')
+            v.setAttribute('disableremoteplayback', '')
+          }}
           className="absolute inset-0 h-full w-full"
           style={{ objectFit: 'contain' }}
           src={src}
@@ -177,6 +192,7 @@ function FocalPicker({
           playsInline
           onLoadedMetadata={(e) => {
             const v = e.currentTarget
+            v.muted = true
             if (v.videoWidth && v.videoHeight) setAspect(v.videoWidth / v.videoHeight)
           }}
         />
