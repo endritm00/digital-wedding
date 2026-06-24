@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 const securityHeaders = [
   { key: 'X-DNS-Prefetch-Control',    value: 'on' },
   // 2-year HSTS; preload requires submission to browsers' preload lists
@@ -7,13 +9,14 @@ const securityHeaders = [
   { key: 'X-Frame-Options',           value: 'DENY' },
   { key: 'X-Content-Type-Options',    value: 'nosniff' },
   { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
-  { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+  // payment=(self ...) enables Stripe Payment Request API (Apple Pay / Google Pay)
+  { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=(), payment=(self "https://js.stripe.com")' },
   {
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      // unsafe-eval needed by Next.js dev server; unsafe-inline for RSC inline scripts
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com",
+      // unsafe-eval only needed by Turbopack in dev; unsafe-inline for RSC inline scripts
+      `script-src 'self' ${isDev ? "'unsafe-eval' " : ""}'unsafe-inline' https://js.stripe.com https://stream.mux.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://image.mux.com https://*.supabase.co https://*.supabase.in https://images.unsplash.com https://images.pexels.com",
       // Preset films are now served from Supabase Storage (preset-media bucket).

@@ -71,6 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     title:       'Digital Invite — Begin Your Forever.',
     description: 'Design your wedding invitation yourself in minutes. Share on WhatsApp. From €99.',
+    url:         process.env.NEXT_PUBLIC_APP_URL ?? 'https://digitalinvite.app',
     images:      [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Digital Invite' }],
     type:        'website',
     siteName:    'Digital Invite',

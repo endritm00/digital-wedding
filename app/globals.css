@@ -44,3 +44,18 @@
   .preserve-3d  { transform-style: preserve-3d; }
   .backface-hidden { backface-visibility: hidden; }
 }
+
+/* ── Marketing nav / footer link hover states ─────────────────────────── */
+.site-nav-link {
+  transition: color 0.2s ease;
+}
+.site-nav-link:hover {
+  color: #1A1816 !important;
+}
+
+.footer-link {
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: rgba(255,255,255,0.9) !important;
+}

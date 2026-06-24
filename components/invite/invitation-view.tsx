@@ -1171,7 +1171,7 @@ export function InvitationView({
                 {(nameA || nameB) && <p style={{ fontFamily: theme.font, fontStyle: theme.fontStyle, fontSize: `calc(clamp(2rem, 8vw, 3rem) * ${theme.fontScale})`, color: 'rgba(253,252,249,0.9)', letterSpacing: '0.01em', lineHeight: 1.1 }}>{nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB}</p>}
                 {date && <p className="font-cormorant italic font-light" style={{ fontSize: 16, color: 'rgba(253,252,249,0.4)' }}>{date}</p>}
                 <p className="font-cormorant italic font-light mt-2" style={{ fontSize: 18, color: 'rgba(253,252,249,0.55)' }}>We can&rsquo;t wait to celebrate with you.</p>
-                <p className="font-inter mt-4" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(253,252,249,0.18)', textTransform: 'uppercase' }}>Made with Digital Invite</p>
+                <p className="font-inter mt-4" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(253,252,249,0.18)', textTransform: 'uppercase' }}><a href="https://digitalinvite.app" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Made with Digital Invite</a></p>
               </div>
             </footer>
           </main>

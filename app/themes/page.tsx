@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { ALL_TEMPLATES_RESOLVED } from '@/lib/templates/templates'
 import { ThemeCard } from '@/components/themes/theme-card'
 import { OrnamentDiamond, OrnamentLine } from '@/components/themes/ornament'
+import { SiteNav } from '@/components/marketing/site-nav'
+import { SiteFooter } from '@/components/marketing/site-footer'
 
 const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://digitalinvite.app'
 
@@ -83,96 +85,100 @@ function CollectionJsonLd() {
 
 export default function ThemesPage() {
   return (
-    <main className="relative min-h-screen" style={{ background: '#F8F4EF', color: '#1A1816' }}>
-      <CollectionJsonLd />
+    <>
+      <SiteNav />
+      <main className="relative min-h-screen" style={{ background: '#F8F4EF', color: '#1A1816' }}>
+        <CollectionJsonLd />
 
-      {/* ── Editorial header ──────────────────────────────────────────────── */}
-      <header className="relative px-6 pt-24 pb-16 text-center sm:pt-28">
-        <div className="mx-auto max-w-3xl">
-          <p
-            className="font-inter uppercase"
-            style={{ fontSize: 10, letterSpacing: '0.36em', color: 'rgba(168,133,75,0.9)' }}
-          >
-            The Collection
-          </p>
-          <h1
-            className="font-cormorant mt-6 font-light"
-            style={{ fontSize: 'clamp(2.8rem, 8vw, 5.4rem)', lineHeight: 0.98, letterSpacing: '-0.01em' }}
-          >
-            Wedding invitation
-            <br />
-            <span className="font-pinyon" style={{ color: '#A8854B', fontSize: '1.18em', lineHeight: 0.9 }}>
-              designs
-            </span>
-          </h1>
+        {/* ── Editorial header ──────────────────────────────────────────────── */}
+        <header className="relative px-6 pt-24 pb-16 text-center sm:pt-28">
+          <div className="mx-auto max-w-3xl">
+            <p
+              className="font-inter uppercase"
+              style={{ fontSize: 10, letterSpacing: '0.36em', color: 'rgba(168,133,75,0.9)' }}
+            >
+              The Collection
+            </p>
+            <h1
+              className="font-cormorant mt-6 font-light"
+              style={{ fontSize: 'clamp(2.8rem, 8vw, 5.4rem)', lineHeight: 0.98, letterSpacing: '-0.01em' }}
+            >
+              Wedding invitation
+              <br />
+              <span className="font-pinyon" style={{ color: '#A8854B', fontSize: '1.18em', lineHeight: 0.9 }}>
+                designs
+              </span>
+            </h1>
 
-          <div className="mt-8 flex justify-center">
-            <OrnamentLine color="#A8854B" width={130} />
+            <div className="mt-8 flex justify-center">
+              <OrnamentLine color="#A8854B" width={130} />
+            </div>
+
+            <p
+              className="font-inter mx-auto mt-8 max-w-xl"
+              style={{ fontSize: 14.5, lineHeight: 2, color: 'rgba(26,24,22,0.62)' }}
+            >
+              Eight hand-composed designs, each a complete invitation — a colour palette, a
+              calligraphic hand, and a short film that opens the moment a guest taps the link.
+              Choose the one that feels like you, then make it yours in a few minutes. Every
+              design is fully personalised with your names, your story, your day and your venue,
+              and shared with a single link.
+            </p>
+
+            <div className="mt-10 flex items-center justify-center gap-5">
+              <Link
+                href="/builder"
+                className="font-inter rounded-full uppercase transition-transform duration-500 hover:scale-[1.04]"
+                style={{
+                  fontSize: 11,
+                  padding: '14px 36px',
+                  background: '#1A1816',
+                  color: '#F8F4EF',
+                  letterSpacing: '0.2em',
+                  boxShadow: '0 6px 28px rgba(26,24,22,0.2)',
+                }}
+              >
+                Start creating
+              </Link>
+              <span className="font-inter" style={{ fontSize: 10.5, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.4)' }}>
+                From €19.99 · Live in minutes
+              </span>
+            </div>
           </div>
+        </header>
 
-          <p
-            className="font-inter mx-auto mt-8 max-w-xl"
-            style={{ fontSize: 14.5, lineHeight: 2, color: 'rgba(26,24,22,0.62)' }}
-          >
-            Eight hand-composed designs, each a complete invitation — a colour palette, a
-            calligraphic hand, and a short film that opens the moment a guest taps the link.
-            Choose the one that feels like you, then make it yours in a few minutes. Every
-            design is fully personalised with your names, your story, your day and your venue,
-            and shared with a single link.
-          </p>
+        {/* ── Gallery grid ──────────────────────────────────────────────────── */}
+        <section aria-label="Wedding invitation templates" className="px-5 pb-28 sm:px-8">
+          <ul className="mx-auto grid max-w-6xl list-none grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ALL_TEMPLATES_RESOLVED.map((t, i) => (
+              <li key={t.slug}>
+                <ThemeCard t={t} index={i} />
+              </li>
+            ))}
+          </ul>
+        </section>
 
-          <div className="mt-10 flex items-center justify-center gap-5">
+        {/* ── Closing note ──────────────────────────────────────────────────── */}
+        <section className="px-6 pb-32 text-center">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-7">
+            <OrnamentDiamond color="#A8854B" />
+            <h2
+              className="font-cormorant font-light italic"
+              style={{ fontSize: 'clamp(1.9rem, 5.4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.01em' }}
+            >
+              Not sure which one? Start with any design — you can change the look at any time.
+            </h2>
             <Link
               href="/builder"
-              className="font-inter rounded-full uppercase transition-transform duration-500 hover:scale-[1.04]"
-              style={{
-                fontSize: 11,
-                padding: '14px 36px',
-                background: '#1A1816',
-                color: '#F8F4EF',
-                letterSpacing: '0.2em',
-                boxShadow: '0 6px 28px rgba(26,24,22,0.2)',
-              }}
+              className="font-inter uppercase transition-opacity duration-300 hover:opacity-60"
+              style={{ fontSize: 11, letterSpacing: '0.22em', color: '#A8854B' }}
             >
-              Start creating
+              Begin your invitation &rarr;
             </Link>
-            <span className="font-inter" style={{ fontSize: 10.5, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.4)' }}>
-              From €19.99 · Live in minutes
-            </span>
           </div>
-        </div>
-      </header>
-
-      {/* ── Gallery grid ──────────────────────────────────────────────────── */}
-      <section aria-label="Wedding invitation templates" className="px-5 pb-28 sm:px-8">
-        <ul className="mx-auto grid max-w-6xl list-none grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {ALL_TEMPLATES_RESOLVED.map((t, i) => (
-            <li key={t.slug}>
-              <ThemeCard t={t} index={i} />
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* ── Closing note ──────────────────────────────────────────────────── */}
-      <section className="px-6 pb-32 text-center">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-7">
-          <OrnamentDiamond color="#A8854B" />
-          <h2
-            className="font-cormorant font-light italic"
-            style={{ fontSize: 'clamp(1.9rem, 5.4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.01em' }}
-          >
-            Not sure which one? Start with any design — you can change the look at any time.
-          </h2>
-          <Link
-            href="/builder"
-            className="font-inter uppercase transition-opacity duration-300 hover:opacity-60"
-            style={{ fontSize: 11, letterSpacing: '0.22em', color: '#A8854B' }}
-          >
-            Begin your invitation &rarr;
-          </Link>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
   )
 }

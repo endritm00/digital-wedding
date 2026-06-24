@@ -4,9 +4,6 @@ import { stripe } from '@/lib/stripe'
 import { createServiceClient } from '@/lib/supabase/service'
 import { logger } from '@/lib/logger'
 
-// Disable body parsing — Stripe signature verification requires the raw body.
-export const config = { api: { bodyParser: false } }
-
 // POST /api/webhooks/stripe
 //
 // Idempotency design:

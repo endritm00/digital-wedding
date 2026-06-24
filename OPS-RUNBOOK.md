@@ -1,76 +1,195 @@
-# Ops Runbook — required external configuration
+# Digital Invite — Production OPS Runbook
 
-The review/checkout/publish code is in place, but three things live in **dashboards / secrets** and must be configured by a maintainer. Without them the related feature silently degrades (the code fails gracefully, but the feature won't fully work).
-
-All secrets go in `.env.local` (dev) and your host's env (prod). `.env.local` is gitignored — never commit it.
-
-> **No login / accounts.** The purchase flow is fully login-free: anonymous draft → enter email → pay → publish, all authorized by the draft's `claim_token` (held in the creator's browser). There is intentionally **no** magic-link / Supabase Auth step. Nothing to configure for auth.
+Last updated: 2026-06-25
 
 ---
 
-## 1. Resend — manage-link email (item B1)
+## BEFORE ANYTHING ELSE — Rotate Compromised Secrets
 
-On first publish we email the couple their private RSVP-management link. The success screen also shows it on-screen (so it's not lost even if email fails), but email is the durable copy.
+`.env.local` was committed to git history. Rotate these **immediately**, before deploying:
 
-- `RESEND_API_KEY` — already set.
-- `RESEND_FROM` — **must be a verified-domain sender** for real delivery, e.g. `Hitched <hello@yourdomain.com>`.
-  - **Resend Dashboard → Domains → Add Domain**, add the DNS records, verify.
-  - Until then `RESEND_FROM` defaults to `onboarding@resend.dev`, which **only delivers to the Resend account owner's email** — couples will not receive it.
+| Secret | Where to rotate |
+|---|---|
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase dashboard → Project Settings → API → Regenerate service role key |
+| `MUX_TOKEN_ID` + `MUX_TOKEN_SECRET` | Mux dashboard → Settings → API Access Tokens → Delete + New |
+| `RESEND_API_KEY` | Resend dashboard → API Keys → Revoke + New |
 
----
-
-## 2. Upstash Redis — rate limiting
-
-Without it, `lib/rate-limit.ts` falls back to an in-process store that **resets on every cold start and is per-instance** — so on serverless/multi-instance the limits (RSVP, checkout, draft) are effectively multiplied by the instance count.
-
-- Create a database at **upstash.com → Redis**.
-- Set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in all deployed environments (and staging).
+After rotating, clean git history:
+```bash
+git filter-repo --path .env.local --invert-paths
+# Then force-push — coordinate with anyone who has cloned the repo
+```
 
 ---
 
-## 3. Cloudflare — CDN purge on re-publish
+## 1. Environment Variables
 
-`lib/publish/cdn-purge.ts` purges the cached `/api/snapshots/:slug` after a (re)publish. If the creds are absent the purge is **skipped silently**, so guests can see the **stale snapshot for up to 24h** (`s-maxage=86400`) after a re-publish.
+Set all of these in **Vercel Project Settings → Environment Variables → Production**.
 
-- Set `CLOUDFLARE_ZONE_ID` and `CLOUDFLARE_API_TOKEN` (token needs the *Cache Purge* permission for the zone) in production.
-- (The Next.js ISR guest page is already revalidated on publish via `revalidatePath`; this is specifically about the CDN-cached snapshot JSON.)
+### Required (app will not work without these)
+
+| Variable | Description | Example |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project REST endpoint | `https://xxxx.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public JWT for RLS-gated reads | `eyJ...` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service-role JWT — bypasses RLS. Server-only. Never NEXT_PUBLIC_ | `eyJ...` |
+| `NEXT_PUBLIC_APP_URL` | Production base URL — Stripe redirects, email links, Mux CORS | `https://yourdomain.com` |
+| `STRIPE_SECRET_KEY` | Stripe live secret key | `sk_live_...` |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe live publishable key | `pk_live_...` |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret | `whsec_...` |
+| `MUX_TOKEN_ID` | Mux API token ID | `abc123` |
+| `MUX_TOKEN_SECRET` | Mux API token secret | `xyz...` |
+| `MUX_WEBHOOK_SECRET` | Mux webhook signing secret | `abc...` |
+| `RESEND_API_KEY` | Resend API key | `re_...` |
+| `RESEND_FROM` | Verified sender address | `Digital Invite <hello@yourdomain.com>` |
+
+### Strongly recommended
+
+| Variable | Default without it | Description |
+|---|---|---|
+| `UPSTASH_REDIS_REST_URL` | In-process rate limits (breaks on serverless) | Upstash Redis REST URL |
+| `UPSTASH_REDIS_REST_TOKEN` | Same | Upstash Redis auth token |
+| `CLOUDFLARE_ZONE_ID` | CDN purge silently skipped | Cloudflare zone for cache invalidation |
+| `CLOUDFLARE_API_TOKEN` | CDN purge silently skipped | Cloudflare API token with Cache Purge permission |
 
 ---
 
-## 4. Stripe — Webhook for payment reconciliation
+## 2. Service Setup
 
-The payment success page redirects immediately from Stripe's hosted checkout, and the code asks Stripe directly whether the session was paid (`checkout.sessions.retrieve`). This local-first reconciliation means **the webhook is not required for basic payment confirmation** — but it's the reliable async backstop for:
-- Handling `checkout.session.expired` (clean up stale orders)
-- Handling `payment_intent.payment_failed` (mark order as failed)
-- Redundant verification if the success page fails to reconcile before publishing
+### 2a. Supabase
 
-**Setup (production only; optional but recommended):**
+1. Dashboard → **Settings → API** → copy URL, anon key, service role key
+2. **Settings → Auth**:
+   - Site URL: `https://yourdomain.com`
+   - Redirect URLs: add `https://yourdomain.com/**`
+   - Enable **Magic Link** (email OTP) sign-in
+3. **Storage** — verify these buckets exist after migrations:
+   - `invite-media` — private (user uploads)
+   - `preset-media` — public (wedding film presets)
 
-1. **Stripe Dashboard → Webhooks → Add Endpoint**
-   - Endpoint URL: `https://yourdomain.com/api/webhooks/stripe`
+### 2b. Stripe
+
+1. Use **Live mode** (not test)
+2. Dashboard → **Developers → API keys** → copy live secret + publishable keys
+3. **Webhook** — Developers → Webhooks → Add endpoint:
+   - URL: `https://yourdomain.com/api/webhooks/stripe`
    - Events: `checkout.session.completed`, `checkout.session.expired`, `payment_intent.payment_failed`
-   - Copy the **Signing Secret** (`whsec_…`)
+   - Copy **Signing secret** → `STRIPE_WEBHOOK_SECRET`
+4. App is hardcoded to **EUR** — ensure Stripe account has EUR enabled
+5. No Stripe products/prices to create — line items come from the `plans` DB table
 
-2. **Set the environment variable:**
-   - Prod: `STRIPE_WEBHOOK_SECRET=whsec_…` in your platform's env vars (Vercel, etc.)
-   - Dev (local testing): Run `stripe listen --forward-to localhost:3000/api/webhooks/stripe`, copy the printed secret into `.env.local`
+### 2c. Mux
 
-3. **That's it.** The webhook handler at `app/api/webhooks/stripe/route.ts` is already in place.
+1. Dashboard → **Settings → Access Tokens** → create token with Mux Video read+write
+2. Copy Token ID/Secret → `MUX_TOKEN_ID` / `MUX_TOKEN_SECRET`
+3. Verify plan supports **static MP4 renditions** (`mp4_support: 'capped-1080p'`)
+4. **Webhook** — Settings → Webhooks → Create:
+   - URL: `https://yourdomain.com/api/webhooks/mux`
+   - Events: `video.upload.asset_created`, `video.asset.ready`, `video.asset.static_renditions.ready`, `video.asset.errored`
+   - Copy **Signing secret** → `MUX_WEBHOOK_SECRET`
+5. Envelope opener videos already on Mux (playback IDs in `lib/invite/envelope-video.ts`). Re-upload if needed: `node scripts/upload-envelope-videos.mjs`
 
-**Local testing without the webhook:**
-- You don't need `stripe listen` just to test the happy path (payment → publish).
-- The success page confirms payment locally against Stripe, so the flow works end-to-end.
-- Webhook is optional for dev; only required in prod for reliability + expired/failed events.
+### 2d. Resend
 
-**Important notes:**
-- Never commit `STRIPE_WEBHOOK_SECRET` to git (it's in `.env.local` or your prod env, never in code).
-- If the webhook is missing in prod, stale orders (`expired`/`failed`) won't be cleaned up, but payment confirmation + publishing still work via the redirect-path reconciliation.
+1. Dashboard → **API Keys → Create** → `RESEND_API_KEY`
+2. **Domain verification** (critical — without this, emails only go to your own account):
+   - Domains → Add Domain → `yourdomain.com`
+   - Add DNS records (DKIM, SPF, DMARC), wait for verification (~1 hour)
+   - Set `RESEND_FROM` to `Digital Invite <hello@yourdomain.com>`
+3. Only one email is sent: the **RSVP manage link** to the couple on first publish
+
+### 2e. Upstash Redis
+
+1. [upstash.com](https://upstash.com) → Redis → Create Database → **Global** replication
+2. Copy REST URL + Token → `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`
+
+### 2f. Cloudflare (optional)
+
+1. Dashboard → your domain → Overview → copy **Zone ID** → `CLOUDFLARE_ZONE_ID`
+2. Profile → API Tokens → Create Token → **Cache Purge** template → restrict to your zone → `CLOUDFLARE_API_TOKEN`
 
 ---
 
-## Quick checklist before go-live
-- [ ] Resend: domain verified + `RESEND_FROM` set to it
-- [ ] Upstash: `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` set
-- [ ] Cloudflare: `CLOUDFLARE_ZONE_ID` + `CLOUDFLARE_API_TOKEN` set
-- [ ] Stripe: live keys set (`STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`)
-- [ ] Stripe webhook: endpoint created + `STRIPE_WEBHOOK_SECRET` configured in prod env
+## 3. Database Migrations
+
+```bash
+# Run against production (ensure .env.local points to prod Supabase):
+npm run db:migrate
+```
+
+### Seed the catalog (required)
+
+After migrations:
+
+**Plans** (checkout fails without these):
+```sql
+INSERT INTO public.plans (code, name, base_price_cents, included_sections, sort_order, active)
+VALUES
+  ('save_the_date', 'Save the Date', 1900, 3, 1, true),
+  ('experience',    'Experience',    3900, 6, 2, true),
+  ('premium',       'Premium',       6900, NULL, 3, true);
+```
+
+**Preset media** — upload wedding films to Supabase Storage:
+```bash
+node scripts/mirror-presets.mjs
+```
+
+---
+
+## 4. Deployment (Vercel)
+
+1. Push code to GitHub
+2. Vercel → New Project → Import repository
+   - Framework: **Next.js** (auto-detected), Root: `/`, Build: `npm run build`
+3. Set all env vars (section 1)
+4. Set **Function region** to `fra1` (Frankfurt) — closest to Supabase
+5. Add custom domain → Settings → Domains
+6. Run `npm run db:migrate` before or immediately after first deploy
+7. Register Stripe and Mux webhooks with the live domain URL
+
+---
+
+## 5. Post-Deploy Verification Checklist
+
+- [ ] All 10 migrations applied (Supabase → Database → Migrations)
+- [ ] `invite-media` and `preset-media` buckets exist with correct access settings
+- [ ] Plans table has at least one active row
+- [ ] Auth redirect URL matches production domain
+- [ ] Stripe webhook registered + test event returns 200
+- [ ] `STRIPE_WEBHOOK_SECRET` is the live signing secret (not test)
+- [ ] Mux webhook registered + test video upload transitions to `ready`
+- [ ] Resend domain verified + test publish sends manage-link email
+- [ ] Upstash connected + 4th RSVP from same IP returns 429
+- [ ] `/` home page loads with nav and footer
+- [ ] `/themes` gallery loads
+- [ ] Builder end-to-end: create invite → all 6 steps → checkout → publish → guest page loads → RSVP works
+- [ ] 404 page shows for bad URLs (branded, not Next.js default)
+- [ ] `NEXT_PUBLIC_APP_URL` is set to production domain (not localhost)
+
+---
+
+## 6. What Is NOT Wired Yet
+
+- **AWS KMS encryption** — columns exist in DB (`email_enc`, etc.) but app code doesn't use them. Leave `AWS_*` vars unset.
+- **Music step** — disabled; route redirects to save step
+- **RSVP dietary notes / email field** — accepted by form but not persisted
+- **Log aggregation** — logs go to Vercel console only
+
+---
+
+## 7. Key Files
+
+| File | Purpose |
+|---|---|
+| `lib/supabase/service.ts` | Service-role Supabase client (server-only) |
+| `lib/stripe/index.ts` | Stripe client |
+| `lib/mux/index.ts` | Mux client + URL helpers |
+| `lib/email.ts` | Resend + manage-link email template |
+| `lib/rate-limit.ts` | Upstash/in-memory rate limiting |
+| `lib/publish/cdn-purge.ts` | Cloudflare cache purge |
+| `lib/invite/envelope-video.ts` | Mux playback IDs for envelope opener |
+| `app/api/webhooks/stripe/route.ts` | Stripe webhook handler |
+| `app/api/webhooks/mux/route.ts` | Mux webhook handler |
+| `supabase/migrations/` | All 10 DB migrations (0001–0010) |
+| `scripts/mirror-presets.mjs` | One-time preset media upload |

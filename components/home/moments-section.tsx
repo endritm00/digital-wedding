@@ -74,18 +74,11 @@ export function MomentsSection() {
           className="mt-20 md:mt-28 pt-10 flex flex-wrap items-center gap-3"
           style={{ borderTop: '1px solid rgba(26,26,26,0.1)' }}
         >
-          <div className="flex gap-0.5" aria-label="5 stars">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <svg key={i} width="12" height="12" viewBox="0 0 13 13" aria-hidden="true">
-                <path d="M6.5 0.5L8.1 4.5L12.5 4.9L9.2 7.8L10.2 12.1L6.5 9.9L2.8 12.1L3.8 7.8L0.5 4.9L4.9 4.5L6.5 0.5Z" fill="rgba(26,26,26,0.65)" />
-              </svg>
-            ))}
-          </div>
           <span
             className="font-inter leading-none"
             style={{ fontSize: 11, color: 'rgba(26,26,26,0.4)' }}
           >
-            5.0 &nbsp;·&nbsp; Loved by 3,500+ couples across 15 countries
+            Loved by early couples across Europe
           </span>
         </div>
       </div>
