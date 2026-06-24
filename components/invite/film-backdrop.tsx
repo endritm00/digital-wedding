@@ -68,6 +68,13 @@ export function FilmBackdrop({
     { hls: hlsSrc, mp4: videoSrc },
     { play: autoPlay, reduced }
   )
+  // Hidden field diagnostics — append ?vdebug=1 to the URL to overlay the exact
+  // source path + the precise reason iOS rejected play() (so we can tell a real
+  // code bug apart from an OS-level block like Low Power Mode).
+  const [showDebug, setShowDebug] = useState(false)
+  useEffect(() => {
+    try { setShowDebug(new URLSearchParams(window.location.search).has('vdebug')) } catch { /* noop */ }
+  }, [])
   // Resolved fit for 'auto' mode; ignored when mode is explicit.
   const [autoFit, setAutoFit] = useState<'cover' | 'contain'>('cover')
 
@@ -148,21 +155,76 @@ export function FilmBackdrop({
           className="absolute inset-0 z-10 flex items-center justify-center"
           style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
         >
-          <span
-            className="flex items-center justify-center rounded-full"
-            style={{
-              width: 64, height: 64,
-              background: 'rgba(20,16,12,0.42)',
-              backdropFilter: 'blur(6px)',
-              border: '1px solid rgba(255,255,255,0.55)',
-            }}
-          >
-            <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden>
-              <path d="M3 2.5L19 12L3 21.5V2.5Z" fill="rgba(255,255,255,0.92)" />
-            </svg>
+          <span className="flex flex-col items-center gap-3">
+            <span
+              className="flex items-center justify-center rounded-full"
+              style={{
+                width: 64, height: 64,
+                background: 'rgba(20,16,12,0.42)',
+                backdropFilter: 'blur(6px)',
+                border: '1px solid rgba(255,255,255,0.55)',
+              }}
+            >
+              <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden>
+                <path d="M3 2.5L19 12L3 21.5V2.5Z" fill="rgba(255,255,255,0.92)" />
+              </svg>
+            </span>
+            <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.8)', textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}>
+              Tap to play
+            </span>
           </span>
         </button>
       )}
+
+      {showDebug && <VideoDebug videoRef={videoRef} />}
+    </div>
+  )
+}
+
+// Diagnostics overlay (only when ?vdebug=1). Shows which source path the device
+// took, the live <video> state, and the exact play() rejection — enough to tell
+// an OS-level block (e.g. Low Power Mode → NotAllowedError on a muted video) from
+// an actual code bug. Calls play() itself to capture iOS's precise error string.
+function VideoDebug({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement | null> }) {
+  const [info, setInfo] = useState<Record<string, unknown>>({})
+  useEffect(() => {
+    let playResult = '(pending)'
+    const v = videoRef.current
+    const read = () => {
+      const el = videoRef.current
+      if (!el) return
+      const src = el.currentSrc || el.src || ''
+      const mode = src.startsWith('blob:') ? 'hls.js (MSE)'
+        : src.endsWith('.m3u8') ? 'native HLS'
+        : src.includes('.mp4') ? 'MP4'
+        : src ? 'other' : 'none'
+      setInfo({
+        path: mode,
+        'play()': playResult,
+        muted: el.muted,
+        playsInline: el.playsInline,
+        paused: el.paused,
+        readyState: el.readyState,
+        networkState: el.networkState,
+        t: +el.currentTime.toFixed(2),
+        src: src.slice(0, 64),
+      })
+    }
+    if (v) {
+      v.muted = true
+      v.play().then(() => { playResult = 'OK (playing)'; read() }).catch((e) => { playResult = `${e?.name}: ${e?.message}`.slice(0, 90); read() })
+    }
+    const id = window.setInterval(read, 700)
+    read()
+    return () => window.clearInterval(id)
+  }, [videoRef])
+  return (
+    <div
+      className="absolute left-0 top-0 z-[60] m-2 rounded"
+      style={{ maxWidth: '94vw', background: 'rgba(0,0,0,0.82)', color: '#3ff07a', font: '11px/1.5 ui-monospace, monospace', padding: '8px 10px', whiteSpace: 'pre-wrap', pointerEvents: 'none' }}
+    >
+      {Object.entries(info).map(([k, val]) => `${k}: ${String(val)}`).join('\n')}
+      {`\nUA: ${typeof navigator !== 'undefined' ? navigator.userAgent.slice(0, 90) : ''}`}
     </div>
   )
 }

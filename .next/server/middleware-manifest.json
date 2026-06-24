@@ -3,30 +3,34 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge-runtime-webpack.js",
-        "server/middleware.js"
+        "server/edge/chunks/_9dd07395._.js",
+        "server/edge/chunks/node_modules_@supabase_postgrest-js_dist_index_mjs_1f828633._.js",
+        "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_e443dca4._.js",
+        "server/edge/chunks/node_modules_d0fc58bb._.js",
+        "server/edge/chunks/[root-of-the-server]__de110ef0._.js",
+        "server/edge/chunks/edge-wrapper_c210eb89.js"
       ],
       "name": "middleware",
       "page": "/",
       "matchers": [
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*))(\\.json)?[\\/#\\?]?$",
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*))(\\\\.json)?[\\/#\\?]?$",
           "originalSource": "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "ZbKwIOWMn3QxRNgxs0Rui",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "GIK7Om0cHOTyCAU73RGp0yY7InHVskpxI4MbOQOAxpw=",
-        "__NEXT_PREVIEW_MODE_ID": "59834cf6263fb8a02edd6e675d771cbc",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "de02b9d2aa17368e9ad645b48d04ecaea6fe4edb468924f04dcd3074ced74d12",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "c26a5c40885550ceaa4402610b591bb048b0a7e4553beeffa43397d249cf6102"
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "sRrIJwjWlsFzRSB0Sg5ynaJ2YJa7Z3uE3HJcfOZBJiY=",
+        "__NEXT_PREVIEW_MODE_ID": "5dead0579f24a328eda0af7b7f184a08",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "e9bfe277f9dcbf60f83bbf5da2b3d468611b0ed01e20e84cbf3323f51a6dc04e",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "e7bbd9255f29e1d77791b32d3d885a97216a8c4442adc595b67271319da3234e"
       }
     }
   },
-  "functions": {},
   "sortedMiddleware": [
     "/"
-  ]
+  ],
+  "functions": {}
 }
