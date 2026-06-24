@@ -320,8 +320,20 @@ export function useFilmVideo(
   const playNow = () => {
     const video = ref.current
     if (!video) return
-    video.muted = true
-    video.play().then(() => setNeedsTap(false)).catch(() => { /* noop */ })
+    hardenForAutoplay(video)
+    const doPlay = () => {
+      video.muted = true
+      video.play().then(() => setNeedsTap(false)).catch(() => { /* noop */ })
+    }
+    if (video.readyState >= 2) {
+      doPlay()
+    } else {
+      // Source is set but not buffered yet (preload="none/metadata" + reduced=true skipped play()).
+      // Kick loading on the user's explicit gesture so canplay fires and we can actually start.
+      if (video.readyState === 0) { video.preload = 'auto'; try { video.load() } catch { /* noop */ } }
+      const onCanPlay = () => { video.removeEventListener('canplay', onCanPlay); doPlay() }
+      video.addEventListener('canplay', onCanPlay)
+    }
   }
 
   return { needsTap, playNow }

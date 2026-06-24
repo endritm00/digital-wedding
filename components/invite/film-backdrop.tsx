@@ -61,13 +61,37 @@ export function FilmBackdrop({
   const videoRef = externalVideoRef ?? localRef
   const wrapRef = useRef<HTMLDivElement | null>(null)
 
+  // When the user explicitly taps "Play film" while reduced-motion is on we lift
+  // the reduced constraint so the play effect doesn't re-pause on the next render.
+  const [userOverride, setUserOverride] = useState(false)
+  const effectiveReduced = reduced && !userOverride
+
   // Bulletproof, adaptive playback (HLS when available, MP4 fallback, gesture
   // retry on autoplay-blocked devices).
   const { needsTap, playNow } = useFilmVideo(
     videoRef,
     { hls: hlsSrc, mp4: videoSrc },
-    { play: autoPlay, reduced }
+    { play: autoPlay, reduced: effectiveReduced }
   )
+
+  // Track whether the video is playing after an explicit reduced-motion opt-in,
+  // so we can show a pause control (WCAG: always let the user stop motion they started).
+  const [playingAfterOverride, setPlayingAfterOverride] = useState(false)
+
+  const handleTap = () => {
+    if (reduced && !userOverride) {
+      setUserOverride(true)
+      setPlayingAfterOverride(true)
+    }
+    playNow()
+  }
+
+  const handlePause = () => {
+    const v = videoRef.current
+    if (v) try { v.pause() } catch { /* noop */ }
+    setPlayingAfterOverride(false)
+    setUserOverride(false)
+  }
   // Hidden field diagnostics — append ?vdebug=1 to the URL to overlay the exact
   // source path + the precise reason iOS rejected play() (so we can tell a real
   // code bug apart from an OS-level block like Low Power Mode).
@@ -145,13 +169,13 @@ export function FilmBackdrop({
         />
       )}
 
-      {/* tap-to-play — only when the browser blocked autoplay (Low-Power Mode,
-          reduced-motion). A single tap anywhere also starts it. */}
+      {/* tap-to-play — shown when autoplay is blocked (gesture required) or when
+          prefers-reduced-motion is on and the user hasn't opted in yet. */}
       {videoSrc && needsTap && (
         <button
           type="button"
-          onClick={playNow}
-          aria-label="Play film"
+          onClick={handleTap}
+          aria-label={reduced && !userOverride ? 'Play film (motion reduced)' : 'Play film'}
           className="absolute inset-0 z-10 flex items-center justify-center"
           style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
         >
@@ -170,9 +194,33 @@ export function FilmBackdrop({
               </svg>
             </span>
             <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.8)', textShadow: '0 1px 8px rgba(0,0,0,0.6)' }}>
-              Tap to play
+              Play film
             </span>
           </span>
+        </button>
+      )}
+
+      {/* pause control — only shown after the user explicitly opted in from a
+          reduced-motion state; lets them stop the film again (WCAG 2.3.3). */}
+      {videoSrc && playingAfterOverride && !needsTap && (
+        <button
+          type="button"
+          onClick={handlePause}
+          aria-label="Pause film"
+          className="absolute z-10"
+          style={{
+            bottom: 20, right: 20, cursor: 'pointer', padding: 0,
+            background: 'rgba(20,16,12,0.38)', backdropFilter: 'blur(6px)',
+            borderRadius: '50%', width: 36, height: 36,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            outline: 'none', border: '1px solid rgba(255,255,255,0.28)',
+            boxShadow: '0 1px 8px rgba(0,0,0,0.28)',
+          }}
+        >
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden>
+            <rect x="0" y="0" width="3" height="12" rx="1" fill="rgba(255,255,255,0.85)" />
+            <rect x="7" y="0" width="3" height="12" rx="1" fill="rgba(255,255,255,0.85)" />
+          </svg>
         </button>
       )}
 

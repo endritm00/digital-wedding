@@ -979,7 +979,7 @@ function OpeningHero({ invite, opening, media, inPreview }: { invite: Invitation
           already-moving film — a seamless "opening into the video", never a
           stop-and-restart. (Do not gate this on `opened`.) */}
       <FilmBackdrop videoSrc={videoSrc} hlsSrc={videoHls} poster={posterImg} fallbackStyle={posterStyle}
-        mode={uploadedAsset ? ((cfg.video_fit as FilmFit) ?? 'blend') : 'auto'} focal={(cfg.video_focal as FilmFocal) ?? null} autoPlay reduced={!!reduced} />
+        mode={uploadedAsset ? ((cfg.video_fit as FilmFit) ?? 'auto') : 'auto'} focal={(cfg.video_focal as FilmFocal) ?? null} autoPlay reduced={!!reduced} />
 
       {heroLayout === 'open' ? (
         <>
@@ -1133,7 +1133,7 @@ export function InvitationView({
                 videoSrc={themeVideo}
                 videoHls={themeHls}
                 poster={themePoster}
-                videoFit={openUploaded ? ((cfg.video_fit as 'auto' | 'blend' | 'crop') ?? 'blend') : 'auto'}
+                videoFit={openUploaded ? ((cfg.video_fit as 'auto' | 'blend' | 'crop') ?? 'auto') : 'auto'}
                 videoFocal={(cfg.video_focal as { x: number; y: number }) ?? null}
                 onOpen={() => { setOpenerLeaving(true); setTimeout(() => setOpened(true), 1100) }}
               />

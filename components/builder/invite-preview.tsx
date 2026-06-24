@@ -133,7 +133,7 @@ export function InvitePreview() {
   // default 'blend'); presets auto-frame per viewport. This drives the live
   // preview so the Frame step updates in real time.
   const filmMode: 'auto' | 'blend' | 'crop' =
-    uploadedReady ? (config.video_fit ?? 'blend') : 'auto'
+    uploadedReady ? (config.video_fit ?? 'auto') : 'auto'
 
   // Only custom 'blend' adapts per viewport; presets/default ('auto') and 'crop'
   // always fill (cover) — the original behaviour, so landscape presets aren't
