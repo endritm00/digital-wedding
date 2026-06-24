@@ -110,7 +110,11 @@ export function useFilmVideo(
     let hlsInstance: import('hls.js').default | null = null
 
     const setMp4 = () => {
-      if (mp4 && video.src !== mp4) video.src = mp4
+      if (mp4 && video.src !== mp4) {
+        video.preload = 'auto'
+        video.src = mp4
+        try { video.load() } catch { /* noop */ }
+      }
     }
 
     // Native HLS exists (canPlayType !== '') on Safari/iOS — AND, misleadingly,
@@ -132,7 +136,12 @@ export function useFilmVideo(
 
     if (appleNative && hls) {
       // Apple (iPhone/iPad/Safari): attach the .m3u8 natively — reliable autoplay.
+      // preload='auto' tells the browser to buffer past the metadata so canplay fires
+      // before we call play() — without it, preload="metadata" in JSX causes a deadlock
+      // where play() aborts (no data), canplay never fires (no play in progress), repeat.
+      video.preload = 'auto'
       video.src = hls
+      try { video.load() } catch { /* noop */ }
     } else if (hls && canUseMse) {
       // hls.js path (Chrome/Firefox/Edge/Chromium + desktop Safari + iOS 17+).
       void loadHls().then((Hls) => {
@@ -176,7 +185,9 @@ export function useFilmVideo(
       })
     } else if (hls && nativeHls) {
       // Older iOS Safari — no MSE, native HLS is the correct (and only) choice.
+      video.preload = 'auto'
       video.src = hls
+      try { video.load() } catch { /* noop */ }
     } else {
       setMp4()
     }
