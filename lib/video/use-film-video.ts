@@ -110,11 +110,7 @@ export function useFilmVideo(
     let hlsInstance: import('hls.js').default | null = null
 
     const setMp4 = () => {
-      if (mp4 && video.src !== mp4) {
-        video.preload = 'auto'
-        video.src = mp4
-        try { video.load() } catch { /* noop */ }
-      }
+      if (mp4 && video.src !== mp4) video.src = mp4
     }
 
     // Native HLS exists (canPlayType !== '') on Safari/iOS — AND, misleadingly,

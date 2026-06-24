@@ -88,7 +88,6 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
         onPrimary={() =>
           router.push(`/builder/${inviteId}/${hasCustomVideo ? 'frame' : 'style'}`)
         }
-        laterLabel="No video"
         onLater={() => router.push(`/builder/${inviteId}/style`)}
         backHref={`/builder/${inviteId}/names`}
       >
