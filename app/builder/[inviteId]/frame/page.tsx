@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
+import { useTranslation } from '@/lib/i18n/context'
 
 // "Frame your film" — only reached when the couple uploaded their own clip.
 // They choose how it sits behind the invitation: show the whole film (blended,
@@ -16,6 +17,7 @@ type FilmFit = 'blend' | 'crop'
 export default function FramePage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { opening, media, setOpening, loading } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
 
   const cfg = (opening?.config ?? {}) as {
@@ -45,9 +47,9 @@ export default function FramePage({ params }: { params: Promise<{ inviteId: stri
     <>
       <Hairline step="opening-video" />
       <StepSheet
-        title="Frame your film"
-        lede="Your film is taller or wider than some screens. Choose how it should sit behind your invitation."
-        primaryLabel="Continue"
+        title={t.frame.title}
+        lede={t.frame.lede}
+        primaryLabel={t.common.continue}
         onPrimary={() => router.push(`/builder/${inviteId}/style`)}
         backHref={`/builder/${inviteId}/opening-video`}
       >
@@ -55,20 +57,20 @@ export default function FramePage({ params }: { params: Promise<{ inviteId: stri
           <ModeCard
             active={mode === 'blend'}
             onClick={() => setMode('blend')}
-            title="Show it all"
-            blurb="Fits each screen — fills phones edge-to-edge, and on wider screens shows the whole film with softly blurred edges so nothing important is cut off."
+            title={t.frame.blendTitle}
+            blurb={t.frame.blendBlurb}
             icon="blend"
           />
           <ModeCard
             active={mode === 'crop'}
             onClick={() => setMode('crop')}
-            title="Fill the screen"
-            blurb="Your film fills every screen edge-to-edge. Drag below to choose what stays in frame."
+            title={t.frame.cropTitle}
+            blurb={t.frame.cropBlurb}
             icon="crop"
           />
 
           {mode === 'crop' && mp4 && (
-            <FocalPicker src={mp4} poster={poster} focal={focal} onChange={setFocal} />
+            <FocalPicker src={mp4} poster={poster} focal={focal} focalHint={t.frame.focalHint} onChange={setFocal} />
           )}
         </div>
       </StepSheet>
@@ -127,9 +129,10 @@ function ModeCard({
 // the couple picks is the part of the film that's guaranteed to stay in view
 // when the screen crops it. The big live preview behind updates as they drag.
 function FocalPicker({
-  src, poster, focal, onChange,
+  src, poster, focal, focalHint, onChange,
 }: {
   src: string; poster: string | null; focal: { x: number; y: number }
+  focalHint: string
   onChange: (x: number, y: number) => void
 }) {
   const boxRef = useRef<HTMLDivElement | null>(null)
@@ -222,7 +225,7 @@ function FocalPicker({
         </div>
       </div>
       <p className="font-inter text-center" style={{ fontSize: 10.5, letterSpacing: '0.04em', color: 'rgba(26,24,22,0.42)' }}>
-        Drag to choose what stays in frame
+        {focalHint}
       </p>
     </div>
   )

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useBuilder } from './builder-provider'
+import { useTranslation } from '@/lib/i18n/context'
 import { useFilmVideo } from '@/lib/video/use-film-video'
 import { cardLegibility } from '@/lib/invite/legibility'
 import {
@@ -37,6 +38,7 @@ function hexA(hex: string, a: number): string {
 
 export function InvitePreview() {
   const { invite, opening, sections, media } = useBuilder()
+  const { t } = useTranslation()
   const reduced = useReducedMotion()
   const [videoReady, setVideoReady] = useState(false)
   // Defer the background film until the step has painted and is interactive. The
@@ -91,7 +93,7 @@ export function InvitePreview() {
   const names =
     nameA && nameB ? `${nameA} & ${nameB}`
     : nameA || nameB ? (nameA || nameB)
-    : invite?.display_title?.trim() || 'Your names'
+    : invite?.display_title?.trim() || t.heroSection.yourNames
   const isPlaceholder = !nameA && !nameB && !invite?.display_title?.trim()
 
   const date = formatDate(invite?.event_date ?? null)
@@ -261,7 +263,7 @@ export function InvitePreview() {
               color: onFilm ? 'rgba(253,252,249,0.96)' : (darkPaper ? 'rgba(236,234,227,0.7)' : 'rgba(26,24,22,0.5)'),
               textShadow: onFilm ? '0 1px 3px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.5)' : leg.textShadow }}
           >
-            You are invited to the wedding of
+            {t.invite.familiesNote}
           </span>
 
           <div className="my-4 lg:my-6 flex min-h-[52px] lg:min-h-[80px] items-center justify-center">
@@ -311,7 +313,7 @@ export function InvitePreview() {
                 textShadow: onFilm ? '0 1px 14px rgba(0,0,0,0.5)' : leg.textShadow,
               }}
             >
-              {date ?? 'Your wedding day'}
+              {date ?? t.heroSection.yourWeddingDay}
             </motion.p>
           </AnimatePresence>
 

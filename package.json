@@ -20,6 +20,7 @@
     "@upstash/ratelimit": "^2.0.0",
     "@upstash/redis": "^1.28.0",
     "docx": "^9.7.1",
+    "flag-icons": "^7.5.0",
     "framer-motion": "^11.3.0",
     "hls.js": "^1.6.16",
     "next": "15.3.8",

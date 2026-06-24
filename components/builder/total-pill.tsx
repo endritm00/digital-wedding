@@ -38,7 +38,7 @@ export function TotalPill() {
   if (!quote) return null
 
   return (
-    <div className="fixed z-50 left-4 top-12 lg:left-auto lg:right-8 lg:top-12">
+    <div className="fixed z-50 left-4 top-12 lg:left-auto lg:right-8 lg:top-12 hidden lg:block">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

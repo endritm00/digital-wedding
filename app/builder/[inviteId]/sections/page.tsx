@@ -7,6 +7,7 @@ import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
 import { CONTENT_SECTIONS } from '@/lib/builder/presets'
+import { useTranslation } from '@/lib/i18n/context'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 12 },
@@ -20,27 +21,26 @@ const cardVariants = {
 export default function SectionsPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { sections, toggleContentSection } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   const reduced = useReducedMotion()
 
   const enabled = sections.filter(s => s.type !== 'opening').map(s => s.type)
 
-  // Pages are all included — no per-page charge (only a custom opening video costs extra).
-  const lede = 'Add the pages you’d like — they’re all included.'
-
   return (
     <>
       <Hairline step="sections" />
       <StepSheet
-        title="What pages do you want?"
-        lede={lede}
-        primaryLabel="Continue"
+        title={t.sections.title}
+        lede={t.sections.lede}
+        primaryLabel={t.common.continue}
         onPrimary={() => router.push(`/builder/${inviteId}/details`)}
         backHref={`/builder/${inviteId}/save`}
       >
         <div className="grid grid-cols-2 gap-2.5">
           {CONTENT_SECTIONS.map((sec, i) => {
             const on = enabled.includes(sec.type)
+            const item = t.sections.items[sec.type]
 
             return (
               <motion.button
@@ -85,13 +85,13 @@ export default function SectionsPage({ params }: { params: Promise<{ inviteId: s
                   className="font-cormorant font-light leading-tight"
                   style={{ fontSize: 15, color: '#1A1816' }}
                 >
-                  {sec.label}
+                  {item?.label ?? sec.label}
                 </span>
                 <span
                   className="font-inter leading-snug"
                   style={{ fontSize: 10, color: 'rgba(26,24,22,0.46)', lineHeight: 1.4 }}
                 >
-                  {sec.blurb}
+                  {item?.blurb ?? sec.blurb}
                 </span>
               </motion.button>
             )

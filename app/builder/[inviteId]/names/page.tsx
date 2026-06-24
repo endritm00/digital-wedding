@@ -1,15 +1,18 @@
 'use client'
 
-import { use, useEffect, useRef, useState } from 'react'
+import { use, useEffect, useRef, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import 'flag-icons/css/flag-icons.min.css'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
+import { useTranslation, type Locale } from '@/lib/i18n/context'
 
 export default function NamesPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { opening, invite, setOpening, patchDraft, flushDraft } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   const reduced = useReducedMotion()
 
@@ -64,12 +67,14 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
     <>
       <Hairline step="names" />
       <StepSheet
-        title="Who's getting married?"
-        lede="These names appear at the heart of your invitation."
-        primaryLabel={!date && dateNudge ? 'Continue without a date' : 'Continue'}
+        title={t.names.title}
+        titleExtra={<LanguageDropdown />}
+        stepIndex={0}
+        lede={t.names.lede}
+        primaryLabel={!date && dateNudge ? t.names.continueWithoutDate : t.common.continue}
         onPrimary={handleContinue}
         primaryDisabled={!nameA.trim() && !nameB.trim()}
-        laterLabel="Decide later"
+        laterLabel={t.common.decideLater}
         onLater={() => router.push(`/builder/${inviteId}/opening-video`)}
       >
         <div className="flex flex-col gap-3">
@@ -79,7 +84,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               className="font-inter uppercase"
               style={{ fontSize: 10, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.48)' }}
             >
-              First person
+              {t.names.firstPerson}
             </span>
             <input
               type="text"
@@ -88,7 +93,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
                 setNameA(e.target.value)
                 setOpening({ name_a: e.target.value, name_b: nameB })
               }}
-              placeholder="e.g. Emma"
+              placeholder={t.names.placeholderA}
               autoComplete="given-name"
               className={inputBase}
               style={{ fontSize: inputFont, border: '1px solid rgba(26,24,22,0.12)' }}
@@ -132,7 +137,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               className="font-inter uppercase"
               style={{ fontSize: 10, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.48)' }}
             >
-              Second person
+              {t.names.secondPerson}
             </span>
             <input
               type="text"
@@ -141,7 +146,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
                 setNameB(e.target.value)
                 setOpening({ name_a: nameA, name_b: e.target.value })
               }}
-              placeholder="e.g. Luca"
+              placeholder={t.names.placeholderB}
               autoComplete="given-name"
               className={inputBase}
               style={{ fontSize: inputFont, border: '1px solid rgba(26,24,22,0.12)' }}
@@ -172,10 +177,14 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
               className="font-inter uppercase"
               style={{ fontSize: 10, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.48)' }}
             >
-              Wedding date
+              {t.names.weddingDate}
             </span>
             <DatePicker
               value={date}
+              months={t.names.months}
+              dayLabel={t.names.day}
+              monthLabel={t.names.month}
+              yearLabel={t.names.year}
               onChange={(iso) => {
                 setDate(iso)
                 setDateNudge(false)
@@ -195,7 +204,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
                 className="font-inter -mt-1"
                 style={{ fontSize: 11.5, lineHeight: 1.5, color: 'rgba(168,133,75,0.95)' }}
               >
-                Adding your date lets guests save it and powers the countdown — or continue and add it later.
+                {t.names.dateNudge}
               </motion.p>
             )}
           </AnimatePresence>
@@ -205,11 +214,105 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
   )
 }
 
+// ── Language dropdown — flag button → small popover, placed next to the title ─
+
+function LanguageDropdown() {
+  const { locale, setLocale } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  const close = useCallback(() => setOpen(false), [])
+  useEffect(() => {
+    if (!open) return
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) close()
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open, close])
+
+  const options: { l: Locale; countryCode: string; label: string }[] = [
+    { l: 'en', countryCode: 'gb', label: 'English' },
+    { l: 'de', countryCode: 'de', label: 'Deutsch' },
+  ]
+  const active = options.find(o => o.l === locale)!
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(v => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Change language"
+        className="flex items-center gap-2 rounded-lg font-inter transition-all"
+        style={{
+          fontSize: 13,
+          lineHeight: 1,
+          padding: '6px 10px',
+          background: open ? 'rgba(168,133,75,0.1)' : 'transparent',
+          border: '1px solid rgba(168,133,75,0.2)',
+          cursor: 'pointer',
+          color: '#A8854B',
+          fontWeight: 500,
+          letterSpacing: '0.04em',
+        }}
+      >
+        <span className={`fi fi-${active.countryCode}`} style={{ width: 18, height: 14, lineHeight: 1 }} />
+        <span>{active.l.toUpperCase()}</span>
+        <svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden style={{ marginLeft: 2, opacity: 0.5 }}>
+          <path d="M1 1l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          className="absolute right-0 top-full mt-1.5 z-50 flex flex-col overflow-hidden rounded-2xl"
+          style={{
+            background: '#F3EFE7',
+            boxShadow: '0 8px 32px rgba(26,24,22,0.18), 0 2px 8px rgba(26,24,22,0.08)',
+            border: '1px solid rgba(26,24,22,0.08)',
+            minWidth: 140,
+          }}
+          role="listbox"
+        >
+          {options.map(({ l, countryCode, label }) => (
+            <button
+              key={l}
+              type="button"
+              role="option"
+              aria-selected={locale === l}
+              onClick={() => { setLocale(l); setOpen(false) }}
+              className="flex items-center gap-2.5 px-4 py-3 font-inter text-left transition-colors"
+              style={{
+                fontSize: 13,
+                color: locale === l ? '#A8854B' : 'rgba(26,24,22,0.75)',
+                background: locale === l ? 'rgba(168,133,75,0.08)' : 'transparent',
+                fontWeight: locale === l ? 500 : 400,
+                cursor: 'pointer',
+                borderBottom: l !== options[options.length - 1].l ? '1px solid rgba(26,24,22,0.06)' : 'none',
+              }}
+            >
+              <span className={`fi fi-${countryCode}`} style={{ width: 20, height: 16 }} />
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ── Elegant Day / Month / Year picker (no native chrome) ──────────────────────
 
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-function DatePicker({ value, onChange }: { value: string; onChange: (iso: string) => void }) {
+function DatePicker({ value, months, dayLabel, monthLabel, yearLabel, onChange }: {
+  value: string
+  months: string[]
+  dayLabel: string
+  monthLabel: string
+  yearLabel: string
+  onChange: (iso: string) => void
+}) {
   // Hold the three parts internally so partial selections persist — the parent
   // only ever sees a fully-composed ISO date (or '' until all three are chosen).
   const [iy, im, id] = value ? value.split('-') : ['', '', '']
@@ -244,20 +347,20 @@ function DatePicker({ value, onChange }: { value: string; onChange: (iso: string
 
   return (
     <div className="grid grid-cols-[1fr_1.4fr_1fr] gap-2">
-      <select aria-label="Day" value={d} onChange={e => compose(y, m, e.target.value)} onFocus={focus} onBlur={blur} style={withCaret}>
-        <option value="">Day</option>
+      <select aria-label={dayLabel} value={d} onChange={e => compose(y, m, e.target.value)} onFocus={focus} onBlur={blur} style={withCaret}>
+        <option value="">{dayLabel}</option>
         {Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0')).map(dd => (
           <option key={dd} value={dd}>{Number(dd)}</option>
         ))}
       </select>
-      <select aria-label="Month" value={m} onChange={e => compose(y, e.target.value, d)} onFocus={focus} onBlur={blur} style={withCaret}>
-        <option value="">Month</option>
-        {MONTHS.map((name, i) => (
+      <select aria-label={monthLabel} value={m} onChange={e => compose(y, e.target.value, d)} onFocus={focus} onBlur={blur} style={withCaret}>
+        <option value="">{monthLabel}</option>
+        {months.map((name, i) => (
           <option key={name} value={String(i + 1).padStart(2, '0')}>{name}</option>
         ))}
       </select>
-      <select aria-label="Year" value={y} onChange={e => compose(e.target.value, m, d)} onFocus={focus} onBlur={blur} style={withCaret}>
-        <option value="">Year</option>
+      <select aria-label={yearLabel} value={y} onChange={e => compose(e.target.value, m, d)} onFocus={focus} onBlur={blur} style={withCaret}>
+        <option value="">{yearLabel}</option>
         {years.map(yy => (
           <option key={yy} value={yy}>{yy}</option>
         ))}

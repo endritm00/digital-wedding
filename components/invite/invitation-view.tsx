@@ -10,6 +10,7 @@ import {
 } from '@/lib/builder/presets'
 import type { LayoutFamily, HeroLayout } from '@/lib/builder/presets'
 import { InviteOpener } from '@/components/invite/openers'
+import { useTranslation } from '@/lib/i18n/context'
 import { FilmBackdrop, type FilmFit, type FilmFocal } from '@/components/invite/film-backdrop'
 import { cardLegibility } from '@/lib/invite/legibility'
 import { Sprig, BotanicalSpray, MiniFlourish } from '@/components/invite/ornaments'
@@ -934,12 +935,13 @@ function FaqBlock({ t, ls, index, items }: { t: Theme; ls: LS; index: number; it
 // ── opening hero ──────────────────────────────────────────────────────────────
 function OpeningHero({ invite, opening, media, inPreview }: { invite: InvitationViewInvite; opening: Section | null; media: MediaAsset[]; inPreview: boolean }) {
   const reduced = useReducedMotion()
+  const { t } = useTranslation()
   const cfg = (opening?.config ?? {}) as Record<string, unknown>
   const nameA = (cfg.name_a as string | undefined)?.trim() ?? ''
   const nameB = (cfg.name_b as string | undefined)?.trim() ?? ''
   const names = nameA && nameB ? `${nameA} & ${nameB}` : nameA || nameB || invite.display_title || 'Your names'
   const date = formatDate(invite.event_date ?? null)
-  const familiesNote = (cfg.families_note as string | undefined)?.trim() || 'You are invited to the wedding of'
+  const familiesNote = (cfg.families_note as string | undefined)?.trim() || t.invite.familiesNote
   const heroLayout = ((cfg.hero_layout as HeroLayout | undefined) ?? DEFAULT_HERO_LAYOUT)
 
   const preset = VIDEO_PRESETS.find(p => p.id === cfg.video_preset) ?? null

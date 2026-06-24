@@ -8,6 +8,7 @@ import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder, useBuilderStatus } from '@/components/builder/builder-provider'
 import { api, euros, lineItemLabel, ApiError } from '@/lib/builder/api'
 import { SECTION_LABELS } from '@/lib/builder/presets'
+import { useTranslation } from '@/lib/i18n/context'
 
 function OrnamentLine() {
   return (
@@ -24,6 +25,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
   const { inviteId } = use(params)
   const { invite, plan, sections, flushDraft, patchDraft } = useBuilder()
   const { quote } = useBuilderStatus()
+  const { t } = useTranslation()
   const router = useRouter()
   const reduced = useReducedMotion()
   const [busy, setBusy] = useState(false)
@@ -121,8 +123,8 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
     <>
       <Hairline step="review" />
       <StepSheet
-        title="Ready to send it?"
-        lede="Preview your invitation first, then publish when you're ready."
+        title={t.review.title}
+        lede={t.review.lede}
         backHref={`/builder/${inviteId}/details`}
       >
         <OrnamentLine />
@@ -132,13 +134,13 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
           className="rounded-2xl p-4 mb-4"
           style={{ background: 'rgba(255,255,255,0.55)', border: '1px solid rgba(26,24,22,0.07)' }}
         >
-          <SummaryRow label="Names" value={names} large />
-          {date && <SummaryRow label="Date" value={date} />}
-          {venueName && <SummaryRow label="Venue" value={venueName} />}
-          {plan && <SummaryRow label="Plan" value={plan.name} />}
+          <SummaryRow label={t.review.summaryNames} value={names} large />
+          {date && <SummaryRow label={t.review.summaryDate} value={date} />}
+          {venueName && <SummaryRow label={t.review.summaryVenue} value={venueName} />}
+          {plan && <SummaryRow label={t.review.summaryPlan} value={plan.name} />}
           {contentSections.length > 0 && (
             <SummaryRow
-              label="Pages"
+              label={t.review.summaryPages}
               value={contentSections.map(s => SECTION_LABELS[s.type] ?? s.type).join(', ')}
               wrap
             />
@@ -159,7 +161,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
               </div>
             ))}
             <div className="flex items-baseline justify-between pt-3 mt-1" style={{ borderTop: '1px solid rgba(26,24,22,0.08)' }}>
-              <span className="font-inter text-[12px]" style={{ color: '#1A1816' }}>Total</span>
+              <span className="font-inter text-[12px]" style={{ color: '#1A1816' }}>{t.review.summaryTotal}</span>
               <motion.span
                 className="font-cormorant font-medium"
                 animate={reduced ? {} : pulseTotal ? { scale: [1, 1.06, 1] } : { scale: 1 }}
@@ -186,7 +188,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
             boxShadow: '0 6px 20px rgba(26,24,22,0.2)',
           }}
         >
-          Preview my invitation →
+          {t.review.previewCta}
         </motion.button>
 
         {/* Secondary: Pay & publish — requires quote */}
@@ -212,10 +214,10 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                   <animateTransform attributeName="transform" type="rotate" from="0 7 7" to="360 7 7" dur="0.85s" repeatCount="indefinite" />
                 </path>
               </svg>
-              Redirecting…
+              {t.review.redirecting}
             </span>
           ) : quote ? (
-            `Pay & publish — ${euros(quote.amount_cents)}`
+            t.review.payAndPublish(euros(quote.amount_cents))
           ) : (
             <span className="flex items-center justify-center gap-2">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -223,7 +225,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                   <animateTransform attributeName="transform" type="rotate" from="0 6 6" to="360 6 6" dur="1s" repeatCount="indefinite" />
                 </path>
               </svg>
-              Calculating price…
+              {t.review.calculatingPrice}
             </span>
           )}
         </motion.button>
@@ -238,13 +240,13 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
             >
               <div className="mt-3 rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(168,133,75,0.25)' }}>
                 <p className="font-inter leading-relaxed" style={{ fontSize: 11.5, color: 'rgba(26,24,22,0.6)' }}>
-                  What&rsquo;s your email? After payment we&rsquo;ll send you a private link to see who&rsquo;s coming.
+                  {t.review.emailGateNotice}
                 </p>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@email.com"
+                  placeholder={t.review.emailPlaceholder}
                   autoComplete="email"
                   inputMode="email"
                   autoFocus
@@ -259,7 +261,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                   className="mt-2.5 w-full rounded-full py-3 font-inter disabled:opacity-50"
                   style={{ background: '#A8854B', color: '#FDFCF9', fontSize: 12.5, letterSpacing: '0.04em' }}
                 >
-                  {savingEmail || busy ? 'One moment…' : quote ? `Continue to payment — ${euros(quote.amount_cents)}` : 'Continue to payment'}
+                  {savingEmail || busy ? t.common.oneMoment : quote ? t.review.continueToPaymentWithPrice(euros(quote.amount_cents)) : t.review.continueToPayment}
                 </button>
               </div>
             </motion.div>
@@ -281,7 +283,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
         </AnimatePresence>
 
         <p className="font-inter mt-3 text-center leading-relaxed" style={{ fontSize: 10, color: 'rgba(26,24,22,0.33)' }}>
-          Secure payment via Stripe. Your invitation goes live the moment payment clears.
+          {t.review.secureNote}
         </p>
       </StepSheet>
     </>

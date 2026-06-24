@@ -11,6 +11,7 @@ import {
   HERO_LAYOUTS, DEFAULT_HERO_LAYOUT,
 } from '@/lib/builder/presets'
 import { OPENERS, DEFAULT_OPENER, InviteOpener } from '@/components/invite/openers'
+import { useTranslation } from '@/lib/i18n/context'
 
 // film shown behind the opener preview
 const OPENER_FILM: Record<string, string> = { 'wax-letter': 'the-letter' }
@@ -29,6 +30,7 @@ function OpenerMotif({ accent }: { accent: string }) {
 export default function StylePage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { opening, setOpening } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   const reduced = useReducedMotion()
   const [preview, setPreview] = useState<string | null>(null)
@@ -75,9 +77,10 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
     <>
       <Hairline step="style" />
       <StepSheet
-        title="Set the scene"
-        lede="Choose how your invitation opens, then dress it in a palette and lettering. Tap an opening to preview it."
-        primaryLabel="Continue"
+        title={t.style.title}
+        stepIndex={2}
+        lede={t.style.lede}
+        primaryLabel={t.common.continue}
         onPrimary={() => router.push(`/builder/${inviteId}/save`)}
         backHref={`/builder/${inviteId}/opening-video`}
       >
@@ -112,7 +115,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                 <span className="flex min-w-0 flex-1 flex-col">
                   <span className="flex items-center gap-2">
                     <span className="font-cormorant font-light leading-tight" style={{ fontSize: 16, color: '#1A1816' }}>{o.name}</span>
-                    {on && <span className="font-inter rounded-full px-1.5 py-0.5" style={{ fontSize: 8, letterSpacing: '0.08em', background: 'rgba(168,133,75,0.14)', color: '#A8854B' }}>Selected</span>}
+                    {on && <span className="font-inter rounded-full px-1.5 py-0.5" style={{ fontSize: 8, letterSpacing: '0.08em', background: 'rgba(168,133,75,0.14)', color: '#A8854B' }}>{t.common.selected}</span>}
                   </span>
                   <span className="font-inter leading-snug mt-0.5" style={{ fontSize: 10.5, color: 'rgba(26,24,22,0.5)' }}>{o.blurb}</span>
                 </span>
@@ -121,9 +124,9 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                   onClick={(e) => { e.stopPropagation(); previewOpener(o.id) }}
                   className="font-inter flex-none flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors"
                   style={{ fontSize: 9, letterSpacing: '0.1em', color: '#A8854B', background: 'rgba(168,133,75,0.1)', border: '1px solid rgba(168,133,75,0.28)' }}
-                  aria-label={`Preview ${o.name}`}
+                  aria-label={`${t.style.previewLabel} ${o.name}`}
                 >
-                  Preview
+                  {t.style.previewLabel}
                   <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 1.5L6.5 4.5L2 7.5V1.5Z" fill="#A8854B" /></svg>
                 </button>
               </motion.div>
@@ -133,7 +136,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
 
         {/* ── Palette ───────────────────────────────────────────────────────── */}
         <div className="mt-6 flex items-center gap-3">
-          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>Palette</span>
+          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>{t.style.sectionPalette}</span>
           <div className="h-px flex-1" style={{ background: 'rgba(26,24,22,0.08)' }} />
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2.5">
@@ -148,7 +151,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                 </span>
                 <span className="flex min-w-0 flex-col">
                   <span className="font-cormorant font-light leading-tight truncate" style={{ fontSize: 13.5, color: '#1A1816' }}>{p.name}</span>
-                  {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: p.accent }}>Selected</span>}
+                  {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: p.accent }}>{t.common.selected}</span>}
                 </span>
               </motion.button>
             )
@@ -157,7 +160,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
 
         {/* ── How it opens over the film ────────────────────────────────────── */}
         <div className="mt-6 flex items-center gap-3">
-          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>How the names open</span>
+          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>{t.style.sectionHeroLayout}</span>
           <div className="h-px flex-1" style={{ background: 'rgba(26,24,22,0.08)' }} />
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2.5">
@@ -183,7 +186,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
                 <span className="flex items-center justify-between">
                   <span className="flex min-w-0 flex-col">
                     <span className="font-cormorant font-light leading-tight truncate" style={{ fontSize: 13.5, color: '#1A1816' }}>{h.name}</span>
-                    {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: palette.accent }}>Selected</span>}
+                    {on && <span className="font-inter" style={{ fontSize: 8.5, letterSpacing: '0.1em', color: palette.accent }}>{t.common.selected}</span>}
                   </span>
                   {on && (
                     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden className="flex-none">
@@ -199,7 +202,7 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
 
         {/* ── Lettering ─────────────────────────────────────────────────────── */}
         <div className="mt-6 flex items-center gap-3">
-          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>Lettering</span>
+          <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(26,24,22,0.4)' }}>{t.style.sectionLettering}</span>
           <div className="h-px flex-1" style={{ background: 'rgba(26,24,22,0.08)' }} />
         </div>
         <div className="mt-3 flex flex-col gap-2.5">
@@ -239,13 +242,13 @@ export default function StylePage({ params }: { params: Promise<{ inviteId: stri
         >
           <InviteOpener id={preview} theme={openerTheme} names={names} videoSrc={previewFilm?.src} poster={previewFilm?.posterImg} onOpen={closePreview} />
           <button
-            type="button" onClick={closePreview} aria-label="Close preview"
+            type="button" onClick={closePreview} aria-label={t.style.closePreview}
             className="absolute top-5 right-5 z-10 flex items-center justify-center rounded-full"
             style={{ width: 34, height: 34, background: 'rgba(0,0,0,0.32)', backdropFilter: 'blur(6px)' }}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" /></svg>
           </button>
-          <span className="absolute top-7 left-5 z-10 font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.6)' }}>Preview</span>
+          <span className="absolute top-7 left-5 z-10 font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.6)' }}>{t.style.previewLabel}</span>
         </motion.div>
       )}
     </>

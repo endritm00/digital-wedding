@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, AnimatePresence, motion, useDragControls, useMotionValue, useReducedMotion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import { useTranslation } from '@/lib/i18n/context'
 
 // The one question surface: bottom sheet on phones, right panel on desktop.
 // Vellum paper over the live preview. One decision per screen.
@@ -36,7 +37,9 @@ function useIsMobile() {
 
 export interface StepSheetProps {
   title: string
+  titleExtra?: React.ReactNode
   lede?: string
+  stepIndex?: number
   children?: React.ReactNode
   primaryLabel?: string
   onPrimary?: () => void
@@ -49,7 +52,9 @@ export interface StepSheetProps {
 
 export function StepSheet({
   title,
+  titleExtra,
   lede,
+  stepIndex,
   children,
   primaryLabel,
   onPrimary,
@@ -60,6 +65,7 @@ export function StepSheet({
   backHref,
 }: StepSheetProps) {
   const reduced = useReducedMotion()
+  const { t } = useTranslation()
   const router = useRouter()
   const isMobile = useIsMobile()
 
@@ -90,14 +96,6 @@ export function StepSheet({
     return () => clearTimeout(t)
   }, [isMobile])
 
-  // Entrance — slide up once per session (skip on later steps + reduced motion),
-  // so navigating between steps doesn't re-bounce the whole sheet.
-  useEffect(() => {
-    if (!firstEntrance.current || reduced) { y.set(0); return }
-    y.set(40)
-    const controls = animate(y, 0, { duration: 0.4, ease: [0.22, 1, 0.36, 1] })
-    return () => controls.stop()
-  }, [reduced, y])
 
   // Measure how far down "peeked" sits (sheet height minus the visible grip).
   useEffect(() => {
@@ -121,7 +119,7 @@ export function StepSheet({
     if (!didSync.current) { didSync.current = true; return }
     if (!isMobile) { y.set(0); return }
     if (peeked) y.set(peekOffset)
-  }, [isMobile, peekOffset]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isMobile, peekOffset, peeked, y]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const applyPeek = (next: boolean) => {
     setPeeked(next)
@@ -136,10 +134,6 @@ export function StepSheet({
     setMoreBelow(el.scrollHeight - el.scrollTop - el.clientHeight > 8)
   }
   useEffect(() => { updateScrollCue() }, [children, isMobile])
-
-  const startDrag = (e: React.PointerEvent) => {
-    if (isMobile) dragControls.start(e)
-  }
 
   return (
     <motion.div
@@ -167,7 +161,7 @@ export function StepSheet({
       dragElastic={0.06}
       onDragEnd={(_e, info) => {
         const moved = Math.abs(info.offset.y)
-        if (moved < 6) { applyPeek(!peeked); return }   // a tap on the grip
+        if (moved < 6) { applyPeek(!peeked); return }   // a tap on the arrow
         const pos = y.get()
         const next =
           info.velocity.y > 350 ? true
@@ -198,7 +192,7 @@ export function StepSheet({
                 boxShadow: '0 6px 20px rgba(26,24,22,0.28)',
               }}
             >
-              Drag down to preview
+              {t.common.dragDownToPreview}
               <motion.svg
                 width="12" height="12" viewBox="0 0 12 12" fill="none"
                 animate={reduced ? {} : { y: [0, 3, 0] }}
@@ -211,33 +205,53 @@ export function StepSheet({
         )}
       </AnimatePresence>
 
-      {/* grab handle (mobile) — drag to peek the film / tap to toggle */}
-      <div
-        className="flex flex-col items-center pt-3 pb-1 lg:hidden"
-        style={{ cursor: 'grab', touchAction: 'none' }}
-        onPointerDown={startDrag}
-        role="button"
-        tabIndex={0}
-        aria-label={peeked ? 'Pull up to keep editing' : 'Pull down to see your invitation'}
-        aria-expanded={!peeked}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); applyPeek(!peeked) } }}
-      >
-        {/* Static handle. A per-frame width keyframe loop here cost ~15% of the
-            main thread at idle on mobile (continuous style recalc) for an
-            imperceptible 1px pulse — not worth it. */}
-        <div
-          className="h-1 rounded-full"
-          style={{ width: 36, background: 'rgba(26,24,22,0.16)' }}
-        />
-        <motion.span
-          className="font-inter uppercase mt-2"
-          style={{ fontSize: 8.5, letterSpacing: '0.16em', color: 'rgba(26,24,22,0.4)' }}
-          animate={{ opacity: peeked ? 1 : 0, height: peeked ? 'auto' : 0 }}
-          transition={{ duration: 0.25 }}
+      {/* arrow button (mobile, steps 1-2 only) — click or drag to toggle preview peek */}
+      {(stepIndex === 1 || stepIndex === 2) && isMobile ? (
+        <button
+          type="button"
+          onClick={() => applyPeek(!peeked)}
+          onPointerDown={(e) => dragControls.start(e)}
+          className="lg:hidden flex items-center justify-center pt-2 pb-1"
+          style={{ background: 'none', border: 'none', cursor: 'grab', padding: 5, touchAction: 'none' }}
+          aria-label={peeked ? t.common.pullUpToKeepEditing : t.common.pullDownToSeeInvitation}
+          aria-expanded={!peeked}
         >
-          Pull up to keep editing
-        </motion.span>
-      </div>
+          <motion.svg
+            width="32"
+            height="26"
+            viewBox="0 0 32 32"
+            fill="none"
+            animate={{ rotate: peeked ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <circle cx="16" cy="16" r="15" stroke="#A8854B" strokeWidth="2" />
+            <path
+              d="M10 13l6 6 6-6"
+              stroke="#A8854B"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </motion.svg>
+        </button>
+      ) : (
+        // Default bar handle for other steps
+        <div
+          className="flex flex-col items-center pt-3 pb-1 lg:hidden"
+          style={{ cursor: 'grab', touchAction: 'none' }}
+          onPointerDown={(e) => dragControls.start(e)}
+          role="button"
+          tabIndex={0}
+          aria-label={peeked ? t.common.pullUpToKeepEditing : t.common.pullDownToSeeInvitation}
+          aria-expanded={!peeked}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); applyPeek(!peeked) } }}
+        >
+          <div
+            className="h-1 rounded-full"
+            style={{ width: 36, background: 'rgba(26,24,22,0.16)' }}
+          />
+        </div>
+      )}
 
       <div className="relative flex-1 flex flex-col min-h-0">
       <div ref={scrollRef} onScroll={updateScrollCue} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 pt-2 pb-3 lg:px-8 lg:pt-8">
@@ -251,16 +265,19 @@ export function StepSheet({
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path d="M7.5 2.5L4 6L7.5 9.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
-            Back
+            {t.common.back}
           </button>
         )}
 
-        <h2
-          className="font-cormorant font-light leading-tight"
-          style={{ fontSize: 'clamp(1.6rem, 6vw, 2.1rem)', color: '#1A1816', letterSpacing: '-0.01em' }}
-        >
-          {title}
-        </h2>
+        <div className="flex items-start justify-between gap-2">
+          <h2
+            className="font-cormorant font-light leading-tight"
+            style={{ fontSize: 'clamp(1.6rem, 6vw, 2.1rem)', color: '#1A1816', letterSpacing: '-0.01em' }}
+          >
+            {title}
+          </h2>
+          {titleExtra && <div className="shrink-0 mt-1">{titleExtra}</div>}
+        </div>
         {lede && (
           <p className="font-inter mt-1.5 leading-relaxed" style={{ fontSize: 12.5, color: 'rgba(26,24,22,0.55)' }}>
             {lede}
@@ -317,7 +334,7 @@ export function StepSheet({
                       <animateTransform attributeName="transform" type="rotate" from="0 7 7" to="360 7 7" dur="0.85s" repeatCount="indefinite" />
                     </path>
                   </svg>
-                  One moment…
+                  {t.common.oneMoment}
                 </span>
               ) : primaryLabel}
             </motion.button>

@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
+import { useTranslation } from '@/lib/i18n/context'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function SavePage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { invite, patchDraft, flushDraft } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [busy, setBusy] = useState(false)
@@ -40,13 +42,13 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
     <>
       <Hairline step="save" />
       <StepSheet
-        title="Keep your work safe"
-        lede="Enter your email and we'll send a private link so you can return to your draft from any device."
-        primaryLabel="Send me a link"
+        title={t.save.title}
+        lede={t.save.lede}
+        primaryLabel={t.save.primaryLabel}
         onPrimary={handleContinue}
         primaryDisabled={!valid}
         primaryBusy={busy}
-        laterLabel="Skip for now"
+        laterLabel={t.save.skipLabel}
         onLater={() => router.push(`/builder/${inviteId}/sections`)}
         backHref={`/builder/${inviteId}/style`}
       >
@@ -55,13 +57,13 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
             className="font-inter uppercase"
             style={{ fontSize: 10, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.48)' }}
           >
-            Your email
+            {t.save.emailLabel}
           </span>
           <input
             type="email"
             value={email}
             onChange={e => { setEmail(e.target.value); setTouched(true) }}
-            placeholder="you@example.com"
+            placeholder={t.save.emailPlaceholder}
             autoComplete="email"
             inputMode="email"
             onKeyDown={e => { if (e.key === 'Enter' && valid) void handleContinue() }}
@@ -72,7 +74,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
           />
           {touched && !valid && email.length > 0 && (
             <span className="font-inter" style={{ fontSize: 11, color: 'rgba(138,64,48,0.9)' }}>
-              Please enter a valid email address
+              {t.save.emailInvalid}
             </span>
           )}
           {sent && (
@@ -81,7 +83,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
                 <circle cx="6" cy="6" r="5.5" stroke="#A8854B" strokeWidth="0.8"/>
                 <path d="M3.5 6l1.5 1.5 3.5-3" stroke="#A8854B" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              Saved! We'll email your private link the moment you publish.
+              {t.save.savedNotice}
             </span>
           )}
         </label>
@@ -90,7 +92,7 @@ export default function SavePage({ params }: { params: Promise<{ inviteId: strin
           className="font-inter mt-4 leading-relaxed"
           style={{ fontSize: 11, color: 'rgba(26,24,22,0.38)' }}
         >
-          We&rsquo;ll send a secure link so you can return from any device.
+          {t.save.secureNote}
         </p>
       </StepSheet>
     </>

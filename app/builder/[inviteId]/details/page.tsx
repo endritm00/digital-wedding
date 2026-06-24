@@ -8,6 +8,7 @@ import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
 import { SECTION_LABELS } from '@/lib/builder/presets'
 import { api, uploadFile, type Section, type MediaAsset } from '@/lib/builder/api'
+import { useTranslation } from '@/lib/i18n/context'
 
 // ── Per-section form ──────────────────────────────────────────────────────────
 
@@ -136,6 +137,7 @@ function legacyToEvents(cfg: Record<string, unknown>): SchedEvent[] {
 // the live preview, the creator preview, and the published guest page.
 function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) => void }) {
   const { inviteId, media, refreshMedia } = useBuilder()
+  const { t } = useTranslation()
   const fileRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(0)
   const [removing, setRemoving] = useState<Set<string>>(new Set())
@@ -152,7 +154,7 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
     if (!files?.length) return
     setError(null)
     const images = Array.from(files).filter((f) => f.type.startsWith('image/'))
-    if (images.length < files.length) setError('Some files were skipped — only images can be added.')
+    if (images.length < files.length) setError(t.details.gallery.fileSkipped)
     // Upload sequentially so the storage rows and thumbnails appear in order.
     for (const file of images) {
       setUploading((n) => n + 1)
@@ -160,7 +162,7 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
         await uploadFile(inviteId, 'gallery_image', file)
         await refreshMedia()
       } catch {
-        setError('A photo failed to upload — please try again.')
+        setError(t.details.gallery.uploadError)
       } finally {
         setUploading((n) => n - 1)
       }
@@ -174,7 +176,7 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
       await api.deleteMedia(inviteId, assetId)
       await refreshMedia()
     } catch {
-      setError('Could not remove that photo — please try again.')
+      setError(t.details.gallery.removeError)
     } finally {
       setRemoving((prev) => { const next = new Set(prev); next.delete(assetId); return next })
     }
@@ -205,7 +207,7 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
               <button
                 type="button"
                 onClick={() => void remove(m.id)}
-                aria-label="Remove photo"
+                aria-label={t.details.gallery.removePhoto}
                 className="absolute right-1 top-1 flex items-center justify-center rounded-full"
                 style={{ width: 20, height: 20, background: 'rgba(26,24,22,0.62)', backdropFilter: 'blur(4px)' }}
               >
@@ -226,10 +228,10 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
           onClick={() => fileRef.current?.click()}
           className="flex aspect-square flex-col items-center justify-center gap-1 rounded-lg transition-colors"
           style={{ border: '1px dashed rgba(26,24,22,0.2)', background: 'rgba(255,255,255,0.4)' }}
-          aria-label="Add photos"
+          aria-label={t.details.gallery.addPhotos}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden><path d="M9 3.5v11M3.5 9h11" stroke="#A8854B" strokeWidth="1.5" strokeLinecap="round" /></svg>
-          <span className="font-inter" style={{ fontSize: 9.5, letterSpacing: '0.04em', color: 'rgba(26,24,22,0.5)' }}>Add photos</span>
+          <span className="font-inter" style={{ fontSize: 9.5, letterSpacing: '0.04em', color: 'rgba(26,24,22,0.5)' }}>{t.details.gallery.addPhotos}</span>
         </button>
       </div>
 
@@ -242,9 +244,9 @@ function GalleryUploader({ note, onNote }: { note: string; onNote: (v: string) =
       </p>
 
       <TextField
-        label="Caption (optional)"
+        label={t.details.story.captionLabel}
         value={note}
-        placeholder="e.g. From our engagement shoot in June"
+        placeholder={t.details.story.captionPlaceholder}
         multiline
         onChange={onNote}
       />
@@ -259,6 +261,7 @@ function SectionForm({
   section: Section
   updateSectionConfig: (id: string, config: Record<string, unknown>) => void
 }) {
+  const { t } = useTranslation()
   const cfg = section.config
 
   const patch = (fields: Record<string, unknown>) =>
@@ -270,9 +273,9 @@ function SectionForm({
     case 'story':
       return (
         <TextField
-          label="Your story"
+          label={t.details.story.storyLabel}
           value={str('text')}
-          placeholder="How you met, in your own words…"
+          placeholder={t.details.story.storyPlaceholder}
           multiline
           onChange={v => patch({ text: v })}
         />
@@ -300,7 +303,7 @@ function SectionForm({
                 className="relative rounded-xl p-3 pt-2.5"
                 style={{ background: 'rgba(255,255,255,0.5)', border: '1px solid rgba(26,24,22,0.08)' }}
               >
-                <button type="button" onClick={() => remove(ev.id)} className="absolute right-2.5 top-2.5" aria-label="Remove event">
+                <button type="button" onClick={() => remove(ev.id)} className="absolute right-2.5 top-2.5" aria-label={t.details.schedule.removeEvent}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(26,24,22,0.28)" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
@@ -308,7 +311,7 @@ function SectionForm({
                 <input
                   value={ev.label}
                   onChange={e => update(ev.id, 'label', e.target.value)}
-                  placeholder="Event name (e.g. Dinner)"
+                  placeholder={t.details.schedule.eventPlaceholder}
                   className="mb-2 w-full bg-transparent font-cormorant text-[15px] text-[#1A1816] placeholder:text-[#1A1816]/30 outline-none pr-5"
                 />
                 <TimePicker value={ev.time} onChange={v => update(ev.id, 'time', v)} />
@@ -320,7 +323,7 @@ function SectionForm({
                   <input
                     value={ev.venue}
                     onChange={e => update(ev.id, 'venue', e.target.value)}
-                    placeholder="Add location"
+                    placeholder={t.details.schedule.locationPlaceholder}
                     className="w-full bg-transparent font-inter text-[#1A1816]/70 placeholder:text-[#1A1816]/30 outline-none pb-1"
                     style={{ fontSize: 11 }}
                   />
@@ -331,13 +334,13 @@ function SectionForm({
 
           {/* one-tap chips for the usual wedding moments */}
           <div className="flex flex-wrap gap-1.5">
-            {SCHEDULE_PRESETS.filter(l => !used.has(l.toLowerCase())).map(l => (
+            {SCHEDULE_PRESETS.map((l, i) => used.has(l.toLowerCase()) ? null : (
               <button
                 key={l} type="button" onClick={() => add(l)}
                 className="rounded-full px-2.5 py-1 font-inter transition-all"
                 style={{ fontSize: 11.5, background: 'rgba(255,255,255,0.6)', border: '1px solid rgba(26,24,22,0.1)', color: '#1A1816' }}
               >
-                + {l}
+                + {t.details.schedule.presets[i] ?? l}
               </button>
             ))}
           </div>
@@ -348,7 +351,7 @@ function SectionForm({
             Add a custom moment
           </button>
 
-          <TextField label="Other notes" value={str('notes')} placeholder="Any other timings or details…" multiline onChange={v => patch({ notes: v })} />
+          <TextField label={t.details.schedule.notesLabel} value={str('notes')} placeholder={t.details.schedule.notesPlaceholder} multiline onChange={v => patch({ notes: v })} />
         </div>
       )
     }
@@ -357,21 +360,21 @@ function SectionForm({
       return (
         <div className="flex flex-col gap-3">
           <TextField
-            label="Venue name"
+            label={t.details.venue.nameLabel}
             value={str('name')}
-            placeholder="Villa Botanica"
+            placeholder={t.details.venue.namePlaceholder}
             onChange={v => patch({ name: v })}
           />
           <TextField
-            label="Address"
+            label={t.details.venue.addressLabel}
             value={str('address')}
-            placeholder="Full address including postcode"
+            placeholder={t.details.venue.addressPlaceholder}
             onChange={v => patch({ address: v })}
           />
           <TextField
-            label="Getting there"
+            label={t.details.venue.gettingThereLabel}
             value={str('details')}
-            placeholder="Parking, public transport, access notes…"
+            placeholder={t.details.venue.gettingTherePlaceholder}
             multiline
             onChange={v => patch({ details: v })}
           />
@@ -386,9 +389,9 @@ function SectionForm({
     case 'gifts':
       return (
         <TextField
-          label="Gift message"
+          label={t.details.gifts.label}
           value={str('content')}
-          placeholder="A note about gifts, a registry link, or 'your presence is enough'…"
+          placeholder={t.details.gifts.placeholder}
           multiline
           onChange={v => patch({ content: v })}
         />
@@ -429,9 +432,9 @@ function SectionForm({
             </div>
           </div>
           <TextField
-            label="Extra notes"
+            label={t.details.dressCode.notesLabel}
             value={str('notes')}
-            placeholder="e.g. Comfortable shoes recommended for the outdoor ceremony"
+            placeholder={t.details.dressCode.notesPlaceholder}
             multiline
             onChange={v => patch({ notes: v })}
           />
@@ -472,7 +475,7 @@ function SectionForm({
                   type="button"
                   onClick={() => removeQ(i)}
                   className="absolute right-2.5 top-2.5"
-                  aria-label="Remove question"
+                  aria-label={t.details.faq.removeQuestion}
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(26,24,22,0.28)" strokeWidth="1.2" strokeLinecap="round" />
@@ -481,7 +484,7 @@ function SectionForm({
                 <input
                   value={q.q}
                   onChange={e => updateQ(i, 'q', e.target.value)}
-                  placeholder="Question"
+                  placeholder={t.details.faq.questionPlaceholder}
                   className="mb-2 w-full bg-transparent font-inter text-sm text-[#1A1816] placeholder:text-[#1A1816]/28 outline-none pr-5"
                 />
                 <textarea
@@ -588,6 +591,7 @@ export default function DetailsPage() {
   const params = useParams()
   const inviteId = params?.inviteId ?? ''
   const { invite, sections, updateSectionConfig, patchDraft, flushDraft } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   // Track which section is open. `undefined` means "not yet interacted —
   // open the first one by default". Once the user explicitly closes a section
@@ -620,19 +624,15 @@ export default function DetailsPage() {
     <>
       <Hairline step="details" />
       <StepSheet
-        title="The details"
-        lede={
-          contentSections.length === 0
-            ? 'Add what you know — you can always edit before publishing.'
-            : 'Fill in what you know — you can always before publishing.'
-        }
-        primaryLabel="Continue"
+        title={t.details.title}
+        lede={contentSections.length === 0 ? t.details.ledeEmpty : t.details.ledeFilled}
+        primaryLabel={t.common.continue}
         onPrimary={handleContinue}
         backHref={`/builder/${inviteId}/sections`}
       >
         {contentSections.length === 0 ? (
           <p className="font-inter text-sm" style={{ color: 'rgba(26,24,22,0.44)' }}>
-            No pages selected yet — go back to choose which pages to include.
+            {t.details.noSections}
           </p>
         ) : (
           <div className="flex flex-col gap-2">

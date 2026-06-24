@@ -5,19 +5,21 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useBuilder, useBuilderStatus } from './builder-provider'
+import { useTranslation } from '@/lib/i18n/context'
 
 export const STEPS = [
-  { slug: 'names',         name: 'Your names' },
-  { slug: 'opening-video', name: 'Your film' },
-  { slug: 'style',         name: 'Your style' },
-  // { slug: 'music',      name: 'Your music' },  // MUSIC DISABLED — CSP + preload issues
-  { slug: 'save',          name: 'Keep it safe' },
-  { slug: 'sections',      name: 'Your pages' },
-  { slug: 'details',       name: 'The details' },
-  { slug: 'review',        name: 'Review' },
+  { slug: 'names',         key: 'names'   as const },
+  { slug: 'opening-video', key: 'film'    as const },
+  { slug: 'style',         key: 'style'   as const },
+  // { slug: 'music',      key: 'music'   as const },  // MUSIC DISABLED — CSP + preload issues
+  { slug: 'save',          key: 'save'    as const },
+  { slug: 'sections',      key: 'pages'   as const },
+  { slug: 'details',       key: 'details' as const },
+  { slug: 'review',        key: 'review'  as const },
 ] as const
 
 export type StepSlug = (typeof STEPS)[number]['slug']
+type StepKey = (typeof STEPS)[number]['key']
 
 export function stepIndex(slug: string): number {
   return Math.max(0, STEPS.findIndex((s) => s.slug === slug))
@@ -30,6 +32,7 @@ export function stepHref(inviteId: string, slug: StepSlug): string {
 export function Hairline({ step }: { step: StepSlug }) {
   const { invite } = useBuilder()
   const { saveState } = useBuilderStatus()
+  const { t } = useTranslation()
   const router = useRouter()
   const idx = stepIndex(step)
   const progress = (idx + 1) / STEPS.length
@@ -73,7 +76,7 @@ export function Hairline({ step }: { step: StepSlug }) {
               className="font-inter uppercase absolute inset-0"
               style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(26,24,22,0.45)' }}
             >
-              {STEPS[idx].name}
+              {t.nav.steps[STEPS[idx].key as StepKey]}
             </motion.span>
           </AnimatePresence>
         </div>
@@ -91,7 +94,7 @@ export function Hairline({ step }: { step: StepSlug }) {
                 className="font-inter"
                 style={{ fontSize: 10, color: 'rgba(26,24,22,0.38)' }}
               >
-                Saved
+                {t.common.saved}
               </motion.span>
             )}
             {saveState === 'error' && (
@@ -103,7 +106,7 @@ export function Hairline({ step }: { step: StepSlug }) {
                 className="font-inter"
                 style={{ fontSize: 10, color: '#8A4030' }}
               >
-                Couldn&rsquo;t save — check your connection
+                {t.common.couldntSave}
               </motion.span>
             )}
           </AnimatePresence>
@@ -122,10 +125,11 @@ export function Hairline({ step }: { step: StepSlug }) {
                 <circle cx="6.5" cy="5.5" r="1.7" fill="#A8854B" />
               </svg>
               <span className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.16em', color: '#A8854B' }}>
-                Preview
+                {t.nav.preview}
               </span>
             </Link>
           )}
+
         </div>
       </div>
     </div>

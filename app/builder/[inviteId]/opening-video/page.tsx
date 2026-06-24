@@ -7,10 +7,12 @@ import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder } from '@/components/builder/builder-provider'
 import { VIDEO_PRESETS } from '@/lib/builder/presets'
 import { uploadFile, pollAsset, ApiError } from '@/lib/builder/api'
+import { useTranslation } from '@/lib/i18n/context'
 
 export default function OpeningVideoPage({ params }: { params: Promise<{ inviteId: string }> }) {
   const { inviteId } = use(params)
   const { opening, setOpening, setMediaAsset, refreshQuote, media } = useBuilder()
+  const { t } = useTranslation()
   const router = useRouter()
   const fileRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
@@ -80,9 +82,10 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
     <>
       <Hairline step="opening-video" />
       <StepSheet
-        title="Your opening film"
-        lede="Guests see this first. Pick a mood or upload a clip from your day."
-        primaryLabel="Continue"
+        title={t.film.title}
+        stepIndex={1}
+        lede={t.film.lede}
+        primaryLabel={t.common.continue}
         primaryBusy={uploading || uploadedProcessing}
         primaryDisabled={uploading || uploadedProcessing}
         onPrimary={() =>
@@ -171,18 +174,18 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
               )}
             </div>
             <span className="font-inter px-2 text-center leading-snug" style={{ fontSize: 13, letterSpacing: '0.01em', color: 'rgba(26,24,22,0.7)', fontWeight: 500 }}>
-              {uploading ? 'Uploading…' : videoUnavailable ? 'Coming soon' : hasCustomVideo ? 'Uploaded ✓' : 'Your own clip'}
+              {uploading ? t.film.uploadUploading : videoUnavailable ? t.film.uploadComingSoon : hasCustomVideo ? t.film.uploadDone : t.film.uploadLabel}
             </span>
             {!uploading && !videoUnavailable && !hasCustomVideo && (
               <>
                 <span className="font-inter px-4 text-center leading-snug" style={{ fontSize: 11, color: 'rgba(26,24,22,0.5)', letterSpacing: '0.01em', lineHeight: 1.5 }}>
-                  Only upload videos with a maximum duration of 10 seconds in MP4 or MOV format.
+                  {t.film.uploadHint}
                 </span>
                 <span
                   className="font-inter rounded-full px-2.5 py-1"
                   style={{ fontSize: 10, letterSpacing: '0.04em', color: '#A8854B', background: 'rgba(168,133,75,0.12)' }}
                 >
-                  +€4.99
+                  {t.film.uploadPrice}
                 </span>
               </>
             )}
@@ -203,12 +206,10 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
             </svg>
             <div className="min-w-0">
               <p className="font-inter leading-tight" style={{ fontSize: 12, color: '#1A1816' }}>
-                {uploading ? 'Uploading your video…' : 'Getting your film ready…'}
+                {uploading ? t.film.uploadingTitle : t.film.processingTitle}
               </p>
               <p className="font-inter mt-0.5" style={{ fontSize: 10, color: 'rgba(26,24,22,0.5)' }}>
-                {uploading
-                  ? 'This takes 10–15 seconds. Please wait before continuing.'
-                  : 'Your video will show in the preview. This may take a few seconds.'}
+                {uploading ? t.film.uploadingSubtitle : t.film.processingSubtitle}
               </p>
             </div>
           </div>
@@ -220,7 +221,7 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
             className="font-inter mt-3 text-center"
             style={{ fontSize: 10.5, letterSpacing: '0.03em', color: 'rgba(26,24,22,0.42)' }}
           >
-            Curated films are included. Uploading your own adds €4.99.
+            {t.film.curatedNote}
           </p>
         )}
 

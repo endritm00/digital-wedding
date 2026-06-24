@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { OpenerProps } from './shared'
 import { ENVELOPE_DESKTOP, ENVELOPE_MOBILE, type EnvelopeFilm } from '@/lib/invite/envelope-video'
 import { useFilmVideo } from '@/lib/video/use-film-video'
+import { useTranslation } from '@/lib/i18n/context'
 
 // ════════════════════════════════════════════════════════════════════════════════
 // THE LETTER — a filmed wax-sealed envelope (hosted on Mux). Tap to play: the
@@ -27,6 +28,7 @@ const HANDOFF_LEAD = 0.7
 
 export function VideoEnvelopeOpener({ theme, names, onOpen }: OpenerProps) {
   const reduced = useReducedMotion()
+  const { t } = useTranslation()
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [opening, setOpening] = useState(false)
   const handedOff = useRef(false)
@@ -109,7 +111,7 @@ export function VideoEnvelopeOpener({ theme, names, onOpen }: OpenerProps) {
         transition={{ duration: 0.4 }}
       >
         <p className="font-inter uppercase" style={{ fontSize: 9, letterSpacing: '0.34em', color: 'rgba(255,255,255,0.72)', textShadow: '0 1px 14px rgba(0,0,0,0.55)' }}>
-          You are invited
+          {t.invite.youAreInvited}
         </p>
         <p className="mt-3" style={{ fontFamily: theme.font, fontStyle: theme.fontStyle, fontSize: 'clamp(1.8rem, 7vw, 2.8rem)', color: '#fff', lineHeight: 1.05, textShadow: '0 2px 28px rgba(0,0,0,0.6)' }}>
           {names}
