@@ -70,17 +70,17 @@ export function Hairline({ step }: { step: StepSlug }) {
           <Link
             href="/"
             aria-label="Back to home"
-            className="flex items-center justify-center rounded-full transition-opacity hover:opacity-60"
+            className="flex items-center justify-center rounded-full transition-opacity hover:opacity-70"
             style={{
               width: 28,
               height: 28,
-              background: 'rgba(26,24,22,0.06)',
+              background: '#A8854B',
               flexShrink: 0,
             }}
           >
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
-              <path d="M1 5.5L5.5 1L10 5.5" stroke="#1A1816" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
-              <path d="M2.5 4.5V9.5C2.5 9.78 2.72 10 3 10H4.5V7.5H6.5V10H8C8.28 10 8.5 9.78 8.5 9.5V4.5" stroke="#1A1816" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+              <path d="M1 5.5L5.5 1L10 5.5" stroke="#FDFCF9" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M2.5 4.5V9.5C2.5 9.78 2.72 10 3 10H4.5V7.5H6.5V10H8C8.28 10 8.5 9.78 8.5 9.5V4.5" stroke="#FDFCF9" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
 
