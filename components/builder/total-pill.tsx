@@ -10,7 +10,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useBuilder, useBuilderStatus } from './builder-provider'
-import { euros, lineItemLabel } from '@/lib/builder/api'
+import { formatPrice, lineItemLabel } from '@/lib/builder/api'
 
 // The running total. Server-priced, gently counted up, expandable into the
 // line-item breakdown. Sits under the hairline so it is never hidden by the
@@ -24,7 +24,8 @@ export function TotalPill() {
 
   const cents = useMotionValue(0)
   const spring = useSpring(cents, { stiffness: 120, damping: 24 })
-  const display = useTransform(spring, (v) => euros(Math.round(v / 100) * 100))
+  const currency = quote?.currency ?? 'eur'
+  const display = useTransform(spring, (v) => formatPrice(Math.round(v / 100) * 100, currency))
 
   useEffect(() => {
     if (quote == null) return
@@ -43,7 +44,7 @@ export function TotalPill() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        aria-label={`Your total is ${euros(quote.amount_cents)}. Tap for the breakdown.`}
+        aria-label={`Your total is ${formatPrice(quote.amount_cents, currency)}. Tap for the breakdown.`}
         className="flex items-center gap-2 rounded-full px-4 py-2"
         style={{
           background: 'rgba(253,252,249,0.92)',
@@ -95,7 +96,7 @@ export function TotalPill() {
                   className="font-inter"
                   style={{ fontSize: 12, color: '#1A1816', fontVariantNumeric: 'tabular-nums' }}
                 >
-                  {euros(li.amount_cents)}
+                  {formatPrice(li.amount_cents, currency)}
                 </span>
               </div>
             ))}
@@ -107,7 +108,7 @@ export function TotalPill() {
                 className="font-cormorant"
                 style={{ fontSize: 19, fontWeight: 500, color: '#A8854B', fontVariantNumeric: 'tabular-nums' }}
               >
-                {euros(quote.amount_cents)}
+                {formatPrice(quote.amount_cents, currency)}
               </span>
             </div>
           </motion.div>

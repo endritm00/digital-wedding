@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
 import { useBuilder, useBuilderStatus } from '@/components/builder/builder-provider'
-import { api, euros, lineItemLabel, ApiError } from '@/lib/builder/api'
+import { api, formatPrice, lineItemLabel, ApiError } from '@/lib/builder/api'
 import { SECTION_LABELS } from '@/lib/builder/presets'
 import { useTranslation } from '@/lib/i18n/context'
 
@@ -156,7 +156,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                   {lineItemLabel(li.label, plan?.name)}
                 </span>
                 <span className="font-inter" style={{ fontSize: 12, color: '#1A1816', fontVariantNumeric: 'tabular-nums' }}>
-                  {euros(li.amount_cents)}
+                  {formatPrice(li.amount_cents, quote.currency)}
                 </span>
               </div>
             ))}
@@ -168,7 +168,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                 transition={{ duration: 0.7, ease: 'easeOut' }}
                 style={{ fontSize: 22, color: '#A8854B', fontVariantNumeric: 'tabular-nums', display: 'inline-block' }}
               >
-                {euros(quote.amount_cents)}
+                {formatPrice(quote.amount_cents, quote.currency)}
               </motion.span>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
               {t.review.redirecting}
             </span>
           ) : quote ? (
-            t.review.payAndPublish(euros(quote.amount_cents))
+            t.review.payAndPublish(formatPrice(quote.amount_cents, quote.currency))
           ) : (
             <span className="flex items-center justify-center gap-2">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -261,7 +261,7 @@ export default function ReviewPage({ params }: { params: Promise<{ inviteId: str
                   className="mt-2.5 w-full rounded-full py-3 font-inter disabled:opacity-50"
                   style={{ background: '#A8854B', color: '#FDFCF9', fontSize: 12.5, letterSpacing: '0.04em' }}
                 >
-                  {savingEmail || busy ? t.common.oneMoment : quote ? t.review.continueToPaymentWithPrice(euros(quote.amount_cents)) : t.review.continueToPayment}
+                  {savingEmail || busy ? t.common.oneMoment : quote ? t.review.continueToPaymentWithPrice(formatPrice(quote.amount_cents, quote.currency)) : t.review.continueToPayment}
                 </button>
               </div>
             </motion.div>

@@ -340,6 +340,12 @@ export function euros(cents: number): string {
   return Number.isInteger(v) ? `€${v}` : `€${v.toFixed(2)}`
 }
 
+export function formatPrice(cents: number, currency: string): string {
+  const v = cents / 100
+  const s = Number.isInteger(v) ? String(v) : v.toFixed(2)
+  return currency === 'usd' ? `$${s}` : `€${s}`
+}
+
 // Quote line-item labels arrive as machine codes ("plan:premium",
 // "extra:section_overage"). Render them in the interface's voice.
 export function lineItemLabel(label: string, planName?: string | null): string {

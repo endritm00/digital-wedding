@@ -6,6 +6,7 @@ import { stripe } from '@/lib/stripe'
 import { ok, badRequest, serverError } from '@/lib/api/response'
 import { limiters, rateLimitedResponse } from '@/lib/rate-limit'
 import { logger } from '@/lib/logger'
+import { detectCurrency, convertCents } from '@/lib/currency'
 
 type Params = { params: Promise<{ id: string }> }
 
@@ -47,7 +48,16 @@ export async function POST(request: NextRequest, { params }: Params) {
   const quote = await buildQuote(id, { useServiceClient: access.via === 'claim_token' })
   if ('error' in quote) return badRequest(quote.error)
 
-  // Layer 1: existing pending order at the same price, created < 30 min ago
+  // Detect buyer's currency from Vercel's IP-country header (same logic as the
+  // quote route so the displayed price always matches what Stripe charges).
+  const currency = detectCurrency(request.headers.get('x-vercel-ip-country'))
+  const totalCents = convertCents(quote.amount_cents, currency)
+  const lineItems = quote.line_items.map((li) => ({
+    ...li,
+    amount_cents: convertCents(li.amount_cents, currency),
+  }))
+
+  // Layer 1: existing pending order at the same price + currency, created < 30 min ago
   const service = createServiceClient()
   const cutoff = new Date(Date.now() - 30 * 60 * 1000).toISOString()
 
@@ -58,7 +68,8 @@ export async function POST(request: NextRequest, { params }: Params) {
     .select('checkout_url')
     .eq('invite_id', id)
     .eq('status', 'pending')
-    .eq('amount_cents', quote.amount_cents)
+    .eq('amount_cents', totalCents)
+    .eq('currency', currency)
     .gte('created_at', cutoff)
     .order('created_at', { ascending: false })
     .limit(1)
@@ -81,18 +92,18 @@ export async function POST(request: NextRequest, { params }: Params) {
   const appUrl     = process.env.NEXT_PUBLIC_APP_URL!
   const orderId    = crypto.randomUUID()
 
-  // Layer 2: Stripe idempotency key — same invite + same price → same session
+  // Layer 2: Stripe idempotency key — same invite + currency + price → same session
   let session: Awaited<ReturnType<typeof stripe.checkout.sessions.create>>
   try {
     session = await stripe.checkout.sessions.create(
       {
         mode:           'payment',
-        currency:       'eur',
+        currency,
         customer_email: buyerEmail || undefined,
         // One line-item per pricing component for a clean Stripe receipt
-        line_items: quote.line_items.map((li) => ({
+        line_items: lineItems.map((li) => ({
           price_data: {
-            currency:     'eur',
+            currency,
             unit_amount:  li.amount_cents,
             product_data: { name: li.label },
           },
@@ -103,7 +114,7 @@ export async function POST(request: NextRequest, { params }: Params) {
         success_url: `${appUrl}/invite/${id}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url:  `${appUrl}/builder/${id}/review`,
       },
-      { idempotencyKey: `checkout_${id}_${quote.amount_cents}` }
+      { idempotencyKey: `checkout_${id}_${currency}_${totalCents}` }
     )
   } catch (err) {
     logger.error({ event: 'checkout.stripe_session.failed', invite_id: id, error: String(err) })
@@ -120,10 +131,10 @@ export async function POST(request: NextRequest, { params }: Params) {
     id:               orderId,
     invite_id:        id,
     buyer_email:      buyerEmail,
-    amount_cents:     quote.amount_cents,
-    currency:         'eur',
+    amount_cents:     totalCents,
+    currency,
     plan_code:        plan?.code ?? 'unknown',
-    line_items:       quote.line_items,
+    line_items:       lineItems,
     status:           'pending',
     stripe_session_id: session.id,
     checkout_url:     session.url,

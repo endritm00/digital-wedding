@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
+import { fromPrice, type Currency } from '@/lib/currency'
 
 function OrnamentLine({ color }: { color: string }) {
   return (
@@ -15,7 +16,7 @@ function OrnamentLine({ color }: { color: string }) {
   )
 }
 
-export function FinalCta() {
+export function FinalCta({ currency = 'eur' }: { currency?: Currency }) {
   const reduced = useReducedMotion()
 
   return (
@@ -96,7 +97,7 @@ export function FinalCta() {
             className="font-inter"
             style={{ fontSize: 10, color: 'rgba(26,26,26,0.3)', letterSpacing: '0.1em' }}
           >
-            From €19.99 · Live in minutes
+            {fromPrice(currency)} · Live in minutes
           </span>
         </motion.div>
       </motion.div>

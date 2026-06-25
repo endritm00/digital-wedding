@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -8,6 +9,7 @@ import {
   type ResolvedTemplate,
 } from '@/lib/templates/templates'
 import { buildSampleInvite } from '@/lib/templates/sample-invite'
+import { detectCurrency, fromPrice } from '@/lib/currency'
 import { OrnamentDiamond, OrnamentLine } from '@/components/themes/ornament'
 import { InvitationView } from '@/components/invite/invitation-view'
 import { HeroCrest, HeroFrame, HeroCorners } from '@/components/invite/hero-card'
@@ -94,6 +96,9 @@ export default async function TemplateDetailPage({
   const { slug } = await params
   const t = resolveTemplate(slug)
   if (!t) notFound()
+
+  const h = await headers()
+  const currency = detectCurrency(h.get('x-vercel-ip-country'))
 
   const p = t.palette
   const dark = !!p.dark
@@ -253,7 +258,7 @@ export default async function TemplateDetailPage({
               Create yours in this design
             </Link>
             <span className="font-inter" style={{ fontSize: 10.5, letterSpacing: '0.12em', color: faint }}>
-              From €19.99 · Live in minutes
+              {fromPrice(currency)} · Live in minutes
             </span>
           </div>
         </div>

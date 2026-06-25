@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import { ALL_TEMPLATES_RESOLVED } from '@/lib/templates/templates'
 import { ThemeCard } from '@/components/themes/theme-card'
 import { OrnamentDiamond, OrnamentLine } from '@/components/themes/ornament'
 import { SiteNav } from '@/components/marketing/site-nav'
 import { SiteFooter } from '@/components/marketing/site-footer'
+import { detectCurrency, fromPrice } from '@/lib/currency'
 
 const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://digitalinvite.app'
 
@@ -83,7 +85,9 @@ function CollectionJsonLd() {
   )
 }
 
-export default function ThemesPage() {
+export default async function ThemesPage() {
+  const h = await headers()
+  const currency = detectCurrency(h.get('x-vercel-ip-country'))
   return (
     <>
       <SiteNav />
@@ -141,7 +145,7 @@ export default function ThemesPage() {
                 Start creating
               </Link>
               <span className="font-inter" style={{ fontSize: 10.5, letterSpacing: '0.12em', color: 'rgba(26,24,22,0.4)' }}>
-                From €19.99 · Live in minutes
+                {fromPrice(currency)} · Live in minutes
               </span>
             </div>
           </div>

@@ -107,7 +107,7 @@ export default function PrivacyPage() {
                 GDPR & Data Rights
               </h2>
               <p className="font-inter" style={{ fontSize: '14px', color: 'rgba(26,24,22,0.8)' }}>
-                If you are in the EU, you have the right to access, correct, or delete your personal data. You also have the right to data portability. To exercise these rights, contact us at <a href="mailto:privacy@bellenuit.app" style={{ color: '#A8854B', textDecoration: 'none' }}>privacy@bellenuit.app</a>.
+                If you are in the EU, you have the right to access, correct, or delete your personal data. You also have the right to data portability. To exercise these rights, contact us at <a href="mailto:info@belle-nuit.online" style={{ color: '#A8854B', textDecoration: 'none' }}>privacy@bellenuit.app</a>.
               </p>
             </section>
 
@@ -116,7 +116,7 @@ export default function PrivacyPage() {
                 Contact Us
               </h2>
               <p className="font-inter" style={{ fontSize: '14px', color: 'rgba(26,24,22,0.8)' }}>
-                If you have questions about this privacy policy or how we handle your data, please contact us at <a href="mailto:privacy@bellenuit.app" style={{ color: '#A8854B', textDecoration: 'none' }}>privacy@bellenuit.app</a>.
+                If you have questions about this privacy policy or how we handle your data, please contact us at <a href="mailto:info@belle-nuit.online" style={{ color: '#A8854B', textDecoration: 'none' }}>info@belle-nuit.online</a>.
               </p>
             </section>
 

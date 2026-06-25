@@ -104,7 +104,7 @@ export default function TermsPage() {
                 Contact & Support
               </h2>
               <p className="font-inter" style={{ fontSize: '14px', color: 'rgba(26,24,22,0.8)' }}>
-                For questions about these terms, contact us at <a href="mailto:support@bellenuit.app" style={{ color: '#A8854B', textDecoration: 'none' }}>support@bellenuit.app</a>.
+                For questions about these terms, contact us at <a href="mailto:info@belle-nuit.online" style={{ color: '#A8854B', textDecoration: 'none' }}>support@bellenuit.app</a>.
               </p>
             </section>
 

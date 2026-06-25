@@ -70,7 +70,7 @@ export function SiteFooter() {
             Terms of Service
           </Link>
           <a
-            href="mailto:support@bellenuit.app"
+            href="mailto:info@belle-nuit.online"
             className="font-inter footer-link"
             style={{
               fontSize: 12,
