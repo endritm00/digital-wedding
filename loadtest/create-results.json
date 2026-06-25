@@ -1,0 +1,65 @@
+{
+  "base": "http://127.0.0.1:3100/",
+  "tag": "loadtest@bellenuit.test",
+  "startedAt": "2026-06-25T13:10:46.606Z",
+  "stages": {
+    "25": {
+      "rps": 210,
+      "total": 1680,
+      "p50": 101,
+      "p90": 134,
+      "p99": 892,
+      "max": 942,
+      "codes": {
+        "201": 1680
+      },
+      "created": 1680,
+      "rate_limited": 0,
+      "errors": 0
+    },
+    "100": {
+      "rps": 333,
+      "total": 2665,
+      "p50": 295,
+      "p90": 342,
+      "p99": 742,
+      "max": 811,
+      "codes": {
+        "201": 2665
+      },
+      "created": 2665,
+      "rate_limited": 0,
+      "errors": 0
+    },
+    "250": {
+      "rps": 339,
+      "total": 2708,
+      "p50": 709,
+      "p90": 810,
+      "p99": 2052,
+      "max": 2396,
+      "codes": {
+        "201": 2708
+      },
+      "created": 2708,
+      "rate_limited": 0,
+      "errors": 0
+    },
+    "500": {
+      "rps": 360,
+      "total": 2879,
+      "p50": 1368,
+      "p90": 1731,
+      "p99": 3508,
+      "max": 3733,
+      "codes": {
+        "201": 2879
+      },
+      "created": 2879,
+      "rate_limited": 0,
+      "errors": 0
+    }
+  },
+  "finishedAt": "2026-06-25T13:11:20.315Z",
+  "totalCreated": 9932
+}

@@ -64,21 +64,42 @@ export function Hairline({ step }: { step: StepSlug }) {
       </div>
 
       <div className="flex items-center justify-between px-5 pt-3 lg:px-8">
-        {/* Step name — cross-fades between steps */}
-        <div className="relative h-4 overflow-hidden">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={STEPS[idx].slug}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="font-inter uppercase absolute inset-0"
-              style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(26,24,22,0.45)' }}
-            >
-              {t.nav.steps[STEPS[idx].key as StepKey]}
-            </motion.span>
-          </AnimatePresence>
+        {/* Left: home button + step name */}
+        <div className="flex items-center gap-3">
+          {/* Home button — subtle, doesn't compete with the builder */}
+          <Link
+            href="/"
+            aria-label="Back to home"
+            className="flex items-center justify-center rounded-full transition-opacity hover:opacity-60"
+            style={{
+              width: 28,
+              height: 28,
+              background: 'rgba(26,24,22,0.06)',
+              flexShrink: 0,
+            }}
+          >
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
+              <path d="M1 5.5L5.5 1L10 5.5" stroke="#1A1816" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+              <path d="M2.5 4.5V9.5C2.5 9.78 2.72 10 3 10H4.5V7.5H6.5V10H8C8.28 10 8.5 9.78 8.5 9.5V4.5" stroke="#1A1816" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+            </svg>
+          </Link>
+
+          {/* Step name — cross-fades between steps */}
+          <div className="relative h-4 overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={STEPS[idx].slug}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="font-inter uppercase absolute inset-0"
+                style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(26,24,22,0.45)' }}
+              >
+                {t.nav.steps[STEPS[idx].key as StepKey]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* Save whisper + persistent Preview button */}

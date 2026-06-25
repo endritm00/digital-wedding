@@ -65,20 +65,20 @@ const ebGaramond = EB_Garamond({
 })
 
 export const metadata: Metadata = {
-  title:       'Digital Invite — Premium Digital Wedding Invitations',
+  title:       'Belle Nuit — Premium Digital Wedding Invitations',
   description: 'Design your wedding invitation yourself in minutes. Share on WhatsApp. From €99.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://digitalinvite.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://bellenuit.app'),
   openGraph: {
-    title:       'Digital Invite — Begin Your Forever.',
+    title:       'Belle Nuit — Begin Your Forever.',
     description: 'Design your wedding invitation yourself in minutes. Share on WhatsApp. From €99.',
-    url:         process.env.NEXT_PUBLIC_APP_URL ?? 'https://digitalinvite.app',
-    images:      [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Digital Invite' }],
+    url:         process.env.NEXT_PUBLIC_APP_URL ?? 'https://bellenuit.app',
+    images:      [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Belle Nuit' }],
     type:        'website',
-    siteName:    'Digital Invite',
+    siteName:    'Belle Nuit',
   },
   twitter: {
     card:        'summary_large_image',
-    title:       'Digital Invite — Begin Your Forever.',
+    title:       'Belle Nuit — Begin Your Forever.',
     description: 'Design your wedding invitation yourself in minutes. From €99.',
     images:      ['/og-image.jpg'],
   },

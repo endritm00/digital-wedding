@@ -18,6 +18,21 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 // immediately. Tune the window as needed.
 export const revalidate = 300
 
+// Opt this dynamic route into on-demand ISR. We prerender NO ids at build (they
+// are user-generated); generateStaticParams registers the route as ISR-capable.
+export function generateStaticParams() {
+  return []
+}
+
+// force-static is required because the Supabase JS client issues uncached
+// fetch() calls internally, and Next 15 defaults fetch to no-store — which by
+// itself opts the whole route into per-request dynamic rendering (Cache-Control:
+// no-store) and defeats the cache. force-static makes those fetches cacheable
+// and renders the page once per `revalidate` window. Safe here: the page reads
+// no cookies()/headers()/searchParams (only the immutable published snapshot by
+// id via the stateless service client), so forcing static changes no behavior.
+export const dynamic = 'force-static'
+
 // Rebuild the MediaAsset[] the renderer expects from the snapshot's resolved
 // asset manifest (the renderer looks media up by the asset ids in the opening
 // section config).

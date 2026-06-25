@@ -36,8 +36,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  // Scope session refresh to the authenticated planes only. Public routes
+  // (/, /themes, /invite/**, catalog & webhook APIs) read no cookie session
+  // and must stay statically/ISR cacheable — running auth middleware on them
+  // forces per-request dynamic rendering and defeats the CDN/ISR cache.
+  matcher: ['/builder/:path*', '/manage/:path*', '/api/invites/:path*'],
 }

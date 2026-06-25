@@ -33,7 +33,7 @@ export function SiteFooter() {
             margin: 0,
           }}
         >
-          &copy; 2025 Digital Invite. All rights reserved.
+          &copy; 2025 Belle Nuit. All rights reserved.
         </p>
 
         {/* Links */}
@@ -70,7 +70,7 @@ export function SiteFooter() {
             Terms of Service
           </Link>
           <a
-            href="mailto:support@digitalinvite.app"
+            href="mailto:support@bellenuit.app"
             className="font-inter footer-link"
             style={{
               fontSize: 12,
@@ -78,7 +78,7 @@ export function SiteFooter() {
               textDecoration: 'none',
             }}
           >
-            support@digitalinvite.app
+            support@bellenuit.app
           </a>
         </nav>
       </div>

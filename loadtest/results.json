@@ -1,0 +1,447 @@
+{
+  "base": "http://127.0.0.1:3100",
+  "slug": "77a2fa7287",
+  "startedAt": "2026-06-25T12:46:40.187Z",
+  "stages": [
+    10,
+    50,
+    100,
+    200
+  ],
+  "duration": 12,
+  "targets": {
+    "home": {
+      "class": "CACHED",
+      "path": "/",
+      "stages": {
+        "10": {
+          "rps": 575.92,
+          "rps_min": 513,
+          "p50": 16,
+          "p90": 19,
+          "p99": 24,
+          "max": 31,
+          "bytes_s": 37825194.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 6911
+        },
+        "50": {
+          "rps": 603,
+          "rps_min": 572,
+          "p50": 82,
+          "p90": 85,
+          "p99": 104,
+          "max": 147,
+          "bytes_s": 39600128,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 7236
+        },
+        "100": {
+          "rps": 585.75,
+          "rps_min": 514,
+          "p50": 167,
+          "p90": 181,
+          "p99": 220,
+          "max": 546,
+          "bytes_s": 38469632,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 7029
+        },
+        "200": {
+          "rps": 569.75,
+          "rps_min": 518,
+          "p50": 340,
+          "p90": 385,
+          "p99": 842,
+          "max": 1305,
+          "bytes_s": 37421056,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 6837
+        }
+      }
+    },
+    "themes-gallery": {
+      "class": "CACHED",
+      "path": "/themes",
+      "stages": {
+        "10": {
+          "rps": 509.34,
+          "rps_min": 481,
+          "p50": 19,
+          "p90": 21,
+          "p99": 27,
+          "max": 35,
+          "bytes_s": 49083733.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 6112
+        },
+        "50": {
+          "rps": 527.34,
+          "rps_min": 520,
+          "p50": 94,
+          "p90": 97,
+          "p99": 107,
+          "max": 174,
+          "bytes_s": 50823168,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 6328
+        },
+        "100": {
+          "rps": 510.25,
+          "rps_min": 445,
+          "p50": 193,
+          "p90": 203,
+          "p99": 234,
+          "max": 677,
+          "bytes_s": 49173845.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 6123
+        },
+        "200": {
+          "rps": 495.34,
+          "rps_min": 390,
+          "p50": 389,
+          "p90": 425,
+          "p99": 1071,
+          "max": 1653,
+          "bytes_s": 47734784,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 5944
+        }
+      }
+    },
+    "guest-invite": {
+      "class": "CACHED",
+      "path": "/invite/77a2fa7287",
+      "stages": {
+        "10": {
+          "rps": 46.84,
+          "rps_min": 29,
+          "p50": 194,
+          "p90": 259,
+          "p99": 571,
+          "max": 652,
+          "bytes_s": 1457557.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 562
+        },
+        "50": {
+          "rps": 107.84,
+          "rps_min": 52,
+          "p50": 443,
+          "p90": 506,
+          "p99": 931,
+          "max": 977,
+          "bytes_s": 3355605.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1294
+        },
+        "100": {
+          "rps": 112.09,
+          "rps_min": 22,
+          "p50": 835,
+          "p90": 962,
+          "p99": 1420,
+          "max": 1553,
+          "bytes_s": 3488234.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1345
+        },
+        "200": {
+          "rps": 110.09,
+          "rps_min": 79,
+          "p50": 1648,
+          "p90": 1890,
+          "p99": 2675,
+          "max": 2685,
+          "bytes_s": 3425962.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1321
+        }
+      }
+    },
+    "api-snapshot": {
+      "class": "ORIGIN",
+      "path": "/api/snapshots/77a2fa7287",
+      "stages": {
+        "10": {
+          "rps": 51.25,
+          "rps_min": 44,
+          "p50": 186,
+          "p90": 231,
+          "p99": 306,
+          "max": 398,
+          "bytes_s": 140885.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 615
+        },
+        "50": {
+          "rps": 217.09,
+          "rps_min": 162,
+          "p50": 215,
+          "p90": 285,
+          "p99": 425,
+          "max": 498,
+          "bytes_s": 596757.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 2605
+        },
+        "100": {
+          "rps": 291.34,
+          "rps_min": 131,
+          "p50": 323,
+          "p90": 404,
+          "p99": 783,
+          "max": 924,
+          "bytes_s": 800842.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3496
+        },
+        "200": {
+          "rps": 297.34,
+          "rps_min": 105,
+          "p50": 614,
+          "p90": 799,
+          "p99": 1282,
+          "max": 1556,
+          "bytes_s": 817418.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3568
+        }
+      }
+    },
+    "api-themes": {
+      "class": "ORIGIN",
+      "path": "/api/themes",
+      "stages": {
+        "10": {
+          "rps": 98.34,
+          "rps_min": 77,
+          "p50": 95,
+          "p90": 121,
+          "p99": 210,
+          "max": 749,
+          "bytes_s": 188608,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1180
+        },
+        "50": {
+          "rps": 355.75,
+          "rps_min": 268,
+          "p50": 132,
+          "p90": 168,
+          "p99": 308,
+          "max": 432,
+          "bytes_s": 682336,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4269
+        },
+        "100": {
+          "rps": 368.5,
+          "rps_min": 211,
+          "p50": 265,
+          "p90": 324,
+          "p99": 537,
+          "max": 734,
+          "bytes_s": 706762.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4422
+        },
+        "200": {
+          "rps": 369.67,
+          "rps_min": 202,
+          "p50": 487,
+          "p90": 709,
+          "p99": 1045,
+          "max": 1574,
+          "bytes_s": 709002.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4436
+        }
+      }
+    },
+    "api-plans": {
+      "class": "ORIGIN",
+      "path": "/api/plans",
+      "stages": {
+        "10": {
+          "rps": 88.59,
+          "rps_min": 71,
+          "p50": 100,
+          "p90": 154,
+          "p99": 286,
+          "max": 371,
+          "bytes_s": 164448,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1063
+        },
+        "50": {
+          "rps": 256.84,
+          "rps_min": 123,
+          "p50": 155,
+          "p90": 299,
+          "p99": 746,
+          "max": 891,
+          "bytes_s": 476698.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3082
+        },
+        "100": {
+          "rps": 292.09,
+          "rps_min": 103,
+          "p50": 268,
+          "p90": 501,
+          "p99": 1624,
+          "max": 1713,
+          "bytes_s": 542112,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3505
+        },
+        "200": {
+          "rps": 258.42,
+          "rps_min": 4,
+          "p50": 518,
+          "p90": 1187,
+          "p99": 3932,
+          "max": 4289,
+          "bytes_s": 479682.84,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3101
+        }
+      }
+    },
+    "api-extras": {
+      "class": "ORIGIN",
+      "path": "/api/extras",
+      "stages": {
+        "10": {
+          "rps": 48.42,
+          "rps_min": 20,
+          "p50": 105,
+          "p90": 169,
+          "p99": 3259,
+          "max": 3271,
+          "bytes_s": 97089.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 581
+        },
+        "50": {
+          "rps": 277.92,
+          "rps_min": 30,
+          "p50": 145,
+          "p90": 269,
+          "p99": 951,
+          "max": 1053,
+          "bytes_s": 557182.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 3335
+        },
+        "100": {
+          "rps": 373.84,
+          "rps_min": 214,
+          "p50": 259,
+          "p90": 309,
+          "p99": 652,
+          "max": 724,
+          "bytes_s": 749514.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4486
+        },
+        "200": {
+          "rps": 377.34,
+          "rps_min": 201,
+          "p50": 481,
+          "p90": 679,
+          "p99": 1028,
+          "max": 1300,
+          "bytes_s": 756554.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4528
+        }
+      }
+    },
+    "api-health": {
+      "class": "ORIGIN",
+      "path": "/api/health",
+      "stages": {
+        "10": {
+          "rps": 93.34,
+          "rps_min": 14,
+          "p50": 91,
+          "p90": 122,
+          "p99": 513,
+          "max": 995,
+          "bytes_s": 127695.34,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 1120
+        },
+        "50": {
+          "rps": 358.34,
+          "rps_min": 256,
+          "p50": 129,
+          "p90": 167,
+          "p99": 363,
+          "max": 492,
+          "bytes_s": 490538.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4300
+        },
+        "100": {
+          "rps": 361.92,
+          "rps_min": 258,
+          "p50": 264,
+          "p90": 318,
+          "p99": 465,
+          "max": 771,
+          "bytes_s": 495488,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4343
+        },
+        "200": {
+          "rps": 369.5,
+          "rps_min": 165,
+          "p50": 505,
+          "p90": 577,
+          "p99": 1672,
+          "max": 2113,
+          "bytes_s": 505850.67,
+          "non2xx": 0,
+          "timeouts": 0,
+          "total": 4434
+        }
+      }
+    }
+  },
+  "finishedAt": "2026-06-25T12:53:46.535Z"
+}
