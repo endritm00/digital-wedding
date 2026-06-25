@@ -1,0 +1,15 @@
+name: Abandon reminder
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call cron endpoint
+        run: |
+          curl -sf -X GET "${{ secrets.APP_URL }}/api/cron/abandon-reminder" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
