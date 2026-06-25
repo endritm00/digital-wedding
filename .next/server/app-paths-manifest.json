@@ -1,3 +1,3 @@
 {
-  "/page": "app/page.js"
+  "/invite/[id]/page": "app/invite/[id]/page.js"
 }

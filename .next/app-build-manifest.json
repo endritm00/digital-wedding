@@ -1,6 +1,6 @@
 {
   "pages": {
-    "/page": [
+    "/invite/[id]/page": [
       "static/chunks/[root-of-the-server]__f1132242._.css",
       "static/chunks/node_modules_next_dist_1a6ee436._.js",
       "static/chunks/app_layout_tsx_007ca514._.js",
@@ -10,9 +10,10 @@
       "static/chunks/app_not-found_tsx_2b4ec61d._.js",
       "static/chunks/_9171d213._.js",
       "static/chunks/app_global-error_tsx_2b4ec61d._.js",
-      "static/chunks/_370772f1._.js",
-      "static/chunks/node_modules_56b521d2._.js",
-      "static/chunks/app_page_tsx_2b4ec61d._.js",
+      "static/chunks/node_modules_hls_js_dist_hls_light_mjs_65de40de._.js",
+      "static/chunks/_58779299._.js",
+      "static/chunks/node_modules_c450a514._.js",
+      "static/chunks/app_invite_[id]_page_tsx_2b4ec61d._.js",
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_17e42fcf._.js",
       "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
       "static/chunks/node_modules_next_dist_client_8f19e6fb._.js",
