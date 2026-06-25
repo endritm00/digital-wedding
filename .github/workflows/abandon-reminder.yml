@@ -11,5 +11,7 @@ jobs:
     steps:
       - name: Call cron endpoint
         run: |
-          curl -sf -X GET "${{ secrets.APP_URL }}/api/cron/abandon-reminder" \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
+          curl -sS -X GET "${{ secrets.APP_URL }}/api/cron/abandon-reminder" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -w "\nHTTP status: %{http_code}\n" \
+            --fail-with-body

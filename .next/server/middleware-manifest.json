@@ -7,23 +7,15 @@
         "server/edge/chunks/node_modules_@supabase_postgrest-js_dist_index_mjs_1f828633._.js",
         "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_e443dca4._.js",
         "server/edge/chunks/node_modules_d0fc58bb._.js",
-        "server/edge/chunks/[root-of-the-server]__de110ef0._.js",
-        "server/edge/chunks/edge-wrapper_c210eb89.js"
+        "server/edge/chunks/[root-of-the-server]__61571e76._.js",
+        "server/edge/chunks/edge-wrapper_99df6560.js"
       ],
       "name": "middleware",
       "page": "/",
       "matchers": [
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/builder(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
-          "originalSource": "/builder/:path*"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/manage(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
-          "originalSource": "/manage/:path*"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/api\\/invites(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
-          "originalSource": "/api/invites/:path*"
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon\\.ico).*))(\\\\.json)?[\\/#\\?]?$",
+          "originalSource": "/((?!_next/static|_next/image|favicon\\.ico).*)"
         }
       ],
       "wasm": [],
@@ -31,9 +23,9 @@
       "env": {
         "__NEXT_BUILD_ID": "development",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "5yx0Ddk9FI/68TtpEG/XpNvT5OH1hMdKoacy7IaWonI=",
-        "__NEXT_PREVIEW_MODE_ID": "6c44380ac45737c49ea023b39e4e0ccc",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "4f4d1cb7c66e2827029f9c3bd6fe564644506bf76c803db4b23049dc8960a016",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "8dd117df478582b8ec3cb53f20707c41a1db0da0cc5f1cd6d31348848235df7f"
+        "__NEXT_PREVIEW_MODE_ID": "8169f90ed0941855a864e40f80e63d3b",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "1495687679ef877d6ee7126dcd46839c467414963aaf861364bf01fd28eea65c",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "334caa85eed1dd737d7aeced37d1e1ab816eab4628661218511d45555a17c6ff"
       }
     }
   },
