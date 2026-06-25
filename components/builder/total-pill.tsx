@@ -25,7 +25,7 @@ export function TotalPill() {
   const cents = useMotionValue(0)
   const spring = useSpring(cents, { stiffness: 120, damping: 24 })
   const currency = quote?.currency ?? 'eur'
-  const display = useTransform(spring, (v) => formatPrice(Math.round(v / 100) * 100, currency))
+  const display = useTransform(spring, (v) => formatPrice(Math.round(v), currency))
 
   useEffect(() => {
     if (quote == null) return
@@ -54,13 +54,14 @@ export function TotalPill() {
         }}
       >
         <motion.span
-          className="font-cormorant"
+          className="font-inter"
           style={{
-            fontSize: 20,
+            fontSize: 15,
             fontWeight: 500,
             color: '#A8854B',
             fontVariantNumeric: 'tabular-nums',
             lineHeight: 1,
+            letterSpacing: '-0.01em',
           }}
         >
           {display}
@@ -105,8 +106,8 @@ export function TotalPill() {
                 Your total
               </span>
               <span
-                className="font-cormorant"
-                style={{ fontSize: 19, fontWeight: 500, color: '#A8854B', fontVariantNumeric: 'tabular-nums' }}
+                className="font-inter"
+                style={{ fontSize: 13, fontWeight: 600, color: '#A8854B', fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.01em' }}
               >
                 {formatPrice(quote.amount_cents, currency)}
               </span>

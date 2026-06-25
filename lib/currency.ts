@@ -21,7 +21,7 @@ const USD_FACTOR = 1.09
 
 export function convertCents(eurCents: number, currency: Currency): number {
   if (currency === 'eur') return eurCents
-  return Math.round((eurCents * USD_FACTOR) / 100) * 100
+  return Math.round(eurCents * USD_FACTOR)
 }
 
 export function formatPrice(cents: number, currency: Currency | string): string {
