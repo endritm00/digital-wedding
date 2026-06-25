@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase/service'
 import type { SnapshotContent } from '@/lib/publish/render-snapshot'
 import type { MediaAsset, Section } from '@/lib/builder/api'
 import { InvitationView } from '@/components/invite/invitation-view'
+import { I18nProvider, type Locale } from '@/lib/i18n/context'
 
 // Public, login-free guest page for a PUBLISHED invitation. Reads the immutable
 // snapshot and renders the SAME full InvitationView the couple previews — opener,
@@ -69,18 +70,22 @@ export default async function GuestInvitePage({ params }: Params) {
   if (!snap?.content) notFound()
   const content = snap.content as unknown as SnapshotContent
 
+  const locale = (content.locale ?? 'en') as Locale
+
   return (
-    <InvitationView
-      invite={{
-        display_title: content.display_title,
-        event_date: content.event_date,
-        venue_name: content.venue_name,
-        venue_address: content.venue_address,
-      }}
-      sections={content.sections as unknown as Section[]}
-      media={snapshotMedia(content.asset_manifest)}
-      rsvp={{ kind: 'snapshot', slug: content.slug }}
-      enableOpener
-    />
+    <I18nProvider initialLocale={locale}>
+      <InvitationView
+        invite={{
+          display_title: content.display_title,
+          event_date: content.event_date,
+          venue_name: content.venue_name,
+          venue_address: content.venue_address,
+        }}
+        sections={content.sections as unknown as Section[]}
+        media={snapshotMedia(content.asset_manifest)}
+        rsvp={{ kind: 'snapshot', slug: content.slug }}
+        enableOpener
+      />
+    </I18nProvider>
   )
 }

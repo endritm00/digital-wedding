@@ -52,6 +52,7 @@ export interface SnapshotContent {
   }>
   asset_manifest: AssetManifest
   rsvp_enabled:   boolean
+  locale:         string | null
   generated_at:   string
 }
 
@@ -113,6 +114,7 @@ export async function renderSnapshot(inviteId: string): Promise<SnapshotContent>
     })),
     asset_manifest,
     rsvp_enabled: sections.some((s) => s.type === 'rsvp'),
+    locale: (sections.find((s) => s.type === 'opening')?.config as Record<string, unknown>)?.locale as string | null ?? null,
     generated_at: new Date().toISOString(),
   }
 }

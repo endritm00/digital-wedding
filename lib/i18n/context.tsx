@@ -26,10 +26,11 @@ const I18nContext = createContext<I18nContextValue>({
   t: en,
 })
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en')
+export function I18nProvider({ children, initialLocale }: { children: ReactNode; initialLocale?: Locale }) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale ?? 'en')
 
   useEffect(() => {
+    if (initialLocale) return // locale was server-specified; don't override from localStorage
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as Locale | null
       if (stored && stored in LOCALES) setLocaleState(stored)

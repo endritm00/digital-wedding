@@ -1,11 +1,15 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/extras/route": "app/api/extras/route.js",
+  "/api/invites/[id]/checkout/route": "app/api/invites/[id]/checkout/route.js",
   "/api/invites/[id]/extras/route": "app/api/invites/[id]/extras/route.js",
   "/api/invites/[id]/media/route": "app/api/invites/[id]/media/route.js",
+  "/api/invites/[id]/publish/route": "app/api/invites/[id]/publish/route.js",
   "/api/invites/[id]/quote/route": "app/api/invites/[id]/quote/route.js",
   "/api/invites/[id]/route": "app/api/invites/[id]/route.js",
   "/api/invites/[id]/sections/[sectionId]/route": "app/api/invites/[id]/sections/[sectionId]/route.js",
   "/api/invites/[id]/sections/route": "app/api/invites/[id]/sections/route.js",
+  "/api/invites/[id]/verify-payment/route": "app/api/invites/[id]/verify-payment/route.js",
   "/api/invites/route": "app/api/invites/route.js",
   "/api/plans/route": "app/api/plans/route.js",
   "/api/themes/route": "app/api/themes/route.js",
@@ -17,6 +21,10 @@
   "/builder/[inviteId]/sections/page": "app/builder/[inviteId]/sections/page.js",
   "/builder/[inviteId]/style/page": "app/builder/[inviteId]/style/page.js",
   "/builder/page": "app/builder/page.js",
+  "/invite/[id]/page": "app/invite/[id]/page.js",
   "/invite/[id]/preview/page": "app/invite/[id]/preview/page.js",
-  "/page": "app/page.js"
+  "/invite/[id]/success/page": "app/invite/[id]/success/page.js",
+  "/page": "app/page.js",
+  "/themes/[slug]/page": "app/themes/[slug]/page.js",
+  "/themes/page": "app/themes/page.js"
 }

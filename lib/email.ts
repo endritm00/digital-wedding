@@ -97,6 +97,38 @@ export function manageLinkEmail(opts: { coupleName?: string | null; link: string
   return { subject, html }
 }
 
+/** Abandon-reminder email sent ~30 min after a draft_email is saved if unpaid. */
+export function abandonedDraftEmail(opts: { coupleName?: string | null; resumeUrl: string }): { subject: string; html: string } {
+  const who = opts.coupleName?.trim() || 'there'
+  const subject = 'Your invitation draft is waiting'
+
+  const html = `
+  <div style="margin:0;padding:32px 16px;background:#F8F4EF;font-family:Helvetica,Arial,sans-serif;">
+    <div style="max-width:480px;margin:0 auto;background:#FDFCF9;border:1px solid #ECE6DA;border-radius:18px;padding:36px 32px;">
+      <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#A8854B;">Belle Nuit</p>
+      <h1 style="margin:0 0 16px;font-size:24px;font-weight:400;color:#1A1816;">Hi ${escapeHtml(who)},</h1>
+      <p style="margin:0 0 20px;font-size:14px;line-height:1.7;color:rgba(26,24,22,0.7);">
+        You started creating a beautiful wedding invitation but didn't quite finish. Your draft is saved and ready whenever you are.
+      </p>
+      <a href="${opts.resumeUrl}" style="display:inline-block;background:#1A1816;color:#FDFCF9;text-decoration:none;font-size:14px;padding:13px 26px;border-radius:999px;">
+        Continue editing →
+      </a>
+      <p style="margin:20px 0 0;font-size:12px;line-height:1.6;color:rgba(26,24,22,0.45);">
+        Open this link from the device you used to start your invitation — your progress is saved there.
+      </p>
+      <p style="margin:12px 0 0;font-size:12px;line-height:1.6;color:rgba(26,24,22,0.45);word-break:break-all;">
+        Or paste into your browser:<br/>${opts.resumeUrl}
+      </p>
+      <p style="margin:28px 0 0;font-size:11px;line-height:1.6;color:rgba(26,24,22,0.35);">
+        You received this because you entered your email on Belle Nuit. If you didn't, you can safely ignore it.
+      </p>
+    </div>
+  </div>
+  `
+
+  return { subject, html }
+}
+
 function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string

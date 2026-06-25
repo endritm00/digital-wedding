@@ -218,6 +218,7 @@ export default function NamesPage({ params }: { params: Promise<{ inviteId: stri
 
 function LanguageDropdown() {
   const { locale, setLocale } = useTranslation()
+  const { setOpening } = useBuilder()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -287,7 +288,7 @@ function LanguageDropdown() {
               type="button"
               role="option"
               aria-selected={locale === l}
-              onClick={() => { setLocale(l); setOpen(false) }}
+              onClick={() => { setLocale(l); setOpening({ locale: l }); setOpen(false) }}
               className="flex items-center gap-2.5 px-4 py-3 font-inter text-left transition-colors"
               style={{
                 fontSize: 13,

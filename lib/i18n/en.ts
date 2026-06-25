@@ -252,14 +252,14 @@ export const en: Translations = {
   },
   save: {
     title: 'Keep your work safe',
-    lede: "Enter your email and we'll send a private link so you can return to your draft from any device.",
-    primaryLabel: 'Send me a link',
+    lede: "Enter your email and we'll remind you to come back if you don't finish today.",
+    primaryLabel: 'Save my email',
     skipLabel: 'Skip for now',
     emailLabel: 'Your email',
     emailPlaceholder: 'you@example.com',
     emailInvalid: 'Please enter a valid email address',
     savedNotice: "Saved! We'll email your private link the moment you publish.",
-    secureNote: "We'll send a secure link so you can return from any device.",
+    secureNote: "If you leave without finishing, we'll send a reminder within 30 minutes.",
   },
   sections: {
     title: 'What pages do you want?',

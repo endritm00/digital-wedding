@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useRef, useState } from 'react'
+import { use, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Hairline } from '@/components/builder/hairline'
 import { StepSheet } from '@/components/builder/step-sheet'
@@ -28,6 +28,14 @@ export default function OpeningVideoPage({ params }: { params: Promise<{ inviteI
   }
   const selectedPreset = config.video_preset ?? null
   const hasCustomVideo = Boolean(config.video_asset_id)
+
+  // Auto-select the first preset on mount if nothing is chosen yet, so skipping
+  // this step still results in a video on the published invite.
+  useEffect(() => {
+    if (!selectedPreset && !hasCustomVideo) {
+      setOpening({ video_preset: VIDEO_PRESETS[0].id })
+    }
+  }, [])
 
   // Block Continue until the uploaded video is processed and previewing.
   // Once status==='ready' the background preview loads it automatically.

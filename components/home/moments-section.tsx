@@ -78,7 +78,7 @@ export function MomentsSection() {
             className="font-inter leading-none"
             style={{ fontSize: 11, color: 'rgba(26,26,26,0.4)' }}
           >
-            Loved by early couples across Europe
+            Loved by couples around the World!
           </span>
         </div>
       </div>

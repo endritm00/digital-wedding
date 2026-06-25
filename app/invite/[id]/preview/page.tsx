@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { api } from '@/lib/builder/api'
 import type { Invite, Section, MediaAsset } from '@/lib/builder/api'
 import { InvitationView } from '@/components/invite/invitation-view'
+import { I18nProvider, type Locale } from '@/lib/i18n/context'
 
 // Creator preview — the couple checking their own invite. Renders the SAME
 // InvitationView guests see (full opener + theme + sections + countdown + RSVP),
@@ -98,13 +99,15 @@ export default function PreviewPage() {
       )}
 
       {state === 'ready' && invite && (
-        <InvitationView
-          invite={invite}
-          sections={sections}
-          media={media}
-          rsvp={{ kind: 'preview' }}
-          enableOpener={!skipOpener}
-        />
+        <I18nProvider initialLocale={(sections.find(s => s.type === 'opening')?.config as Record<string, unknown>)?.locale as Locale | undefined}>
+          <InvitationView
+            invite={invite}
+            sections={sections}
+            media={media}
+            rsvp={{ kind: 'preview' }}
+            enableOpener={!skipOpener}
+          />
+        </I18nProvider>
       )}
     </div>
   )

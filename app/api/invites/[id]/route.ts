@@ -52,9 +52,16 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const db = result.via === 'claim_token' ? createServiceClient() : await createClient()
 
+  // Stamp the first time a draft_email is saved so the abandon-reminder cron
+  // knows when to fire. Resets if they clear and re-enter their email.
+  const updates: Record<string, unknown> = { ...parsed.data }
+  if (parsed.data.draft_email && !result.invite.draft_email) {
+    updates.draft_email_saved_at = new Date().toISOString()
+  }
+
   const { data, error } = await db
     .from('invites')
-    .update(parsed.data)
+    .update(updates as any)
     .eq('id', id)
     .select(SAFE_SELECT)
     .single()
