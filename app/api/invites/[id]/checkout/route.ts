@@ -109,6 +109,7 @@ export async function POST(request: NextRequest, { params }: Params) {
           },
           quantity: 1,
         })),
+        allow_promotion_codes: true,
         client_reference_id: id,
         metadata: { order_id: orderId, invite_id: id },
         success_url: `${appUrl}/invite/${id}/success?session_id={CHECKOUT_SESSION_ID}`,

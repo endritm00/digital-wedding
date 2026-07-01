@@ -157,6 +157,9 @@ function SuccessInner({ id }: { id: string }) {
               <p className="font-inter leading-relaxed" style={{ fontSize: 13, color: 'rgba(26,24,22,0.55)' }}>
                 Your invitation is live. Share the link and let the celebrations begin.
               </p>
+               <p className="font-inter leading-relaxed" style={{ fontStyle: 'italic', fontSize: 13, color: 'rgba(26,24,22,0.55)' }}>
+                We also sent an email with the details. Check your Spam folder if you don't see it.
+              </p>
             </div>
 
             <Link

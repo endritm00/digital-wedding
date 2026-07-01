@@ -29,7 +29,7 @@ export const fr: Translations = {
     preview: 'Aperçu',
   },
   names: {
-    title: 'Qui se marie?',
+    title: 'Qui se marie ?',
     lede: 'Ces noms apparaissent au cœur de votre invitation.',
     firstPerson: 'Première personne',
     secondPerson: 'Deuxième personne',
@@ -82,17 +82,17 @@ export const fr: Translations = {
   },
   save: {
     title: 'Protégez votre travail',
-    lede: 'Entrez votre adresse e-mail et nous vous enverrons un lien privé pour retourner à votre brouillon depuis n\'importe quel appareil.',
-    primaryLabel: 'Envoyez-moi un lien',
+    lede: 'Entrez votre adresse e-mail et nous vous rappellerons de revenir si vous ne terminez pas aujourd\'hui.',
+    primaryLabel: 'Enregistrer mon e-mail',
     skipLabel: 'Ignorer pour le moment',
     emailLabel: 'Votre adresse e-mail',
     emailPlaceholder: 'vous@exemple.fr',
     emailInvalid: 'Veuillez entrer une adresse e-mail valide',
-    savedNotice: 'Enregistré! Nous vous enverrons votre lien privé dès que vous publierez.',
-    secureNote: 'Nous enverrons un lien sécurisé pour que vous puissiez revenir depuis n\'importe quel appareil.',
+    savedNotice: 'Enregistré ! Nous vous enverrons votre lien privé dès que vous publierez.',
+    secureNote: 'Si vous partez sans avoir terminé, nous vous enverrons un rappel sous 30 minutes.',
   },
   sections: {
-    title: 'Quelles pages voulez-vous?',
+    title: 'Quelles pages voulez-vous ?',
     lede: 'Ajoutez les pages que vous souhaitez — elles sont toutes incluses.',
     items: {
       story:     { label: 'Votre histoire',    blurb: 'Comment vous vous êtes rencontrés, avec vos propres mots.' },
@@ -152,7 +152,7 @@ export const fr: Translations = {
     noSections: 'Aucune page sélectionnée pour le moment — retournez en arrière et choisissez les pages à inclure.',
   },
   review: {
-    title: 'Prêt à l\'envoyer?',
+    title: 'Prêt à l\'envoyer ?',
     lede: 'Regardez d\'abord l\'aperçu de votre invitation, puis publiez quand vous êtes prêt.',
     summaryNames: 'Noms',
     summaryDate: 'Date',
@@ -164,7 +164,7 @@ export const fr: Translations = {
     payAndPublish: (price) => `Payer et publier — ${price}`,
     calculatingPrice: 'Calcul du prix…',
     redirecting: 'Redirection…',
-    emailGateNotice: 'Quel est votre adresse e-mail? Après le paiement, nous vous enverrons un lien privé pour voir qui vient.',
+    emailGateNotice: 'Quelle est votre adresse e-mail ? Après le paiement, nous vous enverrons un lien privé pour voir qui sera présent.',
     emailPlaceholder: 'vous@email.fr',
     continueToPayment: 'Continuer vers le paiement',
     continueToPaymentWithPrice: (price) => `Continuer vers le paiement — ${price}`,
@@ -172,7 +172,7 @@ export const fr: Translations = {
   },
   heroSection: {
     yourNames: 'Vos noms',
-    yourWeddingDay: 'Votre jour de mariage',
+    yourWeddingDay: 'Votre grand jour',
   },
   invite: {
     familiesNote: 'Vous êtes cordialement invités au mariage de',

@@ -83,7 +83,7 @@ export const sq: Translations = {
   save: {
     title: 'Ruani punën tuaj',
     lede: 'Shkruani e-mail tuaj dhe do t\'ju dërgojmë një lidhje private për të kthyer në hartimin tuaj nga çdo pajisje.',
-    primaryLabel: 'Dërgo mi një lidhje',
+    primaryLabel: 'Dërgo link-un',
     skipLabel: 'Kaloji për tani',
     emailLabel: 'Adresa juaj e-mail',
     emailPlaceholder: 'ju@shembull.al',
